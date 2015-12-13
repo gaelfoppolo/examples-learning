@@ -18,12 +18,12 @@
  * @field *filsd Pointeur vers le fils gauche
  *
  */
-typedef struct self {
-	char *nom;
+typedef struct self_arbre {
+	char* nom;
  	int valeur;
- 	struct self *filsg;
- 	struct self *filsd;
-} arbre, *pArbre;
+ 	struct self_arbre *filsg;
+ 	struct self_arbre *filsd;
+} Arbre;
 
 /**
  * @brief Création d'une nouvelle feuille (arbre)
@@ -32,7 +32,7 @@ typedef struct self {
  * 
  * @return le nouvel arbre
  */
-pArbre creeFeuille(char* n);
+Arbre* creeFeuille(char* n);
 
 /**
  * @brief Création d'un nouveau noeud (arbre)
@@ -43,7 +43,7 @@ pArbre creeFeuille(char* n);
  *
  * @return le nouvel arbre
  */
-pArbre creeNoeud(char* n, pArbre fg, pArbre fd);
+Arbre* creeNoeud(char* n, Arbre* fg, Arbre* fd);
 
 /**
  * @brief Savoir si l'arbre est une feuille
@@ -52,6 +52,6 @@ pArbre creeNoeud(char* n, pArbre fg, pArbre fd);
  *
  * @return 0 (faux) ou 1 (vrai)
  */
-int estFeuille(pArbre a);
+int estFeuille(Arbre* a);
 
 #endif
