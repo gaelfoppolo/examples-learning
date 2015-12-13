@@ -54,3 +54,9 @@ Arbre* PPAC(Arbre* racine, Arbre* a, Arbre* b) {
   // ou NULL si aucun ne le contient
   return gauche ? gauche : droite;
 }
+
+void freeArbre(Arbre* a) {
+	if(a->filsg != NULL) freeArbre(a->filsg);
+	if(a->filsd != NULL) freeArbre(a->filsd);
+	free(a);
+}

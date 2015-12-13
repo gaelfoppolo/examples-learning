@@ -73,4 +73,11 @@ int estFeuille(Arbre* a);
  */
 Arbre* PPAC(Arbre* racine, Arbre* a, Arbre* b);
 
+/**
+ * @brief Supprime de la mémoire l'espace occupé par l'arbre
+ *
+ * @param a le pointeur de l'arbre a supprimé de la mémoire
+ */
+void freeArbre(Arbre* a);
+
 #endif
