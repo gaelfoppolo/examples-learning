@@ -33,3 +33,24 @@ Arbre* creeNoeud(char* n, int val, Arbre* fg, Arbre* fd) {
 int estFeuille(Arbre* a) {
  	return (a->filsg == NULL) && (a->filsd = NULL);
 }
+
+Arbre* PPAC(Arbre* racine, Arbre* a, Arbre* b) {
+  if(!racine) {
+  	return NULL;
+  }
+  // on vérifie si on a trouvé au moins une valeur
+  if (racine == a || racine == b) {
+  	return racine;
+  }	
+  // sinon on continue à descendre
+  Arbre* gauche = PPAC(racine->filsg, a, b);
+  Arbre* droite = PPAC(racine->filsd, a, b);
+  // si gauche et droite contiennent tout deux a et b
+  // racine actuelle est racine
+  if (gauche && droite) { 
+  	return racine;
+  }
+  // sinon on retourne le noeud qui contiennet une des deux valeurs
+  // ou NULL si aucun ne le contient
+  return gauche ? gauche : droite;
+}

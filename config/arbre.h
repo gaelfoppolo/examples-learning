@@ -56,4 +56,21 @@ Arbre* creeNoeud(char* n, int val, Arbre* fg, Arbre* fd);
  */
 int estFeuille(Arbre* a);
 
+/**
+ * @brief Trouve le plus petit ancêtre commun entre deux noeuds/feuilles
+ * @description Complexité θ(n). On ne parcours l'arbre qu'une seule fois.
+ * On part de la racine en descendant, jusqu'à trouver un noeud qui correspond
+ * ou être sur une feuille et on fait remonter cette valeur au parent.
+ * Celui-ci teste ensuite si le fils gauche et le fils droit contient la valeur.
+ * Si c'est le cas, le parent est le PPAC, sinon on remonte celui qui contient le noeud
+ * ou NULL si aucun ni fils gauche ni fils droit ne la contiennent.
+ *
+ * @param racine La racine de l'arbre
+ * @param a le premier noeud
+ * @param b le second noeud
+ *
+ * @return le plus petit ancêtre commun
+ */
+Arbre* PPAC(Arbre* racine, Arbre* a, Arbre* b);
+
 #endif
