@@ -1,17 +1,24 @@
+/**
+ *
+ * @gaelfoppolo FOPPOLO Gaël
+ * @Ebatsin PHILIP Bastien
+ *
+ * @brief Functions and structures used by the parser
+ */
+
 #ifndef _PARSER_H_
 #define _PARSER_H_
 
-#include "../config/colors.h"
+#include "types/colors.h"
 
 typedef int Color;
 typedef int Shape;
 
 /**
-*   @brief Structure des objets
-*   @field id Identifiant de l'objet
-*   @field taille taille de l'objet
-*   @field couleur couleur de l'objet
-*   @field forme forme de l'objet
+*   @brief All the attributes of the object
+*   @field size The object's size
+*   @field color The object's color
+*   @field shape The object's shape
 */
 typedef struct __basic_object {
     int size;
@@ -21,17 +28,17 @@ typedef struct __basic_object {
 
 
 /**
-*   @brief Structure des exemples et contre exemples
-*   @field objectList Tableau contenant tous les objets composant l'exemple
+*   @brief All the objects composing an example (or a counter-example)
+*   @field objects An array of the objects composing the example
 */
 typedef struct __basic_example {
     Object* objects;
 } Example;
 
 /**
-*   @brief Structure contenant les exemples et contre-exemples associé au modèle à tester
-*   @field examples tableau d'exemples
-*   @field counterExamples tableau de contre exemples
+*   @brief Structure that contains the examples and counter-examples of the current model
+*   @field examples Array of examples
+*   @field counterExamples Array of counter-examples
 */
 typedef struct __basic_model_sample {
     Example* examples;
@@ -39,15 +46,15 @@ typedef struct __basic_model_sample {
 } ModelSample;
 
 /**
-*   @brief génère la structure contenant les exemples et contre exemples à partir d'un fichier
-*   @param file le chemin vers le fichier à charger
-*   @return une structure générée à partir du fichier
+*   @brief Generate a structure that contains all the examples and counter-examples parsed in a file
+*   @param file The path to the file to parse
+*   @return A structure that represents the content of the file
 */
 ModelSample* parse(char* file);
 
 /**
-*   @brief Libère la mémoire allouée lors de la génération de la structure principale
-*   @param ms Le modèle sample généré par la fonction parse
+*   @brief Free the memory allocated while parsing
+*   @param ms The ModelSample created by the parse function
 */
 void freeModelSample(ModelSample* ms);
 

@@ -1,3 +1,11 @@
+/**
+ *
+ * @gaelfoppolo FOPPOLO Gaël
+ * @Ebatsin PHILIP Bastien
+ *
+ * @brief The colors used by the app
+ */
+
 #ifndef _COLORS_H_
 #define _COLORS_H_
 
