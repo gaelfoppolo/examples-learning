@@ -26,29 +26,26 @@ typedef struct self_arbre {
 } Arbre;
 
 /**
- * @brief Compteur qui sert à générer la valeur contenue dans un arbre
- */
-static int compteur = 1;
-
-/**
  * @brief Création d'une nouvelle feuille (arbre)
  * 
  * @param n nom de la figure géométrique
+ * @param val la valeur correspondante à la figure
  * 
  * @return le nouvel arbre
  */
-Arbre* creeFeuille(char* n);
+Arbre* creeFeuille(char* n, int val);
 
 /**
  * @brief Création d'un nouveau noeud (arbre)
  *
  * @param n nom de la figure géomatrique
+ * @param val la valeur correspondante à la figure
  * @param[in] fg fils gauche
  * @param[in] fd fils droit
  *
  * @return le nouvel arbre
  */
-Arbre* creeNoeud(char* n, Arbre* fg, Arbre* fd);
+Arbre* creeNoeud(char* n, int val, Arbre* fg, Arbre* fd);
 
 /**
  * @brief Savoir si l'arbre est une feuille

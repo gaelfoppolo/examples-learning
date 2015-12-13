@@ -10,21 +10,21 @@
 #include <stdlib.h>
 #include "arbre.h"
 
-Arbre* creeFeuille(char* n) {
+Arbre* creeFeuille(char* n, int val) {
 	Arbre* a;
  	a = (Arbre*)malloc(sizeof(Arbre));
  	a->nom = n;
- 	a->valeur = compteur++;
+ 	a->valeur = val;
  	a->filsg = NULL;
  	a->filsd = NULL;
  	return a;
 }
 
-Arbre* creeNoeud(char* n, Arbre* fg, Arbre* fd) {
+Arbre* creeNoeud(char* n, int val, Arbre* fg, Arbre* fd) {
  	Arbre* a;
  	a = (Arbre*)malloc(sizeof(Arbre));
 	a->nom = n;
- 	a->valeur = compteur++;
+ 	a->valeur = val;
  	a->filsg = fg;
  	a->filsd = fd;
  	return a;
