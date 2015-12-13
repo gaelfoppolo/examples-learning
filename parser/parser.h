@@ -4,7 +4,7 @@
 #include "../config/colors.h"
 
 typedef int Color;
-typedef int Forme;
+typedef int Shape;
 
 /**
 *   @brief Structure des objets
@@ -14,10 +14,9 @@ typedef int Forme;
 *   @field forme forme de l'objet
 */
 typedef struct __basic_object {
-    int id;
-    int taille;
-    Color couleur;
-    Forme forme;
+    int size;
+    Color color;
+    Shape shape;
 } Object;
 
 
