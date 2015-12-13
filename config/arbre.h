@@ -26,6 +26,11 @@ typedef struct self_arbre {
 } Arbre;
 
 /**
+ * @brief Compteur qui sert à générer la valeur contenue dans un arbre
+ */
+static int compteur = 1;
+
+/**
  * @brief Création d'une nouvelle feuille (arbre)
  * 
  * @param n nom de la figure géométrique
