@@ -1,0 +1,17 @@
+/**
+ *
+ * @gaelfoppolo FOPPOLO Gaël
+ * @Ebatsin PHILIP Bastien
+ *
+ * @brief The shape used by the app
+ */
+
+#ifndef _SHAPE_H_
+#define _SHAPE_H_
+
+typedef enum {
+	whatever, polygone, ellipsoid, triangle, quadrilateral, circle, ellipse, rectangle_triangle, 
+	isosceles_triangle, trapeze, rectangle, equilateral_triangle, square 
+} Shape;
+
+#endif // _SHAPE_H_
