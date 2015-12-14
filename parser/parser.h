@@ -9,7 +9,7 @@
 #ifndef _PARSER_H_
 #define _PARSER_H_
 
-#include "types/colors.h"
+#include "../types/colors.h"
 
 typedef int Color;
 typedef int Shape;
