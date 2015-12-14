@@ -12,29 +12,29 @@
 int main(int argc, char const *argv[])
 {
 
-	Tree* a = createNode("Whatever", whatever, 
-		createNode("Polygone", polygone, 
-			createNode("Triangle", triangle, 
-				createLeaf("Rectangle triangle", rectangle_triangle), 
-				createNode("Isosceles triangle", isosceles_triangle, 
-					createLeaf("Equilateral triangle", equilateral_triangle), 
+	Tree* a = createNode(whatever, 
+		createNode(polygone, 
+			createNode(triangle, 
+				createLeaf(rectangle_triangle), 
+				createNode(isosceles_triangle, 
+					createLeaf(equilateral_triangle), 
 					NULL)
 			), 
-			createNode("Quadrilateral", quadrilateral, 
-				createLeaf("Trapeze", trapeze), 
-				createNode("Rectangle", rectangle, 
-					createLeaf("Square", square), 
+			createNode(quadrilateral, 
+				createLeaf(trapeze), 
+				createNode(rectangle, 
+					createLeaf(square), 
 					NULL
 				)
 			)
 		), 
-		createNode("Ellipsoid", ellipsoid, 
-			createLeaf("Circle", circle), 
-			createLeaf("Ellipse", ellipse)
+		createNode(ellipsoid, 
+			createLeaf(circle), 
+			createLeaf(ellipse)
 		));
 
-	Tree* n = LCA(a, createLeaf("Rectangle triangle", rectangle_triangle), createLeaf("Square", circle));
-	printf("%s\n", n->name);
+	Tree* n = LCA(a, createLeaf(rectangle_triangle), createLeaf(square));
+	printf("%d\n", n->value);
 
 	freeTree(a);
 

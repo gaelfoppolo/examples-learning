@@ -10,20 +10,18 @@
 #include <stdlib.h>
 #include "tree.h"
 
-Tree* createLeaf(char* n, int val) {
+Tree* createLeaf(int val) {
 	Tree* t;
  	t = (Tree*)malloc(sizeof(Tree));
- 	t->name = n;
  	t->value = val;
  	t->lf_child = NULL;
  	t->rg_child = NULL;
  	return t;
 }
 
-Tree* createNode(char* n, int val, Tree* lfc, Tree* rgc) {
+Tree* createNode(int val, Tree* lfc, Tree* rgc) {
  	Tree* t;
  	t = (Tree*)malloc(sizeof(Tree));
-	t->name = n;
  	t->value = val;
  	t->lf_child = lfc;
  	t->rg_child = rgc;

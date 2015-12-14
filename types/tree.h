@@ -12,14 +12,12 @@
 /**
  * @brief Binary tree structure
  * 
- * @field name Name of the geometric shape
  * @field value Integer value
  * @field *lf_child Pointer to left child
  * @field *rg_child Pointer to right child
  *
  */
 typedef struct __tree {
-	char* name;
  	int value;
  	struct __tree *lf_child;
  	struct __tree *rg_child;
@@ -28,24 +26,22 @@ typedef struct __tree {
 /**
  * @brief Create a new leaf (tree)
  * 
- * @param name Name of the geometric shape
  * @param val Value matching the geometric shape
  * 
  * @return A new Tree
  */
-Tree* createLeaf(char* n, int val);
+Tree* createLeaf(int val);
 
 /**
  * @brief Create a new node (tree)
  *
- * @param n Name of the geometric shape
  * @param val Value matching the geometric shape
  * @param[in] lfc The left child
  * @param[in] rgc The right child
  *
  * @return A new Tree
  */
-Tree* createNode(char* n, int val, Tree* lfc, Tree* rgc);
+Tree* createNode(int val, Tree* lfc, Tree* rgc);
 
 /**
  * @brief Check if a tree is a leaf
