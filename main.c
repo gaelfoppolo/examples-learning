@@ -34,7 +34,7 @@ int main(int argc, char const *argv[])
 		));
 
 	Tree* n = LCA(a, createLeaf(rectangle_triangle), createLeaf(square));
-	printf("%d\n", n->value);
+	printf("LCA of %s and %s is %s\n", ShapeString[rectangle_triangle], ShapeString[square], ShapeString[n->value]);
 
 	freeTree(a);
 

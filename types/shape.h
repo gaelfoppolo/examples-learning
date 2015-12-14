@@ -14,4 +14,9 @@ typedef enum {
 	isosceles_triangle, trapeze, rectangle, equilateral_triangle, square 
 } Shape;
 
+static const char *ShapeString[] = {
+    "whatever", "polygone", "ellipsoid", "triangle", "quadrilateral", "circle", "ellipse", "rectangle triangle", 
+    "isosceles triangle", "trapeze", "rectangle", "equilateral triangle", "square"
+};
+
 #endif // _SHAPE_H_
