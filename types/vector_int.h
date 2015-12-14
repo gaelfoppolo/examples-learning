@@ -25,7 +25,7 @@ typedef struct __basic_int_vector {
     unsigned int currentSize;
     unsigned int capacity;
     int* data;
-} Vectori;
+} Vector;
 
 /**
 *   @brief Inits a vector
