@@ -1,28 +1,24 @@
-#include "vector.h"
-
-static void doubleCapacity(Vector * vect) {
-    vect->capacity *= 2;
-    vect->data = (void**)realloc(vect->data, vect->capacity * sizeof(void*));
-}
+#include "vector_int.h"
 
 void initVector(Vector * vect) {
     vect->currentSize = 0;
     vect->capacity = VECTOR_DEFAULT_SIZE;
 
-    vect->data = (void**)malloc(vect->capacity * sizeof(void*));
+    vect->data = (int*)malloc(vect->capacity * sizeof(int));
 }
 
-void pushVector(Vector * vect, void * item) {
+void pushVector(Vector * vect, int item) {
     // if the vector is full
     if(vect->currentSize >= vect->capacity) {
-        doubleCapacity(vect);
+        vect->capacity *= 2; // double the array capacity
+        vect->data = (int*)realloc(vect->data, vect->capacity * sizeof(int));
     }
 
     vect->data[vect->currentSize] = item;
     ++vect->currentSize;
 }
 
-void * vectorGet(Vector * vect, unsigned int index) {
+int vectorGet(Vector * vect, unsigned int index) {
     return vect->data[index];
 }
 

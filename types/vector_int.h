@@ -1,9 +1,19 @@
-#ifndef _VECTOR_H_
-#define _VECTOR_H_
+/**
+ *
+ * @gaelfoppolo FOPPOLO Gaël
+ * @Ebatsin PHILIP Bastien
+ *
+ * @brief Dynamic int array implementation
+ */
+
+#ifndef _VECTOR_INT_H_
+#define _VECTOR_INT_H_
 
 #include <stdlib.h>
 
+#ifndef VECTOR_DEFAULT_SIZE
 #define VECTOR_DEFAULT_SIZE 10
+#endif // VECTOR_DEFAULT_SIZE
 
 /**
 *   @brief Structure that represents a dynamic array
@@ -11,11 +21,11 @@
 *   @field capacity The maximum number of elements that the array can host
 *   @field data The elements of the array
 */
-typedef struct __basic_vector {
+typedef struct __basic_int_vector {
     unsigned int currentSize;
     unsigned int capacity;
-    void** data;
-} Vector;
+    int* data;
+} Vectori;
 
 /**
 *   @brief Inits a vector
@@ -28,15 +38,15 @@ void initVector(Vector * vect);
 *   @param vect The vector at the end of which the element is to be added
 *   @param item The element to be added
 */
-void pushVector(Vector * vect, void * item);
+void pushVector(Vector * vect, int item);
 
 /**
 *   @brief Returns the element at a given index of the array
 *   @param vect The vector
 *   @param index The index of the element wanted. Starts at 0. No bounds check
-*   @return A pointer to the element selected
+*   @return The element selected
 */
-void * vectorGet(Vector * vect, unsigned int index);
+int vectorGet(Vector * vect, unsigned int index);
 
 /**
 *   @brief Free the vector
