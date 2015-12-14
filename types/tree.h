@@ -75,4 +75,4 @@ Tree* LCA(Tree* root, Tree* t1, Tree* t2);
  */
 void freeTree(Tree* t);
 
-#endif
+#endif // _TREE_H_

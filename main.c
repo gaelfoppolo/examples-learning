@@ -5,8 +5,9 @@
  *
  * @brief Main
  */
-
-#include "types/tree.c"
+ 
+#include <stdio.h>
+#include "types/tree.h"
 #include "types/shape.h"
 
 int main(int argc, char const *argv[])

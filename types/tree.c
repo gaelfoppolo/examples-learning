@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "tree.h"
 
 Tree* createLeaf(int val) {

@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include "parser.h"
 #include <stdlib.h>
+#include <string.h>
 
 ModelSample* parse(char* file) {
 	// file descriptor
