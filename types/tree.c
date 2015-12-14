@@ -39,7 +39,7 @@ Tree* LCA(Tree* root, Tree* t1, Tree* t2) {
   	return NULL;
   }
   // we check if we find at least one
-  if (root == t1 || root == t2) {
+  if (root->value == t1->value || root->value == t2->value) {
   	return root;
   }	
   // else we keep going down
