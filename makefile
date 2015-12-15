@@ -1,28 +1,32 @@
 ##
  #
  # @gaelfoppolo FOPPOLO Gaël
- # @Ebatsin PHILIP Bastien
+ # @Ebatsin     PHILIP Bastien
  #
  # @brief Makefile
  #
  # To generate : type "make" or "make learning"
- # to clean : type "make clean"
-## 
+ # To clean : type "make clean"
+ #
+##
 
-learning: main.o tree.o vector_int.o parser.o
-	gcc -Wall -o learning main.o tree.o vector_int.o parser.o
+learning: main.o tree.o parser.o colors.o parser_struct.o
+	gcc -Wall -O2 -o learning main.o tree.o parser.o colors.o parser_struct.o
 
-main.o: main.c types/tree.c types/shape.h
-	gcc -c -Wall main.c 
+main.o: main.c parser/parser.h
+	gcc -Wall -O2 -c main.c
 
-tree.o: types/tree.c types/tree.h makefile
-	gcc -c -Wall types/tree.c
+tree.o: types/tree.c types/tree.h
+	gcc -Wall -O2 -c types/tree.c
 
-vector_int.o: types/vector_int.c types/vector_int.h makefile
-	gcc -c -Wall types/vector_int.c
+parser.o: parser/parser.c parser/parser.h types/colors.h types/parser_struct.h types/vector.h
+	gcc -Wall -O2 -c parser/parser.c
 
-parser.o: parser/parser.c parser/parser.h types/color.h types/shape.h makefile
-	gcc -c -Wall parser/parser.c	
+colors.o: types/colors.h types/colors.c
+	gcc -Wall -O2 -c types/colors.c
 
-clean:	
+parser_struct.o: types/parser_struct.c types/parser_struct.h types/vector.h types/colors.h
+	gcc -Wall -O2 -c types/parser_struct.c
+
+clean:
 	rm -rf learning *.o
