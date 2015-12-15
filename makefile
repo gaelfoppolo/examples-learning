@@ -10,12 +10,12 @@
  #
 ##
 
-learning: parsing-main.o tree.o parser.o color.o shape.o model.o example.o
-	gcc -Wall -O2 -o learning parsing-main.o tree.o parser.o color.o shape.o model.o example.o
+learning: main.o tree.o parser.o color.o shape.o model.o example.o
+	gcc -Wall -O2 -o learning main.o tree.o parser.o color.o shape.o model.o example.o
 
-parsing-main.o: parsing-main.c parser/parser.h
-	gcc -Wall -O2 -c parsing-main.c
-
+main.o: main.c types/tree.h parser/parser.h
+	gcc -Wall -O2 -c main.c
+	
 tree.o: types/tree.c types/tree.h
 	gcc -Wall -O2 -c types/tree.c
 
