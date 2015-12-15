@@ -26,5 +26,18 @@ typedef struct __basic_object {
     Shape shape;
 } Object;
 
+/**
+*	@brief The object that represents the common traits of the other objects
+*	@field min The min size of the objects
+*	@field max The max size of the objects
+*	@field colors The list of the object's colors
+*	@field shape The lowest common shape of the objects
+*/
+typedef struct __basic_out_object {
+	int min;
+	int max;
+	Vect(Color) colors;
+	Shape shape;
+} OutObject;
 
 #endif // _BASICOBJECT_H_
