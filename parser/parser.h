@@ -14,7 +14,6 @@
 #include <stddef.h>
 #include <string.h>
 
-#include "../types/colors.h"
 #include "../types/model.h"
 
 #define _KEY_VALUE_MAX_SIZE_ 100

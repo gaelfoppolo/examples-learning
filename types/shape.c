@@ -1,20 +1,12 @@
-#include "colors.h"
+/**
+ *
+ * @gaelfoppolo FOPPOLO Gaël
+ * @Ebatsin PHILIP Bastien
+ *
+ * @brief The shape used by the app
+ */
 
-int getColorId(char* color) {
-    if(strcmp(color, "white") == 0) {
-        return WHITE;
-    }
-    else if(strcmp(color, "black") == 0) {
-        return BLACK;
-    }
-    else if(strcmp(color, "blue") == 0) {
-        return BLUE;
-    }
-    else if(strcmp(color, "red") == 0) {
-        return RED;
-    }
-    return NOCOLOR;
-}
+#include "shape.h"
 
 int getShapeId(char* shape) {
     if(strcmp(shape, "whatever") == 0) return 0;

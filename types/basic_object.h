@@ -10,9 +10,8 @@
 #define _BASICOBJECT_H_
 
 #include "vector.h"
-#include "colors.h"
-
-typedef int Shape;
+#include "color.h"
+#include "shape.h"
 
 /**
 *   @brief All the attributes of the object
@@ -36,7 +35,7 @@ typedef struct __basic_object {
 typedef struct __basic_out_object {
 	int min;
 	int max;
-	Vect(Color) colors;
+	Vector(Color) colors;
 	Shape shape;
 } OutObject;
 
