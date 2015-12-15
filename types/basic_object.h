@@ -39,4 +39,7 @@ typedef struct __basic_out_object {
 	Shape shape;
 } OutObject;
 
+void initOutObject(OutObject* out);
+void freeOutObject(OutObject* out);
+
 #endif // _BASICOBJECT_H_

@@ -10,29 +10,35 @@
  #
 ##
 
-learning: main.o tree.o parser.o color.o shape.o model.o example.o
-	gcc -Wall -O2 -o learning main.o tree.o parser.o color.o shape.o model.o example.o
+learning: main.o tree.o parser.o color.o shape.o model.o example.o output.o basic_object.o
+	clang -Wall -O2 -o learning main.o tree.o parser.o color.o shape.o model.o example.o output.o basic_object.o
 
 main.o: main.c types/tree.h parser/parser.h
-	gcc -Wall -O2 -c main.c
-	
+	clang -Wall -O2 -c main.c
+
 tree.o: types/tree.c types/tree.h
-	gcc -Wall -O2 -c types/tree.c
+	clang -Wall -O2 -c types/tree.c
 
 parser.o: parser/parser.c parser/parser.h types/model.h
-	gcc -Wall -O2 -c parser/parser.c
+	clang -Wall -O2 -c parser/parser.c
 
 color.o: types/color.h types/color.c
-	gcc -Wall -O2 -c types/color.c
+	clang -Wall -O2 -c types/color.c
 
 shape.o: types/shape.h types/shape.c
-	gcc -Wall -O2 -c types/shape.c
+	clang -Wall -O2 -c types/shape.c
 
 model.o: types/model.c types/model.h types/example.h
-	gcc -Wall -O2 -c types/model.c
+	clang -Wall -O2 -c types/model.c
 
 example.o: types/example.c types/example.h types/basic_object.h types/vector.h
-	gcc -Wall -O2 -c types/example.c
+	clang -Wall -O2 -c types/example.c
+
+output.o: app/output.c app/output.h types/basic_object.h
+	clang -Wall -O2 -c app/output.c
+
+basic_object.o: types/basic_object.c types/basic_object.h types/vector.h types/color.h types/shape.h
+	clang -Wall -O2 -c types/basic_object.c
 
 clean:
 	rm -rf learning *.o

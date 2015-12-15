@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include "types/tree.h"
 #include "parser/parser.h"
+#include "app/output.h"
 
 int main(int argc, char const *argv[])
 {
@@ -63,6 +64,8 @@ int main(int argc, char const *argv[])
 
 
     printf("Taille de l'exemple : %d\n", vectSize(test.objects));
+
+    printf("%s\n", stringifyCommonObject(NULL));
 
 	return 0;
 }
