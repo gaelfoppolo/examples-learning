@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "parser/parser.h"
 
-int main()
+int main(int argc, char const *argv[])
 {
     ModelSample * current = parse("ressources/examples.cfg");
 

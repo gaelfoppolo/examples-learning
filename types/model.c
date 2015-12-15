@@ -1,4 +1,12 @@
-#include "parser_struct.h"
+/**
+ *
+ * @gaelfoppolo FOPPOLO Gaël
+ * @Ebatsin PHILIP Bastien
+ *
+ * @brief Functions used by the model
+ */
+
+#include "model.h"
 
 void initModelSample(ModelSample * ms) {
     vectInit(ms->examples);
@@ -16,12 +24,4 @@ void freeModelSample(ModelSample * ms) {
 
     vectFree(ms->examples);
     vectFree(ms->counterExamples);
-}
-
-void initExample(Example * e) {
-    vectInit(e->objects);
-}
-
-void freeExample(Example * e) {
-    vectFree(e->objects);
 }

@@ -15,8 +15,7 @@
 #include <string.h>
 
 #include "../types/colors.h"
-#include "../types/parser_struct.h"
-#include "../types/vector.h"
+#include "../types/model.h"
 
 #define _KEY_VALUE_MAX_SIZE_ 100
 

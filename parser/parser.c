@@ -81,7 +81,7 @@ ModelSample* parse(char* file) {
                 else if(strcmp("size", sp.first) == 0) { // key = size
                     currentObject.size = atoi(sp.second);
                 }
-                else if(strcmp("color", sp.first) == 0) { // key = size
+                else if(strcmp("color", sp.first) == 0) { // key = color
                     currentObject.color = getColorId(sp.second);
                 }
                 else {
