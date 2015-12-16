@@ -36,6 +36,6 @@ int getNextAttribute(FILE* fp, StringPair * sp);
 *   @param file The path to the file to parse
 *   @return A structure that represents the content of the file
 */
-ModelSample* parse(char* file);
+ModelSample* parse(char const* file);
 
 #endif // _PARSER_H_

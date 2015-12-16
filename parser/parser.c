@@ -33,7 +33,7 @@ int getNextAttribute(FILE* fp, StringPair * sp) {
     return 1;
 }
 
-ModelSample* parse(char* file) {
+ModelSample* parse(char const* file) {
     FILE * f;
     char c;
 
