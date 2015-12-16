@@ -13,18 +13,18 @@ OutObject* learning(ModelSample* current, Tree* root) {
         // current example
         e = vectAt(current->examples, i);
         // for all objects of the example
-        
-        if(vectSize(e.objects) > 0) { 
-        	o = vectAt(e.objects, 0);
-        	oo->min = o.size;
-            oo->max = o.size;
-            vectPush(Color, oo->colors, o.color);
-            oo->shape = o.shape; 
-        }
 
         for(int j = 0; j < vectSize(e.objects); ++j) {
         	// current object of the example
             o = vectAt(e.objects, j);
+
+            if(i == 0 && j == 0) { 
+                o = vectAt(e.objects, 0);
+                oo->min = o.size;
+                oo->max = o.size;
+                vectPush(Color, oo->colors, o.color);
+                oo->shape = o.shape;
+            }
 
             addToInterval(&(oo->min), &(oo->max), o.size);
 			if (isInVector(oo, o.color)) {
