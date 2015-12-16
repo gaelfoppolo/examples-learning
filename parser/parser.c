@@ -40,8 +40,6 @@ ModelSample* parse(char const* file) {
     f = fopen(file, "r");
 
     if(!f) {
-        // todo : errors handling
-        printf("Erreur lors de l'ouverture du fichier");
         return NULL;
     }
 
