@@ -21,6 +21,11 @@ static const char *ShapeString[] = {
     "isosceles triangle", "trapeze", "rectangle", "equilateral triangle", "square"
 };
 
+/**
+*	@brief Returns the numeric id of a shape
+*	@param shape The string that represent the shape
+*	@return The numeric id of the shape
+*/
 int getShapeId(char* shape);
 
 #endif // _SHAPE_H_

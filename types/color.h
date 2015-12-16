@@ -19,6 +19,11 @@ static const char *ColorString[] = {
     "white", "black", "blue", "red"
 };
 
+/**
+*	@brief Returns the numeric id of a color
+*	@param color The string that represent the color
+*	@return The numeric id of the color
+*/
 int getColorId(char* color);
 
 #endif // _COLOR_H_

@@ -39,7 +39,16 @@ typedef struct __basic_out_object {
 	Shape shape;
 } OutObject;
 
+/**
+*	@brief Init the output object
+*	@param out A pointer to the object to init
+*/
 void initOutObject(OutObject* out);
+
+/**
+*	@brief Free the output previewsly initialized by initOutObject
+*	@paramout A pointer to the object to free
+*/
 void freeOutObject(OutObject* out);
 
 #endif // _BASICOBJECT_H_

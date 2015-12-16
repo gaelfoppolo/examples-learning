@@ -21,7 +21,16 @@ typedef struct __basic_model_sample {
     Vector(Example) counterExamples;
 } ModelSample;
 
+/**
+*	@brief Init the model sample object
+*	@param ms A pointer to the modelSample to be initialized
+*/
 void initModelSample(ModelSample * ms);
+
+/**
+*	@brief Free the model sample object
+*	@param ms A pointer to the modelSample to be freed
+*/
 void freeModelSample(ModelSample * ms);
 
 #endif // _MODEL_H_

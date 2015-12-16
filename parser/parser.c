@@ -1,3 +1,11 @@
+/**
+ *
+ * @gaelfoppolo FOPPOLO Gaël
+ * @Ebatsin PHILIP Bastien
+ *
+ * @brief Functions and structures used by the parser
+ */
+
 #include "parser.h"
 
 int getNextAttribute(FILE* fp, StringPair * sp) {
