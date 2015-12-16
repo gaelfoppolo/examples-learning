@@ -1,6 +1,6 @@
 #include "core.h"
 
-OutObject* learning(ModelSample* current, Tree* root) {
+OutObject* learning(ModelSample* ms, Tree* root) {
  	// an example
  	Example e;
  	// an object of an example
@@ -9,25 +9,25 @@ OutObject* learning(ModelSample* current, Tree* root) {
  	OutObject* oo = (OutObject*)malloc(sizeof(OutObject));
     initOutObject(oo);
 
- 	for(int i = 0; i < vectSize(current->examples); ++i) {
+    // first object of the first example is our basic output model
+    o = vectAt(vectAt(ms->examples, 0).objects, 0);
+    oo->min = o.size;
+    oo->max = o.size;
+    vectPush(Color, oo->colors, o.color);
+    oo->shape = o.shape;
+
+ 	for(int i = 0; i < vectSize(ms->examples); ++i) {
         // current example
-        e = vectAt(current->examples, i);
+        e = vectAt(ms->examples, i);
         // for all objects of the example
 
         for(int j = 0; j < vectSize(e.objects); ++j) {
         	// current object of the example
             o = vectAt(e.objects, j);
 
-            if(i == 0 && j == 0) { 
-                o = vectAt(e.objects, 0);
-                oo->min = o.size;
-                oo->max = o.size;
-                vectPush(Color, oo->colors, o.color);
-                oo->shape = o.shape;
-            }
-
+            // basic processing
             addToInterval(&(oo->min), &(oo->max), o.size);
-			if (!isInVector(oo, o.color)) {
+            if (!colorIsInVector(oo, o.color)) {
 				vectPush(Color, oo->colors, o.color);
 			}
 			oo->shape = (LCA(root, oo->shape, o.shape))->value;
@@ -42,7 +42,7 @@ OutObject* learning(ModelSample* current, Tree* root) {
  	else if(*max < x) *max = x;
  }
 
- int isInVector(OutObject* v, Color c) {
+ int colorIsInVector(OutObject* v, Color c) {
  	int found = 0;
  	for(int i = 0; i < vectSize(v->colors) && !found; ++i) {
  		found = (vectAt(v->colors, i) == c);
