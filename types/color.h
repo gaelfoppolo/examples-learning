@@ -15,7 +15,7 @@ typedef enum {
 	white, black, blue, red
 } Color;
 
-const char *colorString[] = { 
+static const char *colorString[] = { 
     "white", "black", "blue", "red"
 };
 
