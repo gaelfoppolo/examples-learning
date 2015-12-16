@@ -27,7 +27,7 @@ OutObject* learning(ModelSample* current, Tree* root) {
             }
 
             addToInterval(&(oo->min), &(oo->max), o.size);
-			if (isInVector(oo, o.color)) {
+			if (!isInVector(oo, o.color)) {
 				vectPush(Color, oo->colors, o.color);
 			}
 			oo->shape = (LCA(root, oo->shape, o.shape))->value;
