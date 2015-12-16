@@ -19,7 +19,7 @@
 *	@str The string
 *	@return The length of the string
 */
-unsigned int strlength(char* str);
+unsigned int strlength(char const* str);
 
 /**
 *	@brief Append a string at the end of another
@@ -27,7 +27,7 @@ unsigned int strlength(char* str);
 *	@str2 The string to be appened
 *	@return The address of the string
 */
-char* concat(char* str1, char* str2);
+char* concat(char* str1, char const* str2);
 
 /**
 *	@brief returns a string that contains the representation of the object in a readable presentation
