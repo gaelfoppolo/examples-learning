@@ -33,18 +33,18 @@ int isLeaf(Tree* t) {
  	return (t->lf_child == NULL) && (t->rg_child = NULL);
 }
 
-Tree* LCA(Tree* root, Tree* t1, Tree* t2) {
+Tree* LCA(Tree* root, int v1, int v2) {
   if(!root) {
   	return NULL;
   }
   // we check if we find at least one
-  if (root->value == t1->value || root->value == t2->value) {
+  if (root->value == v1 || root->value == v2) {
   	return root;
   }	
   // else we keep going down
-  Tree* left = LCA(root->lf_child, t1, t2);
-  Tree* right = LCA(root->rg_child, t1, t2);
-  // if left and right both contain t1 and t2
+  Tree* left = LCA(root->lf_child, v1, v2);
+  Tree* right = LCA(root->rg_child, v1, v2);
+  // if left and right both contain v1 and v2
   // current root is LCA
   if (left && right) { 
   	return root;

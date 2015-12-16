@@ -61,12 +61,12 @@ int isLeaf(Tree* t);
  * What is pass is the lower node or NULL
  *
  * @param root The root of the tree
- * @param t1 The first tree
- * @param t2 The second tree
+ * @param v1 The first value
+ * @param v2 The second value
  *
  * @return The lowest common ancestor (node or leaf)
  */
-Tree* LCA(Tree* root, Tree* t1, Tree* t2);
+Tree* LCA(Tree* root, int v1, int v2);
 
 /**
  * @brief Remove from the memory, the space used by the tree

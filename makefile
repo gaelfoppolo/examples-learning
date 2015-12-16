@@ -10,10 +10,10 @@
  #
 ##
 
-learning: main.o tree.o parser.o color.o shape.o model.o example.o output.o basic_object.o
-	clang -Wall -O2 -o learning main.o tree.o parser.o color.o shape.o model.o example.o output.o basic_object.o
+learning: main.o tree.o parser.o color.o shape.o model.o example.o output.o basic_object.o core.o
+	clang -Wall -O2 -o learning main.o tree.o parser.o color.o shape.o model.o example.o output.o basic_object.o core.o
 
-main.o: main.c types/tree.h parser/parser.h
+main.o: main.c types/tree.h parser/parser.h app/output.h app/core.h
 	clang -Wall -O2 -c main.c
 
 tree.o: types/tree.c types/tree.h
@@ -39,6 +39,9 @@ output.o: app/output.c app/output.h types/basic_object.h
 
 basic_object.o: types/basic_object.c types/basic_object.h types/vector.h types/color.h types/shape.h
 	clang -Wall -O2 -c types/basic_object.c
+
+core.o: app/core.c app/core.h types/model.h types/tree.h
+	clang -Wall -O2 -c app/core.c
 
 clean:
 	rm -rf learning *.o
