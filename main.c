@@ -41,23 +41,25 @@ int main(int argc, char const *argv[])
 		));
 
 	ModelSample * current = parse(argv[1]);
+	char *stringOutput;
 
 	if(current == NULL) {
 		printf("The file does not exist or you don't have the correct rights to open it.\n");
 
     	freeTree(root);
-    	
+
 		return 1;
 	}
 
     OutObject* oo = learning(current, root);
 
-    printf("%s\n", stringifyCommonObject(oo));
+    stringOutput = stringifyCommonObject(oo);
 
+    printf("%s\n", stringOutput);
+
+    free(stringOutput);
     freeTree(root);
-
     freeModelSample(current);
-
     freeOutObject(oo);
 
 	return 0;

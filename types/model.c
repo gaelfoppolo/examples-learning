@@ -24,4 +24,6 @@ void freeModelSample(ModelSample * ms) {
 
     vectFree(ms->examples);
     vectFree(ms->counterExamples);
+
+    free(ms);
 }

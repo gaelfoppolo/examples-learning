@@ -15,4 +15,5 @@ void initOutObject(OutObject* out) {
 
 void freeOutObject(OutObject* out) {
 	vectFree(out->colors);
+	free(out);
 }
