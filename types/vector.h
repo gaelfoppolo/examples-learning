@@ -47,6 +47,6 @@
                                             (vect).data = (type*)realloc((vect).data, sizeof(type) * (vect).capacity);  \
                                         }                                                                               \
                                         (vect).data[(vect).size++] = value;                                             \
-                                    } while(0);
+                                    } while(0);                                 
 
 #endif // _VECTOR_H_
