@@ -19,6 +19,6 @@
 typedef struct __attribute{
     attrType type;
     int value;
-} Value;
+} Attribute;
 
 #endif // _ABSTR_VALUE_H_
