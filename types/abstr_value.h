@@ -12,11 +12,11 @@
 #include "attributes_types.h"
 
 /**
-*   @brief All the attributes of the abstracted value
+*   @brief Represents an attribute and the value it holds
 *   @field type The value's type
 *   @field value The value's value
 */
-typedef struct __value_abstracted {
+typedef struct __attribute{
     attrType type;
     int value;
 } Value;
