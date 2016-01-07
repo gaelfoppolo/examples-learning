@@ -29,6 +29,10 @@ $(OUT): $(OBJECTS)
 %.o: %.c
 	$(CC) -c $(CC_FLAGS) $< -o $@
 
-# To remove generated files
+# To remove generated files except the binary
 clean:
 	$(RM) $(OUT) $(OBJECTS)
+
+# Remove generated files
+extraclean:
+	$(RM) $(out) $(OBJECTS)
