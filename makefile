@@ -31,8 +31,8 @@ $(OUT): $(OBJECTS)
 
 # To remove generated files except the binary
 clean:
-	$(RM) $(OUT) $(OBJECTS)
+	$(RM) $(OBJECTS)
 
 # Remove generated files
 extraclean:
-	$(RM) $(out) $(OBJECTS)
+	$(RM) $(OUT) $(OBJECTS)
