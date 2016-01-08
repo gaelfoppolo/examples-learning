@@ -9,7 +9,7 @@
 #ifndef _ATTRIBUTE_H_
 #define _ATTRIBUTE_H_
 
-#include "attributes_types.h"
+#include "attribute_types.h"
 
 /**
 *   @brief Represents an attribute and the value it holds

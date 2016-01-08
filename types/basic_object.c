@@ -9,11 +9,11 @@
 #include "basic_object.h"
 
 
-void initOutObject(OutObject* out) {
-	vectInit(out->colors);
+void initObject(Object* obj) {
+	vectInit(obj->attributes);
 }
 
-void freeOutObject(OutObject* out) {
-	vectFree(out->colors);
-	free(out);
+void freeObject(Object* obj) {
+	vectFree(obj->attributes);
+	free(obj);
 }
