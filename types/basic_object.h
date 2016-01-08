@@ -27,7 +27,7 @@ typedef struct __basic_object {
 void initObject(Object* obj);
 
 /**
-*	@brief Free the object previewsly initialized by initObject
+*	@brief Free the object previously initialized by initObject
 *	@param obj A pointer to the object to free
 */
 void freeObject(Object* obj);
