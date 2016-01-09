@@ -10,7 +10,7 @@
 #define _EXAMPLE_H_
 
 #include "vector.h"
-#include "basic_object.h"
+#include "object.h"
 
 /**
 *   @brief All the objects composing an example (or a counter-example)

@@ -6,8 +6,8 @@
  * @brief Structure of our object
  */
 
-#ifndef _BASICOBJECT_H_
-#define _BASICOBJECT_H_
+#ifndef _OBJECT_H_
+#define _OBJECT_H_
 
 #include "vector.h"
 #include "attribute.h"
@@ -32,4 +32,4 @@ void initObject(Object* obj);
 */
 void freeObject(Object* obj);
 
-#endif // _BASICOBJECT_H_
+#endif // _OBJECT_H_

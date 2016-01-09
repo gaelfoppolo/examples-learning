@@ -6,8 +6,7 @@
  * @brief Structure of our object - Implementation
  */
 
-#include "basic_object.h"
-
+#include "object.h"
 
 void initObject(Object* obj) {
 	vectInit(obj->attributes);
