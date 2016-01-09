@@ -19,4 +19,16 @@ typedef struct __basic_enum {
     char* str;
 } Enum;
 
+/**
+*	@brief Get the string from the identifier
+*	@param id The identifier
+*/
+char* getString(int id);
+
+/**
+*	@brief Get the identifier from the string
+*	@param str The string
+*/
+int getIdentifier(char* str);
+
 #endif // _ENUM_H_
