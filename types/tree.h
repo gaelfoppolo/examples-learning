@@ -69,7 +69,7 @@ int isLeaf(Tree* t);
  *
  * @return The lowest common ancestor (node or leaf)
  */
-Tree* LCA(Tree* root, int v1, int v2);
+Tree* LCA(Tree* root, int id1, int id2);
 
 /**
  * @brief Remove from the memory, the space used by the tree

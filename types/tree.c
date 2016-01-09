@@ -25,6 +25,7 @@ Tree* createNode(int id, char* str, Tree* left, Tree* right) {
 	Tree* t;
 	t = (Tree*)malloc(sizeof(Tree));
 	t->id = id;
+	t->str = str;
 	t->left = left;
 	t->right = right;
 	return t;
@@ -34,19 +35,19 @@ int isLeaf(Tree* t) {
 	return (t->left == NULL) && (t->right = NULL);
 }
 
-Tree* LCA(Tree* root, int v1, int v2) {
+Tree* LCA(Tree* root, int id1, int id2) {
 	if(!root) {
 		return NULL;
 	}
 
 	// we check if we find at least one
-	if(root->id == v1 || root->id == v2) {
+	if(root->id == id1 || root->id == id2) {
 		return root;
 	}
 
 	// else we keep going down
-	Tree* left = LCA(root->left, v1, v2);
-	Tree* right = LCA(root->right, v1, v2);
+	Tree* left = LCA(root->left, id1, id2);
+	Tree* right = LCA(root->right, id1, id2);
 	// if left and right both contain v1 and v2
 	// current root is LCA
 	if(left && right) {
