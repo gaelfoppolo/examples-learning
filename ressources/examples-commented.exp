@@ -1,0 +1,28 @@
+E1 # New example definition. All the objects of an example must be indented with a hard tabulation
+    x1:shape(rectangle), size(2), color(white)			# creation of an object named x1 & definition of its attributes
+    x2:shape(isosceles triangle), size(5), color(red)
+    x3:shape(trapeze), size(4), color(red)
+!E1 #New counter-example. The syntax is the same as the normal examples definition
+    x4:shape(circle), size(3), color(red)
+    x5:shape(quadrilateral), size(6), color(red)
+    x6:shape(quadrilateral), size(4), color(blue)
+E2
+    x7:shape(circle), size(1), color(white)
+    x8:shape(ellipsoid), size(5), color(blue)
+    x9:shape(ellipse), size(2), color(red)
+!E2
+    x10:shape(trapeze), size(4), color(blue)
+    x11:shape(circle), size(1), color(black)
+E3
+    x12:shape(whatever), size(3), color(blue)
+    x13:shape(isosceles triangle), size(12), color(red)
+    x14:shape(triangle), size(50), color(blue)
+!E3
+    x15:shape(square), size(1), color(red)
+    x16:shape(polygone), size(66), color(red)
+
+
+# all the attributes must be present in the definition of an object
+# the syntax for an object is
+#	<object name> : <attr-name>(attr-value) [, <attr-name>(attr-value)]
+# an objet MUST be defined after a hard tab otherwise it is not recognised
