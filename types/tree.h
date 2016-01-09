@@ -64,8 +64,8 @@ int isLeaf(Tree* t);
  * What is pass is the lower node or NULL
  *
  * @param root The root of the tree
- * @param v1 The first value
- * @param v2 The second value
+ * @param id1 The first value
+ * @param id2 The second value
  *
  * @return The lowest common ancestor (node or leaf)
  */
