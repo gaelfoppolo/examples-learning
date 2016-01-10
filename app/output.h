@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "../types/basic_object.h"
+#include "../types/out-object.h"
 #include "utils.h"
 
 /**
