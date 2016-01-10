@@ -1,0 +1,142 @@
+\hypertarget{vector_8h}{}\section{types/vector.h File Reference}
+\label{vector_8h}\index{types/vector.\+h@{types/vector.\+h}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{vector_8h_a0ca50beb08f95fbab753a009b20c7574}{Vector}(t)~struct \{int size, capacity; t $\ast$data; \}
+\begin{DoxyCompactList}\small\item\em define a dynamic array of type t \end{DoxyCompactList}\item 
+\#define \hyperlink{vector_8h_a899567b3a78b96d30d2842f3275de1ff}{vect\+Init}(vect)~((vect).size = (vect).capacity = 0, (vect).data = 0)
+\begin{DoxyCompactList}\small\item\em Init the vector. \end{DoxyCompactList}\item 
+\#define \hyperlink{vector_8h_accbe97f04cb63559573757bb9ba3b8f4}{vect\+Free}(vect)~free((vect).data)
+\begin{DoxyCompactList}\small\item\em Free the vector. \end{DoxyCompactList}\item 
+\#define \hyperlink{vector_8h_a4a16cbfbc9cfa82d1bf84c1dfc88cb45}{vect\+At}(vect,  index)~((vect).data\mbox{[}(index)\mbox{]})
+\begin{DoxyCompactList}\small\item\em Returns the element at a certain index of the array. \end{DoxyCompactList}\item 
+\#define \hyperlink{vector_8h_ac9fc62fc80355d939be92301e072513f}{vect\+Size}(vect)~((vect).size)
+\begin{DoxyCompactList}\small\item\em Return the size of the array. \end{DoxyCompactList}\item 
+\#define \hyperlink{vector_8h_a632579bc6e9f029dcfe8dba4fd62fad1}{vect\+Push}(type,  vect,  value)
+\begin{DoxyCompactList}\small\item\em Append an element at the end of the vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{vector.\+h@{vector.\+h}!vect\+At@{vect\+At}}
+\index{vect\+At@{vect\+At}!vector.\+h@{vector.\+h}}
+\subsubsection[{\texorpdfstring{vect\+At}{vectAt}}]{\setlength{\rightskip}{0pt plus 5cm}\#define vect\+At(
+\begin{DoxyParamCaption}
+\item[{}]{vect, }
+\item[{}]{index}
+\end{DoxyParamCaption}
+)~((vect).data\mbox{[}(index)\mbox{]})}\hypertarget{vector_8h_a4a16cbfbc9cfa82d1bf84c1dfc88cb45}{}\label{vector_8h_a4a16cbfbc9cfa82d1bf84c1dfc88cb45}
+
+
+Returns the element at a certain index of the array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vect} & The vector of which to access the element \\
+\hline
+{\em index} & The index of the element (between 0 and vector size -\/ 1) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The element (directly. You can use this as a left value) 
+\end{DoxyReturn}
+\index{vector.\+h@{vector.\+h}!vect\+Free@{vect\+Free}}
+\index{vect\+Free@{vect\+Free}!vector.\+h@{vector.\+h}}
+\subsubsection[{\texorpdfstring{vect\+Free}{vectFree}}]{\setlength{\rightskip}{0pt plus 5cm}\#define vect\+Free(
+\begin{DoxyParamCaption}
+\item[{}]{vect}
+\end{DoxyParamCaption}
+)~free((vect).data)}\hypertarget{vector_8h_accbe97f04cb63559573757bb9ba3b8f4}{}\label{vector_8h_accbe97f04cb63559573757bb9ba3b8f4}
+
+
+Free the vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vect} & The vector to be initialized \\
+\hline
+\end{DoxyParams}
+\index{vector.\+h@{vector.\+h}!vect\+Init@{vect\+Init}}
+\index{vect\+Init@{vect\+Init}!vector.\+h@{vector.\+h}}
+\subsubsection[{\texorpdfstring{vect\+Init}{vectInit}}]{\setlength{\rightskip}{0pt plus 5cm}\#define vect\+Init(
+\begin{DoxyParamCaption}
+\item[{}]{vect}
+\end{DoxyParamCaption}
+)~((vect).size = (vect).capacity = 0, (vect).data = 0)}\hypertarget{vector_8h_a899567b3a78b96d30d2842f3275de1ff}{}\label{vector_8h_a899567b3a78b96d30d2842f3275de1ff}
+
+
+Init the vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vect} & The vector to be initialized \\
+\hline
+\end{DoxyParams}
+\index{vector.\+h@{vector.\+h}!Vector@{Vector}}
+\index{Vector@{Vector}!vector.\+h@{vector.\+h}}
+\subsubsection[{\texorpdfstring{Vector}{Vector}}]{\setlength{\rightskip}{0pt plus 5cm}\#define Vector(
+\begin{DoxyParamCaption}
+\item[{}]{t}
+\end{DoxyParamCaption}
+)~struct \{int size, capacity; t $\ast$data; \}}\hypertarget{vector_8h_a0ca50beb08f95fbab753a009b20c7574}{}\label{vector_8h_a0ca50beb08f95fbab753a009b20c7574}
+
+
+define a dynamic array of type t 
+
+\index{vector.\+h@{vector.\+h}!vect\+Push@{vect\+Push}}
+\index{vect\+Push@{vect\+Push}!vector.\+h@{vector.\+h}}
+\subsubsection[{\texorpdfstring{vect\+Push}{vectPush}}]{\setlength{\rightskip}{0pt plus 5cm}\#define vect\+Push(
+\begin{DoxyParamCaption}
+\item[{}]{type, }
+\item[{}]{vect, }
+\item[{}]{value}
+\end{DoxyParamCaption}
+)}\hypertarget{vector_8h_a632579bc6e9f029dcfe8dba4fd62fad1}{}\label{vector_8h_a632579bc6e9f029dcfe8dba4fd62fad1}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do} \{                                                                                \(\backslash\)
+                                        if((vect).size == (vect).capacity) \{                               
+                   \(\backslash\)
+                                            (vect).capacity = ((vect).capacity ? (vect).capacity * 2 : 10);
+                   \(\backslash\)
+                                            (vect).data = (type*)realloc((vect).data, \textcolor{keyword}{sizeof}(type) * (vect)
+      .capacity);  \(\backslash\)
+                                        \}                                                                  
+                   \(\backslash\)
+                                        (vect).data[(vect).size++] = value;                                
+                   \(\backslash\)
+                                    \} \textcolor{keywordflow}{while}(0);
+\end{DoxyCode}
+
+
+Append an element at the end of the vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of the element (must be the same type as the other elements of the array) \\
+\hline
+{\em vect} & The vector at the end of which to add the element \\
+\hline
+{\em value} & The element to be appened \\
+\hline
+\end{DoxyParams}
+\index{vector.\+h@{vector.\+h}!vect\+Size@{vect\+Size}}
+\index{vect\+Size@{vect\+Size}!vector.\+h@{vector.\+h}}
+\subsubsection[{\texorpdfstring{vect\+Size}{vectSize}}]{\setlength{\rightskip}{0pt plus 5cm}\#define vect\+Size(
+\begin{DoxyParamCaption}
+\item[{}]{vect}
+\end{DoxyParamCaption}
+)~((vect).size)}\hypertarget{vector_8h_ac9fc62fc80355d939be92301e072513f}{}\label{vector_8h_ac9fc62fc80355d939be92301e072513f}
+
+
+Return the size of the array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vect} & The array of which to get the size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The size of the array 
+\end{DoxyReturn}

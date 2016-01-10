@@ -1,0 +1,48 @@
+\hypertarget{config-parser_8h}{}\section{parser/config-\/parser.h File Reference}
+\label{config-parser_8h}\index{parser/config-\/parser.\+h@{parser/config-\/parser.\+h}}
+{\ttfamily \#include \char`\"{}../types/model.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{model_8h_a66e8447f58c24f1ffafe05637dd233e1}{Model} $\ast$ \hyperlink{config-parser_8h_a8f74526fa5e5317f88824e990e4f15b9}{load\+Model} (char const $\ast$filename)
+\begin{DoxyCompactList}\small\item\em Loads the config file and returns an Model object that contains all the informations of the config file. \end{DoxyCompactList}\item 
+void \hyperlink{config-parser_8h_ae6a97d3a10a5f3db32a535c82d34c409}{free\+Model} (\hyperlink{model_8h_a66e8447f58c24f1ffafe05637dd233e1}{Model} $\ast$m)
+\begin{DoxyCompactList}\small\item\em Frees all the data created by the load\+Model function call. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{config-\/parser.\+h@{config-\/parser.\+h}!free\+Model@{free\+Model}}
+\index{free\+Model@{free\+Model}!config-\/parser.\+h@{config-\/parser.\+h}}
+\subsubsection[{\texorpdfstring{free\+Model(\+Model $\ast$m)}{freeModel(Model *m)}}]{\setlength{\rightskip}{0pt plus 5cm}void free\+Model (
+\begin{DoxyParamCaption}
+\item[{{\bf Model} $\ast$}]{m}
+\end{DoxyParamCaption}
+)}\hypertarget{config-parser_8h_ae6a97d3a10a5f3db32a535c82d34c409}{}\label{config-parser_8h_ae6a97d3a10a5f3db32a535c82d34c409}
+
+
+Frees all the data created by the load\+Model function call. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & The model to be freed \\
+\hline
+\end{DoxyParams}
+\index{config-\/parser.\+h@{config-\/parser.\+h}!load\+Model@{load\+Model}}
+\index{load\+Model@{load\+Model}!config-\/parser.\+h@{config-\/parser.\+h}}
+\subsubsection[{\texorpdfstring{load\+Model(char const $\ast$filename)}{loadModel(char const *filename)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Model}$\ast$ load\+Model (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}\hypertarget{config-parser_8h_a8f74526fa5e5317f88824e990e4f15b9}{}\label{config-parser_8h_a8f74526fa5e5317f88824e990e4f15b9}
+
+
+Loads the config file and returns an Model object that contains all the informations of the config file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The path to the file\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new model Object 
+\end{DoxyReturn}
