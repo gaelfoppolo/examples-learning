@@ -21,11 +21,6 @@ typedef struct __basic_object {
 } Object;
 
 /**
- *	@brief Define Solution as Object
- */
-typedef Object Solution;
-
-/**
 *	@brief Init the object
 *	@param obj A pointer to the object to init
 */
