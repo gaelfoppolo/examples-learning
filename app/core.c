@@ -8,39 +8,88 @@
 
 #include "core.h"
 
-Solution* genSolution(Model* mdl, Examples* exp) {
+Solution* genSolution(Examples* exp) {
  	// an example
  	Example e;
  	// an object of an example
  	Object o;
+    initObject();
  	// a solution object, gathering traits from all examples
  	Solution* sol = (Solution*)malloc(sizeof(Solution));
-    initObject(sol);
-
-    // first object of the first example is our basic solution
-    o = vectAt(vectAt(exp->examples, 0).objects, 0);
-    // just need to push its attributes into our solution
-    vectPush(Attribute, sol->attributes, o->attributes);
+    initSolution(sol);
+    // init with the first object
+    sol = initSol(sol, o);  
 
  	for(int i = 0; i < vectSize(exp->examples); ++i) {
         // current example
         e = vectAt(exp->examples, i);
+        
         // for all objects of the example
-
         for(int j = 0; j < vectSize(e.objects); ++j) {
         	// current object of the example
             o = vectAt(e.objects, j);
 
-            // basic processing
-            addToInterval(&(sol->min), &(sol->max), o.size);
-            if (!colorIsInVector(sol, o.color)) {
-				vectPush(Color, sol->colors, o.color);
-			}
-			sol->shape = (LCA(rsolt, sol->shape, o.shape))->value;
+            // for all attributes of the object
+            for(int k = 0; k < vectSize(o.attributes); ++k) {
+                Attribute att = vectAt(o.attributes, k);
+                switch(att.type) {
+                    case TYPE_INT:
+                        // add into interval
+                        break;
+                    case TYPE_ENUM:
+                        // push into enum
+                        break;
+                    case TYPE_TREE:
+                        // LCA
+                        break;
+                    default:
+                        // handle error ?
+                        break;
+                }
+            }
 
         }
     }
     return sol;
+ }
+
+ Solution* initSol(Solution* sol, Object o) {
+    OutObject oo;
+    Attribute att;
+    Interval inter;
+    OutEnum oenu;
+    for(int i = 0; i < vectSize(o.attributes); ++i) {
+        oo = (OutObject*)malloc(sizeof(OutObject));
+        att = vectAt(o.attributes, i);
+
+        oo = att.type;
+        
+        switch(att.type) {
+            case TYPE_INT:
+                inter = (Interval*)malloc(sizeof(Interval));
+                inter.min = att.value;
+                inter.max = att.value;
+                oo.inter = inter;
+                break;
+            case TYPE_ENUM:
+                oenu = (OutEnum*)malloc(sizeof(OutEnum));
+                initOutEnum(oenu);
+                vectPush(int, oenu, att.value);
+                vectPush(OutEnum, oo.oenu, oenu);
+                break;
+            case TYPE_TREE:
+                oo.tree = att.value;
+                break;
+            default:
+                // handle error ?
+                break;
+        }
+        // finally push OutputObject to Solution
+        vectPush(OutObject, sol.outobjects, oo);
+    }
+    free(oo);
+    free(inter);
+    free(oenu);
  }
 
  void addToInterval(int *min, int*max, int x) {

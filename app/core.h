@@ -9,18 +9,28 @@
 #ifndef _CORE_H_
 #define _CORE_H_
 
-#include "../types/model.h"
 #include "../types/examples.h"
+#include "../types/out-object.h"
 
 /**
  * @brief Process examples of a model and produces solution object
  *
- * @param mdl Pointer to the model object containing structure of the model
  * @param exp Pointer to the structure containing examples and counter examples
  *
  * @return An solution object
  */
-Solution* genSolution(Model* mdl, Examples* exp);
+Solution* genSolution(Examples* exp);
+
+/**
+ * @brief Init the solution with the first object as "base"
+ *
+ * @param sol Pointer to the empty solution
+ * @param o First object of the example to init the solution
+ *
+ * @return An solution object
+ */
+Solution* initSol(Solution* sol, Object o) {
+
 
 /**
  * @brief Increase the range [min, max] to contains x

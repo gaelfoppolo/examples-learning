@@ -12,7 +12,6 @@
 #include "attribute-type.h"
 #include "interval.h"
 #include "out-enum.h"
-#include "tree.h"
 
 /**
 *   @brief All the attributes composing the output object
@@ -24,7 +23,7 @@ typedef struct __basic_outobject {
     union {
     	Interval inter;
     	OutEnum oenu;
-    	Tree tree;
+    	int tree;
     };
 } OutObject;
 
