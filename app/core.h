@@ -30,26 +30,6 @@ Solution* genSolution(Model* mdl, Examples* exp);
  *
  * @return An solution object
  */
-Solution* initSol(Solution* sol, Object o) {
-
-
-/**
- * @brief Increase the range [min, max] to contains x
- *
- * @param min Minimum bound
- * @param max Maximum bound
- * @param[in] x An integer to add into the range
- */
-void addToInterval(int *min, int*max, int x);
-
-/**
- * @brief Tests if a color is in a vector
- *
- * @param v The vector of color
- * @param[in] c The color
- *
- * @return A boolean
- */
-int colorIsInVector(OutObject* v, Color c);
+Solution* initSol(Solution* sol, Object o);
 
 #endif // _CORE_H_

@@ -11,6 +11,10 @@
 Solution* genSolution(Model* mdl, Examples* exp) {
  	// an example
  	Example e;
+    // an attribute
+    Attribute att;
+    // an output object
+    OutObject oo;
  	// an object of an example
  	Object o;
     initObject();
@@ -31,19 +35,20 @@ Solution* genSolution(Model* mdl, Examples* exp) {
 
             // for all attributes of the object
             for(int k = 0; k < vectSize(o.attributes); ++k) {
-                Attribute att = vectAt(o.attributes, k);
+                // current attribute of the object
+                att = vectAt(o.attributes, k);
+                // matching output object in the solution (same rank)
+                oo = vectAt(sol.outobjects, k);
                 switch(att.type) {
                     case TYPE_INT:
-                        // add into interval
+                        addToInterval(oo.inter, att.value);
                         break;
                     case TYPE_ENUM:
-                        // push into enum
+                        if !vectIndexOf(int, oo.oenu, att.value) vectPush(int, oo.oenu, att.value)
                         break;
                     case TYPE_TREE:
-                        // LCA
-                        break;
-                    default:
-                        // handle error ?
+                        // looking for tree model (root) in the model (same rank), then LCA
+                        oo.tree = LCA(vectAt(mdl.mt, k).tree, oo.tree, att.value);
                         break;
                 }
             }
@@ -80,9 +85,6 @@ Solution* genSolution(Model* mdl, Examples* exp) {
             case TYPE_TREE:
                 oo.tree = att.value;
                 break;
-            default:
-                // handle error ?
-                break;
         }
         // finally push OutputObject to Solution
         vectPush(OutObject, sol.outobjects, oo);
@@ -90,17 +92,4 @@ Solution* genSolution(Model* mdl, Examples* exp) {
     free(oo);
     free(inter);
     free(oenu);
- }
-
- void addToInterval(int *min, int*max, int x) {
- 	if(x < *min) *min = x;
- 	else if(*max < x) *max = x;
- }
-
- int colorIsInVector(OutObject* v, Color c) {
- 	int found = 0;
- 	for(int i = 0; i < vectSize(v->colors) && !found; ++i) {
- 		found = (vectAt(v->colors, i) == c);
- 	}
- 	return found;
  }

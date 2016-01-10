@@ -19,4 +19,12 @@ typedef struct __interval {
     int max;
 } Interval;
 
+/**
+ * @brief Increase the interval to contains x
+ *
+ * @param inter The interval to increase
+ * @param[in] x An integer to add into the interval
+ */
+void addToInterval(Interval* inter, int x);
+
 #endif // _INTERVAL_H_
