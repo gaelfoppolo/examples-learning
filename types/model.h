@@ -9,10 +9,7 @@
 #ifndef _MODEL_H_
 #define _MODEL_H_
 
-#include "attribute-types.h"
-#include "interval.h"
-#include "enum.h"
-#include "tree.h"
+#include "model-type.h"
 
 /**
 *   @brief Structure that contains the model
