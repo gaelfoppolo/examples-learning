@@ -1,24 +1,30 @@
+/**
+ *
+ * @gaelfoppolo FOPPOLO Gaël
+ * @Ebatsin PHILIP Bastien
+ *
+ * @brief The core
+ */
+
 #include "core.h"
 
-OutObject* learning(ModelSample* ms, Tree* root) {
+Solution* genSolution(Model* mdl, Examples* exp) {
  	// an example
  	Example e;
  	// an object of an example
  	Object o;
- 	// an output object, gathering traits from all examples
- 	OutObject* oo = (OutObject*)malloc(sizeof(OutObject));
-    initOutObject(oo);
+ 	// a solution object, gathering traits from all examples
+ 	Solution* sol = (Solution*)malloc(sizeof(Solution));
+    initObject(sol);
 
-    // first object of the first example is our basic output model
-    o = vectAt(vectAt(ms->examples, 0).objects, 0);
-    oo->min = o.size;
-    oo->max = o.size;
-    vectPush(Color, oo->colors, o.color);
-    oo->shape = o.shape;
+    // first object of the first example is our basic solution
+    o = vectAt(vectAt(exp->examples, 0).objects, 0);
+    // just need to push its attributes into our solution
+    vectPush(Attribute, sol->attributes, o->attributes);
 
- 	for(int i = 0; i < vectSize(ms->examples); ++i) {
+ 	for(int i = 0; i < vectSize(exp->examples); ++i) {
         // current example
-        e = vectAt(ms->examples, i);
+        e = vectAt(exp->examples, i);
         // for all objects of the example
 
         for(int j = 0; j < vectSize(e.objects); ++j) {
@@ -26,15 +32,15 @@ OutObject* learning(ModelSample* ms, Tree* root) {
             o = vectAt(e.objects, j);
 
             // basic processing
-            addToInterval(&(oo->min), &(oo->max), o.size);
-            if (!colorIsInVector(oo, o.color)) {
-				vectPush(Color, oo->colors, o.color);
+            addToInterval(&(sol->min), &(sol->max), o.size);
+            if (!colorIsInVector(sol, o.color)) {
+				vectPush(Color, sol->colors, o.color);
 			}
-			oo->shape = (LCA(root, oo->shape, o.shape))->value;
+			sol->shape = (LCA(rsolt, sol->shape, o.shape))->value;
 
         }
     }
-    return oo;
+    return sol;
  }
 
  void addToInterval(int *min, int*max, int x) {
