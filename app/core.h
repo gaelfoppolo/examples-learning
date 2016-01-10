@@ -16,10 +16,11 @@
  * @brief Process examples of a model and produces solution object
  *
  * @param exp Pointer to the structure containing examples and counter examples
+ * @param mdl Pointer to the model object containing structure of the model
  *
  * @return An solution object
  */
-Solution* genSolution(Examples* exp);
+Solution* genSolution(Model* mdl, Examples* exp);
 
 /**
  * @brief Init the solution with the first object as "base"

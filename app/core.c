@@ -8,7 +8,7 @@
 
 #include "core.h"
 
-Solution* genSolution(Examples* exp) {
+Solution* genSolution(Model* mdl, Examples* exp) {
  	// an example
  	Example e;
  	// an object of an example
