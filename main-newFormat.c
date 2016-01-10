@@ -44,7 +44,8 @@ int main(int argc, char const *argv[]) {
 		return 1;
 	}
 
-	Solution* sol = genSolutions(model, examples);
+	Solution* sol = genSolution(model, examples); // only one solution in step 1
+	
 	char* out = genOutput(sol, model); // we need to pass the model for the int -> string conversion table it holds
 
 	printf("%s", out);
