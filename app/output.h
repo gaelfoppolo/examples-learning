@@ -13,21 +13,7 @@
 #include <stdio.h>
 
 #include "../types/basic_object.h"
-
-/**
-*	@brief Returns the length of a string
-*	@str The string
-*	@return The length of the string
-*/
-unsigned int strlength(char const* str);
-
-/**
-*	@brief Append a string at the end of another
-*	@str1 The first string
-*	@str2 The string to be appened
-*	@return The address of the string
-*/
-char* concat(char* str1, char const* str2);
+#include "utils.h"
 
 /**
 *	@brief returns a string that contains the representation of the object in a readable presentation
