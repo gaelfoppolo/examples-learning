@@ -1,0 +1,85 @@
+\hypertarget{core_8h}{}\section{app/core.h File Reference}
+\label{core_8h}\index{app/core.\+h@{app/core.\+h}}
+{\ttfamily \#include \char`\"{}../types/model.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../types/examples.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{object_8h_adc50c455be4cc6637af58feda87e2501}{Solution} $\ast$ \hyperlink{core_8h_a26a1992dc385a2bf2c7450ba75dcaa87}{gen\+Solution} (\hyperlink{model_8h_a66e8447f58c24f1ffafe05637dd233e1}{Model} $\ast$mdl, \hyperlink{examples_8h_a1b17b1a56e1815b289f47b7f2c69d851}{Examples} $\ast$exp)
+\begin{DoxyCompactList}\small\item\em The core. \end{DoxyCompactList}\item 
+void \hyperlink{core_8h_a5866f60b7ecf5ff50a20a07bf830a4fc}{add\+To\+Interval} (int $\ast$min, int $\ast$max, int x)
+\begin{DoxyCompactList}\small\item\em Increase the range \mbox{[}min, max\mbox{]} to contains x. \end{DoxyCompactList}\item 
+int \hyperlink{core_8h_aa63f3d3784f0bf6624569945a725ae1f}{color\+Is\+In\+Vector} (Out\+Object $\ast$v, Color c)
+\begin{DoxyCompactList}\small\item\em Tests if a color is in a vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{core.\+h@{core.\+h}!add\+To\+Interval@{add\+To\+Interval}}
+\index{add\+To\+Interval@{add\+To\+Interval}!core.\+h@{core.\+h}}
+\subsubsection[{\texorpdfstring{add\+To\+Interval(int $\ast$min, int $\ast$max, int x)}{addToInterval(int *min, int *max, int x)}}]{\setlength{\rightskip}{0pt plus 5cm}void add\+To\+Interval (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{min, }
+\item[{int $\ast$}]{max, }
+\item[{int}]{x}
+\end{DoxyParamCaption}
+)}\hypertarget{core_8h_a5866f60b7ecf5ff50a20a07bf830a4fc}{}\label{core_8h_a5866f60b7ecf5ff50a20a07bf830a4fc}
+
+
+Increase the range \mbox{[}min, max\mbox{]} to contains x. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em min} & Minimum bound \\
+\hline
+ & {\em max} & Maximum bound \\
+\hline
+\mbox{\tt in}  & {\em x} & An integer to add into the range \\
+\hline
+\end{DoxyParams}
+\index{core.\+h@{core.\+h}!color\+Is\+In\+Vector@{color\+Is\+In\+Vector}}
+\index{color\+Is\+In\+Vector@{color\+Is\+In\+Vector}!core.\+h@{core.\+h}}
+\subsubsection[{\texorpdfstring{color\+Is\+In\+Vector(\+Out\+Object $\ast$v, Color c)}{colorIsInVector(OutObject *v, Color c)}}]{\setlength{\rightskip}{0pt plus 5cm}int color\+Is\+In\+Vector (
+\begin{DoxyParamCaption}
+\item[{Out\+Object $\ast$}]{v, }
+\item[{Color}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{core_8h_aa63f3d3784f0bf6624569945a725ae1f}{}\label{core_8h_aa63f3d3784f0bf6624569945a725ae1f}
+
+
+Tests if a color is in a vector. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em v} & The vector of color \\
+\hline
+\mbox{\tt in}  & {\em c} & The color\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean 
+\end{DoxyReturn}
+\index{core.\+h@{core.\+h}!gen\+Solution@{gen\+Solution}}
+\index{gen\+Solution@{gen\+Solution}!core.\+h@{core.\+h}}
+\subsubsection[{\texorpdfstring{gen\+Solution(\+Model $\ast$mdl, Examples $\ast$exp)}{genSolution(Model *mdl, Examples *exp)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Solution}$\ast$ gen\+Solution (
+\begin{DoxyParamCaption}
+\item[{{\bf Model} $\ast$}]{mdl, }
+\item[{{\bf Examples} $\ast$}]{exp}
+\end{DoxyParamCaption}
+)}\hypertarget{core_8h_a26a1992dc385a2bf2c7450ba75dcaa87}{}\label{core_8h_a26a1992dc385a2bf2c7450ba75dcaa87}
+
+
+The core. 
+
+F\+O\+P\+P\+O\+LO Gaël  P\+H\+I\+L\+IP Bastien Process examples of a model and produces solution object
+
+
+\begin{DoxyParams}{Parameters}
+{\em mdl} & Pointer to the model object containing structure of the model \\
+\hline
+{\em exp} & Pointer to the structure containing examples and counter examples\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An solution object
+\end{DoxyReturn}
+F\+O\+P\+P\+O\+LO Gaël  P\+H\+I\+L\+IP Bastien 
