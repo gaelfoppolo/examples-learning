@@ -17,7 +17,7 @@
 *   @field attributes The list of the object's attributes
 */
 typedef struct __basic_object {
-    Vector(Attribute) attributes
+    Vector(Attribute) attributes;
 } Object;
 
 /**

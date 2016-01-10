@@ -16,7 +16,7 @@
 *   @field oenu The list of the solution's integers
 */
 typedef struct __basic_outenum {
-    Vector(int) oenu
+    Vector(int) oenu;
 } OutEnum;
 
 /**
