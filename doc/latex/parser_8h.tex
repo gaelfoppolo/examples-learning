@@ -1,0 +1,91 @@
+\hypertarget{parser_8h}{}\section{parser/parser.h File Reference}
+\label{parser_8h}\index{parser/parser.\+h@{parser/parser.\+h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stddef.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}../types/model.\+h\char`\"{}}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct____basic__string__pair}{\+\_\+\+\_\+basic\+\_\+string\+\_\+pair}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{parser_8h_ad7cca9cfeab40c29995d3fec116aa235}{\+\_\+\+K\+E\+Y\+\_\+\+V\+A\+L\+U\+E\+\_\+\+M\+A\+X\+\_\+\+S\+I\+Z\+E\+\_\+}~100
+\begin{DoxyCompactList}\small\item\em Functions and structures used by the parser. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{struct____basic__string__pair}{\+\_\+\+\_\+basic\+\_\+string\+\_\+pair} \hyperlink{parser_8h_af952b98aa07d920ffbf709f2b02247f9}{String\+Pair}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{parser_8h_a918dbcb46faa8f12227137a24ada84c2}{get\+Next\+Attribute} (F\+I\+LE $\ast$fp, \hyperlink{parser_8h_af952b98aa07d920ffbf709f2b02247f9}{String\+Pair} $\ast$sp)
+\begin{DoxyCompactList}\small\item\em Returns the next pair of key-\/$>$value in the file. \end{DoxyCompactList}\item 
+Model\+Sample $\ast$ \hyperlink{parser_8h_a842c01b569c54b38d738d74cb10df3ff}{parse} (char const $\ast$file)
+\begin{DoxyCompactList}\small\item\em Generate a structure that contains all the examples and counter-\/examples parsed in a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{parser.\+h@{parser.\+h}!\+\_\+\+K\+E\+Y\+\_\+\+V\+A\+L\+U\+E\+\_\+\+M\+A\+X\+\_\+\+S\+I\+Z\+E\+\_\+@{\+\_\+\+K\+E\+Y\+\_\+\+V\+A\+L\+U\+E\+\_\+\+M\+A\+X\+\_\+\+S\+I\+Z\+E\+\_\+}}
+\index{\+\_\+\+K\+E\+Y\+\_\+\+V\+A\+L\+U\+E\+\_\+\+M\+A\+X\+\_\+\+S\+I\+Z\+E\+\_\+@{\+\_\+\+K\+E\+Y\+\_\+\+V\+A\+L\+U\+E\+\_\+\+M\+A\+X\+\_\+\+S\+I\+Z\+E\+\_\+}!parser.\+h@{parser.\+h}}
+\subsubsection[{\texorpdfstring{\+\_\+\+K\+E\+Y\+\_\+\+V\+A\+L\+U\+E\+\_\+\+M\+A\+X\+\_\+\+S\+I\+Z\+E\+\_\+}{_KEY_VALUE_MAX_SIZE_}}]{\setlength{\rightskip}{0pt plus 5cm}\#define \+\_\+\+K\+E\+Y\+\_\+\+V\+A\+L\+U\+E\+\_\+\+M\+A\+X\+\_\+\+S\+I\+Z\+E\+\_\+~100}\hypertarget{parser_8h_ad7cca9cfeab40c29995d3fec116aa235}{}\label{parser_8h_ad7cca9cfeab40c29995d3fec116aa235}
+
+
+Functions and structures used by the parser. 
+
+F\+O\+P\+P\+O\+LO Gaël  P\+H\+I\+L\+IP Bastien 
+
+\subsection{Typedef Documentation}
+\index{parser.\+h@{parser.\+h}!String\+Pair@{String\+Pair}}
+\index{String\+Pair@{String\+Pair}!parser.\+h@{parser.\+h}}
+\subsubsection[{\texorpdfstring{String\+Pair}{StringPair}}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+\+\_\+basic\+\_\+string\+\_\+pair}  {\bf String\+Pair}}\hypertarget{parser_8h_af952b98aa07d920ffbf709f2b02247f9}{}\label{parser_8h_af952b98aa07d920ffbf709f2b02247f9}
+
+
+\subsection{Function Documentation}
+\index{parser.\+h@{parser.\+h}!get\+Next\+Attribute@{get\+Next\+Attribute}}
+\index{get\+Next\+Attribute@{get\+Next\+Attribute}!parser.\+h@{parser.\+h}}
+\subsubsection[{\texorpdfstring{get\+Next\+Attribute(\+F\+I\+L\+E $\ast$fp, String\+Pair $\ast$sp)}{getNextAttribute(FILE *fp, StringPair *sp)}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Next\+Attribute (
+\begin{DoxyParamCaption}
+\item[{F\+I\+LE $\ast$}]{fp, }
+\item[{{\bf String\+Pair} $\ast$}]{sp}
+\end{DoxyParamCaption}
+)}\hypertarget{parser_8h_a918dbcb46faa8f12227137a24ada84c2}{}\label{parser_8h_a918dbcb46faa8f12227137a24ada84c2}
+
+
+Returns the next pair of key-\/$>$value in the file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fp} & The file pointer of the file to read \\
+\hline
+{\em sp} & The Stringpair in which to store the key and value. The member must be allocated by the user \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns 1 in case of success. 0 otherwise
+\end{DoxyReturn}
+Returns the next pair of key-\/$>$value in the file.
+
+F\+O\+P\+P\+O\+LO GaÃ«l  P\+H\+I\+L\+IP Bastien \index{parser.\+h@{parser.\+h}!parse@{parse}}
+\index{parse@{parse}!parser.\+h@{parser.\+h}}
+\subsubsection[{\texorpdfstring{parse(char const $\ast$file)}{parse(char const *file)}}]{\setlength{\rightskip}{0pt plus 5cm}Model\+Sample$\ast$ parse (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{file}
+\end{DoxyParamCaption}
+)}\hypertarget{parser_8h_a842c01b569c54b38d738d74cb10df3ff}{}\label{parser_8h_a842c01b569c54b38d738d74cb10df3ff}
+
+
+Generate a structure that contains all the examples and counter-\/examples parsed in a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The path to the file to parse \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A structure that represents the content of the file 
+\end{DoxyReturn}
