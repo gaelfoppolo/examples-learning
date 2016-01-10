@@ -10,6 +10,7 @@
 #define _MODEL_H_
 
 #include "model-type.h"
+#include "vector.h"
 
 /**
 *   @brief Structure that contains the model
@@ -17,7 +18,7 @@
 *   @field name The name of the propertie's model
 */
 typedef struct __basic_model {
-    ModelType mt;
+    Vector(ModelType) mt;
     char* name;
 } Model;
 
