@@ -29,7 +29,7 @@ void strPush(String* str, char c) {
 	str->str[++str->length] = '\0';
 }
 
-void strPushStr(String* str, char const* str2) {
+void strPushStr(String* str, char* str2) {
 	char const* begin = str2;
 	char* current = str2;
 	while(*current++);
@@ -51,8 +51,8 @@ void strPushStr(String* str, char const* str2) {
 }
 
 char* strDuplicate(char* str) {
-	char const* begin = str->str;
-	char* current = str->str;
+	char* begin = str;
+	char* current = str;
 	while(*current++);
 	unsigned int length = str - begin - 1;
 
