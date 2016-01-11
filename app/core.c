@@ -60,7 +60,6 @@ Solution* genSolution(Model* mdl, Examples* exp) {
     }
     free(pt);
     freeObject(o);
-    freeSolution(sol);
     return sol;
  }
 
