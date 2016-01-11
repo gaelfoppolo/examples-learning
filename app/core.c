@@ -18,6 +18,8 @@ Solution* genSolution(Model* mdl, Examples* exp) {
  	// an object of an example
  	Object o;
     initObject();
+    // an integer
+    int pt* = (int*)malloc(sizeof(int));
  	// a solution object, gathering traits from all examples
  	Solution* sol = (Solution*)malloc(sizeof(Solution));
     initSolution(sol);
@@ -44,7 +46,8 @@ Solution* genSolution(Model* mdl, Examples* exp) {
                         addToInterval(oo.inter, att.value);
                         break;
                     case TYPE_ENUM:
-                        if !vectIndexOf(int, oo.oenu, att.value) vectPush(int, oo.oenu, att.value)
+                        vectIndexOf(oo->oenu, att->value, *pt);
+                        if (*x) vectPush(int, oo.oenu, att.value);
                         break;
                     case TYPE_TREE:
                         // looking for tree model (root) in the model (same rank), then LCA
@@ -55,6 +58,8 @@ Solution* genSolution(Model* mdl, Examples* exp) {
 
         }
     }
+    free(pt);
+    freeObject(o);
     return sol;
  }
 
