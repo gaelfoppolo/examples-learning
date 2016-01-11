@@ -41,7 +41,7 @@ void strPush(String* str, char c);
 *	@param str The string at the end of which the second string is added
 *	@param str2 The string to be added (need to be nul terminated)
 */
-void strPushStr(String* str, char const* str2);
+void strPushStr(String* str, char* str2);
 
 /**
 *	@brief Create a perfect copy of the string given. Used when a malloc created string is needed
