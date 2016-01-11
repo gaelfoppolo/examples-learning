@@ -30,9 +30,9 @@ void strPush(String* str, char c) {
 }
 
 void strPushStr(String* str, char const* str2) {
-	char const* begin = str->str, current = str->str;
+	char const* begin = str2, current = str2;
 	while(*current++);
-	unsigned int length = s.length + current - begin - 1;
+	unsigned int length = str->length + current - begin - 1;
 
 	if(str->length + length >= str->availableLength) {
 		if(str->availableLength < 10) str->availableLength = 10;
