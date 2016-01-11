@@ -22,7 +22,7 @@ void strPush(String* str, char c) {
 		// double the string available size
 		if(str->availableLength < 10) str->availableLength = 5;
 		str->availableLength = str->availableLength * 2;
-		str->str = (char*)realloc(str->availableLength * sizeof(char));
+		str->str = (char*)realloc(str->str, str->availableLength * sizeof(char));
 	}
 
 	str->str[str->length] = c;
@@ -30,9 +30,9 @@ void strPush(String* str, char c) {
 }
 
 void strPushStr(String* str, char const* str2) {
-	char const* begin = str;
-	while(*str++);
-	unsigned int length = s.length = str - begin - 1;
+	char const* begin = str->str, current = str->str;
+	while(*current++);
+	unsigned int length = s.length + current - begin - 1;
 
 	if(str->length + length >= str->availableLength) {
 		if(str->availableLength < 10) str->availableLength = 10;
@@ -41,7 +41,7 @@ void strPushStr(String* str, char const* str2) {
 			str->availableLength = str->availableLength * 2;
 		}
 
-		str->str = (char*)realloc(str->availableLength * sizeof(char));
+		str->str = (char*)realloc(str->str, str->availableLength * sizeof(char));
 	}
 
 	for(unsigned int i = str->length, j = 0; j < length; ++j, ++i) {
@@ -50,8 +50,8 @@ void strPushStr(String* str, char const* str2) {
 }
 
 char* strDuplicate(char* str) {
-	char const* begin = str;
-	while(*str++);
+	char const* begin = str->str, current = str->str;
+	while(*current++);
 	unsigned int length = str - begin - 1;
 
 	char* r = (char*)malloc(length * sizeof(char));
