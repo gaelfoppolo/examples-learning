@@ -30,7 +30,8 @@ void strPush(String* str, char c) {
 }
 
 void strPushStr(String* str, char const* str2) {
-	char const* begin = str2, current = str2;
+	char const* begin = str2;
+	char* current = str2;
 	while(*current++);
 	unsigned int length = str->length + current - begin - 1;
 
@@ -50,7 +51,8 @@ void strPushStr(String* str, char const* str2) {
 }
 
 char* strDuplicate(char* str) {
-	char const* begin = str->str, current = str->str;
+	char const* begin = str->str;
+	char* current = str->str;
 	while(*current++);
 	unsigned int length = str - begin - 1;
 
