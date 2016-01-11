@@ -43,4 +43,12 @@ void strPush(String* str, char c);
 */
 void strPushStr(String* str, char const* str2);
 
+/**
+*	@brief Create a perfect copy of the string given. Used when a malloc created string is needed
+*	@param str The original string
+*
+*	@return A new string created with malloc
+*/
+char* strDuplicate(char* str);
+
 #endif // _STRING_TYPE_H_
