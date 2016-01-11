@@ -3,117 +3,155 @@
 #include <stdio.h>
 #include <string.h>
 
-/**
-*	@brief define a dynamic array of type t
-*/
-#define Vector(t) struct {int size, capacity; t *data; }
+#ifndef _STRING_TYPE_H_
+#define _STRING_TYPE_H_
 
 /**
-*	@brief Init the vector
-*	@param vect The vector to be initialized
+*   @brief Dynamic string handler
+*   @field str The normal nul terminated char array that represents the string
+*	@field length The current string length
+*	@field availableLength The current available max length for the string
 */
-#define vectInit(vect) ((vect).size = (vect).capacity = 0, (vect).data = 0)
+typedef struct __basic_string {
+	char* str;
+	unsigned int length;
+	unsigned int availableLength;
+} String;
 
 /**
-*	@brief Free the vector
-*	@param vect The vector to be initialized
+*	@brief Transforms a char* to a string. The char* MUST be a nul terminated array
+*	@param str The basic C char array
+*
+*	@return The newly created string
 */
-#define vectFree(vect) free((vect).data)
+String strInit(char* str);
 
 /**
-*	@brief Returns the element at a certain index of the array
-*	@param vect The vector of which to access the element
-*	@param index The index of the element (between 0 and vector size - 1)
-*	@return The element (directly. You can use this as a left value)
+*	@brief Returns the current string size
+*	@param str The string of which the length is returned
+*
+*	@return The length of the string
 */
-#define vectAt(vect, index) ((vect).data[(index)])
+unsigned int strLength(String* str);
 
 /**
-*	@brief Return the size of the array
-*	@param vect The array of which to get the size
-*	@return The size of the array
+*	@brief Adds a character at the end of the string
+*	@param str The string at the end of which the char is added
+*	@param c The char to be added
 */
-#define vectSize(vect) ((vect).size)
+void strPush(String* str, char c);
 
 /**
-*	@brief Append an element at the end of the vector
-*	@param type The type of the element (must be the same type as the other elements of the array)
-*	@param vect The vector at the end of which to add the element
-*	@param value The element to be appened
+*	@brief Add a string at the end of the current string
+*	@param str The string at the end of which the second string is added
+*	@param str2 The string to be added (need to be nul terminated)
 */
-#define vectPush(type, vect, value) do {                                                                                \
-                                        if((vect).size == (vect).capacity) {                                            \
-                                            (vect).capacity = ((vect).capacity ? (vect).capacity * 2 : 10);             \
-                                            (vect).data = (type*)realloc((vect).data, sizeof(type) * (vect).capacity);  \
-                                        }                                                                               \
-                                        (vect).data[(vect).size++] = value;                                             \
-                                    } while(0)
+void strPushStr(String* str, char* str2);
 
 /**
-*	@brief Search for an element in the vector. Returns its index if found
-*	@param vect The vector to search in
-*	@param value The value to search for
-*	@param out An integer that will hold the return value (either the index if found ou -1 if the element is not int the vector)
+*	@brief Create a perfect copy of the string given. Used when a malloc created string is needed
+*	@param str The original string
+*
+*	@return A new string created with malloc
 */
-#define vectIndexOf(vect, value, out) do {																					\
-										out = -1;																		\
-										for(int i = 0; i < vectSize(vect); ++i) {										\
-											if(vectAt(vect, i) == value) {												\
-												out = i;																\
-												break;																	\
-											}																			\
-										}																				\
-									} while(0)
+char* strDuplicate(char* str);
 
-/**
-*   @brief All the integer composing the enum
-*   @field oenu The list of the solution's integers
-*/
-typedef struct __basic_outenum {
-    Vector(int) oenu;
-} OutEnum;
+#endif // _STRING_TYPE_H_
 
-/**
-*	@brief Init the output enum
-*	@param enu A pointer to the enum to init
-*/
-void initOutEnum(OutEnum* oenu);
 
-/**
-*	@brief Free the ouput enum previously initialized by initEnum
-*	@param oenu A pointer to the enum to free
-*/
-void freeOutEnum(OutEnum* oenu);
+String strInit(char* str) {
+	String s;
 
-void initOutEnum(OutEnum* oenu) {
-	vectInit(oenu->oenu);
+	s.str = str;
+
+	char const* begin = str;
+	while(*str++);
+	s.length = str - begin - 1;
+	s.availableLength = s.length;
+
+	return s;
 }
 
-void freeOutEnum(OutEnum* oenu) {
-	vectFree(oenu->oenu);
-	free(oenu);
+unsigned int strLength(String* str) {
+	return str->length;
 }
+
+void strPush(String* str, char c) {
+	if(str->length >= str->availableLength) {
+		// double the string available size
+		if(str->availableLength < 10) str->availableLength = 5;
+		str->availableLength = str->availableLength * 2;
+		str->str = (char*)realloc(str->str, str->availableLength * sizeof(char));
+	}
+
+	str->str[str->length] = c;
+	str->str[++str->length] = '\0';
+}
+
+void strPushStr(String* str, char* str2) {
+	char const* begin = str2;
+	char* current = str2;
+	while(*current++);
+	unsigned int length = str->length + current - begin - 1;
+
+	if(str->length + length >= str->availableLength) {
+		if(str->availableLength < 10) str->availableLength = 10;
+
+		while(str->length + length >= str->availableLength) {
+			str->availableLength = str->availableLength * 2;
+		}
+
+		str->str = (char*)realloc(str->str, str->availableLength * sizeof(char));
+	}
+
+	for(unsigned int i = str->length, j = 0; j < length; ++j, ++i) {
+		str->str[i] = str2[j];
+	}
+}
+
+char* strDuplicate(char* str) {
+	char* begin = str;
+	char* current = str;
+	while(*current++);
+	unsigned int length = str - begin - 1;
+
+	char* r = (char*)malloc(length * sizeof(char));
+	unsigned int i = 0;
+	while((r[i++] = *begin++));
+
+	return r;
+}
+
 
 int main(int argc, char const *argv[])
 {
-	OutEnum* test = (OutEnum*)malloc(sizeof(OutEnum));
-	initOutEnum(test);
+	String str = strInit("test");
+	strPush(&str, 'c');
+	// strPushStr(&str, "har");
 
-	int* x = (int *)malloc(sizeof(int));;
-	*x = 10;
+	// printf("%s\n", str->str);
 
-	vectPush(int, test->oenu, 1);
-	vectPush(int, test->oenu, 4);
-	vectPush(int, test->oenu, 12);
-	vectPush(int, test->oenu, 5);
 
-	vectIndexOf(test->oenu, 12, *x);
-	printf("%d\n", *x);
 
-	vectIndexOf(test->oenu, 234, *x);
-	printf("%d\n", *x);
 
-	freeOutEnum(test);
-	free(x);
+	// OutEnum* test = (OutEnum*)malloc(sizeof(OutEnum));
+	// initOutEnum(test);
+
+	// int* x = (int *)malloc(sizeof(int));;
+	// *x = 10;
+
+	// vectPush(int, test->oenu, 1);
+	// vectPush(int, test->oenu, 4);
+	// vectPush(int, test->oenu, 12);
+	// vectPush(int, test->oenu, 5);
+
+	// vectIndexOf(test->oenu, 12, *x);
+	// printf("%d\n", *x);
+
+	// vectIndexOf(test->oenu, 234, *x);
+	// printf("%d\n", *x);
+
+	// freeOutEnum(test);
+	// free(x);
 	return 0;
 }
