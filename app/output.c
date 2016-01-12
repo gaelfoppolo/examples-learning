@@ -1,26 +1,43 @@
 #include "output.h"
 
-char* stringifyCommonObject(OutObject* out) {
-	char* ret = NULL;
+String genOutput(Solution* sol, Model* mdl) {
+	// out final string to display
+	String str = strInit(strDuplicate("Solution: "));
+
+	ModelAttribute ma;
+	OutObject oo;
+	
 	char minSz[20];
 	char maxSz[20];
-	snprintf(minSz, 20, "%d", out->min); // converts an int to a string - (itoa is not ANSI-C compliant) - safe from bufferoverflow
-	snprintf(maxSz, 20, "%d", out->max);
 
-	ret = concat(ret, "C1\n\tx:shape(");
-	ret = concat(ret, shapeString[out->shape]);
-	ret = concat(ret, "), color(");
-	for(unsigned int i = 0; i < vectSize(out->colors); ++i) { // goes through all the color values of the object
-		ret = concat(ret, colorString[vectAt(out->colors, i)]);
-		if(i < vectSize(out->colors) - 1) {
-			ret = concat(ret, ", ");
+	for(int i = 0; i < vectSize(sol->outobjects); ++i) {
+		// get current model attribute data
+		ma = vectAt(mdl->ma, i);
+		// get current OutObject
+		oo = vectAt(sol->outobjects, i);
+		// add attribute name
+		strPushStr(&str, strDuplicate(ma.name));
+		//then value
+		strPushStr(&str, strDuplicate("("));
+		switch (ma.mt.type) {
+			case TYPE_INT:
+				// get interval value as char*
+                snprintf(minSz, 20, "%d", oo.inter.min);
+                snprintf(maxSz, 20, "%d", oo.inter.max);
+                strPushStr(&str, strDuplicate(minSz));
+                strPushStr(&str, strDuplicate("-"));
+                strPushStr(&str, strDuplicate(maxSz));
+                break;
+            case TYPE_ENUM:
+                //
+                break;
+            case TYPE_TREE:
+                //
+                break;
 		}
+		strPushStr(&str, strDuplicate(") "));
 	}
-	ret = concat(ret, "), size(");
-	ret = concat(ret, minSz);
-	ret = concat(ret, "..");
-	ret = concat(ret, maxSz);
-	ret = concat(ret, ")\n");
+	strPushStr(&str, strDuplicate("\n"));
 
-	return ret;
+	return str;
 }
