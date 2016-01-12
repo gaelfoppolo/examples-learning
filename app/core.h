@@ -9,8 +9,9 @@
 #ifndef _CORE_H_
 #define _CORE_H_
 
+#include "../types/model.h"
 #include "../types/examples.h"
-#include "../types/out-object.h"
+#include "../types/solution.h"
 
 /**
  * @brief Process examples of a model and produces solution object

@@ -16,7 +16,7 @@
 *   @field type The attribute's type
 *   @field value The attribute's value
 */
-typedef struct __attribute {
+typedef struct __our_attribute {
     attrType type;
     int value;
 } Attribute;

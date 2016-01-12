@@ -5,64 +5,56 @@
  *
  * @brief Main
  */
- 
+
 #include <stdio.h>
-#include "types/tree.h"
-#include "parser/parser.h"
-#include "app/output.h"
 #include "app/core.h"
 
-int main(int argc, char const *argv[])
-{
-	if(argc != 2) {
-		printf("You must give a file as first argument ex: %s myFile.cfg\n", argv[0]);
+int main(int argc, char const *argv[]) {
+	if(argc < 2) {
+		printf("You must pass the example file as argument like this : prgm examples.exp\nIf the example file does not contain a link to the config file (include), you must add the config file as second argument.\n");
 		return 1;
 	}
 
-	Tree* root = createNode(whatever, 
-		createNode(polygone, 
-			createNode(triangle, 
-				createLeaf(rectangle_triangle), 
-				createNode(isosceles_triangle, 
-					createLeaf(equilateral_triangle), 
-					NULL)
-			), 
-			createNode(quadrilateral, 
-				createLeaf(trapeze), 
-				createNode(rectangle, 
-					createLeaf(square), 
-					NULL
-				)
-			)
-		), 
-		createNode(ellipsoid, 
-			createLeaf(circle), 
-			createLeaf(ellipse)
-		));
+	char* configName = getConfigName(argv[1]);
 
-	ModelSample * current = parse(argv[1]);
-	char *stringOutput;
+	if(configName == NULL) { // no include, we check the second argument
+		if(argc == 3) {
+			configName = argv[2];
+		}
+		else {
+			printf("The example file does not contains a link to the config file. You must add it or pass the config file as second argument.");
+			return 1;
+		}
+	}
 
-	if(current == NULL) {
-		printf("The file does not exist or you don't have the correct rights to open it.\n");
+	Model* model = loadModel(configName); // load the config file and gen all the model types
 
-    	freeTree(root);
-
+	if(model == NULL) {
+		printf("The config file does not exist or contains errors.\n");
+		free(configName);
 		return 1;
 	}
 
-    OutObject* oo = learning(current, root);
+	Examples* examples = loadExamples(argv[1], model);
 
-    stringOutput = stringifyCommonObject(oo);
+	if(examples == NULL) {
+		printf("The examples file contains errors. Please check and rerun the program.\n");
+		free(configName);
+		freeModel(model);
+		return 1;
+	}
 
-    printf("%s\n", stringOutput);
+	Solution* sol = genSolution(model, examples); // only one solution in step 1
+	
+	char* out = genOutput(sol, model); // we need to pass the model for the int -> string conversion table it holds
 
-    free(stringOutput);
-    freeTree(root);
-    freeModelSample(current);
-    freeOutObject(oo);
+	printf("%s", out);
+
+	free(out);
+	free(configName);
+	freeModel(model);
+	freeExamples(examples);
+	freeSolutions(sol);
 
 	return 0;
 }
-
- 

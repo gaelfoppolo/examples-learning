@@ -44,7 +44,7 @@ int main(int argc, char const *argv[]) {
 		return 1;
 	}
 
-	Solution* sol = genSolution(examples); // only one solution in step 1
+	Solution* sol = genSolution(model, examples); // only one solution in step 1
 	
 	char* out = genOutput(sol, model); // we need to pass the model for the int -> string conversion table it holds
 
@@ -54,7 +54,7 @@ int main(int argc, char const *argv[]) {
 	free(configName);
 	freeModel(model);
 	freeExamples(examples);
-	freeSolutions(sol);
+	freeSolution(sol);
 
 	return 0;
 }
