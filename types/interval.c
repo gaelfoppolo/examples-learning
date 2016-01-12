@@ -8,7 +8,11 @@
 
 #include "interval.h"
 
-void addToInterval(Interval* inter, int x);
-	if(x < inter.min) inter.min = x;
- 	else if(inter.max < x) inter.max = x;
+void addToInterval(Interval* inter, int x) {
+	if(x < inter->min) {
+		inter->min = x;
+	}
+ 	else if(inter->max < x)  {
+		inter->max = x;
+	}
 }
