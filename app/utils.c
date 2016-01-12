@@ -19,13 +19,13 @@ char* concat(char* str1, char const* str2) {
 }
 
 char readTrim(FILE* f, char const* chars) {
-	if(!f) return NULL;
+	if(!f) return EOF;
 
 	char current;
 	unsigned int i, inSet;
 	while((current = fgetc(f))) {
 		if(current == EOF) {
-			return 0;
+			return EOF;
 		}
 		i = 0;
 		inSet = 0;
@@ -40,4 +40,5 @@ char readTrim(FILE* f, char const* chars) {
 			return current;
 		}
 	}
+	return EOF; // can't reach this part of the function
 }
