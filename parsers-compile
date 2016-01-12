@@ -1,0 +1,3 @@
+#!/bin/bash
+clang -c parser/parsers.c types/*.c main-parsers.c && clang *.o -o parsers && ./parsers ressources/examples.exp
+

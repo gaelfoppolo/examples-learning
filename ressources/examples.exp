@@ -1,4 +1,4 @@
-include config.cfg
+Include config.cfg
 
 E1
     x1:shape(rectangle), size(2), color(white)
