@@ -1,6 +1,8 @@
 #ifndef _STRING_TYPE_H_
 #define _STRING_TYPE_H_
 
+#include <stdlib.h>
+
 /**
 *   @brief Dynamic string handler
 *   @field str The normal nul terminated char array that represents the string
