@@ -23,21 +23,21 @@ char readTrim(FILE* f, char const* chars) {
 
 	char current;
 	unsigned int i, inSet;
-	while((c = fgetc(f))) {
-		if(c == EOF) {
+	while((current = fgetc(f))) {
+		if(current == EOF) {
 			return 0;
 		}
 		i = 0;
 		inSet = 0;
 		while(chars[i]) {
-			if(chars[i] == c) {
+			if(chars[i] == current) {
 				inSet = 1;
 				break;
 			}
 			++i;
 		}
 		if(!inSet) {
-			return c;
+			return current;
 		}
 	}
 }
