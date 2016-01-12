@@ -2,6 +2,7 @@
 #define _UTILS_H_
 
 #include <stdlib.h>
+#include <stdio.h>
 
 /**
 *	@brief Returns the length of a string
