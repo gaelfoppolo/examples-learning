@@ -51,7 +51,7 @@ Solution* genSolution(Model* mdl, Examples* exp) {
                         break;
                     case TYPE_TREE:
                         // looking for tree model (root) in the model (same rank), then LCA
-                        oo.tree = LCA(vectAt(mdl.mt, k).tree, oo.tree, att.value);
+                        oo.tree = LCA(vectAt(mdl.ma.mt, k).tree, oo.tree, att.value);
                         break;
                 }
             }
