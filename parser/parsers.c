@@ -17,9 +17,7 @@ char* getIncludeFile(char const* pathname) {
 	}
 
 	String str = strInit(strDuplicate(""));
-	printf("Init : %d. Taille maximale : %d\n", str.length, str.availableLength);
 	strPush(&str, c);
-	printf("Ajout d'un carac : %d. Taille maximale : %d\n", str.length, str.availableLength);
 
 	while((c = fgetc(fp)) != EOF && c != '\n' && c != '\t' && c != ' ') {
 		strPush(&str, c);
@@ -52,7 +50,6 @@ char* getIncludeFile(char const* pathname) {
 		strPush(&str, c);
 	}
 
-	printf("Taille actuelle : %d. Taille maximale : %d\n", str.length, str.availableLength);
 
 	fclose(fp);
 
