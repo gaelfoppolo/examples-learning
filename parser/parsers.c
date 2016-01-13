@@ -82,7 +82,6 @@ ModelAttribute* parseConfigLine(FILE* fp, char** error) {
 	*error = NULL;
 	char c;
 	ModelAttribute* current = (ModelAttribute*)malloc(sizeof(ModelAttribute));
-	String buf = strInit(strDuplicate(""));
 
 	current->name = parseAttrName(fp, error);
 
