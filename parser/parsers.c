@@ -124,7 +124,7 @@ char* parseAttrName(FILE* fp, char** error) {
 	error = NULL;
 	char c;
 	String attrName = strInit(strDuplicate(""));
-	readFileSpaces(fp, "\t ");
+	readFileSpaces(fp, "\t \n");
 	if(feof(fp)) {
 		free(attrName.str);
 		return NULL;
@@ -211,6 +211,7 @@ Interval* parseAttrTypeInterval(FILE* fp, char** error) {
 		readFileSpaces(fp, "\n");
 		current->min = INT_MIN;
 		current->max = INT_MAX;
+		fseek(fp, -1, SEEK_CUR);
 		while((c = fgetc(fp)) && c != '\n');
 		return current;
 	}
@@ -272,6 +273,7 @@ Interval* parseAttrTypeInterval(FILE* fp, char** error) {
 		current->max = max;
 	}
 
+	fseek(fp, -1, SEEK_CUR);
 	while((c = fgetc(fp)) && c != '\n');
 
 	return current;
