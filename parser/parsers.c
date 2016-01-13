@@ -261,13 +261,16 @@ Interval* parseAttrTypeInterval(FILE* fp, char** error) {
 		max = 10 * max + (c - '0');
 	}
 
+	min = min * (minusMin ? -1 : 1);
+	max = max * (minusMax ? -1 : 1);
+
 	if(min > max) {
-		current->min = max * (minusMax ? -1 : 1);
-		current->max = min * (minusMin ? -1 : 1);
+		current->min = max;
+		current->max = min;
 	}
 	else {
-		current->min = min * (minusMin ? -1 : 1);
-		current->max = max * (minusMax ? -1 : 1);
+		current->min = min;
+		current->max = max;
 	}
 
 	while((c = fgetc(fp)) && c != '\n');
