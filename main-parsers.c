@@ -14,6 +14,9 @@ int main(int argc, char const *argv[]) {
 	}
 	else {
 		printf("Chargement du fichier de config : %s\n", c);
+		Model* m = loadConfigFile(c);
+		printf("Fichier chargé !\n");
+
 		free(c);
 	}
 
