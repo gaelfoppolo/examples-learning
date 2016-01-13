@@ -1,6 +1,6 @@
 #include "output.h"
 
-String genOutput(Solution* sol, Model* mdl) {
+char* genOutput(Solution* sol, Model* mdl) {
 	// out final string to display
 	String str = strInit(strDuplicate("Solution: "));
 
@@ -24,9 +24,9 @@ String genOutput(Solution* sol, Model* mdl) {
 				// get interval value as char*
                 snprintf(minSz, 20, "%d", oo.inter.min);
                 snprintf(maxSz, 20, "%d", oo.inter.max);
-                strPushStr(&str, strDuplicate(minSz));
+                strPushStr(&str, minSz);
                 strPushStr(&str, strDuplicate("-"));
-                strPushStr(&str, strDuplicate(maxSz));
+                strPushStr(&str, maxSz);
                 break;
             case TYPE_ENUM:
                 //
@@ -39,5 +39,5 @@ String genOutput(Solution* sol, Model* mdl) {
 	}
 	strPushStr(&str, strDuplicate("\n"));
 
-	return str;
+	return str.str;
 }

@@ -21,6 +21,6 @@
 *	@param mdl Pointer to the model object containing structure of the model
 *	@return A string representing the object in a readable way. Need to be freed by the user
 */
-String genOutput(Solution* sol, Model* mdl);
+char* genOutput(Solution* sol, Model* mdl);
 
 #endif // _OUTPUT_H_
