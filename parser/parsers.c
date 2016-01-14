@@ -157,7 +157,7 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 
 	c = fgetc(fp);
 
-	if((c >= '0' && c <= '9') || c == '%') {
+	if((c >= '0' && c <= '9') || c == '%' || c == '-') {
 		// reads int
 		current->type = TYPE_INT;
 		fseek(fp, -1, SEEK_CUR);
@@ -433,10 +433,10 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index) {
 }
 
 int isValidAttrChar(char c, unsigned int first) {
-	if((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '-' || c == '_') {
+	if((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '_') {
 		return 1;
 	}
-	return first ? 0 : (c >= '0' && c <= '9');
+	return first ? 0 : ((c >= '0' && c <= '9') || c == '-');
 }
 
 void readFileSpaces(FILE* fp, char const* set) {
