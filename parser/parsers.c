@@ -91,7 +91,7 @@ ModelAttribute* parseConfigLine(FILE* fp, char** error) {
 		return NULL;
 	}
 
-	printf("New attribute found : %s\n", current->name);
+	printf("New attribute found : \x1B[1;37m%s\x1B[0m\n", current->name);
 
 	// reads til :
 	readFileSpaces(fp, "\t ");
@@ -149,7 +149,6 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 	*error = NULL;
 	char c;
 	ModelType* current = (ModelType*)malloc(sizeof(ModelType));
-
 	readFileSpaces(fp, "\t ");
 	if(feof(fp)) {
 		free(current);
@@ -174,7 +173,8 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 		// reads tree
 		current->type = TYPE_TREE;
 		fseek(fp, -1, SEEK_CUR);
-		Tree* t = parseAttrTypeTree(fp, error);
+		int index = 0;
+		Tree* t = parseAttrTypeTree(fp, error, &index);
 		if(t == NULL) {
 			free(current);
 			return NULL;
@@ -193,7 +193,7 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 		current->enu = *e;
 		printf("Enum : ");
 		for(int i = 0; i < vectSize(current->enu.enu); ++i) {
-			printf("%s(id=%d), ", vectAt(current->enu.enu, i).str, vectAt(current->enu.enu, i).id);
+			printf("\x1B[34m%s\x1B[0m(id=%d), ", vectAt(current->enu.enu, i).str, vectAt(current->enu.enu, i).id);
 		}
 		printf("\n");
 	}
@@ -313,9 +313,122 @@ Enum* parseAttrTypeEnum(FILE* fp, char** error) {
 	return current;
 }
 
-Tree* parseAttrTypeTree(FILE* fp, char** error) {
+Tree* parseAttrTypeTree(FILE* fp, char** error, int* index) {
 	char c;
-	while((c = fgetc(fp)) != EOF && c != '\n');
+	Tree* t = (Tree*)malloc(sizeof(Tree));
+	t->id = (*index)++;
+
+	// reads til '('
+	readFileSpaces(fp, "\t ");
+
+	if((c = fgetc(fp)) == EOF || c != '(') {
+		if(c == EOF) {
+			printf("Parenthesis expected");
+		}
+		else {
+			printf("Parenthesis expected buf found '%c'", c);
+		}
+		free(t);
+		return NULL;
+	}
+
+	t->str = parseAttrName(fp, error);
+
+	if(t->str == NULL) {
+		printf("Tree root value invalid");
+		free(t->str);
+		free(t);
+		return NULL;
+	}
+
+	printf("Nom trouvé : \x1B[34m%s\x1B[0m(id=%d)\n", t->str, t->id);
+
+	readFileSpaces(fp, "\t\n ");
+	if((c = fgetc(fp)) != ')' && c != ',') {
+		printf("Expected ')' or ',' but found '%c' instead", c);
+		free(t->str);
+		free(t);
+		return NULL;
+	}
+
+	if(c == ')') {
+		printf("\tfeuille. Aucun enfant détecté\n");
+		// leaf
+		t->left = NULL;
+		t->right = NULL;
+		return t;
+	}
+	else {
+		// at least one child
+		printf("[%s] Premier enfant...\n", t->str);
+		readFileSpaces(fp, "\t\n ");
+		if((c = fgetc(fp)) != '(') {
+			printf("character '%c' unexpected while parsing the first child of [%s]", c, t->str);
+			free(t->str);
+			free(t);
+			return NULL;
+		}
+		fseek(fp, -1, SEEK_CUR);
+		// reccursive call
+		t->left = parseAttrTypeTree(fp, error, index);
+		if(!t->left) {
+			printf("An error occured while parsing the first child of [%s]", t->str);
+			free(t->str);
+			free(t);
+			return NULL;
+		}
+
+		// we are on the closing parenthesis of the first child.
+		if((c = fgetc(fp)) != ',' && c != ')') {
+			readFileSpaces(fp, "\t\n ");
+			c = fgetc(fp);
+		}
+
+		if(c == ')') {
+			// no second child
+			printf("[%s] Pas de second enfant détecté...\n", t->str);
+			t->right = NULL;
+			return t;
+		}
+		else if(c != ',') {
+			printf("Expected ',' but '%c' found instead while parsing [%s]", c, t->str);
+			free(t->str);
+			free(t);
+			return NULL;
+		}
+		else {
+			// right child
+			printf("[%s] Second enfant...\n", t->str);
+			readFileSpaces(fp, "\t\n ");
+			if((c = fgetc(fp)) != '(') {
+				printf("character '%c' unexpected while parsing the second child of [%s]", c, t->str);
+				free(t->str);
+				free(t);
+				return NULL;
+			}
+			fseek(fp, -1, SEEK_CUR);
+			t->right = parseAttrTypeTree(fp, error, index);
+			if(!t->right) {
+				printf("An error occured while parsing the second child of [%s]", t->str);
+				free(t->str);
+				free(t);
+				return NULL;
+			}
+
+			// go to the last parenthesis
+			readFileSpaces(fp, "\t\n ");
+			if(fgetc(fp) != ')') {
+				printf("Expected a closing parenthesis at the end of [%s]", t->str);
+				free(t->str);
+				free(t);
+				return NULL;
+			}
+
+			return t;
+		}
+
+	}
+
 	return NULL;
 }
 

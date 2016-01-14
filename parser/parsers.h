@@ -84,7 +84,7 @@ ModelType* parseAttrType(FILE* fp, char** error);
 */
 Interval* parseAttrTypeInterval(FILE* fp, char** error);
 Enum* parseAttrTypeEnum(FILE* fp, char** error);
-Tree* parseAttrTypeTree(FILE* fp, char** error);
+Tree* parseAttrTypeTree(FILE* fp, char** error, int* index);
 
 /**
 *	@brief Check wether the character is allowed in an attribute name or not
