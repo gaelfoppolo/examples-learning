@@ -59,39 +59,81 @@ char* getIncludeFile(char const* pathname) {
 
 Model* loadConfigFile(char const* pathname) {
 	FILE* fp = fopen(pathname, "r");
-	ModelAttribute* ma;
+	Model* m = (Model*)malloc(sizeof(Model));
+	ModelAttribute deflt;
+	deflt.name = 0; // silents the uninitialized warning
 	char* error;
+
+	vectInit(m->ma);
 
 	if(fp == NULL) {
 		printf("The file %s does not exist.\n", pathname);
 		return NULL;
 	}
 
-	while((ma = parseConfigLine(fp, &error))) {
-		// TODO : handling
+	vectPush(ModelAttribute, m->ma, deflt);
+	while(parseConfigLine(fp, &error, &vectAt(m->ma, vectSize(m->ma) - 1))) {
+		vectPush(ModelAttribute, m->ma, deflt);
 	}
+
+	vectRemoveLast(m->ma);
+
+	printf("Nombre de lignes parsées : %d\n", vectSize(m->ma));
 
 	if(error) {
 		printf("Error : %s\n", error);
 	}
 
-	return NULL;
+	fclose(fp);
+
+	return m;
 }
 
-ModelAttribute* parseConfigLine(FILE* fp, char** error) {
+void freeModel(Model* mo) {
+	if(!mo) return;
+	for(unsigned int i = 0; i < vectSize(mo->ma); ++i) {
+		if(vectAt(mo->ma, i).name) {
+			free(vectAt(mo->ma, i).name);
+		}
+		switch(vectAt(mo->ma, i).mt.type) {
+			case TYPE_INT: break;
+			case TYPE_ENUM:
+				for(unsigned int j = 0; j < vectSize(vectAt(mo->ma, i).mt.enu.enu); ++j) {
+					if(vectAt(vectAt(mo->ma, i).mt.enu.enu, j).str) {
+						free(vectAt(vectAt(mo->ma, i).mt.enu.enu, j).str);
+					}
+				}
+				vectFree(vectAt(mo->ma, i).mt.enu.enu);
+				break;
+			case TYPE_TREE:
+				if(vectAt(mo->ma, i).mt.tree.left) {
+					freeTree(vectAt(mo->ma, i).mt.tree.left);
+				}
+				if(vectAt(mo->ma, i).mt.tree.right) {
+					freeTree(vectAt(mo->ma, i).mt.tree.right);
+				}
+				if(vectAt(mo->ma, i).mt.tree.str) {
+					free(vectAt(mo->ma, i).mt.tree.str);
+				}
+				break;
+		}
+	}
+	vectFree(mo->ma);
+	free(mo);
+}
+
+int parseConfigLine(FILE* fp, char** error, ModelAttribute* out) {
 	*error = NULL;
 	char c;
-	ModelAttribute* current = (ModelAttribute*)malloc(sizeof(ModelAttribute));
 
-	current->name = parseAttrName(fp, error);
+	out->name = parseAttrName(fp, error);
 
-	if(!current->name) {
-		free(current->name);
-		free(current);
-		return NULL;
+	if(!out->name) {
+		free(out->name);
+		return 0;
 	}
 
-	printf("New attribute found : \x1B[1;37m%s\x1B[0m\n", current->name);
+	printf("New attribute found : \x1B[1;37m%s\x1B[0m\n", out->name);
 
 	// reads til :
 	readFileSpaces(fp, "\t ");
@@ -101,23 +143,22 @@ ModelAttribute* parseConfigLine(FILE* fp, char** error) {
 		strPushStr(&err, "'.");
 		*error = err.str;
 
-		free(current->name);
-		free(current);
-		return NULL;
+		free(out->name);
+		return 0;
 	}
 
 	ModelType* mt = parseAttrType(fp, error);
 
 	if(mt == NULL) {
 		*error = "Failed parsing attribute's type definition";
-		free(current->name);
-		free(current);
-		return NULL;
+		free(out->name);
+		return 0;
 	}
 
-	current->mt = *mt;
+	out->mt = *mt;
+	free(mt);
 
-	return current;
+	return 1;
 }
 
 char* parseAttrName(FILE* fp, char** error) {
@@ -167,6 +208,7 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 			return NULL;
 		}
 		current->inter = *it;
+		free(it);
 		printf("Interval : %d - %d\n", current->inter.min, current->inter.max);
 	}
 	else if(c == '(') {
@@ -180,6 +222,7 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 			return NULL;
 		}
 		current->tree = *t;
+		free(t);
 	}
 	else {
 		//reads enum
@@ -191,6 +234,7 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 			return NULL;
 		}
 		current->enu = *e;
+		free(e);
 		printf("Enum : ");
 		for(int i = 0; i < vectSize(current->enu.enu); ++i) {
 			printf("\x1B[34m%s\x1B[0m(id=%d), ", vectAt(current->enu.enu, i).str, vectAt(current->enu.enu, i).id);
@@ -306,7 +350,10 @@ Enum* parseAttrTypeEnum(FILE* fp, char** error) {
 	}
 
 	if(*error) {
-		free(current); // TODO : fix possible data loss in strings stored in the vector
+		for(int i = 0; i < vectSize(current->enu); ++i) {
+			free(vectAt(current->enu, i).str);
+		}
+		free(current);
 		return NULL;
 	}
 

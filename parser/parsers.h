@@ -55,7 +55,7 @@ void freeModel(Model* mo);
 *
 *	@return Returns the ModelAttribute generated from the line. If the line contains an error or EOF is reached, returns NULL
 */
-ModelAttribute* parseConfigLine(FILE* fp, char** error);
+int parseConfigLine(FILE* fp, char** error, ModelAttribute* out);
 
 /**
 *	@brief Tries to parse the attribute name at the current position in the file (spaces & tabs are ommited)

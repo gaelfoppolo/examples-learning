@@ -18,6 +18,7 @@ int main(int argc, char const *argv[]) {
 		printf("Fichier chargé !\n");
 
 		free(c);
+		freeModel(m);
 	}
 
 
