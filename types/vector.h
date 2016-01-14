@@ -55,7 +55,7 @@
 *	@param value The value to search for
 *	@param out An integer that will hold the return value (either the index if found ou -1 if the element is not int the vector)
 */
-#define vectIndexOf(vect, value, out) do {																					\
+#define vectIndexOf(vect, value, out) do {																				\
 										out = -1;																		\
 										for(int i = 0; i < vectSize(vect); ++i) {										\
 											if(vectAt(vect, i) == value) {												\
@@ -64,5 +64,12 @@
 											}																			\
 										}																				\
 									} while(0)
+
+
+#define vectRemoveLast(vect) do {																						\
+									if((vect).size > 0) {																\
+										--(vect).size;																	\
+									}																					\
+								} while(0)
 
 #endif // _VECTOR_H_
