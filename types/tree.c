@@ -60,6 +60,7 @@ Tree* LCA(Tree* root, int id1, int id2) {
 }
 
 void freeTree(Tree* t) {
+	if(t->str) free(t->str);
 	if(t->left) freeTree(t->left);
 	if(t->right) freeTree(t->right);
 	free(t);
