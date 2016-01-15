@@ -170,12 +170,14 @@ char* parseAttrName(FILE* fp, char** error) {
 		free(attrName.str);
 		return NULL;
 	}
+
 	if((c = fgetc(fp)) && isValidAttrChar(c, 1)) {
 		strPush(&attrName, c);
 		while((c = fgetc(fp)) && isValidAttrChar(c, 0)) {
 			strPush(&attrName, c);
 		}
 	}
+
 	fseek(fp, -1, SEEK_CUR);
 
 	if(strLength(&attrName) == 0) {
@@ -365,6 +367,7 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index) {
 	Tree* t = (Tree*)malloc(sizeof(Tree));
 	t->id = (*index)++;
 
+
 	// reads til '('
 	readFileSpaces(fp, "\t ");
 
@@ -470,7 +473,6 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index) {
 				free(t);
 				return NULL;
 			}
-
 			return t;
 		}
 

@@ -56,7 +56,7 @@ char* strDuplicate(char* str) {
 	char* begin = str;
 	char* current = str;
 	while(*current++);
-	unsigned int length = str - begin - 1;
+	unsigned int length = current - begin;
 
 	char* r = (char*)malloc(length * sizeof(char));
 	unsigned int i = 0;
