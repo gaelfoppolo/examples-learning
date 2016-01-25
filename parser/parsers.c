@@ -86,10 +86,10 @@ Model* loadConfigFile(char const* pathname) {
 
 	vectRemoveLast(m->ma);
 
-	printf("Nombre de lignes parsées : %d\n", vectSize(m->ma));
+	printf("The model has %d attribute(s).\n", vectSize(m->ma));
 
 	if(error) {
-		printf("Error : %s\n", error);
+		printf("Error: %s\n", error);
 	}
 
 	fclose(fp);
@@ -141,7 +141,7 @@ int parseConfigLine(FILE* fp, char** error, ModelAttribute* out) {
 		return 0;
 	}
 
-	printf("New attribute found : \x1B[1;37m%s\x1B[0m\n", out->name);
+	printf("\nNew attribute found: \x1B[1;31m%s\x1B[0m\n", out->name);
 
 	// reads til :
 	readFileSpaces(fp, "\t ");
@@ -219,7 +219,7 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 		}
 		current->inter = *it;
 		free(it);
-		printf("Interval : %d - %d\n", current->inter.min, current->inter.max);
+		printf("\x1B[1;32mInterval:\x1B[0m %d - %d\n", current->inter.min, current->inter.max);
 	}
 	else if(c == '(') {
 		// reads tree
@@ -245,9 +245,10 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 		}
 		current->enu = *e;
 		free(e);
-		printf("Enum : ");
+		printf("\x1B[1;32mEnum:\x1B[0m ");
 		for(int i = 0; i < vectSize(current->enu.enu); ++i) {
-			printf("\x1B[34m%s\x1B[0m(id=%d), ", vectAt(current->enu.enu, i).str, vectAt(current->enu.enu, i).id);
+			printf("\x1B[1;36m%s\x1B[0m \x1B[33m(ID = %d)\x1B[0m", vectAt(current->enu.enu, i).str, vectAt(current->enu.enu, i).id);
+			if (i+1 < vectSize(current->enu.enu)) printf(", ");	
 		}
 		printf("\n");
 	}
@@ -285,7 +286,7 @@ Interval* parseAttrTypeInterval(FILE* fp, char** error) {
 		min = 10 * min + (c - '0');
 	}
 	if(!c) {
-		String err = strInit(strDuplicate("End of file reached while reading interval"));
+		String err = strInit(strDuplicate("End of file reached while reading interval."));
 		*error = err.str;
 		free(current);
 		return NULL;
@@ -295,7 +296,7 @@ Interval* parseAttrTypeInterval(FILE* fp, char** error) {
 	if(c != '-') {
 		while((c = fgetc(fp)) && (c == ' ' || c == '\t'));
 		if(c != '-') {
-			String err = strInit(strDuplicate(c == EOF ? "End of file reached while reading interval" : "Unallowed character found in place of '-' in interval"));
+			String err = strInit(strDuplicate(c == EOF ? "End of file reached while reading interval." : "Unallowed character found in place of '-' in interval."));
 			*error = err.str;
 			free(current);
 			return NULL;
@@ -381,10 +382,10 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index) {
 
 	if((c = fgetc(fp)) == EOF || c != '(') {
 		if(c == EOF) {
-			printf("Parenthesis expected");
+			printf("Parenthesis expected.");
 		}
 		else {
-			printf("Parenthesis expected buf found '%c'", c);
+			printf("Parenthesis expected but found '%c'.", c);
 		}
 		free(t);
 		return NULL;
@@ -393,13 +394,13 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index) {
 	t->str = parseAttrName(fp, error);
 
 	if(t->str == NULL) {
-		printf("Tree root value invalid");
+		printf("Tree root value invalid.");
 		free(t->str);
 		free(t);
 		return NULL;
 	}
 
-	printf("Nom trouvé : \x1B[34m%s\x1B[0m(id=%d)\n", t->str, t->id);
+	printf("Name: \x1B[1;36m%s\x1B[0m \x1B[33m(ID = %d)\x1B[0m\n", t->str, t->id);
 
 	readFileSpaces(fp, "\t\n ");
 	if((c = fgetc(fp)) != ')' && c != ',') {
@@ -410,7 +411,7 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index) {
 	}
 
 	if(c == ')') {
-		printf("\tfeuille. Aucun enfant détecté\n");
+		printf("[\x1B[1;36m%s\x1B[0m] No child detected, \x1B[1;32mleaf\x1B[0m.\n", t->str);
 		// leaf
 		t->left = NULL;
 		t->right = NULL;
@@ -418,7 +419,7 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index) {
 	}
 	else {
 		// at least one child
-		printf("[%s] Premier enfant...\n", t->str);
+		printf("[\x1B[1;36m%s\x1B[0m] First child: \n", t->str);
 		readFileSpaces(fp, "\t\n ");
 		if((c = fgetc(fp)) != '(') {
 			printf("character '%c' unexpected while parsing the first child of [%s]", c, t->str);
@@ -444,7 +445,7 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index) {
 
 		if(c == ')') {
 			// no second child
-			printf("[%s] Pas de second enfant détecté...\n", t->str);
+			printf("[\x1B[1;36m%s\x1B[0m] No second child detected.\n", t->str);
 			t->right = NULL;
 			return t;
 		}
@@ -456,7 +457,7 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index) {
 		}
 		else {
 			// right child
-			printf("[%s] Second enfant...\n", t->str);
+			printf("[\x1B[1;36m%s\x1B[0m] Second child: \n", t->str);
 			readFileSpaces(fp, "\t\n ");
 			if((c = fgetc(fp)) != '(') {
 				printf("character '%c' unexpected while parsing the second child of [%s]", c, t->str);
