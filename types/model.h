@@ -30,4 +30,10 @@ typedef struct __basic_model {
     Vector(ModelAttribute) ma;
 } Model;
 
+/**
+*	@brief Init the model
+*	@param mo A pointer to the model to init
+*/
+void initModel(Model* mo);
+
 #endif // _MODEL_H_
