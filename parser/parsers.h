@@ -1,3 +1,11 @@
+/**
+ *
+ * @gaelfoppolo FOPPOLO Gaël
+ * @Ebatsin PHILIP Bastien
+ *
+ * @brief The parser
+ */
+
 #ifndef _PARSERS_H_
 #define _PARSERS_H_
 

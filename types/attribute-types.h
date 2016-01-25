@@ -1,3 +1,11 @@
+/**
+ *
+ * @gaelfoppolo FOPPOLO Gaël
+ * @Ebatsin PHILIP Bastien
+ *
+ * @brief Attribute types definition
+ */
+
 #ifndef _ATTRIBUTE_TYPES_H_
 #define _ATTRIBUTE_TYPES_H_
 

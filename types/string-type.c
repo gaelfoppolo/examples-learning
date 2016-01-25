@@ -1,3 +1,11 @@
+/**
+ *
+ * @gaelfoppolo FOPPOLO Gaël
+ * @Ebatsin PHILIP Bastien
+ *
+ * @brief String implementation type
+ */
+
 #include "string-type.h"
 
 String strInit(char* str) {

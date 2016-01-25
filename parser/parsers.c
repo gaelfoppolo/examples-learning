@@ -1,3 +1,11 @@
+/**
+ *
+ * @gaelfoppolo FOPPOLO Gaël
+ * @Ebatsin PHILIP Bastien
+ *
+ * @brief The parser
+ */
+
 #include "parsers.h"
 
 char* getIncludeFile(char const* pathname) {

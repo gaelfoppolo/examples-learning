@@ -1,3 +1,11 @@
+/**
+ *
+ * @gaelfoppolo FOPPOLO Gaël
+ * @Ebatsin PHILIP Bastien
+ *
+ * @brief Dynamic array (vector) implementation
+ */
+
 #ifndef _VECTOR_H_
 #define _VECTOR_H_
 

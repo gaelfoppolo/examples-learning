@@ -1,3 +1,11 @@
+/**
+ *
+ * @gaelfoppolo FOPPOLO Gaël
+ * @Ebatsin PHILIP Bastien
+ *
+ * @brief Convertion tools from structures to strings
+ */
+
 #include "output.h"
 
 char* genOutput(Solution* sol, Model* mdl) {

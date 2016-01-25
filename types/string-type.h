@@ -1,3 +1,11 @@
+/**
+ *
+ * @gaelfoppolo FOPPOLO Gaël
+ * @Ebatsin PHILIP Bastien
+ *
+ * @brief String implementation type
+ */
+
 #ifndef _STRING_TYPE_H_
 #define _STRING_TYPE_H_
 
