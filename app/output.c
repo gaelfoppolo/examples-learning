@@ -1,11 +1,3 @@
-/**
- *
- * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin PHILIP Bastien
- *
- * @brief Convertion tools from structures to strings
- */
-
 #include "output.h"
 
 char* genOutput(Solution* sol, Model* mdl) {
@@ -14,7 +6,7 @@ char* genOutput(Solution* sol, Model* mdl) {
 
 	ModelAttribute ma;
 	OutObject oo;
-	
+
 	char minSz[20];
 	char maxSz[20];
 
@@ -48,4 +40,11 @@ char* genOutput(Solution* sol, Model* mdl) {
 	strPushStr(&str, strDuplicate("\n"));
 
 	return str.str;
+}
+
+char* cPrint(const char * fmt, va_list args) {
+	unsigned long sz = snprintf(NULL, 0, fmt, args);
+	char* c = (char*)malloc(sizeof(char) * sz);
+	snprintf(c, sz, fmt, args);
+	return c;
 }
