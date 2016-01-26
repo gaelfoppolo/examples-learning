@@ -17,28 +17,45 @@
 #include "../types/model.h"
 #include "../types/string-type.h"
 
+#define PARSED_EXAMPLE 1 // value returned by the getNextExample function if the example is an example
+#define PARSED_COUNTEREXAMPLE 2 // value returned by the getNextExample function if the example is a counter-example
+
 /**
 *	@brief Get the pathname to the config file included at the begening of an example file
 *	@param pathname The path to the example file
+*	@param pos Will contain the position of the character after the last character of the include (basically, a " ", "\t" or "\n")
 *
 *	@return If the file to include is found, the file name. NULL otherwise
 */
-char* getIncludeFile(char const* pathname);
+char* getIncludeFile(char const* pathname, size_t * pos);
 
 /**
 *	@brief Loads the example file given and generate the Example object that represents its content
 *	@param pathname The path to the example file to be read
 *	@param model The Model object generated from the config file
+*	@param startPos The position at which to start parsing the file
 *
 *	@return A newly created Examples object
 */
-Examples* loadExampleFile(char const* pathname, Model* model);
+Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos);
 
 /**
-*	@brief Frees the Example struct created while parsing the Example file
-*	@param ex The Example struct to free
+*	@brief Get the type of the next example (example or counter-example). Stop reading at the end of the example name, on the last character
+*	@param f The file to be read
+*
+*	@param Returns 0 in case of error, PARSED_EXAMPLE if the line is an example, PARSED_COUNTEREXAMPLE if the line is a counter-example
 */
-void freeExamples(Examples* ex);
+unsigned int getNextExample(FILE* f);
+
+/**
+*	@brief Parse an example or a counterexample
+*	@param fp The file in which to read
+*	@param error In case of error, contains a description of the error. NULL if no error happened. Must be an uninitialized variable or data loss may occur.
+*	@param ex A pointer to the example object to populate
+*
+*	@return A boolean. 1 for success. 0 for failure.
+*/
+int parseExample(FILE* fp, char** error, Example* ex);
 
 /**
 *	@brief Loads the config file given anf the generate the Model object that represents its content
@@ -60,8 +77,9 @@ void freeModel(Model* mo);
 *	@brief Tries to parse the line as a config file attribute definition. If the line is empty, continues to read until it finds a line.
 *	@param fp The file in which to read
 *	@param error In case of error, contains a description of the error. NULL if no error append. Must be an uninitialized variable or data loss may happen
+*	@param out A pointer to the ModelAttribute object to populate
 *
-*	@return Returns the ModelAttribute generated from the line. If the line contains an error or EOF is reached, returns NULL
+*	@return A boolean. 1 for success. 0 for failure.
 */
 int parseConfigLine(FILE* fp, char** error, ModelAttribute* out);
 
@@ -106,9 +124,16 @@ int isValidAttrChar(char c, unsigned int first);
 /**
 *	@brief Reads a file from the current position and reads while characters are in the set. Stops on the last one
 *	@param f The file to be read
-*	@param chars A nul terminated array of char that contains the set of characters
+*	@param set A nul terminated array of char that contains the set of characters
 */
 void readFileSpaces(FILE* fp, char const* set);
+
+/**
+*	@brief Reads a file from the current position and reads until it finds a character in the set. Stops on the last character not in the set
+*	@apram f The file to be read
+*	@param set A nul terminated array of char that contains the set of characters to reach
+*/
+void readTil(FILE* fp, char const* set);
 
 
 #endif // _PARSERS_H_

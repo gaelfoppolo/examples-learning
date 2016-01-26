@@ -8,7 +8,7 @@
 
 #include "parsers.h"
 
-char* getIncludeFile(char const* pathname) {
+char* getIncludeFile(char const* pathname, size_t * pos) {
 	FILE* fp = fopen(pathname, "r");
 	char includeStr[] = "include";
 	char c;
@@ -58,6 +58,7 @@ char* getIncludeFile(char const* pathname) {
 		strPush(&str, c);
 	}
 
+	*pos = ftell(fp);
 
 	fclose(fp);
 
@@ -65,11 +66,83 @@ char* getIncludeFile(char const* pathname) {
 
 }
 
+Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
+	FILE* fp = fopen(pathname, "r");
+	Examples* e = (Examples*)malloc(sizeof(Examples));
+	Example dflt;
+
+	char* error;
+	int type;
+
+	if(fp == NULL) {
+		printf("The file %s does not exist.\n", pathname);
+		if(e) {
+			free(e);
+		}
+		return NULL;
+	}
+
+	if(e == NULL) {
+		fclose(fp);
+		return NULL;
+	}
+
+	vectInit(e->examples);
+	vectInit(e->counterExamples);
+
+	// go past the include line
+	fseek(fp, startPos, SEEK_SET);
+
+	while((type = getNextExample(fp))) {
+		if(type == PARSED_EXAMPLE) {
+			vectPush(Example, e->examples, dflt);
+			if(!parseExample(fp, &error, &vectAt(e->examples, vectSize(e->examples) - 1))) {
+
+			}
+		}
+		else {
+			vectPush(Example, e->counterExamples, dflt);
+			if(!parseExample(fp, &error, &vectAt(e->counterExamples, vectSize(e->counterExamples) - 1))) {
+
+			}
+		}
+	}
+
+	return e;
+}
+
+unsigned int getNextExample(FILE* f) {
+	char c;
+	readTil(f, "\n");
+	while(!feof(f) && (c = fgetc(f))) {
+		if((c = fgetc(f)) == '!') {
+			// counter-example
+			printf("On a un contre-example\n");
+			readTil(f, "\n");
+			fseek(f, -1, SEEK_CUR);
+			return PARSED_COUNTEREXAMPLE;
+		}
+		else if(!feof(f) && c != ' ' && c != '\t' && c != '\n') {
+			printf("On a un exemple (%c)\n", c);
+			readTil(f, "\n");
+			fseek(f, -1, SEEK_CUR);
+			return PARSED_EXAMPLE;
+		}
+		readTil(f, "\n");
+	}
+
+	return 0;
+}
+
+int parseExample(FILE* fp, char** error, Example* ex) {
+	return 1;
+}
+
 Model* loadConfigFile(char const* pathname) {
 	FILE* fp = fopen(pathname, "r");
 	Model* m = (Model*)malloc(sizeof(Model));
 	ModelAttribute deflt;
-	deflt.name = 0; // silents the uninitialized warning
+	deflt.name = 0; // silents the uninitialized warning (its ugly, I know)
 	char* error;
 
 	vectInit(m->ma);
@@ -248,7 +321,7 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 		printf("\x1B[1;32mEnum:\x1B[0m ");
 		for(int i = 0; i < vectSize(current->enu.enu); ++i) {
 			printf("\x1B[1;36m%s\x1B[0m \x1B[33m(ID = %d)\x1B[0m", vectAt(current->enu.enu, i).str, vectAt(current->enu.enu, i).id);
-			if (i+1 < vectSize(current->enu.enu)) printf(", ");	
+			if (i+1 < vectSize(current->enu.enu)) printf(", ");
 		}
 		printf("\n");
 	}
@@ -500,7 +573,7 @@ int isValidAttrChar(char c, unsigned int first) {
 void readFileSpaces(FILE* fp, char const* set) {
 	char current;
 	unsigned int i, inSet;
-	while((current = fgetc(fp))) {
+	while((current = fgetc(fp)) != EOF) {
 		i = 0;
 		inSet = 0;
 		while(set[i]) {
@@ -513,6 +586,21 @@ void readFileSpaces(FILE* fp, char const* set) {
 		if(!inSet) {
 			fseek(fp, -1, SEEK_CUR);
 			return;
+		}
+	}
+}
+
+void readTil(FILE* fp, char const* set) {
+	char current;
+	unsigned int i, inSet;
+	while((current = fgetc(fp)) != EOF) {
+		i = 0;
+		while(set[i]) {
+			if(set[i] == current) {
+				fseek(fp, -1, SEEK_CUR);
+				return;
+			}
+			++i;
 		}
 	}
 }
