@@ -183,7 +183,82 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 }
 
 int parseExampleObject(FILE* fp, char** error, Object* o, Model* m) {
-	
+	char* name;
+	int position;
+	attrType type;
+
+	while(1) {
+		name = parseAttrName(fp, error);
+		/*if(error) {
+			return 0;
+		}*/
+		position = getAttributePosition(name, m);
+		if(position == -1) {
+			*error = cPrint("The attribute " SWHITE "%s" SDEFAULT " is not defined", name);
+			return 0;
+		}
+
+		printf("\tFound : %s", name);
+
+		type = vectAt(m->ma, position).mt.type; // the type of the attribute to read
+
+		fgetc(fp); // reads the '('
+
+		// reads the attribute's value
+
+		parseAttrValue(fp, error, m, type, &vectAt(o->attributes, position), position);
+		break;
+	}
+
+	return 0;
+}
+
+int getAttributePosition(const char* attr, Model* m) {
+	for(unsigned int i = 0; i < vectSize(m->ma); ++i) {
+		if(strcmp(attr, vectAt(m->ma, i).name) == 0) {
+			return i;
+		}
+	}
+
+	return -1;
+}
+
+void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* attr, unsigned int position) {
+	String str = strInit(strDuplicate(""));
+	char c;
+	int tmp;
+
+	readFileSpaces(fp, " \t");
+
+	while((c = fgetc(fp)) != EOF && c != ' ' && c != '\t' && c != ')') {
+		strPush(&str, c);
+	}
+
+	attr->type = type;
+
+	switch(type) {
+		case TYPE_INT:
+			attr->value = atoi(str.str);
+			printf(" (%s -> %d)\n", str.str, attr->value);
+			break;
+		case TYPE_ENUM:
+			tmp = getEnumId(str.str, m, position);
+			if(tmp < 0) { // the value does not exist
+				*error = cPrint("Expected an enum value but found %s instead", str.str);
+				return;
+			}
+			attr->value = tmp;
+			printf(" (%s -> %d)\n", str.str, attr->value);
+			break;
+		case TYPE_TREE:
+			tmp = getTreeId(str.str, m, position);
+			if(tmp < 0) { // the value does not exist
+				*error = cPrint("Expected a tree value but found %s instead", str.str);
+				return;
+			}
+			attr->value = tmp;
+			printf(" (%s -> %d)\n", str.str, attr->value);
+	}
 }
 
 Model* loadConfigFile(char const* pathname) {
@@ -291,7 +366,7 @@ int parseConfigLine(FILE* fp, char** error, ModelAttribute* out) {
 }
 
 char* parseAttrName(FILE* fp, char** error) {
-	error = NULL;
+	*error = NULL;
 	char c;
 	String attrName = strInit(strDuplicate(""));
 	readFileSpaces(fp, "\t \n");
@@ -562,7 +637,7 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 			readFileSpaces(fp, "\t\n ");
 			c = fgetc(fp);
 		}
-		
+
 		if(c == ')') {
 			// no second child
 			t->right = NULL;

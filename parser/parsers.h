@@ -11,11 +11,13 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include <limits.h>
 
 #include "../types/examples.h"
 #include "../types/model.h"
 #include "../types/string-type.h"
+#include "../app/output.h"
 
 #define PARSED_EXAMPLE 1 // value returned by the getNextExample function if the example is an example
 #define PARSED_COUNTEREXAMPLE 2 // value returned by the getNextExample function if the example is a counter-example
@@ -68,6 +70,26 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m);
 *	@return A boolean. 1 for success. 0 for failure
 */
 int parseExampleObject(FILE* fp, char** error, Object* o, Model* m);
+
+/**
+*	@brief Returns the position at which can be found an attribute (by name)
+*	@param attr the attribute to compare
+*	@param m The model in which to find the order
+*
+*	@return the index of the attribute (or -1 in case the attributes is not in the model)
+*/
+int getAttributePosition(const char* attr, Model* m);
+
+/**
+*	@brief Parse the attribute's value and populate the Attribute object accordingly
+*	@param fp The file in which to read
+*	@param error In case of error, contains a description of the error. NULL if no error happened. Must be an uninitialized variable or data loss may occur.
+*	@param m The model to use for the parsing
+*	@param type The expected type of the attribute
+*	@param attr A pointer to the attribute to populate
+*	@param position The position of the attribute in the model
+*/
+void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* attr, unsigned int position);
 
 /**
 *	@brief Loads the config file given anf the generate the Model object that represents its content
