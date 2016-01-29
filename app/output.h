@@ -66,6 +66,6 @@ char* genOutput(Solution* sol, Model* mdl);
 *
 *	@return A newly allocated string that contains the arguments given to the function formated
 */
-char* cPrint(const char * fmt, va_list args);
+char* cPrint(const char * fmt, ...);
 
 #endif // _OUTPUT_H_

@@ -42,9 +42,14 @@ char* genOutput(Solution* sol, Model* mdl) {
 	return str.str;
 }
 
-char* cPrint(const char * fmt, va_list args) {
+char* cPrint(const char * fmt, ...) {
+	va_list args;
+    va_start(args, fmt);
+
 	unsigned long sz = snprintf(NULL, 0, fmt, args);
 	char* c = (char*)malloc(sizeof(char) * sz);
 	snprintf(c, sz, fmt, args);
+
+	va_end(args);
 	return c;
 }
