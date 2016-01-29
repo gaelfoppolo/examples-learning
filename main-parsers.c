@@ -18,7 +18,7 @@ int main(int argc, char const *argv[]) {
 		Model* m = loadConfigFile(c);
 		printf("Fichier chargé !\n");
 
-		printf("Chargement du fichier d'exemple. Début de lecture à %zu\n", includePosition);
+		printf("\e[1mChargement du fichier d'exemple. Début de lecture à %zu\e[0m\n", includePosition);
 
 		Examples* e = loadExampleFile(argv[1], m, includePosition);
 

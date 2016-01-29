@@ -52,10 +52,22 @@ unsigned int getNextExample(FILE* f);
 *	@param fp The file in which to read
 *	@param error In case of error, contains a description of the error. NULL if no error happened. Must be an uninitialized variable or data loss may occur.
 *	@param ex A pointer to the example object to populate
+*	@param model The Model object generated from the config file
 *
 *	@return A boolean. 1 for success. 0 for failure.
 */
-int parseExample(FILE* fp, char** error, Example* ex);
+int parseExample(FILE* fp, char** error, Example* ex, Model* m);
+
+/**
+*	@brief Parse an object (only its properties. The name must already be known)
+*	@param fp The file in which to read
+*	@param error In case of error, contains a description of the error. NULL if no error happened. Must be an uninitialized variable or data loss may occur.
+*	@param o A pointer to the object Object to populate
+*	@param model The Model object generated from the config file
+*
+*	@return A boolean. 1 for success. 0 for failure
+*/
+int parseExampleObject(FILE* fp, char** error, Object* o, Model* m);
 
 /**
 *	@brief Loads the config file given anf the generate the Model object that represents its content

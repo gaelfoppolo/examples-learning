@@ -17,6 +17,7 @@ char* getIncludeFile(char const* pathname, size_t * pos) {
 		return NULL;
 	}
 
+	// skip all the spaces and line breaks til we found something
 	while((c = fgetc(fp)) != EOF && (c == ' ' || c == '\t' || c == '\n'));
 
 	if(c == EOF) {
@@ -27,17 +28,19 @@ char* getIncludeFile(char const* pathname, size_t * pos) {
 	String str = strInit(strDuplicate(""));
 	strPush(&str, c);
 
+	// reads the word found and stores it
 	while((c = fgetc(fp)) != EOF && c != '\n' && c != '\t' && c != ' ') {
 		strPush(&str, c);
 	}
 
-	// test if str == include (case insensitive)
+	// test if str == include (case insensitive) - length check
 	if(strLength(&str) != 7) { // 7 is the length of "include" (something something magic numbers)
 		free(str.str);
 		fclose(fp);
 		return NULL;
 	}
 
+	// test if str == include (case insensitive) - char comparaison
 	for(int i = 0; i < strLength(&str); ++i) {
 		if(includeStr[i] != str.str[i] && includeStr[i] != (str.str[i]) + ('a' - 'A')) { // test for upper and lower case as include is case insensitive
 			// not include
@@ -58,7 +61,7 @@ char* getIncludeFile(char const* pathname, size_t * pos) {
 		strPush(&str, c);
 	}
 
-	*pos = ftell(fp);
+	*pos = ftell(fp); // save the position of the last char of the include
 
 	fclose(fp);
 
@@ -93,16 +96,17 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
 	// go past the include line
 	fseek(fp, startPos, SEEK_SET);
 
+	// find [counter-]example line definition and returns wether it's a counter-example or an exemple
 	while((type = getNextExample(fp))) {
 		if(type == PARSED_EXAMPLE) {
-			vectPush(Example, e->examples, dflt);
-			if(!parseExample(fp, &error, &vectAt(e->examples, vectSize(e->examples) - 1))) {
+			vectPush(Example, e->examples, dflt); // add a default example to me modified by parseExample
+			if(!parseExample(fp, &error, &vectAt(e->examples, vectSize(e->examples) - 1), model)) {
 
 			}
 		}
 		else {
 			vectPush(Example, e->counterExamples, dflt);
-			if(!parseExample(fp, &error, &vectAt(e->counterExamples, vectSize(e->counterExamples) - 1))) {
+			if(!parseExample(fp, &error, &vectAt(e->counterExamples, vectSize(e->counterExamples) - 1), model)) {
 
 			}
 		}
@@ -111,31 +115,75 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
 	return e;
 }
 
-unsigned int getNextExample(FILE* f) {
+unsigned int getNextExample(FILE* fp) {
 	char c;
-	readTil(f, "\n");
-	while(!feof(f) && (c = fgetc(f))) {
-		if((c = fgetc(f)) == '!') {
+	readTil(fp, "\n");
+	while(!feof(fp) && (c = fgetc(fp))) {
+		if((c = fgetc(fp)) == '!') {
 			// counter-example
-			printf("On a un contre-example\n");
-			readTil(f, "\n");
-			fseek(f, -1, SEEK_CUR);
+			printf("On a un \e[34mcontre-example\e[0m\n");
+			readTil(fp, "\n");
+			fseek(fp, -1, SEEK_CUR);
 			return PARSED_COUNTEREXAMPLE;
 		}
-		else if(!feof(f) && c != ' ' && c != '\t' && c != '\n') {
-			printf("On a un exemple (%c)\n", c);
-			readTil(f, "\n");
-			fseek(f, -1, SEEK_CUR);
+		else if(!feof(fp) && c != ' ' && c != '\t' && c != '\n') {
+			printf("On a un \e[34mexemple\e[0m\n");
+			readTil(fp, "\n");
+			fseek(fp, -1, SEEK_CUR);
 			return PARSED_EXAMPLE;
 		}
-		readTil(f, "\n");
+		readTil(fp, "\n");
 	}
 
 	return 0;
 }
 
-int parseExample(FILE* fp, char** error, Example* ex) {
+int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
+	readTil(fp, "\n");
+	vectInit(ex->objects);
+	Object dfltObj;
+	Attribute dfltAttr;
+	char* name;
+	char c;
+
+	// the first fgetc reads the \n of the previous line. The second check wether we are at the begining of the declaration of an object or not
+	while((c = fgetc(fp)) != EOF && (c = fgetc(fp)) == '\t') {
+		readFileSpaces(fp, "\t ");
+
+		// read the object's name
+		name = parseAttrName(fp, error);
+		if(name == NULL) {
+			vectFree(ex->objects);
+			return 0;
+		}
+
+		printf("\tattribut : \e[33m%s\e[0m\n", name);
+
+		fgetc(fp); //reads the ':' char after the object's name
+
+		vectPush(Object, ex->objects, dfltObj);
+		// inits the Object pushed
+		vectInit(vectAt(ex->objects, vectSize(ex->objects) - 1).attributes); // initialize the object we just added tothe array
+		for(unsigned int i = 0; i < vectSize(m->ma); ++i) { // fill the array with as much element that we have possible attributes
+			vectPush(Attribute, vectAt(ex->objects, vectSize(ex->objects) - 1).attributes, dfltAttr);
+		}
+
+		// read the attributes values
+		if(!parseExampleObject(fp, error, &vectAt(ex->objects, vectSize(ex->objects) - 1), m)) {
+			printf("An error occured\n");
+			return 0;
+		}
+
+		readTil(fp, "\n");
+	}
+
+	if(!feof(fp)) fseek(fp, -2, SEEK_CUR);
+
 	return 1;
+}
+
+int parseExampleObject(FILE* fp, char** error, Object* o, Model* m) {
+	
 }
 
 Model* loadConfigFile(char const* pathname) {
