@@ -110,7 +110,7 @@ ModelType* parseAttrType(FILE* fp, char** error);
 */
 Interval* parseAttrTypeInterval(FILE* fp, char** error);
 Enum* parseAttrTypeEnum(FILE* fp, char** error);
-Tree* parseAttrTypeTree(FILE* fp, char** error, int* index);
+Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent);
 
 /**
 *	@brief Check wether the character is allowed in an attribute name or not
@@ -130,10 +130,16 @@ void readFileSpaces(FILE* fp, char const* set);
 
 /**
 *	@brief Reads a file from the current position and reads until it finds a character in the set. Stops on the last character not in the set
-*	@apram f The file to be read
+*	@param f The file to be read
 *	@param set A nul terminated array of char that contains the set of characters to reach
 */
 void readTil(FILE* fp, char const* set);
+
+/**
+*	@brief Display tabs(s)
+*	@param indent The number of tabs to display
+*/
+void printIndent(int indent);
 
 
 #endif // _PARSERS_H_

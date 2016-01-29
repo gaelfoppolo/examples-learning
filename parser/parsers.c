@@ -214,7 +214,7 @@ int parseConfigLine(FILE* fp, char** error, ModelAttribute* out) {
 		return 0;
 	}
 
-	printf("\nNew attribute found: \x1B[1;31m%s\x1B[0m\n", out->name);
+	printf("\nNew attribute found: \x1B[1;31m%s\x1B[0m\nType: ", out->name);
 
 	// reads til :
 	readFileSpaces(fp, "\t ");
@@ -292,14 +292,15 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 		}
 		current->inter = *it;
 		free(it);
-		printf("\x1B[1;32mInterval:\x1B[0m %d - %d\n", current->inter.min, current->inter.max);
+		printf("\x1B[1;32mInterval\x1B[0m\nRange: \x1B[1;36m[%d ; %d]\x1B[0m\n", current->inter.min, current->inter.max);
 	}
 	else if(c == '(') {
 		// reads tree
+		printf("\x1B[1;32mBinary tree:\x1B[0m\nStructure:\n");
 		current->type = TYPE_TREE;
 		fseek(fp, -1, SEEK_CUR);
 		int index = 0;
-		Tree* t = parseAttrTypeTree(fp, error, &index);
+		Tree* t = parseAttrTypeTree(fp, error, &index, 0);
 		if(t == NULL) {
 			free(current);
 			return NULL;
@@ -318,10 +319,10 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 		}
 		current->enu = *e;
 		free(e);
-		printf("\x1B[1;32mEnum:\x1B[0m ");
+		printf("\x1B[1;32mEnum\x1B[0m\nValues: ");
 		for(int i = 0; i < vectSize(current->enu.enu); ++i) {
 			printf("\x1B[1;36m%s\x1B[0m \x1B[33m(ID = %d)\x1B[0m", vectAt(current->enu.enu, i).str, vectAt(current->enu.enu, i).id);
-			if (i+1 < vectSize(current->enu.enu)) printf(", ");
+			if (i+1 < vectSize(current->enu.enu)) printf("\n\t");
 		}
 		printf("\n");
 	}
@@ -444,7 +445,7 @@ Enum* parseAttrTypeEnum(FILE* fp, char** error) {
 	return current;
 }
 
-Tree* parseAttrTypeTree(FILE* fp, char** error, int* index) {
+Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 	char c;
 	Tree* t = (Tree*)malloc(sizeof(Tree));
 	t->id = (*index)++;
@@ -472,8 +473,8 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index) {
 		free(t);
 		return NULL;
 	}
-
-	printf("Name: \x1B[1;36m%s\x1B[0m \x1B[33m(ID = %d)\x1B[0m\n", t->str, t->id);
+	printIndent(indent);
+	printf("\x1B[1;36m%s\x1B[0m \x1B[33m(ID = %d)\x1B[0m\n", t->str, t->id);
 
 	readFileSpaces(fp, "\t\n ");
 	if((c = fgetc(fp)) != ')' && c != ',') {
@@ -484,7 +485,6 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index) {
 	}
 
 	if(c == ')') {
-		printf("[\x1B[1;36m%s\x1B[0m] No child detected, \x1B[1;32mleaf\x1B[0m.\n", t->str);
 		// leaf
 		t->left = NULL;
 		t->right = NULL;
@@ -492,7 +492,6 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index) {
 	}
 	else {
 		// at least one child
-		printf("[\x1B[1;36m%s\x1B[0m] First child: \n", t->str);
 		readFileSpaces(fp, "\t\n ");
 		if((c = fgetc(fp)) != '(') {
 			printf("character '%c' unexpected while parsing the first child of [%s]", c, t->str);
@@ -502,7 +501,7 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index) {
 		}
 		fseek(fp, -1, SEEK_CUR);
 		// reccursive call
-		t->left = parseAttrTypeTree(fp, error, index);
+		t->left = parseAttrTypeTree(fp, error, index, indent+1);
 		if(!t->left) {
 			printf("An error occured while parsing the first child of [%s]", t->str);
 			free(t->str);
@@ -515,10 +514,9 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index) {
 			readFileSpaces(fp, "\t\n ");
 			c = fgetc(fp);
 		}
-
+		
 		if(c == ')') {
 			// no second child
-			printf("[\x1B[1;36m%s\x1B[0m] No second child detected.\n", t->str);
 			t->right = NULL;
 			return t;
 		}
@@ -530,7 +528,6 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index) {
 		}
 		else {
 			// right child
-			printf("[\x1B[1;36m%s\x1B[0m] Second child: \n", t->str);
 			readFileSpaces(fp, "\t\n ");
 			if((c = fgetc(fp)) != '(') {
 				printf("character '%c' unexpected while parsing the second child of [%s]", c, t->str);
@@ -539,7 +536,7 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index) {
 				return NULL;
 			}
 			fseek(fp, -1, SEEK_CUR);
-			t->right = parseAttrTypeTree(fp, error, index);
+			t->right = parseAttrTypeTree(fp, error, index, indent+1);
 			if(!t->right) {
 				printf("An error occured while parsing the second child of [%s]", t->str);
 				free(t->str);
@@ -602,5 +599,11 @@ void readTil(FILE* fp, char const* set) {
 			}
 			++i;
 		}
+	}
+}
+
+void printIndent(int indent) {
+	for (int i = 0; i < indent; ++i) {
+		printf("\t");
 	}
 }
