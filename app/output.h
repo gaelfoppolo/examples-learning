@@ -18,6 +18,7 @@
 
 // Bash colors
 #define SDEFAULT	"\e[0m"
+#define SBDEFAULT	"\e[1m"
 #define SBLACK		"\e[0;30m"
 #define SRED		"\e[0;31m"
 #define SGREEN		"\e[0;32m"

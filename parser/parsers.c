@@ -78,7 +78,7 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
 	int type;
 
 	if(fp == NULL) {
-		printf("The file %s does not exist.\n", pathname);
+		printf(SBRED "The file %s does not exist.\n" SDEFAULT, pathname);
 		if(e) {
 			free(e);
 		}
@@ -124,13 +124,14 @@ unsigned int getNextExample(FILE* fp) {
 	while(!feof(fp) && (c = fgetc(fp))) {
 		if((c = fgetc(fp)) == '!') {
 			// counter-example
-			printf("New \x1B[1;31mcounter-example\x1B[0m found.\n");
+			printf("New " SBRED "counter-example" SDEFAULT " found.\n");
+
 			readTil(fp, "\n");
 			fseek(fp, -1, SEEK_CUR);
 			return PARSED_COUNTEREXAMPLE;
 		}
 		else if(!feof(fp) && c != ' ' && c != '\t' && c != '\n') {
-			printf("New \x1B[1;31mexample\x1B[0m found.\n");
+			printf("New " SBRED "example" SDEFAULT " found.\n");
 			readTil(fp, "\n");
 			fseek(fp, -1, SEEK_CUR);
 			return PARSED_EXAMPLE;
@@ -173,7 +174,7 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 
 		// read the attributes values
 		if(!parseExampleObject(fp, error, &vectAt(ex->objects, vectSize(ex->objects) - 1), m)) {
-			printf("An error occured\n");
+			printf(SBRED "An error occured while reading attributes values.\n" SDEFAULT);
 			vectFree(ex->objects);
 			free(name);
 			return 0;
@@ -200,7 +201,7 @@ int parseExampleObject(FILE* fp, char** error, Object* o, Model* m) {
 
 		position = getAttributePosition(name, m);
 		if(position == -1) {
-			*error = cPrint("The attribute " SWHITE "%s" SDEFAULT " is not defined", name);
+			*error = cPrint(SBRED "The attribute " SWHITE "%s" SBRED " is not defined." SDEFAULT, name);
 			return 0;
 		}
 
@@ -261,7 +262,7 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 		case TYPE_ENUM:
 			tmp = getEnumId(str.str, m, position);
 			if(tmp < 0) { // the value does not exist
-				*error = cPrint("Expected an enum value but found %s instead", str.str);
+				*error = cPrint(SBRED "Expected an enum value but found %s instead." SDEFAULT, str.str);
 				free(str.str);
 				return;
 			}
@@ -271,7 +272,7 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 		case TYPE_TREE:
 			tmp = getTreeId(str.str, m, position);
 			if(tmp < 0) { // the value does not exist
-				*error = cPrint("Expected a tree value but found %s instead", str.str);
+				*error = cPrint(SBRED "Expected a tree value but found %s instead" SDEFAULT, str.str);
 				free(str.str);
 				return;
 			}
@@ -294,7 +295,7 @@ Model* loadConfigFile(char const* pathname) {
 	vectInit(m->ma);
 
 	if(fp == NULL) {
-		printf("The file %s does not exist.\n", pathname);
+		printf(SBRED "The file %s does not exist.\n" SDEFAULT, pathname);
 		return NULL;
 	}
 
@@ -305,50 +306,17 @@ Model* loadConfigFile(char const* pathname) {
 
 	vectRemoveLast(m->ma);
 
-	printf("\e[1mThe model has %d attribute", vectSize(m->ma));
-	(vectSize(m->ma) > 1) ? printf("s") : NULL;
-	printf(".\e[0m\n");
+	printf("\n" SBDEFAULT "The model has %d attribute", vectSize(m->ma));
+	(vectSize(m->ma) > 1) ? printf("s") : printf("");
+	printf(SDEFAULT ".\n");
 
 	if(error) {
-		printf("Error: %s\n", error);
+		printf(SBRED "Error: %s\n" SDEFAULT, error);
 	}
 
 	fclose(fp);
 
 	return m;
-}
-
-void freeModel(Model* mo) {
-	if(!mo) return;
-	for(unsigned int i = 0; i < vectSize(mo->ma); ++i) {
-		if(vectAt(mo->ma, i).name) {
-			free(vectAt(mo->ma, i).name);
-		}
-		switch(vectAt(mo->ma, i).mt.type) {
-			case TYPE_INT: break;
-			case TYPE_ENUM:
-				for(unsigned int j = 0; j < vectSize(vectAt(mo->ma, i).mt.enu.enu); ++j) {
-					if(vectAt(vectAt(mo->ma, i).mt.enu.enu, j).str) {
-						free(vectAt(vectAt(mo->ma, i).mt.enu.enu, j).str);
-					}
-				}
-				vectFree(vectAt(mo->ma, i).mt.enu.enu);
-				break;
-			case TYPE_TREE:
-				if(vectAt(mo->ma, i).mt.tree.left) {
-					freeTree(vectAt(mo->ma, i).mt.tree.left);
-				}
-				if(vectAt(mo->ma, i).mt.tree.right) {
-					freeTree(vectAt(mo->ma, i).mt.tree.right);
-				}
-				if(vectAt(mo->ma, i).mt.tree.str) {
-					free(vectAt(mo->ma, i).mt.tree.str);
-				}
-				break;
-		}
-	}
-	vectFree(mo->ma);
-	free(mo);
 }
 
 int parseConfigLine(FILE* fp, char** error, ModelAttribute* out) {
@@ -362,12 +330,12 @@ int parseConfigLine(FILE* fp, char** error, ModelAttribute* out) {
 		return 0;
 	}
 
-	printf("\nNew attribute found: \x1B[1;31m%s\x1B[0m\nType: ", out->name);
+	printf("\nNew attribute found: " SBRED "%s" SDEFAULT "\nType: ", out->name);
 
 	// reads til :
 	readFileSpaces(fp, "\t ");
 	if((c = fgetc(fp)) != ':') {
-		String err = strInit(strDuplicate("Unexpected character '"));
+		String err = strInit(strDuplicate(SBRED "Unexpected character '" SDEFAULT));
 		strPush(&err, c);
 		strPushStr(&err, "'.");
 		*error = err.str;
@@ -440,11 +408,11 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 		}
 		current->inter = *it;
 		free(it);
-		printf("\x1B[1;32mInterval\x1B[0m\nRange: \x1B[1;36m[%d ; %d]\x1B[0m\n", current->inter.min, current->inter.max);
+		printf(SBGREEN "Interval" SDEFAULT "\nRange: " SBCYAN "[%d ; %d]\n" SDEFAULT, current->inter.min, current->inter.max);
 	}
 	else if(c == '(') {
 		// reads tree
-		printf("\x1B[1;32mBinary tree\x1B[0m\n");
+		printf(SBGREEN "Binary tree\n" SDEFAULT);
 		current->type = TYPE_TREE;
 		fseek(fp, -1, SEEK_CUR);
 		int index = 0;
@@ -467,9 +435,9 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 		}
 		current->enu = *e;
 		free(e);
-		printf("\x1B[1;32mEnum\x1B[0m\nValues: ");
+		printf(SBGREEN "Enum" SDEFAULT "\nValues: ");
 		for(int i = 0; i < vectSize(current->enu.enu); ++i) {
-			printf("\x1B[1;36m%s\x1B[0m \x1B[33m(ID = %d)\x1B[0m", vectAt(current->enu.enu, i).str, vectAt(current->enu.enu, i).id);
+			printf(SBCYAN "%s" SBYELLOW " (ID = %d)" SDEFAULT, vectAt(current->enu.enu, i).str, vectAt(current->enu.enu, i).id);
 			if (i+1 < vectSize(current->enu.enu)) printf("\n\t");
 		}
 		printf("\n");
@@ -616,13 +584,13 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 	t->str = parseAttrName(fp, error);
 
 	if(t->str == NULL) {
-		printf("Tree root value invalid.");
+		printf(SBRED "Tree root value invalid." SDEFAULT);
 		free(t->str);
 		free(t);
 		return NULL;
 	}
 	printIndent(indent);
-	printf("\x1B[1;36m%s\x1B[0m \x1B[33m(ID = %d)\x1B[0m\n", t->str, t->id);
+	printf(SBCYAN "%s" SBYELLOW " (ID = %d)\n" SDEFAULT, t->str, t->id);
 
 	readFileSpaces(fp, "\t\n ");
 	if((c = fgetc(fp)) != ')' && c != ',') {
