@@ -16,28 +16,32 @@ char* genOutput(Solution* sol, Model* mdl) {
 		// get current OutObject
 		oo = vectAt(sol->outobjects, i);
 		// add attribute name
-		strPushStr(&str, strDuplicate(ma.name));
+		strPushStr(&str, ma.name);
 		//then value
-		strPushStr(&str, strDuplicate("("));
+		strPushStr(&str, "(");
+
 		switch (ma.mt.type) {
 			case TYPE_INT:
 				// get interval value as char*
                 snprintf(minSz, 20, "%d", oo.inter.min);
                 snprintf(maxSz, 20, "%d", oo.inter.max);
                 strPushStr(&str, minSz);
-                strPushStr(&str, strDuplicate("-"));
+                strPushStr(&str, "-");
                 strPushStr(&str, maxSz);
                 break;
             case TYPE_ENUM:
-                //
+            	for (int j = 0; j < vectSize(oo.oenu.oenu); ++j) {
+            		strPushStr(&str, getEnumStr(vectAt(oo.oenu.oenu, j), mdl, i));
+            		if (j+1 < vectSize(oo.oenu.oenu)) strPushStr(&str, ", ");
+            	}
                 break;
             case TYPE_TREE:
                 //
                 break;
 		}
-		strPushStr(&str, strDuplicate(") "));
+		strPushStr(&str, ") ");
 	}
-	strPushStr(&str, strDuplicate("\n"));
+	strPushStr(&str, "\n");
 
 	return str.str;
 }
