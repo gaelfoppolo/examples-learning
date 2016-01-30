@@ -1,4 +1,10 @@
-Include ressources/animal.cfg
+include ressources/animal.cfg
 
 E1
-	x1:specie(equine), size(2), diet(herbivorous)
+	horse:specie(equine), size(2), diet(herbivorous)
+	bison:specie(bovine), size(3), diet(herbivorous)
+E2
+	tiger:specie(mammal), size(2), diet(carnivorous)
+E3
+	lizard:specie(lizard), size(1), diet(insectivorous)
+	bat:specie(mammal), size(1), diet(insectivorous)

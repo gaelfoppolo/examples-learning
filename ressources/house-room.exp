@@ -1,4 +1,7 @@
-Include ressources/house-room.cfg
+include ressources/house-room.cfg
 
-E1
-	x1:room(entry), surface(12), wall(white), floor(bamboo)
+H1
+	entrance:room(entry), surface(12), wall(white), floor(laminate-floor)
+	bath:room(private-bath), surface(5), wall(blue), floor(bamboo)
+	bedroom:room(master-bedroom), surface(20), wall(white), floor(carpet)
+
