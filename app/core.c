@@ -59,7 +59,6 @@ Solution* genSolution(Model* mdl, Examples* exp) {
         }
     }
 
-    free(pt);
     return sol;
  }
 

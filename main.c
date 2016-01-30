@@ -17,7 +17,7 @@ int main(int argc, char const *argv[]) {
 		return 1;
 	}
 
-	printf("\e[1mLoading file...\e[0m\n");
+	printf(SBWHITE "Loading file..." SDEFAULT "\n");
 
 	size_t includePosition;
 	char* c = getIncludeFile(argv[1], &includePosition);
@@ -26,7 +26,7 @@ int main(int argc, char const *argv[]) {
 		printf("The loading of the configuration file failed. The configuration must be linked in the example file.\n");
 	}
 	else {
-		printf("\e[1mLoading configuation file: %s\e[0m\n", c);
+		printf(SBWHITE "Loading configuation file: %s" SDEFAULT "\n", c);
 		Model* m = loadConfigFile(c);
 
 		if(m == NULL) {
@@ -35,7 +35,7 @@ int main(int argc, char const *argv[]) {
 			return 1;
 		}
 
-		printf("\e[1mLoading example file: %s\e[0m\n", argv[1]);
+		printf(SBWHITE "Loading example file: %s" SDEFAULT "\n", argv[1]);
 
 		Examples* e = loadExampleFile(argv[1], m, includePosition);
 
@@ -46,7 +46,7 @@ int main(int argc, char const *argv[]) {
 			return 1;
 		}
 
-		printf("\e[1mMaking magic...\e[0m\n");
+		printf(SBWHITE "Making magic..." SDEFAULT "\n");
 
 		Solution* s = genSolution(m, e); // only one solution in step 1
 
