@@ -36,10 +36,11 @@ char* genOutput(Solution* sol, Model* mdl) {
             	}
                 break;
             case TYPE_TREE:
-                //
+                strPushStr(&str, getTreeStr(oo.tree, mdl, i));
                 break;
 		}
-		strPushStr(&str, ") ");
+		strPushStr(&str, ")");
+		if (i+1 < vectSize(sol->outobjects)) strPushStr(&str, ", ");
 	}
 	strPushStr(&str, "\n");
 

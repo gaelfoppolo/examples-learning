@@ -46,7 +46,7 @@ int main(int argc, char const *argv[]) {
 			return 1;
 		}
 
-		printf(SBWHITE "Making magic..." SDEFAULT "\n");
+		printf(SBWHITE "Generating solution..." SDEFAULT "\n");
 
 		Solution* s = genSolution(m, e); // only one solution in step 1
 
