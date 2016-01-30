@@ -99,12 +99,6 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 */
 Model* loadConfigFile(char const* pathname);
 
-/**
-*	@brief Frees the Model struct created while parsing the config file
-*	@param mo The Model struct to free
-*/
-void freeModel(Model* mo);
-
 // sub-parsers
 
 /**

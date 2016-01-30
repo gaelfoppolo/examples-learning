@@ -12,6 +12,39 @@ void initModel(Model* mo) {
 	vectInit(mo->ma);
 }
 
+void freeModel(Model* mo) {
+	if(!mo) return;
+	for(unsigned int i = 0; i < vectSize(mo->ma); ++i) {
+		if(vectAt(mo->ma, i).name) {
+			free(vectAt(mo->ma, i).name);
+		}
+		switch(vectAt(mo->ma, i).mt.type) {
+			case TYPE_INT: break;
+			case TYPE_ENUM:
+				for(unsigned int j = 0; j < vectSize(vectAt(mo->ma, i).mt.enu.enu); ++j) {
+					if(vectAt(vectAt(mo->ma, i).mt.enu.enu, j).str) {
+						free(vectAt(vectAt(mo->ma, i).mt.enu.enu, j).str);
+					}
+				}
+				vectFree(vectAt(mo->ma, i).mt.enu.enu);
+				break;
+			case TYPE_TREE:
+				if(vectAt(mo->ma, i).mt.tree.left) {
+					freeTree(vectAt(mo->ma, i).mt.tree.left);
+				}
+				if(vectAt(mo->ma, i).mt.tree.right) {
+					freeTree(vectAt(mo->ma, i).mt.tree.right);
+				}
+				if(vectAt(mo->ma, i).mt.tree.str) {
+					free(vectAt(mo->ma, i).mt.tree.str);
+				}
+				break;
+		}
+	}
+	vectFree(mo->ma);
+	free(mo);
+}
+
 int getEnumId(const char* str, Model* m, unsigned int index) {
 	Enum* current = &vectAt(m->ma, index).mt.enu;
 	for(unsigned int i = 0; i < vectSize(current->enu); ++i) {

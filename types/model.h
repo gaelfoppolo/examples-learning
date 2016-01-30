@@ -39,6 +39,12 @@ typedef struct __basic_model {
 void initModel(Model* mo);
 
 /**
+*	@brief Frees the Model struct created while parsing the config file
+*	@param mo The Model struct to free
+*/
+void freeModel(Model* mo);
+
+/**
 *	@brief Returns the id of the enum given as parameter
 *	@param str The enum value to which the id is wanted
 *	@param m, The model
