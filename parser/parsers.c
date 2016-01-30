@@ -103,7 +103,7 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
 			if(!parseExample(fp, &error, &vectAt(e->examples, vectSize(e->examples) - 1), model)) {
 				// TODO : remove the last example parsed
 				if(error) {
-					printf("\n" SBWHITE "Error " SDEFAULT " : %s\n", error);
+					printf("\n" SBRED "Error " SDEFAULT " : %s\n", error);
 					free(error);
 					// The example isn't freed in the case of an error
 					return NULL;
@@ -115,7 +115,7 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
 			if(!parseExample(fp, &error, &vectAt(e->counterExamples, vectSize(e->counterExamples) - 1), model)) {
 				// TODO : remove the last example parsed
 				if(error) {
-					printf("\n" SBWHITE "Error " SDEFAULT " : %s\n", error);
+					printf("\n" SBRED "Error " SDEFAULT " : %s\n", error);
 					free(error);
 					// The example isn't freed in the case of an error
 					return NULL;
@@ -136,14 +136,14 @@ unsigned int getNextExample(FILE* fp) {
 	while(!feof(fp) && (c = fgetc(fp))) {
 		if((c = fgetc(fp)) == '!') {
 			// counter-example
-			printf("New " SBRED "counter-example" SDEFAULT " found.\n");
+			printf("New " SBPURPLE "counter-example" SDEFAULT " found.\n");
 
 			readTil(fp, "\n");
 			fseek(fp, -1, SEEK_CUR);
 			return PARSED_COUNTEREXAMPLE;
 		}
 		else if(!feof(fp) && c != ' ' && c != '\t' && c != '\n') {
-			printf("New " SBRED "example" SDEFAULT " found.\n");
+			printf("New " SBPURPLE "example" SDEFAULT " found.\n");
 			readTil(fp, "\n");
 			fseek(fp, -1, SEEK_CUR);
 			return PARSED_EXAMPLE;
@@ -189,7 +189,6 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 
 		// read the attributes values
 		if(!parseExampleObject(fp, error, &vectAt(ex->objects, vectSize(ex->objects) - 1), m)) {
-			printf(SBRED "An error occured while reading attributes values.\n" SDEFAULT);
 			vectFree(ex->objects);
 			free(name);
 			return 0;
@@ -352,7 +351,7 @@ int parseConfigLine(FILE* fp, char** error, ModelAttribute* out) {
 		return 0;
 	}
 
-	printf("\nNew attribute found: " SBRED "%s" SDEFAULT "\nType: ", out->name);
+	printf("\nNew attribute found: " SBPURPLE "%s" SDEFAULT "\nType: ", out->name);
 
 	// reads til :
 	readFileSpaces(fp, "\t ");
