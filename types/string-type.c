@@ -43,21 +43,23 @@ void strPushStr(String* str, char* str2) {
 	char const* begin = str2;
 	char* current = str2;
 	while(*current++);
-	unsigned int length = str->length + current - begin - 1;
+	unsigned int length = current - begin - 1; // str2 length
 
 	if(str->length + length >= str->availableLength - 1) {
 		if(str->availableLength < 10) str->availableLength = 10;
 
-		while(str->length + length >= str->availableLength) {
+		while(str->length + length >= str->availableLength) { // while the new str can't fit in the available space, mult it by 2
 			str->availableLength = str->availableLength * 2;
 		}
 
 		str->str = (char*)realloc(str->str, str->availableLength * sizeof(char));
 	}
 
-	for(unsigned int i = str->length, j = 0; j < length; ++j, ++i) {
+	for(unsigned int i = str->length, j = 0; j <= length; ++j, ++i) { // add the str2 (\0 is added automatically)
 		str->str[i] = str2[j];
 	}
+
+	str->length += length;
 }
 
 char* strDuplicate(char* str) {
