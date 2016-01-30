@@ -1,3 +1,11 @@
+/**
+ *
+ * @gaelfoppolo FOPPOLO Gaël
+ * @Ebatsin PHILIP Bastien
+ *
+ * @brief Dynamic array (vector) implementation
+ */
+
 #ifndef _VECTOR_H_
 #define _VECTOR_H_
 
@@ -47,6 +55,29 @@
                                             (vect).data = (type*)realloc((vect).data, sizeof(type) * (vect).capacity);  \
                                         }                                                                               \
                                         (vect).data[(vect).size++] = value;                                             \
-                                    } while(0);                                 
+                                    } while(0)
+
+/**
+*	@brief Search for an element in the vector. Returns its index if found
+*	@param vect The vector to search in
+*	@param value The value to search for
+*	@param out An integer that will hold the return value (either the index if found ou -1 if the element is not int the vector)
+*/
+#define vectIndexOf(vect, value, out) do {																				\
+										out = -1;																		\
+										for(int i = 0; i < vectSize(vect); ++i) {										\
+											if(vectAt(vect, i) == value) {												\
+												out = i;																\
+												break;																	\
+											}																			\
+										}																				\
+									} while(0)
+
+
+#define vectRemoveLast(vect) do {																						\
+									if((vect).size > 0) {																\
+										--(vect).size;																	\
+									}																					\
+								} while(0)
 
 #endif // _VECTOR_H_

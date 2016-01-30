@@ -1,0 +1,64 @@
+\hypertarget{enum_8h}{}\section{types/enum.h File Reference}
+\label{enum_8h}\index{types/enum.\+h@{types/enum.\+h}}
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct____basic__enum}{\+\_\+\+\_\+basic\+\_\+enum}
+\begin{DoxyCompactList}\small\item\em Structure of our enumeration model. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{struct____basic__enum}{\+\_\+\+\_\+basic\+\_\+enum} \hyperlink{enum_8h_ae828cfc6972c967f6f2f1574569847c1}{Enum}
+\begin{DoxyCompactList}\small\item\em Structure of our enumeration model. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{enum_8h_a4ef1a696e1ac9afdf21d95cb492085ae}{get\+String} (int id)
+\begin{DoxyCompactList}\small\item\em Get the string from the identifier. \end{DoxyCompactList}\item 
+int \hyperlink{enum_8h_a5263980b8e5f9a57a0c0a2eeb842a044}{get\+Identifier} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Get the identifier from the string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\index{enum.\+h@{enum.\+h}!Enum@{Enum}}
+\index{Enum@{Enum}!enum.\+h@{enum.\+h}}
+\subsubsection[{\texorpdfstring{Enum}{Enum}}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+\+\_\+basic\+\_\+enum}  {\bf Enum}}\hypertarget{enum_8h_ae828cfc6972c967f6f2f1574569847c1}{}\label{enum_8h_ae828cfc6972c967f6f2f1574569847c1}
+
+
+Structure of our enumeration model. 
+
+F\+O\+P\+P\+O\+LO Gaël  P\+H\+I\+L\+IP Bastien Structure that contains the enum attributes  id The unique identifier of the enum  str String matching the unique id 
+
+\subsection{Function Documentation}
+\index{enum.\+h@{enum.\+h}!get\+Identifier@{get\+Identifier}}
+\index{get\+Identifier@{get\+Identifier}!enum.\+h@{enum.\+h}}
+\subsubsection[{\texorpdfstring{get\+Identifier(char $\ast$str)}{getIdentifier(char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Identifier (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}\hypertarget{enum_8h_a5263980b8e5f9a57a0c0a2eeb842a044}{}\label{enum_8h_a5263980b8e5f9a57a0c0a2eeb842a044}
+
+
+Get the identifier from the string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string \\
+\hline
+\end{DoxyParams}
+\index{enum.\+h@{enum.\+h}!get\+String@{get\+String}}
+\index{get\+String@{get\+String}!enum.\+h@{enum.\+h}}
+\subsubsection[{\texorpdfstring{get\+String(int id)}{getString(int id)}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ get\+String (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{enum_8h_a4ef1a696e1ac9afdf21d95cb492085ae}{}\label{enum_8h_a4ef1a696e1ac9afdf21d95cb492085ae}
+
+
+Get the string from the identifier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The identifier \\
+\hline
+\end{DoxyParams}

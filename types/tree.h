@@ -11,37 +11,40 @@
 
 /**
  * @brief Binary tree structure
- * 
- * @field value Integer value
- * @field *lf_child Pointer to left child
- * @field *rg_child Pointer to right child
+ *
+ * @field id Integer that represents the value of the Node/Leaf
+ * @field *left Pointer to left child
+ * @field *right Pointer to right child
  *
  */
 typedef struct __tree {
- 	int value;
- 	struct __tree *lf_child;
- 	struct __tree *rg_child;
+ 	int id;
+	char* str;
+ 	struct __tree *left;
+ 	struct __tree *right;
 } Tree;
 
 /**
  * @brief Create a new leaf (tree)
- * 
- * @param val Value matching the geometric shape
- * 
+ *
+ * @param id Id of the value to store in the leaf
+ * @param str String that represents the real name of what is stored
+ *
  * @return A new Tree
  */
-Tree* createLeaf(int val);
+Tree* createLeaf(int id, char* str);
 
 /**
  * @brief Create a new node (tree)
  *
- * @param val Value matching the geometric shape
- * @param[in] lfc The left child
- * @param[in] rgc The right child
+ * @param id Id of the value to store in the Node
+ * @param str String that represents the real name of what is stored
+ * @param[in] left The left child
+ * @param[in] right The right child
  *
  * @return A new Tree
  */
-Tree* createNode(int val, Tree* lfc, Tree* rgc);
+Tree* createNode(int id, char* str, Tree* left, Tree* right);
 
 /**
  * @brief Check if a tree is a leaf
@@ -61,12 +64,12 @@ int isLeaf(Tree* t);
  * What is pass is the lower node or NULL
  *
  * @param root The root of the tree
- * @param v1 The first value
- * @param v2 The second value
+ * @param id1 The first value
+ * @param id2 The second value
  *
  * @return The lowest common ancestor (node or leaf)
  */
-Tree* LCA(Tree* root, int v1, int v2);
+Tree* LCA(Tree* root, int id1, int id2);
 
 /**
  * @brief Remove from the memory, the space used by the tree

@@ -1,0 +1,4 @@
+Include ressources/house-room.cfg
+
+E1
+	x1:room(entry), surface(12), wall(white), floor(bamboo)

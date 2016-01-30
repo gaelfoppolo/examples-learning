@@ -5,64 +5,62 @@
  *
  * @brief Main
  */
- 
-#include <stdio.h>
-#include "types/tree.h"
-#include "parser/parser.h"
-#include "app/output.h"
+
+#include "parser/parsers.h"
 #include "app/core.h"
+#include "app/output.h"
 
-int main(int argc, char const *argv[])
-{
-	if(argc != 2) {
-		printf("You must give a file as first argument ex: %s myFile.cfg\n", argv[0]);
+int main(int argc, char const *argv[]) {
+
+	if(argc < 2) {
+		printf("You must pass the example file as argument like this : ./learning examples.exp\nThe example file must contains a link to the config file (include).\n");
 		return 1;
 	}
 
-	Tree* root = createNode(whatever, 
-		createNode(polygone, 
-			createNode(triangle, 
-				createLeaf(rectangle_triangle), 
-				createNode(isosceles_triangle, 
-					createLeaf(equilateral_triangle), 
-					NULL)
-			), 
-			createNode(quadrilateral, 
-				createLeaf(trapeze), 
-				createNode(rectangle, 
-					createLeaf(square), 
-					NULL
-				)
-			)
-		), 
-		createNode(ellipsoid, 
-			createLeaf(circle), 
-			createLeaf(ellipse)
-		));
+	printf(SBWHITE "Loading file..." SDEFAULT "\n");
 
-	ModelSample * current = parse(argv[1]);
-	char *stringOutput;
+	size_t includePosition;
+	char* c = getIncludeFile(argv[1], &includePosition);
 
-	if(current == NULL) {
-		printf("The file does not exist or you don't have the correct rights to open it.\n");
+	if(c == NULL) {
+		printf("The loading of the configuration file failed. The configuration must be linked in the example file.\n");
+	}
+	else {
+		printf(SBWHITE "Loading configuation file: %s" SDEFAULT "\n", c);
+		Model* m = loadConfigFile(c);
 
-    	freeTree(root);
+		if(m == NULL) {
+			printf("Configuration file parsing : failed\n");
+			free(c);
+			return 1;
+		}
 
-		return 1;
+		printf(SBWHITE "Loading example file: %s" SDEFAULT "\n", argv[1]);
+
+		Examples* e = loadExampleFile(argv[1], m, includePosition);
+
+		if(e == NULL) {
+			printf("Example file parsing : failed\n");
+			free(c);
+			freeModel(m);
+			return 1;
+		}
+
+		printf(SBWHITE "Generating solution..." SDEFAULT "\n");
+
+		Solution* s = genSolution(m, e); // only one solution in step 1
+
+		char* out = genOutput(s, m); // we need to pass the model for the int -> string conversion table it holds
+
+		printf("%s", out);
+
+		free(c);
+		freeModel(m);
+		freeExamples(e);
+		freeSolution(s);
+		free(out);
 	}
 
-    OutObject* oo = learning(current, root);
-
-    stringOutput = stringifyCommonObject(oo);
-
-    printf("%s\n", stringOutput);
-
-    free(stringOutput);
-    freeTree(root);
-    freeModelSample(current);
-    freeOutObject(oo);
 
 	return 0;
 }
-
- 

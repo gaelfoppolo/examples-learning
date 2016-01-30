@@ -6,34 +6,33 @@
  * @brief The core
  */
 
+#ifndef _CORE_H_
+#define _CORE_H_
+
+#include <stdio.h>
+
 #include "../types/model.h"
-#include "../types/tree.h"
+#include "../types/examples.h"
+#include "../types/solution.h"
 
 /**
- * @brief Process examples of a model and produces output object
+ * @brief Process examples of a model and produces solution object
  *
- * @param ms Pointer to the structure containing examples and counter examples
- * @param root Root of the tree we use
+ * @param exp Pointer to the structure containing examples and counter examples
+ * @param mdl Pointer to the model object containing structure of the model
  *
- * @return An output object
+ * @return An solution object
  */
-OutObject* learning(ModelSample* ms, Tree* root);
+Solution* genSolution(Model* mdl, Examples* exp);
 
 /**
- * @brief Increase the range [min, max] to contains x
+ * @brief Init the solution with the first object as "base"
  *
- * @param min Minimum bound
- * @param max Maximum bound
- * @param[in] x An integer to add into the range
+ * @param sol Pointer to the empty solution
+ * @param o First object of the example to init the solution
+ *
+ * @return An solution object
  */
-void addToInterval(int *min, int*max, int x);
+Solution* initSol(Solution* sol, Object o);
 
-/**
- * @brief Tests if a color is in a vector
- *
- * @param v The vector of color
- * @param[in] c The color
- *
- * @return A boolean
- */
-int colorIsInVector(OutObject* v, Color c);
+#endif // _CORE_H_

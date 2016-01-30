@@ -1,0 +1,65 @@
+\hypertarget{output_8h}{}\section{app/output.h File Reference}
+\label{output_8h}\index{app/output.\+h@{app/output.\+h}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}../types/basic\+\_\+object.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \hyperlink{output_8h_a453910ed91a72012a86716f479954363}{strlength} (char const $\ast$str)
+\begin{DoxyCompactList}\small\item\em Convertion tools from structures to strings. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{output_8h_a15237fd798c1791befc9afdaaf6c9fce}{concat} (char $\ast$str1, char const $\ast$str2)
+\begin{DoxyCompactList}\small\item\em Append a string at the end of another  The first string  The string to be appened. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{output_8h_a4aeb6da205b09d25e2c532c95c3b4a99}{stringify\+Common\+Object} (Out\+Object $\ast$out)
+\begin{DoxyCompactList}\small\item\em returns a string that contains the representation of the object in a readable presentation \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{output.\+h@{output.\+h}!concat@{concat}}
+\index{concat@{concat}!output.\+h@{output.\+h}}
+\subsubsection[{\texorpdfstring{concat(char $\ast$str1, char const $\ast$str2)}{concat(char *str1, char const *str2)}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ concat (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str1, }
+\item[{char const $\ast$}]{str2}
+\end{DoxyParamCaption}
+)}\hypertarget{output_8h_a15237fd798c1791befc9afdaaf6c9fce}{}\label{output_8h_a15237fd798c1791befc9afdaaf6c9fce}
+
+
+Append a string at the end of another  The first string  The string to be appened. 
+
+\begin{DoxyReturn}{Returns}
+The address of the string 
+\end{DoxyReturn}
+\index{output.\+h@{output.\+h}!stringify\+Common\+Object@{stringify\+Common\+Object}}
+\index{stringify\+Common\+Object@{stringify\+Common\+Object}!output.\+h@{output.\+h}}
+\subsubsection[{\texorpdfstring{stringify\+Common\+Object(\+Out\+Object $\ast$out)}{stringifyCommonObject(OutObject *out)}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ stringify\+Common\+Object (
+\begin{DoxyParamCaption}
+\item[{Out\+Object $\ast$}]{out}
+\end{DoxyParamCaption}
+)}\hypertarget{output_8h_a4aeb6da205b09d25e2c532c95c3b4a99}{}\label{output_8h_a4aeb6da205b09d25e2c532c95c3b4a99}
+
+
+returns a string that contains the representation of the object in a readable presentation 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & The object grouping the common traits of the other objects int the examples \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string representing the object in a readable way. Need to be freed by the user 
+\end{DoxyReturn}
+\index{output.\+h@{output.\+h}!strlength@{strlength}}
+\index{strlength@{strlength}!output.\+h@{output.\+h}}
+\subsubsection[{\texorpdfstring{strlength(char const $\ast$str)}{strlength(char const *str)}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int strlength (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{str}
+\end{DoxyParamCaption}
+)}\hypertarget{output_8h_a453910ed91a72012a86716f479954363}{}\label{output_8h_a453910ed91a72012a86716f479954363}
+
+
+Convertion tools from structures to strings. 
+
+F\+O\+P\+P\+O\+LO Gaël  P\+H\+I\+L\+IP Bastien Returns the length of a string  The string \begin{DoxyReturn}{Returns}
+The length of the string 
+\end{DoxyReturn}
