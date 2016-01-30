@@ -474,9 +474,14 @@ Interval* parseAttrTypeInterval(FILE* fp, char** error) {
 	int min = 0, max = 0, minusMin = 0, minusMax = 0;
 
 	if((c = fgetc(fp)) == '%') {
+		if((c = fgetc(fp)) == 'U') {
+			current->min = 0;
+			current->max = INT_MAX;
+		} else {
+			current->min = INT_MIN;
+			current->max = INT_MAX;
+		}
 		readFileSpaces(fp, "\n");
-		current->min = INT_MIN;
-		current->max = INT_MAX;
 		fseek(fp, -1, SEEK_CUR);
 		while((c = fgetc(fp)) && c != '\n');
 		return current;
