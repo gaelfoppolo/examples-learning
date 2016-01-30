@@ -101,16 +101,18 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
 		if(type == PARSED_EXAMPLE) {
 			vectPush(Example, e->examples, dflt); // add a default example to me modified by parseExample
 			if(!parseExample(fp, &error, &vectAt(e->examples, vectSize(e->examples) - 1), model)) {
-
+				// TODO : remove the last example parsed
 			}
 		}
 		else {
 			vectPush(Example, e->counterExamples, dflt);
 			if(!parseExample(fp, &error, &vectAt(e->counterExamples, vectSize(e->counterExamples) - 1), model)) {
-
+				// TODO : remove the last example parsed
 			}
 		}
 	}
+
+	fclose(fp);
 
 	return e;
 }
@@ -171,8 +173,12 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 		// read the attributes values
 		if(!parseExampleObject(fp, error, &vectAt(ex->objects, vectSize(ex->objects) - 1), m)) {
 			printf("An error occured\n");
+			vectFree(ex->objects);
+			free(name);
 			return 0;
 		}
+
+		free(name); // not used for the moment
 
 		readTil(fp, "\n");
 	}
