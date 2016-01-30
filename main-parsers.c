@@ -24,7 +24,7 @@ int main(int argc, char const *argv[]) {
 
 		free(c);
 		freeModel(m);
-		freeExample(e);
+		freeExamples(e);
 	}
 
 

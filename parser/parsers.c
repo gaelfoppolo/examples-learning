@@ -196,9 +196,7 @@ int parseExampleObject(FILE* fp, char** error, Object* o, Model* m) {
 
 	while(1) {
 		name = parseAttrName(fp, error);
-		/*if(error) {
-			return 0;
-		}*/
+
 		position = getAttributePosition(name, m);
 		if(position == -1) {
 			*error = cPrint("The attribute " SWHITE "%s" SDEFAULT " is not defined", name);
@@ -206,6 +204,8 @@ int parseExampleObject(FILE* fp, char** error, Object* o, Model* m) {
 		}
 
 		printf("\t\t" SBCYAN "%s" SDEFAULT, name);
+
+		free(name); // do not need it after
 
 		type = vectAt(m->ma, position).mt.type; // the type of the attribute to read
 
@@ -261,6 +261,7 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 			tmp = getEnumId(str.str, m, position);
 			if(tmp < 0) { // the value does not exist
 				*error = cPrint("Expected an enum value but found %s instead", str.str);
+				free(str.str);
 				return;
 			}
 			attr->value = tmp;
@@ -270,11 +271,14 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 			tmp = getTreeId(str.str, m, position);
 			if(tmp < 0) { // the value does not exist
 				*error = cPrint("Expected a tree value but found %s instead", str.str);
+				free(str.str);
 				return;
 			}
 			attr->value = tmp;
 			printf(" " SYELLOW "(%s " SDEFAULT "-> %d" SYELLOW ") " SDEFAULT "\n", str.str, attr->value);
 	}
+	
+	free(str.str);
 
 	fseek(fp, -1, SEEK_CUR);
 }
