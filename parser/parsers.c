@@ -102,12 +102,24 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
 			vectPush(Example, e->examples, dflt); // add a default example to me modified by parseExample
 			if(!parseExample(fp, &error, &vectAt(e->examples, vectSize(e->examples) - 1), model)) {
 				// TODO : remove the last example parsed
+				if(error) {
+					printf("\n" SBWHITE "Error " SDEFAULT " : %s\n", error);
+					free(error);
+					// The example isn't freed in the case of an error
+					return NULL;
+				}
 			}
 		}
 		else {
 			vectPush(Example, e->counterExamples, dflt);
 			if(!parseExample(fp, &error, &vectAt(e->counterExamples, vectSize(e->counterExamples) - 1), model)) {
 				// TODO : remove the last example parsed
+				if(error) {
+					printf("\n" SBWHITE "Error " SDEFAULT " : %s\n", error);
+					free(error);
+					// The example isn't freed in the case of an error
+					return NULL;
+				}
 			}
 		}
 	}
@@ -142,12 +154,15 @@ unsigned int getNextExample(FILE* fp) {
 }
 
 int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
-	readTil(fp, "\n");
-	vectInit(ex->objects);
 	Object dfltObj;
 	Attribute dfltAttr;
 	char* name;
 	char c;
+
+	*error = NULL;
+
+	readTil(fp, "\n");
+	vectInit(ex->objects);
 
 	// the first fgetc reads the \n of the previous line. The second check wether we are at the begining of the declaration of an object or not
 	while((c = fgetc(fp)) != EOF && (c = fgetc(fp)) == '\t') {
@@ -173,7 +188,6 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 
 		// read the attributes values
 		if(!parseExampleObject(fp, error, &vectAt(ex->objects, vectSize(ex->objects) - 1), m)) {
-			printf("An error occured\n");
 			vectFree(ex->objects);
 			free(name);
 			return 0;
@@ -190,6 +204,7 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 }
 
 int parseExampleObject(FILE* fp, char** error, Object* o, Model* m) {
+	*error = NULL;
 	char* name;
 	int position;
 	attrType type;
@@ -215,6 +230,10 @@ int parseExampleObject(FILE* fp, char** error, Object* o, Model* m) {
 		// reads the attribute's value
 
 		parseAttrValue(fp, error, m, type, &vectAt(o->attributes, position), position);
+
+		if(*error != NULL) {
+			return 0;
+		}
 
 		readTil(fp, ")"); // reads til the closing parenthesis of the attribute's value
 		fgetc(fp); // reads the parenthesis
@@ -245,6 +264,8 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 	char c;
 	int tmp;
 
+	*error = NULL;
+
 	readFileSpaces(fp, " \t");
 
 	while((c = fgetc(fp)) != EOF && c != ' ' && c != '\t' && c != ')') {
@@ -261,7 +282,7 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 		case TYPE_ENUM:
 			tmp = getEnumId(str.str, m, position);
 			if(tmp < 0) { // the value does not exist
-				*error = cPrint("Expected an enum value but found %s instead", str.str);
+				*error = cPrint("Expected an enum value but found '" SPURPLE "%s" SDEFAULT "' instead", str.str);
 				free(str.str);
 				return;
 			}
@@ -271,14 +292,14 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 		case TYPE_TREE:
 			tmp = getTreeId(str.str, m, position);
 			if(tmp < 0) { // the value does not exist
-				*error = cPrint("Expected a tree value but found %s instead", str.str);
+				*error = cPrint("Expected a tree value but found '" SPURPLE "%s" SDEFAULT "' instead", str.str);
 				free(str.str);
 				return;
 			}
 			attr->value = tmp;
 			printf(": %s " SYELLOW "(ID = %d" SYELLOW ") " SYELLOW " " SDEFAULT "\n", str.str, attr->value);
 	}
-	
+
 	free(str.str);
 
 	fseek(fp, -1, SEEK_CUR);

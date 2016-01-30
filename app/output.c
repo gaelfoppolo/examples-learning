@@ -44,11 +44,14 @@ char* genOutput(Solution* sol, Model* mdl) {
 
 char* cPrint(const char * fmt, ...) {
 	va_list args;
-    va_start(args, fmt);
+    va_start(args, fmt); // inits the valist
 
-	unsigned long sz = snprintf(NULL, 0, fmt, args);
+	unsigned long sz = vsnprintf(NULL, 0, fmt, args) + 1; // get the size of the formatted output but does not write it yet
 	char* c = (char*)malloc(sizeof(char) * sz);
-	snprintf(c, sz, fmt, args);
+
+	va_end(args); // refresh the valist
+	va_start(args, fmt);
+	vsnprintf(c, sz, fmt, args); // write the formatted output in a string with the right length calculated before
 
 	va_end(args);
 	return c;
