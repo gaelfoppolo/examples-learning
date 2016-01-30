@@ -60,7 +60,7 @@ Solution* genSolution(Model* mdl, Examples* exp) {
     }
 
     free(pt);
-    free(oo);
+    freeOutObject(oo);
     return sol;
  }
 
@@ -72,7 +72,8 @@ Solution* genSolution(Model* mdl, Examples* exp) {
     for(int i = 0; i < vectSize(o.attributes); ++i) {
         oo = (OutObject*)malloc(sizeof(OutObject));
         att = vectAt(o.attributes, i);
-        
+        oo->type = att.type;
+
         switch(att.type) {
             case TYPE_INT:
                 inter = (Interval*)malloc(sizeof(Interval));
@@ -94,8 +95,8 @@ Solution* genSolution(Model* mdl, Examples* exp) {
         vectPush(OutObject, sol->outobjects, *oo);
     }
 
-    free(oo);
+    freeOutObject(oo);
     free(inter);
-    free(oenu);
+    freeOutEnum(oenu);
     return sol;
  }
