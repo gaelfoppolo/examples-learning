@@ -18,7 +18,7 @@ Solution* genSolution(Model* mdl, Examples* exp) {
  	// an object of an example
  	Object o;
     // an integer
-    int* pt = (int*)malloc(sizeof(int));
+    int pt;
  	// a solution object, gathering traits from all examples
  	Solution* sol = (Solution*)malloc(sizeof(Solution));
     initSolution(sol);
@@ -29,7 +29,7 @@ Solution* genSolution(Model* mdl, Examples* exp) {
  	for(int i = 0; i < vectSize(exp->examples); ++i) {
         // current example
         e = vectAt(exp->examples, i);
-        
+
         // for all objects of the example
         for(int j = 0; j < vectSize(e.objects); ++j) {
         	// current object of the example
@@ -41,13 +41,14 @@ Solution* genSolution(Model* mdl, Examples* exp) {
                 att = vectAt(o.attributes, k);
                 // matching output object in the solution (same rank)
                 oo = &vectAt(sol->outobjects, k);
+
                 switch(att.type) {
                     case TYPE_INT:
                         addToInterval(&oo->inter, att.value);
                         break;
                     case TYPE_ENUM:
-                        vectIndexOf(oo->oenu.oenu, att.value, *pt);
-                        if (*pt) vectPush(int, oo->oenu.oenu, att.value);
+                        vectIndexOf(oo->oenu.oenu, att.value, pt);
+                        if (pt > -1) vectPush(int, oo->oenu.oenu, att.value);
                         break;
                     case TYPE_TREE:
                         // looking for tree model (root) in the model (same rank), then LCA
@@ -55,48 +56,37 @@ Solution* genSolution(Model* mdl, Examples* exp) {
                         break;
                 }
             }
-
         }
     }
 
     free(pt);
-    freeOutObject(oo);
     return sol;
  }
 
  Solution* initSol(Solution* sol, Object o) {
-    OutObject* oo;
+    OutObject oo; // default object
     Attribute att;
-    Interval* inter;
-    OutEnum* oenu;
+
     for(int i = 0; i < vectSize(o.attributes); ++i) {
-        oo = (OutObject*)malloc(sizeof(OutObject));
         att = vectAt(o.attributes, i);
-        oo->type = att.type;
+        oo.type = att.type;
 
         switch(att.type) {
             case TYPE_INT:
-                inter = (Interval*)malloc(sizeof(Interval));
-                inter->min = att.value;
-                inter->max = att.value;
-                oo->inter = *inter;
+                oo.inter.min = att.value;
+                oo.inter.max = att.value;
                 break;
             case TYPE_ENUM:
-                oenu = (OutEnum*)malloc(sizeof(OutEnum));
-                initOutEnum(oenu);
-                vectPush(int, oenu->oenu, att.value);
-                oo->oenu = *oenu;
+                initOutEnum(&oo.oenu);
+                vectPush(int, oo.oenu.oenu, att.value);
                 break;
             case TYPE_TREE:
-                oo->tree = att.value;
+                oo.tree = att.value;
                 break;
         }
         // finally push OutputObject to Solution
-        vectPush(OutObject, sol->outobjects, *oo);
+        vectPush(OutObject, sol->outobjects, oo);
     }
 
-    freeOutObject(oo);
-    free(inter);
-    freeOutEnum(oenu);
     return sol;
  }
