@@ -121,13 +121,13 @@ unsigned int getNextExample(FILE* fp) {
 	while(!feof(fp) && (c = fgetc(fp))) {
 		if((c = fgetc(fp)) == '!') {
 			// counter-example
-			printf("On a un \e[34mcontre-example\e[0m\n");
+			printf("\e[34mCounter-example\e[0m\n");
 			readTil(fp, "\n");
 			fseek(fp, -1, SEEK_CUR);
 			return PARSED_COUNTEREXAMPLE;
 		}
 		else if(!feof(fp) && c != ' ' && c != '\t' && c != '\n') {
-			printf("On a un \e[34mexemple\e[0m\n");
+			printf("\e[34mExample\e[0m\n");
 			readTil(fp, "\n");
 			fseek(fp, -1, SEEK_CUR);
 			return PARSED_EXAMPLE;
@@ -157,7 +157,7 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 			return 0;
 		}
 
-		printf("\tattribut : \e[33m%s\e[0m\n", name);
+		printf("\tAttr : " SBGREEN "%s" SDEFAULT "\n", name);
 
 		fgetc(fp); //reads the ':' char after the object's name
 
@@ -186,6 +186,7 @@ int parseExampleObject(FILE* fp, char** error, Object* o, Model* m) {
 	char* name;
 	int position;
 	attrType type;
+	char c;
 
 	while(1) {
 		name = parseAttrName(fp, error);
@@ -198,7 +199,7 @@ int parseExampleObject(FILE* fp, char** error, Object* o, Model* m) {
 			return 0;
 		}
 
-		printf("\tFound : %s", name);
+		printf("\t\t" SBCYAN "%s" SDEFAULT, name);
 
 		type = vectAt(m->ma, position).mt.type; // the type of the attribute to read
 
@@ -207,10 +208,19 @@ int parseExampleObject(FILE* fp, char** error, Object* o, Model* m) {
 		// reads the attribute's value
 
 		parseAttrValue(fp, error, m, type, &vectAt(o->attributes, position), position);
-		break;
+
+		readTil(fp, ")"); // reads til the closing parenthesis of the attribute's value
+		fgetc(fp); // reads the parenthesis
+		readFileSpaces(fp, " \t"); // reads potential spaces
+		if((c = fgetc(fp)) != ',') {
+			fseek(fp, -1, SEEK_CUR);
+			break;
+		}
+
+		// loops
 	}
 
-	return 0;
+	return 1;
 }
 
 int getAttributePosition(const char* attr, Model* m) {
@@ -239,7 +249,7 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 	switch(type) {
 		case TYPE_INT:
 			attr->value = atoi(str.str);
-			printf(" (%s -> %d)\n", str.str, attr->value);
+			printf(" " SYELLOW "(%s " SDEFAULT "-> %d" SYELLOW ") " SDEFAULT "\n", str.str, attr->value);
 			break;
 		case TYPE_ENUM:
 			tmp = getEnumId(str.str, m, position);
@@ -248,7 +258,7 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 				return;
 			}
 			attr->value = tmp;
-			printf(" (%s -> %d)\n", str.str, attr->value);
+			printf(" " SYELLOW "(%s " SDEFAULT "-> %d" SYELLOW ") " SDEFAULT "\n", str.str, attr->value);
 			break;
 		case TYPE_TREE:
 			tmp = getTreeId(str.str, m, position);
@@ -257,8 +267,10 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 				return;
 			}
 			attr->value = tmp;
-			printf(" (%s -> %d)\n", str.str, attr->value);
+			printf(" " SYELLOW "(%s " SDEFAULT "-> %d" SYELLOW ") " SDEFAULT "\n", str.str, attr->value);
 	}
+
+	fseek(fp, -1, SEEK_CUR);
 }
 
 Model* loadConfigFile(char const* pathname) {
