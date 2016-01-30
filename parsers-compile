@@ -1,8 +1,0 @@
-#!/bin/bash
-clang -c parser/parsers.c types/*.c main-parsers.c && clang *.o -o parsers
-
-if [ "$#" -eq 0 ]; then
-    ./parsers ressources/examples.exp
-else
-	valgrind --leak-check=full --show-leak-kinds=all ./parsers ressources/examples.exp
-fi

@@ -120,16 +120,17 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
 unsigned int getNextExample(FILE* fp) {
 	char c;
 	readTil(fp, "\n");
+	printf("\n");
 	while(!feof(fp) && (c = fgetc(fp))) {
 		if((c = fgetc(fp)) == '!') {
 			// counter-example
-			printf("\e[34mCounter-example\e[0m\n");
+			printf("New \x1B[1;31mcounter-example\x1B[0m found.\n");
 			readTil(fp, "\n");
 			fseek(fp, -1, SEEK_CUR);
 			return PARSED_COUNTEREXAMPLE;
 		}
 		else if(!feof(fp) && c != ' ' && c != '\t' && c != '\n') {
-			printf("\e[34mExample\e[0m\n");
+			printf("New \x1B[1;31mexample\x1B[0m found.\n");
 			readTil(fp, "\n");
 			fseek(fp, -1, SEEK_CUR);
 			return PARSED_EXAMPLE;
@@ -159,7 +160,7 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 			return 0;
 		}
 
-		printf("\tAttr : " SBGREEN "%s" SDEFAULT "\n", name);
+		printf("Object's name: " SBGREEN "%s" SDEFAULT "\n", name);
 
 		fgetc(fp); //reads the ':' char after the object's name
 
@@ -203,7 +204,7 @@ int parseExampleObject(FILE* fp, char** error, Object* o, Model* m) {
 			return 0;
 		}
 
-		printf("\t\t" SBCYAN "%s" SDEFAULT, name);
+		printf("\t" SBCYAN "%s" SDEFAULT, name);
 
 		free(name); // do not need it after
 
@@ -255,7 +256,7 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 	switch(type) {
 		case TYPE_INT:
 			attr->value = atoi(str.str);
-			printf(" " SYELLOW "(%s " SDEFAULT "-> %d" SYELLOW ") " SDEFAULT "\n", str.str, attr->value);
+			printf(": %s " SYELLOW "(ID = %d" SYELLOW ") " SYELLOW " " SDEFAULT "\n", str.str, attr->value);
 			break;
 		case TYPE_ENUM:
 			tmp = getEnumId(str.str, m, position);
@@ -265,7 +266,7 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 				return;
 			}
 			attr->value = tmp;
-			printf(" " SYELLOW "(%s " SDEFAULT "-> %d" SYELLOW ") " SDEFAULT "\n", str.str, attr->value);
+			printf(": %s " SYELLOW "(ID = %d" SYELLOW ") " SYELLOW " " SDEFAULT "\n", str.str, attr->value);
 			break;
 		case TYPE_TREE:
 			tmp = getTreeId(str.str, m, position);
@@ -275,7 +276,7 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 				return;
 			}
 			attr->value = tmp;
-			printf(" " SYELLOW "(%s " SDEFAULT "-> %d" SYELLOW ") " SDEFAULT "\n", str.str, attr->value);
+			printf(": %s " SYELLOW "(ID = %d" SYELLOW ") " SYELLOW " " SDEFAULT "\n", str.str, attr->value);
 	}
 	
 	free(str.str);
@@ -304,7 +305,9 @@ Model* loadConfigFile(char const* pathname) {
 
 	vectRemoveLast(m->ma);
 
-	printf("The model has %d attribute(s).\n", vectSize(m->ma));
+	printf("\e[1mThe model has %d attribute", vectSize(m->ma));
+	(vectSize(m->ma) > 1) ? printf("s") : NULL;
+	printf(".\e[0m\n");
 
 	if(error) {
 		printf("Error: %s\n", error);
@@ -441,7 +444,7 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 	}
 	else if(c == '(') {
 		// reads tree
-		printf("\x1B[1;32mBinary tree:\x1B[0m\nStructure:\n");
+		printf("\x1B[1;32mBinary tree\x1B[0m\n");
 		current->type = TYPE_TREE;
 		fseek(fp, -1, SEEK_CUR);
 		int index = 0;

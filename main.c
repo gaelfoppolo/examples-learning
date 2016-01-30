@@ -1,60 +1,53 @@
-// /**
-//  *
-//  * @gaelfoppolo FOPPOLO Gaël
-//  * @Ebatsin PHILIP Bastien
-//  *
-//  * @brief Main
-//  */
+/**
+ *
+ * @gaelfoppolo FOPPOLO Gaël
+ * @Ebatsin PHILIP Bastien
+ *
+ * @brief Main
+ */
 
-// #include <stdio.h>
-// #include "app/core.h"
+#include "parser/parsers.h"
+#include "app/core.h"
+#include "app/output.h"
 
-// int main(int argc, char const *argv[]) {
-// 	// if(argc < 2) {
-// 	// 	printf("You must pass the example file as argument like this : prgm examples.exp\nIf the example file does not contain a link to the config file (include), you must add the config file as second argument.\n");
-// 	// 	return 1;
-// 	// }
-
-// 	// char* configName = getConfigName(argv[1]);
-
-// 	// if(configName == NULL) { // no include, we check the second argument
-// 	// 	if(argc == 3) {
-// 	// 		configName = argv[2];
-// 	// 	}
-// 	// 	else {
-// 	// 		printf("The example file does not contains a link to the config file. You must add it or pass the config file as second argument.");
-// 	// 		return 1;
-// 	// 	}
-// 	// }
-
-// 	// Model* model = loadModel(configName); // load the config file and gen all the model types
-
-// 	// if(model == NULL) {
-// 	// 	printf("The config file does not exist or contains errors.\n");
-// 	// 	free(configName);
-// 	// 	return 1;
-// 	// }
-
-// 	// Examples* examples = loadExamples(argv[1], model);
-
-// 	// if(examples == NULL) {
-// 	// 	printf("The examples file contains errors. Please check and rerun the program.\n");
-// 	// 	free(configName);
-// 	// 	freeModel(model);
-// 	// 	return 1;
-// 	// }
-
-// 	// Solution* sol = genSolution(model, examples); // only one solution in step 1
+int main(int argc, char const *argv[]) {
 	
-// 	// char* out = genOutput(sol, model); // we need to pass the model for the int -> string conversion table it holds
+	if(argc < 2) {
+		printf("You must pass the example file as argument like this : ./learning examples.exp\nThe example file must contains a link to the config file (include).\n");
+		return 1;
+	}
 
-// 	// printf("%s", out);
+	printf("\e[1mLoading file...\e[0m\n");
 
-// 	// free(out);
-// 	// free(configName);
-// 	// freeModel(model);
-// 	// freeExamples(examples);
-// 	// freeSolution(sol);
+	size_t includePosition;
+	char* c = getIncludeFile(argv[1], &includePosition);
 
-// 	return 0;
-// }
+	if(c == NULL) {
+		printf("The loading of the configuration file failed. The configuration must be linked in the example file.\n");
+	}
+	else {
+		printf("\e[1mLoading configuation file: %s\e[0m\n", c);
+		Model* m = loadConfigFile(c);
+
+		printf("\e[1mLoading example file: %s\e[0m\n", argv[1]);
+
+		Examples* e = loadExampleFile(argv[1], m, includePosition);
+
+		printf("\e[1mMaking magic...\e[0m\n");
+
+		// Solution* s = genSolution(m, e); // only one solution in step 1
+	
+		// char* out = genOutput(s, m); // we need to pass the model for the int -> string conversion table it holds
+
+		// printf("%s", out);
+
+		free(c);
+		freeModel(m);
+		freeExamples(e);
+		// freeSolution(e);
+		// free(out);
+	}
+
+
+	return 0;
+}

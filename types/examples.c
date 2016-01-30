@@ -14,7 +14,6 @@ void initExamples(Examples * es) {
 }
 
 void freeExamples(Examples * es) {
-	printf("Free\n");
     //first free the examples
     for(int i = 0; i < vectSize(es->examples); ++i) {
 		for(int j = 0; j < vectSize((vectAt(es->examples, i)).objects); ++j) {
