@@ -48,7 +48,7 @@ Solution* genSolution(Model* mdl, Examples* exp) {
                         break;
                     case TYPE_ENUM:
                         vectIndexOf(oo->oenu.oenu, att.value, pt);
-                        if (pt > -1) vectPush(int, oo->oenu.oenu, att.value);
+                        if (pt == -1) vectPush(int, oo->oenu.oenu, att.value);
                         break;
                     case TYPE_TREE:
                         // looking for tree model (root) in the model (same rank), then LCA
