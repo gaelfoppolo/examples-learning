@@ -724,7 +724,7 @@ void readFileSpaces(FILE* fp, char const* set) {
 
 void readTil(FILE* fp, char const* set) {
 	char current;
-	unsigned int i, inSet;
+	unsigned int i;
 	while((current = fgetc(fp)) != EOF) {
 		i = 0;
 		while(set[i]) {

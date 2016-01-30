@@ -17,7 +17,7 @@ E2
 	x11:shape(circle), size(1), color(black)
 E3
 	x12:shape(whatever), size(3), color(blue)
-	x13:shape(isosceles triangle), size(12), color(red)
+	x13:shape(isosceles-triangle), size(12), color(red)
 	x14:shape(triangle), size(50), color(blue)
 !E3
 	x15:shape(square), size(1), color(red)
