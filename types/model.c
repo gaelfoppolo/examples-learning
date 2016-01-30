@@ -96,11 +96,11 @@ char* __getTreeStr_rec(int id, Tree* t) {
 		if(t->id == id) {
 			return t->str;
 		}
-		char* rec = __getTreeId_rec(id, t->left);
+		char* rec = __getTreeStr_rec(id, t->left);
 		if(rec != NULL) {
 			return rec;
 		}
-		rec = __getTreeId_rec(id, t->right);
+		rec = __getTreeStr_rec(id, t->right);
 		return rec;
 	}
 
