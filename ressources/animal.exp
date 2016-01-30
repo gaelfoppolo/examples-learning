@@ -1,4 +1,4 @@
 Include ressources/animal.cfg
 
 E1
-	x1:specie(equine), size(2), diet(vegetarian)
+	x1:specie(equine), size(2), diet(herbivorous)
