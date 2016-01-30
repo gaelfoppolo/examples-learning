@@ -2,7 +2,7 @@ Include ressources/config.cfg
 
 E1
 	x1:shape(rectangle), size(2), color(white)
-	x2:shape(isosceles triangle), size(5), color(red)
+	x2:shape(isosceles-triangle), size(5), color(red)
 	x3:shape(trapeze), size(4), color(red)
 !E1
 	x4:shape(circle), size(3), color(red)
