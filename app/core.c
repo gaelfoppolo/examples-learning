@@ -14,7 +14,7 @@ Solution* genSolution(Model* mdl, Examples* exp) {
     // an attribute
     Attribute att;
     // an output object
-    OutObject oo;
+    OutObject* oo;
  	// an object of an example
  	Object o;
     // an integer
@@ -23,7 +23,8 @@ Solution* genSolution(Model* mdl, Examples* exp) {
  	Solution* sol = (Solution*)malloc(sizeof(Solution));
     initSolution(sol);
     // init with the first object
-    sol = initSol(sol, o);  
+    o = vectAt(vectAt(exp->examples, 0).objects, 0);
+    sol = initSol(sol, o);
 
  	for(int i = 0; i < vectSize(exp->examples); ++i) {
         // current example
@@ -39,25 +40,27 @@ Solution* genSolution(Model* mdl, Examples* exp) {
                 // current attribute of the object
                 att = vectAt(o.attributes, k);
                 // matching output object in the solution (same rank)
-                oo = vectAt(sol->outobjects, k);
+                oo = &vectAt(sol->outobjects, k);
                 switch(att.type) {
                     case TYPE_INT:
-                        addToInterval(&oo.inter, att.value);
+                        addToInterval(&oo->inter, att.value);
                         break;
                     case TYPE_ENUM:
-                        vectIndexOf(oo.oenu.oenu, att.value, *pt);
-                        if (*pt) vectPush(int, oo.oenu.oenu, att.value);
+                        vectIndexOf(oo->oenu.oenu, att.value, *pt);
+                        if (*pt) vectPush(int, oo->oenu.oenu, att.value);
                         break;
                     case TYPE_TREE:
                         // looking for tree model (root) in the model (same rank), then LCA
-                        oo.tree = LCA(&vectAt(mdl->ma, k).mt.tree, oo.tree, att.value)->id;
+                        oo->tree = LCA(&vectAt(mdl->ma, k).mt.tree, oo->tree, att.value)->id;
                         break;
                 }
             }
 
         }
     }
+
     free(pt);
+    free(oo);
     return sol;
  }
 
@@ -90,6 +93,7 @@ Solution* genSolution(Model* mdl, Examples* exp) {
         // finally push OutputObject to Solution
         vectPush(OutObject, sol->outobjects, *oo);
     }
+
     free(oo);
     free(inter);
     free(oenu);

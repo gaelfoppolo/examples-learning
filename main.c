@@ -48,7 +48,7 @@ int main(int argc, char const *argv[]) {
 
 		printf("\e[1mMaking magic...\e[0m\n");
 
-		// Solution* s = genSolution(m, e); // only one solution in step 1
+		Solution* s = genSolution(m, e); // only one solution in step 1
 
 		// char* out = genOutput(s, m); // we need to pass the model for the int -> string conversion table it holds
 

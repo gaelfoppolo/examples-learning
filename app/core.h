@@ -9,6 +9,8 @@
 #ifndef _CORE_H_
 #define _CORE_H_
 
+#include <stdio.h>
+
 #include "../types/model.h"
 #include "../types/examples.h"
 #include "../types/solution.h"
