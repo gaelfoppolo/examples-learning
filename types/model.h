@@ -64,4 +64,24 @@ int getTreeId(const char* str, Model* m, unsigned int index);
 */
 int __getTreeId_rec(const char* str, Tree* t);
 
+/**
+*	@brief Returns the string of the enum's id given as parameter
+*	@param id The enum id to which the str is wanted
+*	@param m, The model
+*	@param index The index of the attribute
+*
+*	@return Returns the str if found, NULL otherwise
+*/
+char* getEnumStr(int id, Model* m, unsigned int index);
+char* getTreeStr(int id, Model* m, unsigned int index);
+
+/**
+*	@brief NOT FOR USE - Used by getTreeStr - Recursively search in the tree to find the str that match the id.
+*	@param id The enum id to which the str is wanted
+*	@param t The root of the tree in which to search
+*
+*	@return Returns the str if found, NULL otherwise
+*/
+char* __getTreeStr_rec(int id, Tree* t);
+
 #endif // _MODEL_H_

@@ -75,3 +75,34 @@ int __getTreeId_rec(const char* str, Tree* t) {
 
 	return -1;
 }
+
+char* getEnumStr(int id, Model* m, unsigned int index) {
+	Enum* current = &vectAt(m->ma, index).mt.enu;
+	for(unsigned int i = 0; i < vectSize(current->enu); ++i) {
+		if(vectAt(current->enu, i).id == id) {
+			return vectAt(current->enu, i).str;
+		}
+	}
+
+	return NULL;
+}
+
+char* getTreeStr(int id, Model* m, unsigned int index) {
+	return __getTreeStr_rec(id, &vectAt(m->ma, index).mt.tree);
+}
+
+char* __getTreeStr_rec(int id, Tree* t) {
+	if(t) {
+		if(t->id == id) {
+			return t->str;
+		}
+		char* rec = __getTreeId_rec(id, t->left);
+		if(rec != NULL) {
+			return rec;
+		}
+		rec = __getTreeId_rec(id, t->right);
+		return rec;
+	}
+
+	return NULL;
+}
