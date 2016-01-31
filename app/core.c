@@ -7,7 +7,7 @@
  */
 
 #include "core.h"
-
+/*
 Solution* genSolution(Model* mdl, Examples* exp) {
  	// an example
  	Example e;
@@ -89,3 +89,4 @@ Solution* genSolution(Model* mdl, Examples* exp) {
 
     return sol;
  }
+ */

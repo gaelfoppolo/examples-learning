@@ -27,9 +27,11 @@ typedef struct __basic_model_attribute {
 /**
 *   @brief Structure that contains the model
 *   @field ma The vector of attributes possible values and their name
+*	@field rel The vector of the object's possible relations by name
 */
 typedef struct __basic_model {
     Vector(ModelAttribute) ma;
+	Vector(char*) rel;
 } Model;
 
 /**

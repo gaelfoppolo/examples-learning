@@ -1,6 +1,6 @@
 /**
  *
- * @gaelfoppolo FOPPOLO Gaël
+ * @gaelfoppolo FOPPOLO Gaï¿½l
  * @Ebatsin PHILIP Bastien
  *
  * @brief Structure of our object
@@ -15,9 +15,11 @@
 /**
 *   @brief All the attributes composing the object
 *   @field attributes The list of the object's attributes
+*	@field relations The list of the object's relations
 */
 typedef struct __basic_object {
     Vector(Attribute) attributes;
+	Vector(Attribute) relations;
 } Object;
 
 /**

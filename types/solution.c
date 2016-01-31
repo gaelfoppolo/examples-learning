@@ -7,7 +7,7 @@
  */
 
 #include "solution.h"
-
+/*
 void initSolution(Solution* sol) {
 	vectInit(sol->outobjects);
 }
@@ -21,3 +21,4 @@ void freeSolution(Solution* sol) {
 	vectFree(sol->outobjects);
 	free(sol);
 }
+*/

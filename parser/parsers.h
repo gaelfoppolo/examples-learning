@@ -109,7 +109,7 @@ Model* loadConfigFile(char const* pathname);
 *
 *	@return A boolean. 1 for success. 0 for failure.
 */
-int parseConfigLine(FILE* fp, char** error, ModelAttribute* out);
+int parseConfigLine(FILE* fp, char** error, Model* out) ;
 
 /**
 *	@brief Tries to parse the attribute name at the current position in the file (spaces & tabs are ommited)

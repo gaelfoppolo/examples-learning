@@ -12,18 +12,16 @@
 #include "interval.h"
 #include "attribute-types.h"
 #include "out-enum.h"
+#include "out-attribute.h"
 
 /**
 *   @brief All the attributes composing the output object
-*   @field union (inter or oenum or tree) The attribute depending on the type
+*   @field attributes All the attributes og the object
+*	@field relations All the relations of the object
 */
 typedef struct __basic_outobject {
-    attrType type;
-	union {
-    	Interval inter;
-    	OutEnum oenu;
-    	int tree;
-    };
+	Vector(OutAttribute) attributes;
+	Vector(struct __basic_outobject*) relations;
 } OutObject;
 
 void freeOutObject(OutObject* oo);

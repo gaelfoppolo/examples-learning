@@ -15,4 +15,7 @@ typedef unsigned char attrType;
 #define TYPE_ENUM 2 // attribute that represents an enumeration
 #define TYPE_TREE 3 // attribute that represents a tree
 
+#define TYPE_RELATION 4 // attribute that represents a relation
+#define TYPE_NORELATION 5 // attribute that represents the absence of a relation
+
 #endif // _ATTRIBUTE_TYPES_H_

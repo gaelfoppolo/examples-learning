@@ -1,5 +1,5 @@
 #include "output.h"
-
+/*
 char* genOutput(Solution* sol, Model* mdl) {
 	// out final string to display
 	String str = strInit(strDuplicate("Solution: "));
@@ -46,6 +46,7 @@ char* genOutput(Solution* sol, Model* mdl) {
 
 	return str.str;
 }
+*/
 
 char* cPrint(const char * fmt, ...) {
 	va_list args;

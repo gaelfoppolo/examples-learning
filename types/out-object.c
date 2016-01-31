@@ -9,7 +9,7 @@
 #include "out-object.h"
 
 void freeOutObject(OutObject* oo) {
-	switch(oo->type) {
+	/*switch(oo->type) {
 		case TYPE_INT:
 			free(&oo->inter);
 			break;
@@ -17,5 +17,5 @@ void freeOutObject(OutObject* oo) {
 			freeOutEnum(&oo->oenu);
 			break;
 	}
-	free(oo);
+	free(oo);*/
 }

@@ -314,21 +314,22 @@ Model* loadConfigFile(char const* pathname) {
 	char* error;
 
 	vectInit(m->ma);
+	vectInit(m->rel);
 
 	if(fp == NULL) {
 		printf(SBRED "The file %s does not exist.\n" SDEFAULT, pathname);
 		return NULL;
 	}
 
-	vectPush(ModelAttribute, m->ma, deflt);
+	/*vectPush(ModelAttribute, m->ma, deflt);
 	while(parseConfigLine(fp, &error, &vectAt(m->ma, vectSize(m->ma) - 1))) {
 		vectPush(ModelAttribute, m->ma, deflt);
-	}
+	}*/
+	while(parseConfigLine(fp, &error, m));
 
-	vectRemoveLast(m->ma);
+	//vectRemoveLast(m->ma);
 
-	printf("\n" SBDEFAULT "The model has %d attribute", vectSize(m->ma));
-	(vectSize(m->ma) > 1) ? printf("s") : printf("");
+	printf("\n" SBDEFAULT "The model has %d attribute%s and %d relation%s", vectSize(m->ma), vectSize(m->ma) > 1 ? "s": "", vectSize(m->rel), vectSize(m->rel) > 1 ? "s": "");
 	printf(SDEFAULT ".\n");
 
 	if(error) {
@@ -340,18 +341,27 @@ Model* loadConfigFile(char const* pathname) {
 	return m;
 }
 
-int parseConfigLine(FILE* fp, char** error, ModelAttribute* out) {
+int parseConfigLine(FILE* fp, char** error, Model* out) {
 	*error = NULL;
 	char c;
+	ModelAttribute current;
+	int isRelation = 0;
 
-	out->name = parseAttrName(fp, error);
+	current.name = parseAttrName(fp, error);
 
-	if(!out->name) {
-		free(out->name);
+	if(!current.name) {
+		free(current.name);
 		return 0;
 	}
 
-	printf("\nNew attribute found: " SBPURPLE "%s" SDEFAULT "\nType: ", out->name);
+	if(strcmp(current.name, "relation") == 0) {
+		isRelation = 1;
+		printf(SBPURPLE "\nRelations found : " SDEFAULT);
+	}
+	else {
+		printf("\nNew attribute found: " SBPURPLE "%s" SDEFAULT "\nType: ", current.name);
+	}
+
 
 	// reads til :
 	readFileSpaces(fp, "\t ");
@@ -361,7 +371,7 @@ int parseConfigLine(FILE* fp, char** error, ModelAttribute* out) {
 		strPushStr(&err, "'.");
 		*error = err.str;
 
-		free(out->name);
+		free(current.name);
 		return 0;
 	}
 
@@ -369,12 +379,23 @@ int parseConfigLine(FILE* fp, char** error, ModelAttribute* out) {
 
 	if(mt == NULL) {
 		*error = "Failed parsing attribute's type definition";
-		free(out->name);
+		free(current.name);
 		return 0;
 	}
 
-	out->mt = *mt;
+	current.mt = *mt;
 	free(mt);
+
+	// check wether it's a relation or a basic attribute
+	if(isRelation) {
+		for(unsigned int i = 0; i < vectSize(current.mt.enu.enu); ++i) {
+			vectPush(char*, out->rel, vectAt(current.mt.enu.enu, i).str);
+		}
+		vectFree(current.mt.enu.enu);
+	}
+	else {
+		vectPush(ModelAttribute, out->ma, current);
+	}
 
 	return 1;
 }
