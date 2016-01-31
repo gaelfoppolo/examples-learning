@@ -1,8 +1,9 @@
 include ressources/animal.cfg
 
 E1
-	horse:specie(equine), size(2), diet(herbivorous)
+	horse:specie(equine), size(2), diet(herbivorous), is-eaten-by(human)
 	bison:specie(bovine), size(3), diet(herbivorous)
+	human:specie(mammal), size(1), diet(omnivorous)
 E2
 	tiger:specie(mammal), size(2), diet(carnivorous)
 E3
