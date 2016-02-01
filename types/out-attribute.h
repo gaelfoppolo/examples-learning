@@ -10,6 +10,8 @@
 #define _OUT_ATTRIBUTE_H_
 
 #include "attribute-types.h"
+#include "interval.h"
+#include "out-enum.h"
 
 /**
 *   @brief Represents an attribute and the value it holds

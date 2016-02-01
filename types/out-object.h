@@ -9,9 +9,6 @@
 #ifndef _OUTOBJECT_H_
 #define _OUTOBJECT_H_
 
-#include "interval.h"
-#include "attribute-types.h"
-#include "out-enum.h"
 #include "out-attribute.h"
 
 /**
