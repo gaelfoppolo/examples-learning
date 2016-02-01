@@ -35,4 +35,23 @@ Solution* genSolution(Model* mdl, Examples* exp);
  */
 Solution* initSol(Solution* sol, Object o);
 
+/**
+ * @brief Calculate the number of combinaisons possible for our examples
+ *
+ * @param exp Pointer to our array of exemple
+ *
+ * @return The number of combinaisons
+ */
+int nbCombi(Examples* exp);
+
+/**
+ * @brief Init the solution with nbCombi empty OutObject
+ *
+ * @param sol Pointer to the empty solution
+ * @param nbCombi The number of combinaisons possible = size of the array
+ * 
+ * @return Solution filled
+ */
+Solution* genEmptySol(Solution* sol, int nbCombi);
+
 #endif // _CORE_H_

@@ -7,6 +7,26 @@
  */
 
 #include "core.h"
+
+int nbCombi(Examples* exp) {
+    // init with 1, neutral of multiplication
+    int nbCombi = 1;
+    for (int i = 0; i < vectSize(exp->examples); ++i) {
+        nbCombi *= vectSize(vectAt(exp->examples, i).objects);
+    }
+    return nbCombi;
+}
+
+Solution* genEmptySol(Solution* sol, int nbCombi) {
+    OutObject oo;
+    OutAttribute oa;
+    vectPush(OutAttribute, oo.attributes, oa);
+    for (int i = 0; i < nbCombi; ++i) {
+        vectPush(OutObject, sol->outobjects, oo);
+    }
+    return sol;
+}
+
 /*
 Solution* genSolution(Model* mdl, Examples* exp) {
  	// an example
