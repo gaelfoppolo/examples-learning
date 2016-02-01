@@ -7,6 +7,55 @@
  */
 
 #include "core.h"
+
+int nbCombi(Examples* exp) {
+    // init with 1, neutral of multiplication
+    int nbCombi = 1;
+    for (int i = 0; i < vectSize(exp->examples); ++i) {
+        nbCombi *= vectSize(vectAt(exp->examples, i).objects);
+    }
+    return nbCombi;
+}
+
+Solution* genEmptySol(Solution* sol, int nbCombi) {
+    OutObject oo;
+    OutAttribute oa;
+    vectPush(OutAttribute, oo.attributes, oa);
+    for (int i = 0; i < nbCombi; ++i) {
+        vectPush(OutObject, sol->outobjects, oo);
+    }
+    return sol;
+}
+
+OutObject* genOutObject(Object* in) {
+    OutObject* oo;
+    initOutObject(oo);
+    OutAttribute oa;
+    Attribute att;
+
+    for(int i = 0; i < vectSize(in->attributes); ++i) {
+        att = vectAt(in->attributes, i);
+        oa.type = att.type;
+
+        switch(att.type) {
+            case TYPE_INT:
+                oa.inter.min = att.value;
+                oa.inter.max = att.value;
+                break;
+            case TYPE_ENUM:
+                initOutEnum(&oa.oenu);
+                vectPush(int, oa.oenu.oenu, att.value);
+                break;
+            case TYPE_TREE:
+                oa.tree = att.value;
+                break;
+        }
+        // finally push OutAttribute to the OutObject
+        vectPush(OutAttribute, oo->attributes, oa);
+    }
+    return oo;
+}
+
 /*
 Solution* genSolution(Model* mdl, Examples* exp) {
  	// an example

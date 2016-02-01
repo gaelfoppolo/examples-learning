@@ -24,6 +24,16 @@ typedef struct __basic_outobject {
 	Vector(struct __basic_outobject*) relations;
 } OutObject;
 
+/**
+*	@brief Init the outobject
+*	@param oo A pointer to the outobject to init
+*/
+void initOutObject(OutObject* oo);
+
+/**
+*	@brief Free the outobject previously initialized by initOutObject
+*	@param oo A pointer to the outobject to free
+*/
 void freeOutObject(OutObject* oo);
 
 #endif // _OUTOBJECT_H_
