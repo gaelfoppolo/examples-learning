@@ -63,4 +63,15 @@ Solution* genEmptySol(Solution* sol, int nbCombi);
  */
 OutObject* genOutObject(Object *in);
 
+/**
+ * @brief Combine two OutObject
+ *
+ * @param first Pointer to the first OutObject (and also the result of the combinaison)
+ * @param second Pointer to the second OutObject to combine
+ * @param mdl Pointer to the model (structure of our model is inside)
+ * 
+ */
+
+void genCombi(OutObject* first, Object* second, Model* mdl);
+
 #endif // _CORE_H_

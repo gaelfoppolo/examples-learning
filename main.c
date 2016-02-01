@@ -46,7 +46,9 @@ int main(int argc, char const *argv[]) {
 			return 1;
 		}
 
-		printf(SBWHITE "Generating solution..." SDEFAULT "\n");
+		printf("NB combi : %d\n", nbCombi(e));
+
+		// printf(SBWHITE "Generating solution..." SDEFAULT "\n");
 
 		//Solution* s = genSolution(m, e); // only one solution in step 1
 

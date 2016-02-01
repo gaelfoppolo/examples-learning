@@ -28,7 +28,7 @@ Solution* genEmptySol(Solution* sol, int nbCombi) {
 }
 
 OutObject* genOutObject(Object* in) {
-    OutObject* oo;
+    OutObject* oo = (OutObject*)malloc(sizeof(OutObject));
     initOutObject(oo);
     OutAttribute oa;
     Attribute att;
@@ -54,6 +54,31 @@ OutObject* genOutObject(Object* in) {
         vectPush(OutAttribute, oo->attributes, oa);
     }
     return oo;
+}
+
+void genCombi(OutObject* first, Object* second, Model* mdl) {
+    OutAttribute* oa = (OutAttribute*)malloc(sizeof(OutAttribute));
+    Attribute att;
+    int pt;
+    for (int i = 0; i < vectSize(first->attributes); ++i) {
+        oa = &vectAt(first->attributes, i);
+        att = vectAt(second->attributes, i);
+
+        switch(oa->type) {
+            case TYPE_INT:
+                addToInterval(&oa->inter, att.value);
+                break;
+            case TYPE_ENUM:
+                vectIndexOf(oa->oenu.oenu, att.value, pt);
+                if (pt == -1) vectPush(int, oa->oenu.oenu, att.value);
+                break;
+            case TYPE_TREE:
+                // looking for tree model (root) in the model (same rank), then LCA
+                oa->tree = LCA(&vectAt(mdl->ma, i).mt.tree, oa->tree, att.value)->id;
+                break;
+        }
+    }
+    free(oa);
 }
 
 /*
