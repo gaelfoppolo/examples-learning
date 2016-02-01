@@ -28,7 +28,8 @@ Solution* genEmptySol(Solution* sol, int nbCombi) {
 }
 
 OutObject* genOutObject(Object* in) {
-    OutObject* oo = (OutObject*)malloc(sizeof(OutObject));
+    OutObject* oo;
+    initOutObject(oo);
     OutAttribute oa;
     Attribute att;
 
