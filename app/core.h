@@ -16,6 +16,14 @@
 #include "../types/solution.h"
 
 /**
+*   @brief Represent the indices of the objects combined
+*   @field indices the indices of the objects combined
+*/
+typedef struct __basic_objindex {
+    Vector(int) indices;
+} ObjectIndice;
+
+/**
  * @brief Process examples of a model and produces solution object
  *
  * @param exp Pointer to the structure containing examples and counter examples
@@ -71,7 +79,16 @@ OutObject* genOutObject(Object *in);
  * @param mdl Pointer to the model (structure of our model is inside)
  * 
  */
-
 void genCombi(OutObject* first, Object* second, Model* mdl);
+
+/**
+ * @brief Get the index of the combinaisons of object in the array
+ *
+ * @param exp Pointer to the examples
+ * @param oi Pointer to the objects's indices
+ * 
+ * @return An integer
+ */
+int getIndex(Examples* exp, ObjectIndice* oi);
 
 #endif // _CORE_H_

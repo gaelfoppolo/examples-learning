@@ -81,6 +81,19 @@ void genCombi(OutObject* first, Object* second, Model* mdl) {
     free(oa);
 }
 
+int getIndex(Examples* exp, ObjectIndice* oi) {
+    int index = 0, inside, i;
+    for (i = 0; i < vectSize(exp->examples)-2; ++i) {
+        inside = 1;
+        for (int j = i+1; j < vectSize(exp->examples)-1; ++j) {
+            inside *= vectSize(vectAt(exp->examples, j).objects);
+        }
+        index += vectAt(oi->indices, i)*inside;
+    }
+    return index+vectAt(oi->indices, i);
+}
+
+
 /*
 Solution* genSolution(Model* mdl, Examples* exp) {
  	// an example
