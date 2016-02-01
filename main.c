@@ -46,7 +46,15 @@ int main(int argc, char const *argv[]) {
 			return 1;
 		}
 
-		printf("NB combi : %d\n", nbCombi(e));
+		int nb = nbCombi(e);
+
+		printf("NB combi : %d\n", nb);
+
+		Solution* s;
+		initSolution(s);
+		s = genEmptySol(s, nb);
+
+		printf("size of sol now init = %d\n", vectSize(s->outobjects));
 
 		// printf(SBWHITE "Generating solution..." SDEFAULT "\n");
 

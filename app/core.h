@@ -72,7 +72,7 @@ Solution* genEmptySol(Solution* sol, int nbCombi);
 OutObject* genOutObject(Object *in);
 
 /**
- * @brief Combine two OutObject
+ * @brief Combine an OutObject and an Object into an OutObject
  *
  * @param first Pointer to the first OutObject (and also the result of the combinaison)
  * @param second Pointer to the second OutObject to combine

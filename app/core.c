@@ -18,9 +18,10 @@ int nbCombi(Examples* exp) {
 }
 
 Solution* genEmptySol(Solution* sol, int nbCombi) {
-    OutObject oo;
+    OutObject oo, *orel;
     OutAttribute oa;
     vectPush(OutAttribute, oo.attributes, oa);
+    vectPush(OutObject*, oo.relations, orel);
     for (int i = 0; i < nbCombi; ++i) {
         vectPush(OutObject, sol->outobjects, oo);
     }
