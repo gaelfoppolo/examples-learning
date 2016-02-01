@@ -27,6 +27,34 @@ Solution* genEmptySol(Solution* sol, int nbCombi) {
     return sol;
 }
 
+OutObject* genOutObject(Object* in) {
+    OutObject* oo = (OutObject*)malloc(sizeof(OutObject));
+    OutAttribute oa;
+    Attribute att;
+
+    for(int i = 0; i < vectSize(in->attributes); ++i) {
+        att = vectAt(in->attributes, i);
+        oa.type = att.type;
+
+        switch(att.type) {
+            case TYPE_INT:
+                oa.inter.min = att.value;
+                oa.inter.max = att.value;
+                break;
+            case TYPE_ENUM:
+                initOutEnum(&oa.oenu);
+                vectPush(int, oa.oenu.oenu, att.value);
+                break;
+            case TYPE_TREE:
+                oa.tree = att.value;
+                break;
+        }
+        // finally push OutAttribute to the OutObject
+        vectPush(OutAttribute, oo->attributes, oa);
+    }
+    return oo;
+}
+
 /*
 Solution* genSolution(Model* mdl, Examples* exp) {
  	// an example

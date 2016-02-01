@@ -54,4 +54,13 @@ int nbCombi(Examples* exp);
  */
 Solution* genEmptySol(Solution* sol, int nbCombi);
 
+/**
+ * @brief Generate an OutObject based on a object values
+ *
+ * @param in Pointer to the object
+ * 
+ * @return OutObject initialized
+ */
+OutObject* genOutObject(Object *in);
+
 #endif // _CORE_H_
