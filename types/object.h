@@ -1,6 +1,6 @@
 /**
  *
- * @gaelfoppolo FOPPOLO Ga�l
+ * @gaelfoppolo FOPPOLO Gaël
  * @Ebatsin PHILIP Bastien
  *
  * @brief Structure of our object
@@ -20,6 +20,8 @@
 typedef struct __basic_object {
     Vector(Attribute) attributes;
 	Vector(Attribute) relations;
+	char* name;
+	unsigned int id;
 } Object;
 
 /**

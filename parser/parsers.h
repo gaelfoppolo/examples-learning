@@ -22,6 +22,10 @@
 #define PARSED_EXAMPLE 1 // value returned by the getNextExample function if the example is an example
 #define PARSED_COUNTEREXAMPLE 2 // value returned by the getNextExample function if the example is a counter-example
 
+struct __basic_string_vector {
+	Vector(char*) seen;
+};
+
 /**
 *	@brief Get the pathname to the config file included at the begening of an example file
 *	@param pathname The path to the example file
@@ -66,19 +70,29 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m);
 *	@param error In case of error, contains a description of the error. NULL if no error happened. Must be an uninitialized variable or data loss may occur.
 *	@param o A pointer to the object Object to populate
 *	@param model The Model object generated from the config file
+*	@param seenObjects The names of the objects that have already been seen
 *
 *	@return A boolean. 1 for success. 0 for failure
 */
-int parseExampleObject(FILE* fp, char** error, Object* o, Model* m);
+int parseExampleObject(FILE* fp, char** error, Object* o, Model* m, struct __basic_string_vector* seenObjects);
 
 /**
 *	@brief Returns the position at which can be found an attribute (by name)
-*	@param attr the attribute to compare
+*	@param attr the attribute to search for
 *	@param m The model in which to find the order
 *
 *	@return the index of the attribute (or -1 in case the attributes is not in the model)
 */
 int getAttributePosition(const char* attr, Model* m);
+
+/**
+*	@brief Returns the position at which can be found a relation (by name)
+*	@param rel the relation to search for
+*	@param m The model in which to find the order
+*
+*	@return the index of the attribute (or -1 in case the attributes is not in the model)
+*/
+int getRelationPosition(const char* rel, Model* m);
 
 /**
 *	@brief Parse the attribute's value and populate the Attribute object accordingly
@@ -88,8 +102,9 @@ int getAttributePosition(const char* attr, Model* m);
 *	@param type The expected type of the attribute
 *	@param attr A pointer to the attribute to populate
 *	@param position The position of the attribute in the model
+*	@param seenObjects The names of the objects that have already been seen
 */
-void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* attr, unsigned int position);
+void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* attr, unsigned int position, struct __basic_string_vector* seenObjects);
 
 /**
 *	@brief Loads the config file given anf the generate the Model object that represents its content

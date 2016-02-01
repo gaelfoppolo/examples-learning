@@ -159,11 +159,16 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 	Attribute dfltAttr;
 	char* name;
 	char c;
+	struct __basic_string_vector seenObjects; // contains the objects already seen
+	int id; // the id of the current object
 
 	*error = NULL;
 
 	readTil(fp, "\n");
+
+	// vectors initialization
 	vectInit(ex->objects);
+	vectInit(seenObjects.seen);
 
 	// the first fgetc reads the \n of the previous line. The second check wether we are at the begining of the declaration of an object or not
 	while((c = fgetc(fp)) != EOF && (c = fgetc(fp)) == '\t') {
@@ -176,25 +181,48 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 			return 0;
 		}
 
+		// check wether the name has already been seen
+		id = -1;
+		for(unsigned int i = 0; i < vectSize(seenObjects.seen); ++i) {
+			if(strcmp(vectAt(seenObjects.seen, i), name) == 0) {
+				id = i;
+				break;
+			}
+		}
+		if(id == -1) { // if the name have never been seen before, we add it to the seenObjects
+			id = vectSize(seenObjects.seen); // its ID is the first ID available (so, the size og the already seen objects)
+			vectPush(char*, seenObjects.seen, name);
+		}
+		// adjust the size of the objects vector to always have object ID = index in the array
+		while(vectSize(ex->objects) < vectSize(seenObjects.seen)) {
+			vectPush(Object, ex->objects, dfltObj);
+			vectInit(vectAt(ex->objects, vectSize(ex->objects) - 1).attributes); // initialize the object we just added tothe array
+			vectInit(vectAt(ex->objects, vectSize(ex->objects) - 1).relations); // initialize the object's relations
+		}
+		vectAt(ex->objects, id).id = id; // set the id of the object
+		vectAt(ex->objects, id).name = name; // set the name of the object
+
 		printf("Object's name: " SBGREEN "%s" SDEFAULT "\n", name);
 
 		fgetc(fp); //reads the ':' char after the object's name
-
-		vectPush(Object, ex->objects, dfltObj);
-		// inits the Object pushed
-		vectInit(vectAt(ex->objects, vectSize(ex->objects) - 1).attributes); // initialize the object we just added tothe array
 		for(unsigned int i = 0; i < vectSize(m->ma); ++i) { // fill the array with as much element that we have possible attributes
-			vectPush(Attribute, vectAt(ex->objects, vectSize(ex->objects) - 1).attributes, dfltAttr);
+			vectPush(Attribute, vectAt(ex->objects, id).attributes, dfltAttr);
+		}
+
+		for(unsigned int i = 0; i < vectSize(m->rel); ++i) { // fill the array with as much element that we have possible relations
+			vectPush(Attribute, vectAt(ex->objects, id).relations, dfltAttr);
+			// inits the relation value to NORELATION (relations are optionnal)
+			vectAt(vectAt(ex->objects, id).relations, i).type = TYPE_NORELATION;
 		}
 
 		// read the attributes values
-		if(!parseExampleObject(fp, error, &vectAt(ex->objects, vectSize(ex->objects) - 1), m)) {
+		if(!parseExampleObject(fp, error, &vectAt(ex->objects, id), m, &seenObjects)) {
 			vectFree(ex->objects);
 			free(name);
 			return 0;
 		}
 
-		free(name); // not used for the moment
+		//free(name); // not used for the moment
 
 		readTil(fp, "\n");
 	}
@@ -204,7 +232,7 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 	return 1;
 }
 
-int parseExampleObject(FILE* fp, char** error, Object* o, Model* m) {
+int parseExampleObject(FILE* fp, char** error, Object* o, Model* m, struct __basic_string_vector* seenObjects) {
 	*error = NULL;
 	char* name;
 	int position;
@@ -216,21 +244,33 @@ int parseExampleObject(FILE* fp, char** error, Object* o, Model* m) {
 
 		position = getAttributePosition(name, m);
 		if(position == -1) {
-			*error = cPrint(SBRED "The attribute " SWHITE "%s" SBRED " is not defined." SDEFAULT, name);
-			return 0;
+			position = getRelationPosition(name, m);
+			if(position == -1) {
+				*error = cPrint(SBRED "The attribute " SWHITE "%s" SBRED " is not defined." SDEFAULT, name);
+				return 0;
+			}
+			// the current attribute is a relation
+			printf("\t" SBCYAN "%s (relation)" SDEFAULT, name);
+			type = TYPE_RELATION; // the type of the attribute to read
+
+			fgetc(fp); // reads the '('
+
+			// reads the relation's value
+			parseAttrValue(fp, error, m, type, &vectAt(o->relations, position), position, seenObjects);
+		}
+		else {
+			printf("\t" SBCYAN "%s" SDEFAULT, name);
+			type = vectAt(m->ma, position).mt.type;
+
+			fgetc(fp); // reads the '('
+
+			// reads the attribute's value
+			parseAttrValue(fp, error, m, type, &vectAt(o->attributes, position), position, seenObjects);
 		}
 
-		printf("\t" SBCYAN "%s" SDEFAULT, name);
 
 		free(name); // do not need it after
 
-		type = vectAt(m->ma, position).mt.type; // the type of the attribute to read
-
-		fgetc(fp); // reads the '('
-
-		// reads the attribute's value
-
-		parseAttrValue(fp, error, m, type, &vectAt(o->attributes, position), position);
 
 		if(*error != NULL) {
 			return 0;
@@ -260,7 +300,17 @@ int getAttributePosition(const char* attr, Model* m) {
 	return -1;
 }
 
-void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* attr, unsigned int position) {
+int getRelationPosition(const char* rel, Model* m) {
+	for(unsigned int i = 0; i < vectSize(m->rel); ++i) {
+		if(strcmp(rel, vectAt(m->rel, i)) == 0) {
+			return i;
+		}
+	}
+
+	return -1;
+}
+
+void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* attr, unsigned int position, struct __basic_string_vector* seenObjects) {
 	String str = strInit(strDuplicate(""));
 	char c;
 	int tmp;
@@ -278,7 +328,8 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 	switch(type) {
 		case TYPE_INT:
 			attr->value = atoi(str.str);
-			printf(": %s " SYELLOW "(ID = %d" SYELLOW ") " SYELLOW " " SDEFAULT "\n", str.str, attr->value);
+			printf(": %s " SYELLOW "(ID = %d)" SDEFAULT "\n", str.str, attr->value);
+			free(str.str);
 			break;
 		case TYPE_ENUM:
 			tmp = getEnumId(str.str, m, position);
@@ -288,7 +339,8 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 				return;
 			}
 			attr->value = tmp;
-			printf(": %s " SYELLOW "(ID = %d" SYELLOW ") " SYELLOW " " SDEFAULT "\n", str.str, attr->value);
+			printf(": %s " SYELLOW "(ID = %d)" SDEFAULT "\n", str.str, attr->value);
+			free(str.str);
 			break;
 		case TYPE_TREE:
 			tmp = getTreeId(str.str, m, position);
@@ -298,10 +350,28 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 				return;
 			}
 			attr->value = tmp;
-			printf(": %s " SYELLOW "(ID = %d" SYELLOW ") " SYELLOW " " SDEFAULT "\n", str.str, attr->value);
+			printf(": %s " SYELLOW "(ID = %d)" SDEFAULT "\n", str.str, attr->value);
+			free(str.str);
+			break;
+		case TYPE_RELATION:
+			// search for the objects name in the seenObjects
+			tmp = -1;
+			for(unsigned int i = 0; i < vectSize(seenObjects->seen); ++i) {
+				if(strcmp(vectAt(seenObjects->seen, i), str.str) == 0) {
+					tmp = i;
+					break;
+				}
+			}
+			if(tmp > -1) { // the object has already been seen. Juste set its ID
+				attr->value = tmp;
+			}
+			else { // never seen - add the object as seen and assign its ID
+				attr->value = vectSize(seenObjects->seen);
+				vectPush(char*, seenObjects->seen, str.str);
+			}
+			printf(": %s " SYELLOW "(ID = %d)" SDEFAULT "\n", str.str, attr->value);
+			break;
 	}
-
-	free(str.str);
 
 	fseek(fp, -1, SEEK_CUR);
 }
