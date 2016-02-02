@@ -178,6 +178,7 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 		name = parseAttrName(fp, error);
 		if(name == NULL) {
 			vectFree(ex->objects);
+			vectFree(seenObjects.seen);
 			return 0;
 		}
 
@@ -191,7 +192,8 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 		}
 		if(id == -1) { // if the name have never been seen before, we add it to the seenObjects
 			id = vectSize(seenObjects.seen); // its ID is the first ID available (so, the size og the already seen objects)
-			vectPush(char*, seenObjects.seen, name);
+			// duplicate the string to be able to free all the struct without caring if the string is shared or not
+			vectPush(char*, seenObjects.seen, strDuplicate(name));
 		}
 		// adjust the size of the objects vector to always have object ID = index in the array
 		while(vectSize(ex->objects) < vectSize(seenObjects.seen)) {
@@ -218,6 +220,7 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 		// read the attributes values
 		if(!parseExampleObject(fp, error, &vectAt(ex->objects, id), m, &seenObjects)) {
 			vectFree(ex->objects);
+			vectFree(seenObjects.seen);
 			free(name);
 			return 0;
 		}
@@ -228,6 +231,12 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 	}
 
 	if(!feof(fp)) fseek(fp, -2, SEEK_CUR);
+
+	for(unsigned int i = 0; i < vectSize(seenObjects.seen); ++i) {
+		free(vectAt(seenObjects.seen, i)); // we can free all the strings, they are duplicates, not originals
+	}
+
+	vectFree(seenObjects.seen);
 
 	return 1;
 }
@@ -370,6 +379,9 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 				vectPush(char*, seenObjects->seen, str.str);
 			}
 			printf(": %s " SYELLOW "(ID = %d)" SDEFAULT "\n", str.str, attr->value);
+			if(tmp > -1) {
+				free(str.str);
+			}
 			break;
 	}
 
@@ -420,7 +432,6 @@ int parseConfigLine(FILE* fp, char** error, Model* out) {
 	current.name = parseAttrName(fp, error);
 
 	if(!current.name) {
-		free(current.name);
 		return 0;
 	}
 
@@ -462,6 +473,7 @@ int parseConfigLine(FILE* fp, char** error, Model* out) {
 			vectPush(char*, out->rel, vectAt(current.mt.enu.enu, i).str);
 		}
 		vectFree(current.mt.enu.enu);
+		free(current.name);
 	}
 	else {
 		vectPush(ModelAttribute, out->ma, current);

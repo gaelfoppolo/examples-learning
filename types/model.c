@@ -14,6 +14,8 @@ void initModel(Model* mo) {
 
 void freeModel(Model* mo) {
 	if(!mo) return;
+
+	// free attributes
 	for(unsigned int i = 0; i < vectSize(mo->ma); ++i) {
 		if(vectAt(mo->ma, i).name) {
 			free(vectAt(mo->ma, i).name);
@@ -41,7 +43,14 @@ void freeModel(Model* mo) {
 				break;
 		}
 	}
+
+	// free relations
+	for(unsigned int i = 0; i < vectSize(mo->rel); ++i) {
+		free(vectAt(mo->rel, i));
+	}
+
 	vectFree(mo->ma);
+	vectFree(mo->rel);
 	free(mo);
 }
 

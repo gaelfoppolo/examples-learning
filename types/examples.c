@@ -18,6 +18,8 @@ void freeExamples(Examples * es) {
     for(int i = 0; i < vectSize(es->examples); ++i) {
 		for(int j = 0; j < vectSize((vectAt(es->examples, i)).objects); ++j) {
 			vectFree(vectAt((vectAt(es->examples, i)).objects, j).attributes);
+            vectFree(vectAt((vectAt(es->examples, i)).objects, j).relations);
+            free(vectAt((vectAt(es->examples, i)).objects, j).name);
 		}
         vectFree((vectAt(es->examples, i)).objects);
     }
@@ -25,6 +27,8 @@ void freeExamples(Examples * es) {
     for(int i = 0; i < vectSize(es->counterExamples); ++i) {
 		for(int j = 0; j < vectSize((vectAt(es->counterExamples, i)).objects); ++j) {
 			vectFree(vectAt((vectAt(es->counterExamples, i)).objects, j).attributes);
+            vectFree(vectAt((vectAt(es->counterExamples, i)).objects, j).relations);
+            free(vectAt((vectAt(es->counterExamples, i)).objects, j).name);
 		}
         vectFree((vectAt(es->counterExamples, i)).objects);
     }

@@ -13,5 +13,10 @@ void initExample(Example * e) {
 }
 
 void freeExample(Example * e) {
+	for(unsigned int i = 0; i < vectSize(e->objects); ++i) {
+		free(vectAt(e->objects, i).name);
+		vectFree(vectAt(e->objects, i).attributes);
+		vectFree(vectAt(e->objects, i).relations);
+	}
     vectFree(e->objects);
 }
