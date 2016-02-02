@@ -18,43 +18,40 @@ int nbCombi(Examples* exp) {
 }
 
 Solution* genEmptySol(Solution* sol, int nbCombi) {
-    OutObject oo, *orel;
+    OutObject oo;
     OutAttribute oa;
     vectPush(OutAttribute, oo.attributes, oa);
-    vectPush(OutObject*, oo.relations, orel);
+    vectPush(OutObject*, oo.relations, (OutObject*)NULL);
     for (int i = 0; i < nbCombi; ++i) {
         vectPush(OutObject, sol->outobjects, oo);
     }
     return sol;
 }
 
-OutObject* genOutObject(Object* in) {
-    OutObject* oo = (OutObject*)malloc(sizeof(OutObject));
-    initOutObject(oo);
-    OutAttribute oa;
+void initEmptyOutObject(OutObject* oo, Object* o) {
+    OutAttribute* oa = (OutAttribute*)malloc(sizeof(OutAttribute));
     Attribute att;
 
-    for(int i = 0; i < vectSize(in->attributes); ++i) {
-        att = vectAt(in->attributes, i);
-        oa.type = att.type;
+    for(int i = 0; i < vectSize(o->attributes); ++i) {
+        att = vectAt(o->attributes, i);
+        oa = &vectAt(oo->attributes, i);
+        oa->type = att.type;
 
         switch(att.type) {
             case TYPE_INT:
-                oa.inter.min = att.value;
-                oa.inter.max = att.value;
+                oa->inter.min = att.value;
+                oa->inter.max = att.value;
                 break;
             case TYPE_ENUM:
-                initOutEnum(&oa.oenu);
-                vectPush(int, oa.oenu.oenu, att.value);
+                initOutEnum(&oa->oenu);
+                vectPush(int, oa->oenu.oenu, att.value);
                 break;
             case TYPE_TREE:
-                oa.tree = att.value;
+                oa->tree = att.value;
                 break;
         }
-        // finally push OutAttribute to the OutObject
-        vectPush(OutAttribute, oo->attributes, oa);
     }
-    return oo;
+    free(oa);
 }
 
 void genCombi(OutObject* first, Object* second, Model* mdl) {

@@ -63,13 +63,13 @@ int nbCombi(Examples* exp);
 Solution* genEmptySol(Solution* sol, int nbCombi);
 
 /**
- * @brief Generate an OutObject based on a object values
+ * @brief Fill an empty OutObject based on a object values
  *
- * @param in Pointer to the object
+ * @param o Pointer to the outobject
+ * @param o Pointer to the object
  * 
- * @return OutObject initialized
  */
-OutObject* genOutObject(Object *in);
+void initEmptyOutObject(OutObject* oo, Object* o);
 
 /**
  * @brief Combine an OutObject and an Object into an OutObject
