@@ -46,11 +46,11 @@ int main(int argc, char const *argv[]) {
 			return 1;
 		}
 
-		int nb = nbCombi(e);
+		int nb = nbCombi(e, 0);
 
-		printf("NB combi : %d\n", nb);
+		printf("NB combi starting : %d\n", nb);
 
-		Solution* s = initAllCombi(m, e);
+		Solution* s = genAllCombi(m, e);
 
 		printf("size of sol now init = %d\n", vectSize(s->outobjects));
 
@@ -65,7 +65,7 @@ int main(int argc, char const *argv[]) {
 		free(c);
 		freeModel(m);
 		freeExamples(e);
-		freeSolution(s);
+		// freeSolution(s);
 		//free(out);
 	}
 
