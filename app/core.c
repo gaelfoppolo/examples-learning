@@ -17,24 +17,14 @@ int nbCombi(Examples* exp) {
     return nbCombi;
 }
 
-Solution* genEmptySol(Solution* sol, int nbCombi) {
-    OutObject oo;
-    OutAttribute oa;
-    vectPush(OutAttribute, oo.attributes, oa);
-    vectPush(OutObject*, oo.relations, (OutObject*)NULL);
-    for (int i = 0; i < nbCombi; ++i) {
-        vectPush(OutObject, sol->outobjects, oo);
-    }
-    return sol;
-}
-
-void initEmptyOutObject(OutObject* oo, Object* o) {
+OutObject* initOutObjectWithObject(Model* mdl, Object* o) {
+    OutObject* oo = (OutObject*)malloc(sizeof(OutObject));
+    initOutObject(oo);
     OutAttribute* oa = (OutAttribute*)malloc(sizeof(OutAttribute));
     Attribute att;
 
     for(int i = 0; i < vectSize(o->attributes); ++i) {
         att = vectAt(o->attributes, i);
-        oa = &vectAt(oo->attributes, i);
         oa->type = att.type;
 
         switch(att.type) {
@@ -50,8 +40,48 @@ void initEmptyOutObject(OutObject* oo, Object* o) {
                 oa->tree = att.value;
                 break;
         }
+        vectPush(OutAttribute, oo->attributes, *oa);
+        
     }
-    free(oa);
+    for (int j = 0; j < vectSize(mdl->rel); ++j) {
+            vectPush(OutObject*, oo->relations, (OutObject*)NULL);
+    }
+    return oo;
+}
+
+Solution* initAllCombi(Model* mdl, Examples* exp) {
+    int allCombi = nbCombi(exp);
+    Solution* T = (Solution*)malloc(sizeof(Solution));
+    initSolution(T);
+    Example lastExample = vectAt(exp->examples, vectSize(exp->examples)-1);
+    int sizeLastExample = vectSize(lastExample.objects);
+    
+    Object* o;
+    OutObject* oo;
+
+    while(vectSize(T->outobjects) < allCombi) {
+
+        for (int i = 0; i < sizeLastExample; ++i) {
+            // get the adress of the i object in the last exemple
+            o = &vectAt(lastExample.objects, i);
+            oo = initOutObjectWithObject(mdl, o);
+            vectPush(OutObject, T->outobjects, *oo);
+        }
+    }
+    return T;
+
+}
+
+int getIndex(Examples* exp, ObjectIndice* oi) {
+    int index = 0, inside, i;
+    for (i = 0; i < vectSize(exp->examples)-2; ++i) {
+        inside = 1;
+        for (int j = i+1; j < vectSize(exp->examples)-1; ++j) {
+            inside *= vectSize(vectAt(exp->examples, j).objects);
+        }
+        index += vectAt(oi->indices, i)*inside;
+    }
+    return index+vectAt(oi->indices, i);
 }
 
 void genCombi(OutObject* first, Object* second, Model* mdl) {
@@ -79,45 +109,32 @@ void genCombi(OutObject* first, Object* second, Model* mdl) {
     free(oa);
 }
 
-int getIndex(Examples* exp, ObjectIndice* oi) {
-    int index = 0, inside, i;
-    for (i = 0; i < vectSize(exp->examples)-2; ++i) {
-        inside = 1;
-        for (int j = i+1; j < vectSize(exp->examples)-1; ++j) {
-            inside *= vectSize(vectAt(exp->examples, j).objects);
-        }
-        index += vectAt(oi->indices, i)*inside;
-    }
-    return index+vectAt(oi->indices, i);
-}
-
-
 /*
 Solution* genSolution(Model* mdl, Examples* exp) {
- 	// an example
- 	Example e;
+    // an example
+    Example e;
     // an attribute
     Attribute att;
     // an output object
     OutObject* oo;
- 	// an object of an example
- 	Object o;
+    // an object of an example
+    Object o;
     // an integer
     int pt;
- 	// a solution object, gathering traits from all examples
- 	Solution* sol = (Solution*)malloc(sizeof(Solution));
+    // a solution object, gathering traits from all examples
+    Solution* sol = (Solution*)malloc(sizeof(Solution));
     initSolution(sol);
     // init with the first object
     o = vectAt(vectAt(exp->examples, 0).objects, 0);
     sol = initSol(sol, o);
 
- 	for(int i = 0; i < vectSize(exp->examples); ++i) {
+    for(int i = 0; i < vectSize(exp->examples); ++i) {
         // current example
         e = vectAt(exp->examples, i);
 
         // for all objects of the example
         for(int j = 0; j < vectSize(e.objects); ++j) {
-        	// current object of the example
+            // current object of the example
             o = vectAt(e.objects, j);
 
             // for all attributes of the object

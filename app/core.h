@@ -53,33 +53,24 @@ Solution* initSol(Solution* sol, Object o);
 int nbCombi(Examples* exp);
 
 /**
- * @brief Init the solution with nbCombi empty OutObject
+ * @brief Generate a filled OutObject based on a object values
  *
- * @param sol Pointer to the empty solution
- * @param nbCombi The number of combinaisons possible = size of the array
+ * @param mdl Pointer to the Model
+ * @param o Pointer to the Object
  * 
- * @return Solution filled
+ * @return Pointer to OutObject
  */
-Solution* genEmptySol(Solution* sol, int nbCombi);
+OutObject* initOutObjectWithObject(Model* mdl, Object* o);
 
 /**
- * @brief Fill an empty OutObject based on a object values
+ * @brief Init all combinaisons with last example objects
  *
- * @param o Pointer to the outobject
- * @param o Pointer to the object
+ * @param mdl Pointer to the Model
+ * @param exp Pointer to the Examples
  * 
+ * @return Pointer to Solution inizialized
  */
-void initEmptyOutObject(OutObject* oo, Object* o);
-
-/**
- * @brief Combine an OutObject and an Object into an OutObject
- *
- * @param first Pointer to the first OutObject (and also the result of the combinaison)
- * @param second Pointer to the second OutObject to combine
- * @param mdl Pointer to the model (structure of our model is inside)
- * 
- */
-void genCombi(OutObject* first, Object* second, Model* mdl);
+Solution* initAllCombi(Model* mdl, Examples* exp);
 
 /**
  * @brief Get the index of the combinaisons of object in the array
@@ -90,5 +81,15 @@ void genCombi(OutObject* first, Object* second, Model* mdl);
  * @return An integer
  */
 int getIndex(Examples* exp, ObjectIndice* oi);
+
+/**
+ * @brief Combine an OutObject and an Object into an OutObject
+ *
+ * @param first Pointer to the first OutObject (and also the result of the combinaison)
+ * @param second Pointer to the second OutObject to combine
+ * @param mdl Pointer to the model (structure of our model is inside)
+ * 
+ */
+void genCombi(OutObject* first, Object* second, Model* mdl);
 
 #endif // _CORE_H_

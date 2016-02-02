@@ -50,9 +50,7 @@ int main(int argc, char const *argv[]) {
 
 		printf("NB combi : %d\n", nb);
 
-		Solution* s = (Solution*)malloc(sizeof(Solution));
-		initSolution(s);
-		s = genEmptySol(s, nb);
+		Solution* s = initAllCombi(m, e);
 
 		printf("size of sol now init = %d\n", vectSize(s->outobjects));
 
