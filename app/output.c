@@ -1,4 +1,8 @@
 #include "output.h"
+
+// Indicate the max importance of the messages to show to the user (0 : show only critical messages, 1, 2, 3, ... less and less critical messages)
+static unsigned int __output_importance_level = 0;
+
 /*
 char* genOutput(Solution* sol, Model* mdl) {
 	// out final string to display
@@ -48,7 +52,7 @@ char* genOutput(Solution* sol, Model* mdl) {
 }
 */
 
-char* cPrint(const char * fmt, ...) {
+char* cPrint(const char* fmt, ...) {
 	va_list args;
     va_start(args, fmt); // inits the valist
 
@@ -61,4 +65,33 @@ char* cPrint(const char * fmt, ...) {
 
 	va_end(args);
 	return c;
+}
+
+void setOutputImportance(unsigned int level) {
+	__output_importance_level = level;
+}
+
+void output(unsigned int level, const char* fmt, ...) {
+	// check if the message is important enough to be printed given the current setting value
+	if(level > __output_importance_level) {
+		return;
+	}
+
+	va_list args;
+	va_start(args, fmt);
+
+	vprintf(fmt, args);
+
+	va_end(args);
+}
+
+unsigned int extractVerbosityFromArg(const char* verbosity) {
+	unsigned int value = 0;
+	while(*verbosity) {
+		if(*(verbosity++) == 'v') {
+			++value;
+		}
+	}
+
+	return value;
 }
