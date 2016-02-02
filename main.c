@@ -15,7 +15,7 @@ int main(int argc, char const *argv[]) {
 	unsigned int argOffset = 1; // the place where the path to the exp file is expected in the argv array
 
 	if(argc < 2) {
-		printf("You must pass the example file as argument like this : ./learning examples.exp\nThe example file must contains a link to the config file (include).\n");
+		output(LERROR, "You must pass the example file as argument like this : ./learning examples.exp\nThe example file must contains a link to the config file (include).\n");
 		return 1;
 	}
 
@@ -29,30 +29,30 @@ int main(int argc, char const *argv[]) {
 		}
 	}
 
-	output(1, SBWHITE "Loading file example file : %s" SDEFAULT "\n", argv[argOffset]);
+	output(L1, SBWHITE "Loading file example file : %s" SDEFAULT "\n", argv[argOffset]);
 
 	size_t includePosition;
 	char* c = getIncludeFile(argv[argOffset], &includePosition);
 
 	if(c == NULL) {
-		output(0, "The loading of the configuration file failed. The configuration must be linked in the example file.\n");
+		output(LERROR, "The loading of the configuration file failed. The configuration must be linked in the example file.\n");
 	}
 	else {
-		output(1, SBWHITE "Loading configuation file : %s" SDEFAULT "\n", c);
+		output(L1, SBWHITE "Loading configuation file : %s" SDEFAULT "\n", c);
 		Model* m = loadConfigFile(c);
 
 		if(m == NULL) {
-			output(0, "Configuration file parsing : failed\n");
+			output(LERROR, "Configuration file parsing : failed\n");
 			free(c);
 			return 1;
 		}
 
-		output(1, SBWHITE "Loading example file: %s" SDEFAULT "\n", argv[argOffset]);
+		output(L1, SBWHITE "Loading example file: %s" SDEFAULT "\n", argv[argOffset]);
 
 		Examples* e = loadExampleFile(argv[argOffset], m, includePosition);
 
 		if(e == NULL) {
-			printf("Example file parsing : failed\n");
+			output(LERROR, "Example file parsing : failed\n");
 			free(c);
 			freeModel(m);
 			return 1;
@@ -60,11 +60,11 @@ int main(int argc, char const *argv[]) {
 
 		int nb = nbCombi(e);
 
-		output(0, "NB combi : %d\n", nb);
+		output(L0, "NB combi : %d\n", nb);
 
 		Solution* s = initAllCombi(m, e);
 
-		output(0, "size of sol now init = %d\n", vectSize(s->outobjects));
+		output(L0, "size of sol now init = %d\n", vectSize(s->outobjects));
 
 		// printf(SBWHITE "Generating solution..." SDEFAULT "\n");
 

@@ -72,15 +72,15 @@ void setOutputImportance(unsigned int level) {
 }
 
 void output(unsigned int level, const char* fmt, ...) {
-	// check if the message is important enough to be printed given the current setting value
-	if(level > __output_importance_level) {
+	// check if the message is important enough to be printed given the current setting value (&7 discard the error bit)
+	if((level & 7) > __output_importance_level) {
 		return;
 	}
 
 	va_list args;
 	va_start(args, fmt);
 
-	vprintf(fmt, args);
+	vfprintf((level & 8) ? stderr : stdout, fmt, args); // output in error stream if the error bit is set
 
 	va_end(args);
 }

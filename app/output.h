@@ -52,6 +52,16 @@
 #define SBUCYAN		"\e[1;4;36m"
 #define SBUWHITE	"\e[1;4;37m"
 
+#define LERROR		8
+#define L0			0
+#define L1			1
+#define L2			2
+#define L3			3
+#define L4			4
+#define L5			5
+#define L6			6
+#define L7			7
+
 /**
 *	@brief returns a string that contains the representation of the object in a readable presentation
 *	@param sol Pointer to the object grouping the common traits of the other objects int the examples
@@ -77,7 +87,8 @@ void setOutputImportance(unsigned int level);
 
 /**
 *	@brief Print the message in the standard output only if its importance is high enough to be printed
-*	@param level The importance level of the message
+*	@param level The importance level of the message (flags, can use L[0-7] and add the flag LERROR if you want to write in the error stream
+*			LERROR alone is aquivalent to L0 | LERROR
 *	@param fmt The message to be printed
 *	@param args The arguments needed by the fmt argument
 */
