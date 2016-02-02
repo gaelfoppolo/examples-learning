@@ -21,27 +21,27 @@ void genOutput(Solution* sol, Model* mdl) {
             oa = vectAt(oo.attributes, j);
 
             // add attribute name
-            printf("%s(", ma.name);
+            output(L0, "%s(", ma.name);
 
             switch (ma.mt.type) {
                 case TYPE_INT:
                     // get interval value as char*
-                    printf("%d-%d", oa.inter.min, oa.inter.max);
+                    output(L0, "%d-%d", oa.inter.min, oa.inter.max);
                     break;
                 case TYPE_ENUM:
                     for (int k = 0; k < vectSize(oa.oenu.oenu); ++k) {
-                        printf("%s", getEnumStr(vectAt(oa.oenu.oenu, k), mdl, j));
-                        if (k+1 < vectSize(oa.oenu.oenu)) printf(", ");
+                        output(L0, "%s", getEnumStr(vectAt(oa.oenu.oenu, k), mdl, j));
+                        if (k+1 < vectSize(oa.oenu.oenu)) output(L0, ", ");
                     }
                     break;
                 case TYPE_TREE:
-                    printf("%s", getTreeStr(oa.tree, mdl, j));
+                    output(L0, "%s", getTreeStr(oa.tree, mdl, j));
                     break;
             }
-            printf(")");
-            if (j+1 < vectSize(oo.attributes)) printf(", ");
+            output(L0, ")");
+            if (j+1 < vectSize(oo.attributes)) output(L0, ", ");
         }
-        printf("\n");
+        output(L0, "\n");
     }
 }
 
