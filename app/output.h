@@ -67,6 +67,28 @@ void genOutput(Solution* sol, Model* mdl);
 *
 *	@return A newly allocated string that contains the arguments given to the function formated
 */
-char* cPrint(const char * fmt, ...);
+char* cPrint(const char* fmt, ...);
+
+/**
+*	@brief Sets the max level of the messages to output (0 : only critical messages, the higher the value, the less importance the messages)
+*	@param level The level to set
+*/
+void setOutputImportance(unsigned int level);
+
+/**
+*	@brief Print the message in the standard output only if its importance is high enough to be printed
+*	@param level The importance level of the message
+*	@param fmt The message to be printed
+*	@param args The arguments needed by the fmt argument
+*/
+void output(unsigned int level, const char* fmt, ...);
+
+/**
+*	@brief Extract the verbosity value from the "-v[v" formated string.
+*	@param verbosity The string to extract the verbosity from
+*
+*	@return The level extracted
+*/
+unsigned int extractVerbosityFromArg(const char* verbosity);
 
 #endif // _OUTPUT_H_
