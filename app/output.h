@@ -58,7 +58,7 @@
 *	@param mdl Pointer to the model object containing structure of the model
 *	@return A string representing the object in a readable way. Need to be freed by the user
 */
-char* genOutput(Solution* sol, Model* mdl);
+void genOutput(Solution* sol, Model* mdl);
 
 /**
 *	@brief Returns a string that contains the formatted output by concatening all the arguments

@@ -24,26 +24,6 @@ typedef struct __basic_objindex {
 } ObjectIndice;
 
 /**
- * @brief Process examples of a model and produces solution object
- *
- * @param exp Pointer to the structure containing examples and counter examples
- * @param mdl Pointer to the model object containing structure of the model
- *
- * @return An solution object
- */
-Solution* genSolution(Model* mdl, Examples* exp);
-
-/**
- * @brief Init the solution with the first object as "base"
- *
- * @param sol Pointer to the empty solution
- * @param o First object of the example to init the solution
- *
- * @return An solution object
- */
-Solution* initSol(Solution* sol, Object o);
-
-/**
  * @brief Calculate the number of combinaisons possible for our examples from an example
  *
  * @param exp Pointer to our array of exemple
