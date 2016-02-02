@@ -58,21 +58,9 @@ int main(int argc, char const *argv[]) {
 			return 1;
 		}
 
-		int nb = nbCombi(e);
-
-		output(L0, "NB combi : %d\n", nb);
-
-		Solution* s = initAllCombi(m, e);
-
-		output(L0, "size of sol now init = %d\n", vectSize(s->outobjects));
-
-		// printf(SBWHITE "Generating solution..." SDEFAULT "\n");
-
-		//Solution* s = genSolution(m, e); // only one solution in step 1
-
-		//char* out = genOutput(s, m); // we need to pass the model for the int -> string conversion table it holds
-
-		//printf("%s", out);
+		Solution* s = genAllCombi(m, e);
+		
+		genOutput(s, m);
 
 		free(c);
 		freeModel(m);

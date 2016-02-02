@@ -8,10 +8,10 @@
 
 #include "core.h"
 
-int nbCombi(Examples* exp) {
+int nbCombi(Examples* exp, int step) {
     // init with 1, neutral of multiplication
     int nbCombi = 1;
-    for (int i = 0; i < vectSize(exp->examples); ++i) {
+    for (int i = step; i < vectSize(exp->examples); ++i) {
         nbCombi *= vectSize(vectAt(exp->examples, i).objects);
     }
     return nbCombi;
@@ -50,7 +50,7 @@ OutObject* initOutObjectWithObject(Model* mdl, Object* o) {
 }
 
 Solution* initAllCombi(Model* mdl, Examples* exp) {
-    int allCombi = nbCombi(exp);
+    int allCombi = nbCombi(exp, 0);
     Solution* T = (Solution*)malloc(sizeof(Solution));
     initSolution(T);
     Example lastExample = vectAt(exp->examples, vectSize(exp->examples)-1);
@@ -72,27 +72,16 @@ Solution* initAllCombi(Model* mdl, Examples* exp) {
 
 }
 
-int getIndex(Examples* exp, ObjectIndice* oi) {
-    int index = 0, inside, i;
-    for (i = 0; i < vectSize(exp->examples)-2; ++i) {
-        inside = 1;
-        for (int j = i+1; j < vectSize(exp->examples)-1; ++j) {
-            inside *= vectSize(vectAt(exp->examples, j).objects);
-        }
-        index += vectAt(oi->indices, i)*inside;
-    }
-    return index+vectAt(oi->indices, i);
-}
-
-void genCombi(OutObject* first, Object* second, Model* mdl) {
+void combiOutObjectObject(Model* mdl, OutObject* oo, Object*o) {
     OutAttribute* oa = (OutAttribute*)malloc(sizeof(OutAttribute));
     Attribute att;
     int pt;
-    for (int i = 0; i < vectSize(first->attributes); ++i) {
-        oa = &vectAt(first->attributes, i);
-        att = vectAt(second->attributes, i);
 
-        switch(oa->type) {
+    for(int i = 0; i < vectSize(o->attributes); ++i) {
+        att = vectAt(o->attributes, i);
+        oa = &vectAt(oo->attributes, i);
+
+        switch(att.type) {
             case TYPE_INT:
                 addToInterval(&oa->inter, att.value);
                 break;
@@ -104,91 +93,38 @@ void genCombi(OutObject* first, Object* second, Model* mdl) {
                 // looking for tree model (root) in the model (same rank), then LCA
                 oa->tree = LCA(&vectAt(mdl->ma, i).mt.tree, oa->tree, att.value)->id;
                 break;
-        }
+        }        
     }
-    free(oa);
+
 }
 
-/*
-Solution* genSolution(Model* mdl, Examples* exp) {
-    // an example
+Solution* genAllCombi(Model* mdl, Examples* exp) {
+    Solution* T = initAllCombi(mdl, exp);
+    int fact, nbExamples = vectSize(exp->examples);
     Example e;
-    // an attribute
-    Attribute att;
-    // an output object
-    OutObject* oo;
-    // an object of an example
-    Object o;
-    // an integer
-    int pt;
-    // a solution object, gathering traits from all examples
-    Solution* sol = (Solution*)malloc(sizeof(Solution));
-    initSolution(sol);
-    // init with the first object
-    o = vectAt(vectAt(exp->examples, 0).objects, 0);
-    sol = initSol(sol, o);
-
-    for(int i = 0; i < vectSize(exp->examples); ++i) {
-        // current example
-        e = vectAt(exp->examples, i);
-
-        // for all objects of the example
-        for(int j = 0; j < vectSize(e.objects); ++j) {
-            // current object of the example
-            o = vectAt(e.objects, j);
-
-            // for all attributes of the object
-            for(int k = 0; k < vectSize(o.attributes); ++k) {
-                // current attribute of the object
-                att = vectAt(o.attributes, k);
-                // matching output object in the solution (same rank)
-                oo = &vectAt(sol->outobjects, k);
-
-                switch(att.type) {
-                    case TYPE_INT:
-                        addToInterval(&oo->inter, att.value);
-                        break;
-                    case TYPE_ENUM:
-                        vectIndexOf(oo->oenu.oenu, att.value, pt);
-                        if (pt == -1) vectPush(int, oo->oenu.oenu, att.value);
-                        break;
-                    case TYPE_TREE:
-                        // looking for tree model (root) in the model (same rank), then LCA
-                        oo->tree = LCA(&vectAt(mdl->ma, k).mt.tree, oo->tree, att.value)->id;
-                        break;
-                }
+    // begin from last last examples to first one
+    for (int step = nbExamples-2; step >= 0; --step) {
+        e = vectAt(exp->examples, step);
+        fact = nbCombi(exp, step+1);
+        // for all the object of that example
+        for (int i = 0; i < vectSize(e.objects); ++i) {
+            for (int j = 0; j < fact; ++j) {
+                // combi the OutObject with the current Object
+                combiOutObjectObject(mdl, &vectAt(T->outobjects, i*fact+j), &vectAt(e.objects, i));
             }
         }
     }
+    return T;
+}
 
-    return sol;
- }
-
- Solution* initSol(Solution* sol, Object o) {
-    OutObject oo; // default object
-    Attribute att;
-
-    for(int i = 0; i < vectSize(o.attributes); ++i) {
-        att = vectAt(o.attributes, i);
-        oo.type = att.type;
-
-        switch(att.type) {
-            case TYPE_INT:
-                oo.inter.min = att.value;
-                oo.inter.max = att.value;
-                break;
-            case TYPE_ENUM:
-                initOutEnum(&oo.oenu);
-                vectPush(int, oo.oenu.oenu, att.value);
-                break;
-            case TYPE_TREE:
-                oo.tree = att.value;
-                break;
+int getIndex(Examples* exp, ObjectIndice* oi) {
+    int index = 0, inside, i;
+    for (i = 0; i < vectSize(exp->examples)-2; ++i) {
+        inside = 1;
+        for (int j = i+1; j < vectSize(exp->examples)-1; ++j) {
+            inside *= vectSize(vectAt(exp->examples, j).objects);
         }
-        // finally push OutputObject to Solution
-        vectPush(OutObject, sol->outobjects, oo);
+        index += vectAt(oi->indices, i)*inside;
     }
-
-    return sol;
- }
- */
+    return index+vectAt(oi->indices, i);
+}
