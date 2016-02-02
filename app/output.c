@@ -21,21 +21,21 @@ void genOutput(Solution* sol, Model* mdl) {
             oa = vectAt(oo.attributes, j);
 
             // add attribute name
-            output(L0, "%s(", ma.name);
+            output(L0, SBGREEN "%s" SDEFAULT, ma.name);         
+            output(L0, " (" SBCYAN);         
 
             switch (ma.mt.type) {
                 case TYPE_INT:
-                    // get interval value as char*
-                    output(L0, "%d-%d", oa.inter.min, oa.inter.max);
+                    output(L0, "%d ; %d" SDEFAULT, oa.inter.min, oa.inter.max);
                     break;
                 case TYPE_ENUM:
                     for (int k = 0; k < vectSize(oa.oenu.oenu); ++k) {
-                        output(L0, "%s", getEnumStr(vectAt(oa.oenu.oenu, k), mdl, j));
-                        if (k+1 < vectSize(oa.oenu.oenu)) output(L0, ", ");
+                        output(L0, "%s" SDEFAULT, getEnumStr(vectAt(oa.oenu.oenu, k), mdl, j));
+                        if (k+1 < vectSize(oa.oenu.oenu)) output(L0, ", " SBCYAN);
                     }
                     break;
                 case TYPE_TREE:
-                    output(L0, "%s", getTreeStr(oa.tree, mdl, j));
+                    output(L0, "%s" SDEFAULT, getTreeStr(oa.tree, mdl, j));
                     break;
             }
             output(L0, ")");
