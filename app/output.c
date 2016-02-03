@@ -16,7 +16,7 @@ void genOutput(Solution* sol, Model* mdl) {
         oo = vectAt(sol->outobjects, i);
 
         // add name
-        output(L0, SBRED "%s: " SDEFAULT, oo.name);  
+        output(L0, SBPURPLE "%s: " SDEFAULT, oo.name);  
 
         for (int j = 0; j < vectSize(oo.attributes); ++j) {
             // get current model attribute data
@@ -47,8 +47,9 @@ void genOutput(Solution* sol, Model* mdl) {
         for (int j = 0; j < vectSize(oo.relations); ++j) {
         	ooo = vectAt(oo.relations, j);
         	if (ooo != NULL) {
-        		output(L0, SBGREEN "%s ", vectAt(mdl->rel, j));
-        		output(L0, " (" SBCYAN "%s" SDEFAULT") ", ooo->name);
+        		if (j+1 < vectSize(oo.relations)) output(L0, ", ");
+        		output(L0, SBGREEN "%s " SDEFAULT, vectAt(mdl->rel, j));
+        		output(L0, "(" SBPURPLE "%s" SDEFAULT") ", ooo->name);
         	}
         }
         output(L0, "\n");
