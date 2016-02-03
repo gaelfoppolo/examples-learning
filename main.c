@@ -57,6 +57,7 @@ int main(int argc, char const *argv[]) {
 		}
 
 		Solution* s = genAllCombi(m, e);
+		genAllRelations(s, e, m);
 		
 		genOutput(s, m);
 
