@@ -10,7 +10,7 @@ E1
 	x5:shape(quadrilateral), size(6), color(red)
 	x6:shape(quadrilateral), size(4), color(blue)
 E2
-	x7:shape(circle), size(1), color(white)
+	x7:shape(circle), size(1), color(white), on(x9)
 	x8:shape(ellipsoid), size(5), color(blue)
 	x9:shape(ellipse), size(2), color(red)
 !E2
@@ -18,7 +18,7 @@ E2
 	x11:shape(circle), size(1), color(black)
 E3
 	x12:shape(whatever), size(3), color(blue)
-	x13:shape(isosceles-triangle), size(12), color(red)
+	x13:shape(isosceles-triangle), size(12), color(red), on(x12)
 	x14:shape(triangle), size(50), color(blue)
 !E3
 	x15:shape(square), size(1), color(red)

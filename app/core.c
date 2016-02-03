@@ -149,6 +149,8 @@ static void __genAllRelations_rec(Solution* s, Examples* e, Model* m, ObjectIndi
 			}
 			vectFree(relIndices.indices);
 		}
+
+		return;
 	}
 
 	for(unsigned int i = 0; i < vectSize(vectAt(e->examples, currentIndex).objects); ++i) {
