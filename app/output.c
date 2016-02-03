@@ -7,7 +7,7 @@ void genOutput(Solution* sol, Model* mdl) {
     // out final string to display
 
     ModelAttribute ma;
-    OutObject oo;
+    OutObject oo, *ooo;
     OutAttribute oa;
 
     for(int i = 0; i < vectSize(sol->outobjects); ++i) {
@@ -40,6 +40,14 @@ void genOutput(Solution* sol, Model* mdl) {
             }
             output(L0, ")");
             if (j+1 < vectSize(oo.attributes)) output(L0, ", ");
+        }
+        for (int j = 0; j < vectSize(oo.relations); ++j) {
+        	ooo = vectAt(oo.relations, j);
+        	output(L0, "\nRel name = %s", vectAt(mdl->rel, j));
+        	output(L0, "\nRel address = %d", ooo);
+        	if (ooo != NULL) {
+        		output(L0, "%s ", vectAt(mdl->rel, j));
+        	}
         }
         output(L0, "\n");
     }
