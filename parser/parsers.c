@@ -204,7 +204,7 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 		vectAt(ex->objects, id).id = id; // set the id of the object
 		vectAt(ex->objects, id).name = name; // set the name of the object
 
-		output(L2, "Object's name: " SBGREEN "%s" SDEFAULT "\n", name);
+		output(L2, "Object's name: " SBGREEN "%s" SDEFAULT "", name);
 
 		fgetc(fp); //reads the ':' char after the object's name
 		for(unsigned int i = 0; i < vectSize(m->ma); ++i) { // fill the array with as much element that we have possible attributes
@@ -248,6 +248,10 @@ int parseExampleObject(FILE* fp, char** error, Object* o, Model* m, struct __bas
 	attrType type;
 	char c;
 
+	if(getOutputImportance() < 4) { // design purpose. If > 3, line break will be added by the attributes
+		output(L3, "\n");
+	}
+
 	while(1) {
 		name = parseAttrName(fp, error);
 
@@ -268,6 +272,7 @@ int parseExampleObject(FILE* fp, char** error, Object* o, Model* m, struct __bas
 			parseAttrValue(fp, error, m, type, &vectAt(o->relations, position), position, seenObjects);
 		}
 		else {
+			output(L4, "\n"); // if the attributes values are printed, we add a line break
 			output(L3, "\t" SBCYAN "%s" SDEFAULT, name);
 			type = vectAt(m->ma, position).mt.type;
 
@@ -342,7 +347,7 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 				free(str.str);
 				return;
 			}
-			output(L4, ": %s " SYELLOW "(ID = %d)" SDEFAULT "\n", str.str, attr->value);
+			output(L4, ": %s " SYELLOW "(ID = %d)" SDEFAULT, str.str, attr->value);
 			free(str.str);
 			break;
 		case TYPE_ENUM:
@@ -353,7 +358,7 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 				return;
 			}
 			attr->value = tmp;
-			output(L4, ": %s " SYELLOW "(ID = %d)" SDEFAULT "\n", str.str, attr->value);
+			output(L4, ": %s " SYELLOW "(ID = %d)" SDEFAULT, str.str, attr->value);
 			free(str.str);
 			break;
 		case TYPE_TREE:
@@ -364,7 +369,7 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 				return;
 			}
 			attr->value = tmp;
-			output(L4, ": %s " SYELLOW "(ID = %d)" SDEFAULT "\n", str.str, attr->value);
+			output(L4, ": %s " SYELLOW "(ID = %d)" SDEFAULT, str.str, attr->value);
 			free(str.str);
 			break;
 		case TYPE_RELATION:

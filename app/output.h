@@ -84,6 +84,7 @@ char* cPrint(const char* fmt, ...);
 *	@param level The level to set
 */
 void setOutputImportance(unsigned int level);
+unsigned int getOutputImportance();
 
 /**
 *	@brief Print the message in the standard output only if its importance is high enough to be printed

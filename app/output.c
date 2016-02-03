@@ -64,6 +64,10 @@ void setOutputImportance(unsigned int level) {
 	__output_importance_level = level;
 }
 
+unsigned int getOutputImportance() {
+    return __output_importance_level;
+}
+
 void output(unsigned int level, const char* fmt, ...) {
 	// check if the message is important enough to be printed given the current setting value (&7 discard the error bit)
 	if((level & 7) > __output_importance_level) {
