@@ -100,18 +100,25 @@ void combiOutObjectObject(Model* mdl, OutObject* oo, Object*o) {
 
 Solution* genAllCombi(Model* mdl, Examples* exp) {
     Solution* T = initAllCombi(mdl, exp);
-    int fact, nbExamples = vectSize(exp->examples);
+    int fact, factNext, nbExamples = vectSize(exp->examples), nbAllCombi = nbCombi(exp, 0);
     Example e;
     // begin from last last examples to first one
     for (int step = nbExamples-2; step >= 0; --step) {
         e = vectAt(exp->examples, step);
         fact = nbCombi(exp, step+1);
-        // for all the object of that example
-        for (int i = 0; i < vectSize(e.objects); ++i) {
-            for (int j = 0; j < fact; ++j) {
-                // combi the OutObject with the current Object
-                combiOutObjectObject(mdl, &vectAt(T->outobjects, i*fact+j), &vectAt(e.objects, i));
-            }
+        factNext = nbCombi(exp, step);
+
+        for (int i = 0; i < nbAllCombi/factNext; ++i) {
+            
+            // for all the object of that example
+            for (int j = 0; j < vectSize(e.objects); ++j) {
+
+                for (int k = 0; k < fact; ++k) {
+                    
+                    // combi the OutObject with the current Object
+                    combiOutObjectObject(mdl, &vectAt(T->outobjects, i*factNext+j*fact+k), &vectAt(e.objects, j));
+                }
+            }            
         }
     }
     return T;
