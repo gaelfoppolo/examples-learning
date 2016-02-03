@@ -170,9 +170,9 @@ void genAllRelations(Solution* s, Examples* e, Model* m) {
 
 int getIndex(Examples* exp, ObjectIndice* oi) {
 	int index = 0, inside, i;
-	for (i = 0; i < vectSize(exp->examples)-2; ++i) {
+	for (i = 0; i <= vectSize(exp->examples)-2; ++i) {
 		inside = 1;
-		for (int j = i+1; j < vectSize(exp->examples)-1; ++j) {
+		for (int j = i+1; j <= vectSize(exp->examples)-1; ++j) {
 			inside *= vectSize(vectAt(exp->examples, j).objects);
 		}
 		index += vectAt(oi->indices, i)*inside;
