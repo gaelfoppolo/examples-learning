@@ -78,7 +78,7 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
 	int type;
 
 	if(fp == NULL) {
-		printf(SBRED "The file %s does not exist.\n" SDEFAULT, pathname);
+		output(LERROR, SBRED "The file %s does not exist.\n" SDEFAULT, pathname);
 		if(e) {
 			free(e);
 		}
@@ -103,7 +103,7 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
 			if(!parseExample(fp, &error, &vectAt(e->examples, vectSize(e->examples) - 1), model)) {
 				// TODO : remove the last example parsed
 				if(error) {
-					printf("\n" SBRED "Error " SDEFAULT " : %s\n", error);
+					output(LERROR, "\n" SBRED "Error " SDEFAULT " : %s\n", error);
 					free(error);
 					// The example isn't freed in the case of an error
 					return NULL;
@@ -115,7 +115,7 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
 			if(!parseExample(fp, &error, &vectAt(e->counterExamples, vectSize(e->counterExamples) - 1), model)) {
 				// TODO : remove the last example parsed
 				if(error) {
-					printf("\n" SBRED "Error " SDEFAULT " : %s\n", error);
+					output(LERROR, "\n" SBRED "Error " SDEFAULT " : %s\n", error);
 					free(error);
 					// The example isn't freed in the case of an error
 					return NULL;
@@ -132,18 +132,18 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
 unsigned int getNextExample(FILE* fp) {
 	char c;
 	readTil(fp, "\n");
-	printf("\n");
+	output(L2, "\n");
 	while(!feof(fp) && (c = fgetc(fp))) {
 		if((c = fgetc(fp)) == '!') {
 			// counter-example
-			printf("New " SBPURPLE "counter-example" SDEFAULT " found.\n");
+			output(L2, "New " SBPURPLE "counter-example" SDEFAULT " found.\n");
 
 			readTil(fp, "\n");
 			fseek(fp, -1, SEEK_CUR);
 			return PARSED_COUNTEREXAMPLE;
 		}
 		else if(!feof(fp) && c != ' ' && c != '\t' && c != '\n') {
-			printf("New " SBPURPLE "example" SDEFAULT " found.\n");
+			output(L2, "New " SBPURPLE "example" SDEFAULT " found.\n");
 			readTil(fp, "\n");
 			fseek(fp, -1, SEEK_CUR);
 			return PARSED_EXAMPLE;
@@ -204,7 +204,7 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 		vectAt(ex->objects, id).id = id; // set the id of the object
 		vectAt(ex->objects, id).name = name; // set the name of the object
 
-		printf("Object's name: " SBGREEN "%s" SDEFAULT "\n", name);
+		output(L2, "Object's name: " SBGREEN "%s" SDEFAULT "\n", name);
 
 		fgetc(fp); //reads the ':' char after the object's name
 		for(unsigned int i = 0; i < vectSize(m->ma); ++i) { // fill the array with as much element that we have possible attributes
@@ -225,7 +225,7 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 			return 0;
 		}
 
-		//free(name); // not used for the moment
+		output(L2, "\n");
 
 		readTil(fp, "\n");
 	}
@@ -259,7 +259,7 @@ int parseExampleObject(FILE* fp, char** error, Object* o, Model* m, struct __bas
 				return 0;
 			}
 			// the current attribute is a relation
-			printf("\t" SBCYAN "%s (relation)" SDEFAULT, name);
+			output(L3, "\t" SBCYAN "%s (relation)" SDEFAULT, name);
 			type = TYPE_RELATION; // the type of the attribute to read
 
 			fgetc(fp); // reads the '('
@@ -268,7 +268,7 @@ int parseExampleObject(FILE* fp, char** error, Object* o, Model* m, struct __bas
 			parseAttrValue(fp, error, m, type, &vectAt(o->relations, position), position, seenObjects);
 		}
 		else {
-			printf("\t" SBCYAN "%s" SDEFAULT, name);
+			output(L3, "\t" SBCYAN "%s" SDEFAULT, name);
 			type = vectAt(m->ma, position).mt.type;
 
 			fgetc(fp); // reads the '('
@@ -342,7 +342,7 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 				free(str.str);
 				return;
 			}
-			printf(": %s " SYELLOW "(ID = %d)" SDEFAULT "\n", str.str, attr->value);
+			output(L4, ": %s " SYELLOW "(ID = %d)" SDEFAULT "\n", str.str, attr->value);
 			free(str.str);
 			break;
 		case TYPE_ENUM:
@@ -353,7 +353,7 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 				return;
 			}
 			attr->value = tmp;
-			printf(": %s " SYELLOW "(ID = %d)" SDEFAULT "\n", str.str, attr->value);
+			output(L4, ": %s " SYELLOW "(ID = %d)" SDEFAULT "\n", str.str, attr->value);
 			free(str.str);
 			break;
 		case TYPE_TREE:
@@ -364,7 +364,7 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 				return;
 			}
 			attr->value = tmp;
-			printf(": %s " SYELLOW "(ID = %d)" SDEFAULT "\n", str.str, attr->value);
+			output(L4, ": %s " SYELLOW "(ID = %d)" SDEFAULT "\n", str.str, attr->value);
 			free(str.str);
 			break;
 		case TYPE_RELATION:
@@ -383,7 +383,7 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 				attr->value = vectSize(seenObjects->seen);
 				vectPush(char*, seenObjects->seen, str.str);
 			}
-			printf(": %s " SYELLOW "(ID = %d)" SDEFAULT "\n", str.str, attr->value);
+			output(L4, ": %s " SYELLOW "(ID = %d)" SDEFAULT "\n", str.str, attr->value);
 			if(tmp > -1) {
 				free(str.str);
 			}
@@ -404,7 +404,7 @@ Model* loadConfigFile(char const* pathname) {
 	vectInit(m->rel);
 
 	if(fp == NULL) {
-		printf(SBRED "The file %s does not exist.\n" SDEFAULT, pathname);
+		output(LERROR, SBRED "The file %s does not exist.\n" SDEFAULT, pathname);
 		return NULL;
 	}
 
@@ -416,11 +416,10 @@ Model* loadConfigFile(char const* pathname) {
 
 	//vectRemoveLast(m->ma);
 
-	printf("\n" SBDEFAULT "The model has %d attribute%s and %d relation%s", vectSize(m->ma), vectSize(m->ma) > 1 ? "s": "", vectSize(m->rel), vectSize(m->rel) > 1 ? "s": "");
-	printf(SDEFAULT ".\n");
+	output(L2, "\n" SBDEFAULT "The model has %d attribute%s and %d relation%s" SDEFAULT ".\n", vectSize(m->ma), vectSize(m->ma) > 1 ? "s": "", vectSize(m->rel), vectSize(m->rel) > 1 ? "s": "");
 
 	if(error) {
-		printf(SBRED "Error: %s\n" SDEFAULT, error);
+		output(LERROR, SBRED "Error: %s\n" SDEFAULT, error);
 	}
 
 	fclose(fp);
@@ -442,10 +441,10 @@ int parseConfigLine(FILE* fp, char** error, Model* out) {
 
 	if(strcmp(current.name, "relation") == 0) {
 		isRelation = 1;
-		printf(SBPURPLE "\nRelations found : " SDEFAULT);
+		output(L3, SBPURPLE "\nRelations found : " SDEFAULT);
 	}
 	else {
-		printf("\nNew attribute found: " SBPURPLE "%s" SDEFAULT "\nType: ", current.name);
+		output(L3, "\nNew attribute found: " SBPURPLE "%s" SDEFAULT "\nType: ", current.name);
 	}
 
 
@@ -537,11 +536,11 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 		}
 		current->inter = *it;
 		free(it);
-		printf(SBGREEN "Interval" SDEFAULT "\nRange: " SBCYAN "[%d ; %d]\n" SDEFAULT, current->inter.min, current->inter.max);
+		output(L3, SBGREEN "Interval" SDEFAULT "\nRange: " SBCYAN "[%d ; %d]\n" SDEFAULT, current->inter.min, current->inter.max);
 	}
 	else if(c == '(') {
 		// reads tree
-		printf(SBGREEN "Binary tree\n" SDEFAULT);
+		output(L3, SBGREEN "Binary tree\n" SDEFAULT);
 		current->type = TYPE_TREE;
 		fseek(fp, -1, SEEK_CUR);
 		int index = 0;
@@ -564,12 +563,15 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 		}
 		current->enu = *e;
 		free(e);
-		printf(SBGREEN "Enum" SDEFAULT "\nValues: ");
+		output(L3, SBGREEN "Enum" SDEFAULT "\n");
+		output(L4, "Values: ");
 		for(int i = 0; i < vectSize(current->enu.enu); ++i) {
-			printf(SBCYAN "%s" SBYELLOW " (ID = %d)" SDEFAULT, vectAt(current->enu.enu, i).str, vectAt(current->enu.enu, i).id);
-			if (i+1 < vectSize(current->enu.enu)) printf("\n\t");
+			output(L4, SBCYAN "%s" SBYELLOW " (ID = %d)" SDEFAULT, vectAt(current->enu.enu, i).str, vectAt(current->enu.enu, i).id);
+			if (i+1 < vectSize(current->enu.enu)) {
+				output(L4, "\n\t");
+			} 
 		}
-		printf("\n");
+		output(L4, "\n");
 	}
 
 	return current;
@@ -706,10 +708,10 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 
 	if((c = fgetc(fp)) == EOF || c != '(') {
 		if(c == EOF) {
-			printf("Parenthesis expected.");
+			output(LERROR, "Parenthesis expected.");
 		}
 		else {
-			printf("Parenthesis expected but found '%c'.", c);
+			output(LERROR, "Parenthesis expected but found '%c'.", c);
 		}
 		free(t);
 		return NULL;
@@ -718,17 +720,17 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 	t->str = parseAttrName(fp, error);
 
 	if(t->str == NULL) {
-		printf(SBRED "Tree root value invalid." SDEFAULT);
+		output(LERROR, SBRED "Tree root value invalid." SDEFAULT);
 		free(t->str);
 		free(t);
 		return NULL;
 	}
 	printIndent(indent);
-	printf(SBCYAN "%s" SBYELLOW " (ID = %d)\n" SDEFAULT, t->str, t->id);
+	output(L4, SBCYAN "%s" SBYELLOW " (ID = %d)\n" SDEFAULT, t->str, t->id);
 
 	readFileSpaces(fp, "\t\n ");
 	if((c = fgetc(fp)) != ')' && c != ',') {
-		printf("Expected ')' or ',' but found '%c' instead", c);
+		output(LERROR, "Expected ')' or ',' but found '%c' instead", c);
 		free(t->str);
 		free(t);
 		return NULL;
@@ -744,7 +746,7 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 		// at least one child
 		readFileSpaces(fp, "\t\n ");
 		if((c = fgetc(fp)) != '(') {
-			printf("character '%c' unexpected while parsing the first child of [%s]", c, t->str);
+			output(LERROR, "character '%c' unexpected while parsing the first child of [%s]", c, t->str);
 			free(t->str);
 			free(t);
 			return NULL;
@@ -753,7 +755,7 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 		// reccursive call
 		t->left = parseAttrTypeTree(fp, error, index, indent+1);
 		if(!t->left) {
-			printf("An error occured while parsing the first child of [%s]", t->str);
+			output(LERROR, "An error occured while parsing the first child of [%s]", t->str);
 			free(t->str);
 			free(t);
 			return NULL;
@@ -771,7 +773,7 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 			return t;
 		}
 		else if(c != ',') {
-			printf("Expected ',' but '%c' found instead while parsing [%s]", c, t->str);
+			output(LERROR, "Expected ',' but '%c' found instead while parsing [%s]", c, t->str);
 			free(t->str);
 			free(t);
 			return NULL;
@@ -780,7 +782,7 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 			// right child
 			readFileSpaces(fp, "\t\n ");
 			if((c = fgetc(fp)) != '(') {
-				printf("character '%c' unexpected while parsing the second child of [%s]", c, t->str);
+				output(LERROR, "character '%c' unexpected while parsing the second child of [%s]", c, t->str);
 				free(t->str);
 				free(t);
 				return NULL;
@@ -788,7 +790,7 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 			fseek(fp, -1, SEEK_CUR);
 			t->right = parseAttrTypeTree(fp, error, index, indent+1);
 			if(!t->right) {
-				printf("An error occured while parsing the second child of [%s]", t->str);
+				output(LERROR, "An error occured while parsing the second child of [%s]", t->str);
 				free(t->str);
 				free(t);
 				return NULL;
@@ -797,7 +799,7 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 			// go to the last parenthesis
 			readFileSpaces(fp, "\t\n ");
 			if(fgetc(fp) != ')') {
-				printf("Expected a closing parenthesis at the end of [%s]", t->str);
+				output(LERROR, "Expected a closing parenthesis at the end of [%s]", t->str);
 				free(t->str);
 				free(t);
 				return NULL;
@@ -854,6 +856,6 @@ void readTil(FILE* fp, char const* set) {
 
 void printIndent(int indent) {
 	for (int i = 0; i < indent; ++i) {
-		printf("\t");
+		output(L4, "\t");
 	}
 }

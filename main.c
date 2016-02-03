@@ -29,8 +29,6 @@ int main(int argc, char const *argv[]) {
 		}
 	}
 
-	output(L1, SBWHITE "Loading file example file : %s" SDEFAULT "\n", argv[argOffset]);
-
 	size_t includePosition;
 	char* c = getIncludeFile(argv[argOffset], &includePosition);
 
