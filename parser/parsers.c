@@ -337,6 +337,11 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 	switch(type) {
 		case TYPE_INT:
 			attr->value = atoi(str.str);
+			if(value < vectAt(m->ma, position).mt.inter.min || value > vectAt(m->ma, position).mt.inter.max) {
+				*error = cPrint("Integer value not in bounds (expected between %d and %d, found %d)", vectAt(m->ma, position).mt.inter.min, vectAt(m->ma, position).mt.inter.max, value);
+				free(str.str);
+				return;
+			}
 			printf(": %s " SYELLOW "(ID = %d)" SDEFAULT "\n", str.str, attr->value);
 			free(str.str);
 			break;
