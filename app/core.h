@@ -20,7 +20,7 @@
 *   @field indices the indices of the objects combined
 */
 typedef struct __basic_objindex {
-    Vector(int) indices;
+	Vector(int) indices;
 } ObjectIndice;
 
 /**

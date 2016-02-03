@@ -18,7 +18,7 @@
 *	@field relations The list of the object's relations
 */
 typedef struct __basic_object {
-    Vector(Attribute) attributes;
+	Vector(Attribute) attributes;
 	Vector(Attribute) relations;
 	char* name;
 	unsigned int id;
