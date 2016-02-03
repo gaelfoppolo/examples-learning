@@ -7,7 +7,7 @@ E1
 	x4:size(2), shape(square), color(white)
 !E1
 	x4:shape(circle), size(3), color(red)
-	x5:shape(quadrilateral), size(6), color(red)
+	x5:shape(quadrilateral), size(1), color(red)
 	x6:shape(quadrilateral), size(4), color(blue)
 E2
 	x7:shape(circle), size(1), color(white)
@@ -22,4 +22,4 @@ E3
 	x14:shape(triangle), size(2), color(blue)
 !E3
 	x15:shape(square), size(1), color(red)
-	x16:shape(polygone), size(66), color(red)
+	x16:shape(polygone), size(5), color(red)
