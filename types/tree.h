@@ -9,6 +9,8 @@
 #ifndef _TREE_H_
 #define _TREE_H_
 
+ #include "vector.h"
+
 /**
  * @brief Binary tree structure
  *
@@ -20,8 +22,9 @@
 typedef struct __tree {
  	int id;
 	char* str;
- 	struct __tree *left;
- 	struct __tree *right;
+	Vector(struct __tree) children;
+ 	//struct __tree *left;
+ 	//struct __tree *right;
 } Tree;
 
 /**
@@ -44,7 +47,9 @@ Tree* createLeaf(int id, char* str);
  *
  * @return A new Tree
  */
-Tree* createNode(int id, char* str, Tree* left, Tree* right);
+Tree* createNode(int id, char* str, Tree* child);
+
+Tree* addChild(Tree* node, Tree* child);
 
 /**
  * @brief Check if a tree is a leaf

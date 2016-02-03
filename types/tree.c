@@ -16,23 +16,27 @@ Tree* createLeaf(int id, char* str) {
  	t = (Tree*)malloc(sizeof(Tree));
  	t->id = id;
 	t->str = str;
- 	t->left = NULL;
- 	t->right = NULL;
+	vectInit(t->children);
 	return t;
 }
 
-Tree* createNode(int id, char* str, Tree* left, Tree* right) {
+Tree* createNode(int id, char* str, Tree* child) {
 	Tree* t;
 	t = (Tree*)malloc(sizeof(Tree));
 	t->id = id;
 	t->str = str;
-	t->left = left;
-	t->right = right;
+	vectInit(t->children);
+	vectPush(Tree, t->children, *child);
 	return t;
 }
 
+Tree* addChild(Tree* node, Tree* child) {
+	vectPush(Tree, node->children, *child);
+	return node;
+}
+
 int isLeaf(Tree* t) {
-	return (t->left == NULL) && (t->right = NULL);
+	return vectSize(t->children) == 0;
 }
 
 Tree* LCA(Tree* root, int id1, int id2) {
@@ -46,22 +50,36 @@ Tree* LCA(Tree* root, int id1, int id2) {
 	}
 
 	// else we keep going down
-	Tree* left = LCA(root->left, id1, id2);
-	Tree* right = LCA(root->right, id1, id2);
-	// if left and right both contain v1 and v2
+	Tree* firstValue = NULL;
+	Tree* secondValue = NULL;
+	Tree* tmp;
+	for(unsigned int i = 0; i < vectSize(root->children); ++i) {
+		tmp = LCA(&vectAt(root->children, i), id1, id2);
+		if(tmp) {
+			if(!firstValue) {
+				firstValue = tmp;
+			}
+			else if(!secondValue) {
+				secondValue = tmp;
+				break;
+			}
+		}
+	}
+	// if the two ids are in two different children of the root
 	// current root is LCA
-	if(left && right) {
+	if(firstValue && secondValue) {
 		return root;
 	}
 
 	// else we return the node that contain the value
 	// or NULL if none of them contain
-	return left ? left : right;
+	return firstValue;
 }
 
 void freeTree(Tree* t) {
 	if(t->str) free(t->str);
-	if(t->left) freeTree(t->left);
-	if(t->right) freeTree(t->right);
-	free(t);
+	for(unsigned int i = 0; i < vectSize(t->children); ++i) {
+		freeTree(&vectAt(t->children, i));
+	}
+	vectFree(t->children);
 }

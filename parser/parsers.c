@@ -545,7 +545,7 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 	}
 	else if(c == '(') {
 		// reads tree
-		output(L3, SBGREEN "Binary tree\n" SDEFAULT);
+		output(L3, SBGREEN "Tree\n" SDEFAULT);
 		current->type = TYPE_TREE;
 		fseek(fp, -1, SEEK_CUR);
 		int index = 0;
@@ -704,9 +704,8 @@ Enum* parseAttrTypeEnum(FILE* fp, char** error) {
 
 Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 	char c;
-	Tree* t = (Tree*)malloc(sizeof(Tree));
-	t->id = (*index)++;
-
+	Tree* t = createLeaf((*index)++, NULL);
+	Tree* tmp;
 
 	// reads til '('
 	readFileSpaces(fp, "\t ");
@@ -743,78 +742,44 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 
 	if(c == ')') {
 		// leaf
-		t->left = NULL;
-		t->right = NULL;
 		return t;
 	}
 	else {
-		// at least one child
-		readFileSpaces(fp, "\t\n ");
-		if((c = fgetc(fp)) != '(') {
-			output(LERROR, "character '%c' unexpected while parsing the first child of [%s]", c, t->str);
-			free(t->str);
-			free(t);
-			return NULL;
-		}
-		fseek(fp, -1, SEEK_CUR);
-		// reccursive call
-		t->left = parseAttrTypeTree(fp, error, index, indent+1);
-		if(!t->left) {
-			output(LERROR, "An error occured while parsing the first child of [%s]", t->str);
-			free(t->str);
-			free(t);
-			return NULL;
-		}
-
-		// we are on the closing parenthesis of the first child.
-		if((c = fgetc(fp)) != ',' && c != ')') {
-			readFileSpaces(fp, "\t\n ");
-			c = fgetc(fp);
-		}
-
-		if(c == ')') {
-			// no second child
-			t->right = NULL;
-			return t;
-		}
-		else if(c != ',') {
-			output(LERROR, "Expected ',' but '%c' found instead while parsing [%s]", c, t->str);
-			free(t->str);
-			free(t);
-			return NULL;
-		}
-		else {
-			// right child
-			readFileSpaces(fp, "\t\n ");
+		while(c != ')') {
+			// at least one child
+			readFileSpaces(fp, ",\t\n ");
 			if((c = fgetc(fp)) != '(') {
-				output(LERROR, "character '%c' unexpected while parsing the second child of [%s]", c, t->str);
+				output(LERROR, "character '%c' unexpected while parsing the first child of [%s]", c, t->str);
 				free(t->str);
 				free(t);
 				return NULL;
 			}
 			fseek(fp, -1, SEEK_CUR);
-			t->right = parseAttrTypeTree(fp, error, index, indent+1);
-			if(!t->right) {
-				output(LERROR, "An error occured while parsing the second child of [%s]", t->str);
-				free(t->str);
-				free(t);
+			// reccursive call
+			tmp = parseAttrTypeTree(fp, error, index, indent+1);
+			if(!tmp) {
+				output(LERROR, "An error occured while parsing the first child of [%s]", t->str);
+				freeTree(t);
 				return NULL;
 			}
 
-			// go to the last parenthesis
-			readFileSpaces(fp, "\t\n ");
-			if(fgetc(fp) != ')') {
-				output(LERROR, "Expected a closing parenthesis at the end of [%s]", t->str);
-				free(t->str);
-				free(t);
+			addChild(t, tmp);
+
+			// we are on the closing parenthesis of the first child.
+			if((c = fgetc(fp)) != ',' && c != ')') {
+				readFileSpaces(fp, "\t\n ");
+				c = fgetc(fp);
+			}
+
+			if(c != ')' && c != ',') {
+				output(LERROR, "Expected ',' or ')' but '%c' found instead while parsing [%s]", c, t->str);
+				freeTree(t);
 				return NULL;
 			}
-			return t;
 		}
-
 	}
 
-	return NULL;
+	return t;
 }
 
 int isValidAttrChar(char c, unsigned int first) {

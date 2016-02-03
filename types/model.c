@@ -31,15 +31,7 @@ void freeModel(Model* mo) {
 				vectFree(vectAt(mo->ma, i).mt.enu.enu);
 				break;
 			case TYPE_TREE:
-				if(vectAt(mo->ma, i).mt.tree.left) {
-					freeTree(vectAt(mo->ma, i).mt.tree.left);
-				}
-				if(vectAt(mo->ma, i).mt.tree.right) {
-					freeTree(vectAt(mo->ma, i).mt.tree.right);
-				}
-				if(vectAt(mo->ma, i).mt.tree.str) {
-					free(vectAt(mo->ma, i).mt.tree.str);
-				}
+				freeTree(&vectAt(mo->ma, i).mt.tree);
 				break;
 		}
 	}
@@ -74,12 +66,13 @@ int __getTreeId_rec(const char* str, Tree* t) {
 		if(strcmp(str, t->str) == 0) {
 			return t->id;
 		}
-		int rec = __getTreeId_rec(str, t->left);
-		if(rec > -1) {
-			return rec;
+		int rec;
+		for(unsigned int i = 0; i < vectSize(t->children); ++i) {
+			rec = __getTreeId_rec(str, &vectAt(t->children, i));
+			if(rec > -1) {
+				return rec;
+			}
 		}
-		rec = __getTreeId_rec(str, t->right);
-		return rec;
 	}
 
 	return -1;
@@ -105,12 +98,13 @@ char* __getTreeStr_rec(int id, Tree* t) {
 		if(t->id == id) {
 			return t->str;
 		}
-		char* rec = __getTreeStr_rec(id, t->left);
-		if(rec != NULL) {
-			return rec;
+		char* rec;
+		for(unsigned int i = 0; i < vectSize(t->children); ++i) {
+			rec = __getTreeStr_rec(id, &vectAt(t->children, i));
+			if(rec) {
+				return rec;
+			}
 		}
-		rec = __getTreeStr_rec(id, t->right);
-		return rec;
 	}
 
 	return NULL;
