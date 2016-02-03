@@ -204,6 +204,7 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 		vectAt(ex->objects, id).id = id; // set the id of the object
 		vectAt(ex->objects, id).name = name; // set the name of the object
 
+		output(L3, "\n");
 		output(L2, "Object's name: " SBGREEN "%s" SDEFAULT "", name);
 
 		fgetc(fp); //reads the ':' char after the object's name
@@ -262,6 +263,7 @@ int parseExampleObject(FILE* fp, char** error, Object* o, Model* m, struct __bas
 				*error = cPrint(SBRED "The attribute " SWHITE "%s" SBRED " is not defined." SDEFAULT, name);
 				return 0;
 			}
+			output(L4, "\n"); // if the attributes values are printed, we add a line break
 			// the current attribute is a relation
 			output(L3, "\t" SBCYAN "%s (relation)" SDEFAULT, name);
 			type = TYPE_RELATION; // the type of the attribute to read
@@ -388,7 +390,7 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 				attr->value = vectSize(seenObjects->seen);
 				vectPush(char*, seenObjects->seen, str.str);
 			}
-			output(L4, ": %s " SYELLOW "(ID = %d)" SDEFAULT "\n", str.str, attr->value);
+			output(L4, ": %s " SYELLOW "(ID = %d)" SDEFAULT, str.str, attr->value);
 			if(tmp > -1) {
 				free(str.str);
 			}
@@ -446,7 +448,7 @@ int parseConfigLine(FILE* fp, char** error, Model* out) {
 
 	if(strcmp(current.name, "relation") == 0) {
 		isRelation = 1;
-		output(L3, SBPURPLE "\nRelations found : " SDEFAULT);
+		output(L3, SBPURPLE "\nRelations" SDEFAULT " found: ");
 	}
 	else {
 		output(L3, "\nNew attribute found: " SBPURPLE "%s" SDEFAULT "\nType: ", current.name);

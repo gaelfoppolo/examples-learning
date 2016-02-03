@@ -36,7 +36,7 @@ int main(int argc, char const *argv[]) {
 		output(LERROR, "The loading of the configuration file failed. The configuration must be linked in the example file.\n");
 	}
 	else {
-		output(L1, SBWHITE "Loading configuation file : %s" SDEFAULT "\n", c);
+		output(L1, SBDEFAULT "Loading configuation file : %s" SDEFAULT "\n", c);
 		Model* m = loadConfigFile(c);
 
 		if(m == NULL) {
@@ -45,7 +45,7 @@ int main(int argc, char const *argv[]) {
 			return 1;
 		}
 
-		output(L1, SBWHITE "Loading example file: %s" SDEFAULT "\n", argv[argOffset]);
+		output(L1, SBDEFAULT "Loading example file: %s" SDEFAULT "\n", argv[argOffset]);
 
 		Examples* e = loadExampleFile(argv[argOffset], m, includePosition);
 
