@@ -40,9 +40,6 @@ int isLeaf(Tree* t) {
 }
 
 Tree* LCA(Tree* root, int id1, int id2) {
-	if(!root) {
-		return NULL;
-	}
 
 	// we check if we find at least one
 	if(root->id == id1 || root->id == id2) {

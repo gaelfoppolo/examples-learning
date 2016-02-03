@@ -13,10 +13,12 @@
 
 /**
 *   @brief All the attributes composing the output object
-*   @field attributes All the attributes og the object
+*   @field name Name of the OutObject
+*   @field attributes All the attributes of the object
 *	@field relations All the relations of the object
 */
 typedef struct __basic_outobject {
+	char* name;
 	Vector(OutAttribute) attributes;
 	Vector(struct __basic_outobject*) relations;
 } OutObject;

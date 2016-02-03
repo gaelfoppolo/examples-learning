@@ -14,6 +14,7 @@
 #include "../types/model.h"
 #include "../types/examples.h"
 #include "../types/solution.h"
+#include "output.h"
 
 /**
 *   @brief Represent the indices of the objects combined

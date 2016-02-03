@@ -65,6 +65,7 @@ Solution* initAllCombi(Model* mdl, Examples* exp) {
 			// get the adress of the i object in the last exemple
 			o = &vectAt(lastExample.objects, i);
 			oo = initOutObjectWithObject(mdl, o);
+            oo->name = cPrint("S%d", vectSize(T->outobjects)+1);
 			vectPush(OutObject, T->outobjects, *oo);
 		}
 	}
