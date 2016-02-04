@@ -1,25 +1,27 @@
 include ressources/geometric-shape.cfg
 
 E1
-	x1:shape(rectangle), size(2), color(white), on(x4)
-	x2:shape(isosceles-triangle), size(5), color(red)
-	x3:shape(trapeze), size(4), color(red), on(x1)
-	x4:shape(square), size(2), color(white)
+	x1:shape(circle), size(12), color(yellow), on(x2)
+	x2:shape(square), size(15), color(red), on(x3)
+	x3:shape(triangle), size(10), color(blue)
+	x4:shape(trapeze), size(10), color(blue), behind(x1)
+	x5:shape(rectangle), size(7), color(orange), next-to(x1)
 !E1
-	x4:shape(circle), size(3), color(red)
-	x5:shape(quadrilateral), size(6), color(red)
-	x6:shape(quadrilateral), size(4), color(blue)
+	x6:shape(circle), size(3), color(red)
+	x7:shape(quadrilateral), size(6), color(red)
+	x8:shape(quadrilateral), size(4), color(blue)
 E2
-	x7:shape(circle), size(1), color(white), on(x9)
-	x8:shape(ellipsoid), size(5), color(blue)
-	x9:shape(ellipse), size(2), color(red)
+	x9:shape(ellipsoid), size(6), color(red), on(x10)
+	x10:shape(trapeze), size(12), color(red), on(x11)
+	x11:shape(equilateral-triangle), size(4), color(violet)
+	x12:shape(rectangle), size(2), color(black), behind(x11)
 !E2
-	x10:shape(trapeze), size(4), color(blue)
-	x11:shape(circle), size(1), color(black)
+	x13:shape(trapeze), size(4), color(blue)
+	x14:shape(circle), size(1), color(black)
 E3
-	x12:shape(whatever), size(3), color(blue)
-	x13:shape(isosceles-triangle), size(12), color(red), on(x12)
-	x14:shape(triangle), size(50), color(blue)
+	x15:shape(ellipse), size(4), color(orange), on(x16)
+	x16:shape(polygone), size(20), color(red)
+	x17:shape(square), size(4), color(blue), next-to(x15)
 !E3
-	x15:shape(square), size(1), color(red)
-	x16:shape(polygone), size(50), color(red)
+	x18:shape(square), size(1), color(red)
+	x19:shape(polygone), size(50), color(red)

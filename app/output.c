@@ -1,3 +1,11 @@
+/**
+ *
+ * @gaelfoppolo FOPPOLO Gaël
+ * @Ebatsin     PHILIP Bastien
+ *
+ * @brief Convertion tools from structures to human readable strings
+ */
+
 #include "output.h"
 
 // Indicate the max importance of the messages to show to the user (0 : show only critical messages, 1, 2, 3, ... less and less critical messages)
