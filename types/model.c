@@ -8,46 +8,30 @@
 
 #include "model.h"
 
-void initModel(Model* mo) {
-	vectInit(mo->ma);
+void initModel(Model* mdl) {
+	vectInit(mdl->ma);
 }
 
-void freeModel(Model* mo) {
-	if(!mo) return;
+void freeModel(Model* mdl) {
+	if(!mdl) return;
 
 	// free attributes
-	for(unsigned int i = 0; i < vectSize(mo->ma); ++i) {
-		if(vectAt(mo->ma, i).name) {
-			free(vectAt(mo->ma, i).name);
-		}
-		switch(vectAt(mo->ma, i).mt.type) {
-			case TYPE_INT: break;
-			case TYPE_ENUM:
-				for(unsigned int j = 0; j < vectSize(vectAt(mo->ma, i).mt.enu.enu); ++j) {
-					if(vectAt(vectAt(mo->ma, i).mt.enu.enu, j).str) {
-						free(vectAt(vectAt(mo->ma, i).mt.enu.enu, j).str);
-					}
-				}
-				vectFree(vectAt(mo->ma, i).mt.enu.enu);
-				break;
-			case TYPE_TREE:
-				freeTree(&vectAt(mo->ma, i).mt.tree);
-				break;
-		}
+	for(unsigned int i = 0; i < vectSize(mdl->ma); ++i) {
+		freeModelAttribute(&vectAt(mdl->ma, i), 0);
 	}
 
 	// free relations
-	for(unsigned int i = 0; i < vectSize(mo->rel); ++i) {
-		free(vectAt(mo->rel, i));
+	for(unsigned int i = 0; i < vectSize(mdl->rel); ++i) {
+		free(vectAt(mdl->rel, i));
 	}
 
-	vectFree(mo->ma);
-	vectFree(mo->rel);
-	free(mo);
+	vectFree(mdl->ma);
+	vectFree(mdl->rel);
+	free(mdl);
 }
 
-int getEnumId(const char* str, Model* m, unsigned int index) {
-	Enum* current = &vectAt(m->ma, index).mt.enu;
+int getEnumId(const char* str, Model* mdl, unsigned int index) {
+	Enum* current = &vectAt(mdl->ma, index).mt.enu;
 	for(unsigned int i = 0; i < vectSize(current->enu); ++i) {
 		if(strcmp(str, vectAt(current->enu, i).str) == 0) {
 			return vectAt(current->enu, i).id;
@@ -57,8 +41,8 @@ int getEnumId(const char* str, Model* m, unsigned int index) {
 	return -1;
 }
 
-int getTreeId(const char* str, Model* m, unsigned int index) {
-	return __getTreeId_rec(str, &vectAt(m->ma, index).mt.tree);
+int getTreeId(const char* str, Model* mdl, unsigned int index) {
+	return __getTreeId_rec(str, &vectAt(mdl->ma, index).mt.tree);
 }
 
 int __getTreeId_rec(const char* str, Tree* t) {
@@ -78,8 +62,8 @@ int __getTreeId_rec(const char* str, Tree* t) {
 	return -1;
 }
 
-char* getEnumStr(int id, Model* m, unsigned int index) {
-	Enum* current = &vectAt(m->ma, index).mt.enu;
+char* getEnumStr(int id, Model* mdl, unsigned int index) {
+	Enum* current = &vectAt(mdl->ma, index).mt.enu;
 	for(unsigned int i = 0; i < vectSize(current->enu); ++i) {
 		if(vectAt(current->enu, i).id == id) {
 			return vectAt(current->enu, i).str;
@@ -89,8 +73,8 @@ char* getEnumStr(int id, Model* m, unsigned int index) {
 	return NULL;
 }
 
-char* getTreeStr(int id, Model* m, unsigned int index) {
-	return __getTreeStr_rec(id, &vectAt(m->ma, index).mt.tree);
+char* getTreeStr(int id, Model* mdl, unsigned int index) {
+	return __getTreeStr_rec(id, &vectAt(mdl->ma, index).mt.tree);
 }
 
 char* __getTreeStr_rec(int id, Tree* t) {

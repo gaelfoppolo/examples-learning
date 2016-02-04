@@ -1,7 +1,7 @@
 /**
  *
  * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin PHILIP Bastien
+ * @Ebatsin 	PHILIP Bastien
  *
  * @brief Structure of our attribute
  */

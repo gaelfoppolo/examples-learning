@@ -1,7 +1,7 @@
 /**
  *
  * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin PHILIP Bastien
+ * @Ebatsin 	PHILIP Bastien
  *
  * @brief Structure of our solution - Implementation
  */
@@ -14,7 +14,7 @@ void initSolution(Solution* sol) {
 
 void freeSolution(Solution* sol) {
 	for(unsigned int i = 0; i < vectSize(sol->outobjects); ++i) {
-		freeOutObject(&vectAt(sol->outobjects, i));
+		freeOutObject(&vectAt(sol->outobjects, i), 0);
 	}
 	vectFree(sol->outobjects);
 	free(sol);

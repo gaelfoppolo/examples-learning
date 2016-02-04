@@ -13,6 +13,8 @@ void initObject(Object* obj) {
 }
 
 void freeObject(Object* obj, int freeItself) {
+	if(!obj) return;
+
 	vectFree(obj->attributes);
 	vectFree(obj->relations);
 	free(obj->name);

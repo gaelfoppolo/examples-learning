@@ -1,7 +1,7 @@
 /**
  *
  * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin PHILIP Bastien
+ * @Ebatsin 	PHILIP Bastien
  *
  * @brief Structure of our output object
  */
@@ -13,15 +13,14 @@ void initOutObject(OutObject* oo) {
 	vectInit(oo->relations);
 }
 
-void freeOutObject(OutObject* oo) {
-	if(oo->name) {
-		free(oo->name);
-	}
+void freeOutObject(OutObject* oo, int freeItself) {
+	if(oo->name) free(oo->name);
+	
 	for(unsigned int i = 0; i < vectSize(oo->attributes); ++i) {
-		if(vectAt(oo->attributes, i).type == TYPE_ENUM) {
-			freeOutEnum(&vectAt(oo->attributes, i).oenu);
-		}
+		freeOutAttribute(&vectAt(oo->attributes, i), 0);
 	}
 	vectFree(oo->attributes);
 	vectFree(oo->relations);
+
+	if(freeItself) free(oo);
 }

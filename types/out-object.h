@@ -1,7 +1,7 @@
 /**
  *
  * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin PHILIP Bastien
+ * @Ebatsin 	PHILIP Bastien
  *
  * @brief Structure of our output object
  */
@@ -32,7 +32,8 @@ void initOutObject(OutObject* oo);
 /**
 *	@brief Free the outobject previously initialized by initOutObject
 *	@param oo A pointer to the outobject to free
+*	@param freeItself Boolean to know if the OutObject needs to free itself
 */
-void freeOutObject(OutObject* oo);
+void freeOutObject(OutObject* oo, int freeItself);
 
 #endif // _OUTOBJECT_H_

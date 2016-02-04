@@ -1,9 +1,9 @@
 /**
  *
  * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin PHILIP Bastien
+ * @Ebatsin 	PHILIP Bastien
  *
- * @brief Structure of our attribute
+ * @brief Structure of our output attribute
  */
 
 #ifndef _OUT_ATTRIBUTE_H_
@@ -28,5 +28,12 @@ typedef struct __basic_out_attribute {
     	int tree;
     };
 } OutAttribute;
+
+/**
+*	@brief Free the OutAttribute
+*	@param oa A pointer to the OutAttribute to free
+*	@param freeItself Boolean to know if the OutAttribute needs to free itself
+*/
+void freeOutAttribute(OutAttribute* oa, int freeItself);
 
 #endif // _OUT_ATTRIBUTE_H_

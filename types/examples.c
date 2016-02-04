@@ -14,6 +14,8 @@ void initExamples(Examples* exps) {
 }
 
 void freeExamples(Examples* exps) {
+    if(!exps) return;
+
     //first free the examples
     for(int i = 0; i < vectSize(exps->examples); ++i) {
 		freeExample(&vectAt(exps->examples, i), 0);

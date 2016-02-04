@@ -1,9 +1,9 @@
 /**
  *
  * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin PHILIP Bastien
+ * @Ebatsin 	PHILIP Bastien
  *
- * @brief Functions used by the binary tree
+ * @brief Structure of our N-ary tree - Implementation
  */
 
 #include <stdio.h>

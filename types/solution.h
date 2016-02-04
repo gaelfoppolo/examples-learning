@@ -1,7 +1,7 @@
 /**
  *
  * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin PHILIP Bastien
+ * @Ebatsin 	PHILIP Bastien
  *
  * @brief Structure of our solution
  */
@@ -13,8 +13,8 @@
 #include "out-object.h"
 
 /**
-*   @brief All the attributes composing the object
-*   @field attributes The list of the object's attributes
+*   @brief All the OutObject composing the solution
+*   @field outobjects The list of OutObject
 */
 typedef struct __basic_solution {
     Vector(OutObject) outobjects;

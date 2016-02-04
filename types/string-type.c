@@ -1,9 +1,9 @@
 /**
  *
  * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin PHILIP Bastien
+ * @Ebatsin 	PHILIP Bastien
  *
- * @brief String implementation type
+ * @brief String implementation type - Implementation
  */
 
 #include "string-type.h"

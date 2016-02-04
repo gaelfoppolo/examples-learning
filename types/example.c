@@ -13,6 +13,8 @@ void initExample(Example* exp) {
 }
 
 void freeExample(Example* exp, int freeItself) {
+	if(!exp) return;
+
 	for(unsigned int i = 0; i < vectSize(exp->objects); ++i) {
 		// specify to not free itself
 		freeObject(&vectAt(exp->objects, i), 0);

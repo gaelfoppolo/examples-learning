@@ -1,7 +1,7 @@
 /**
  *
  * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin PHILIP Bastien
+ * @Ebatsin 	PHILIP Bastien
  *
  * @brief Structure of our output enum
  */
@@ -26,9 +26,10 @@ typedef struct __basic_outenum {
 void initOutEnum(OutEnum* oenu);
 
 /**
-*	@brief Free the ouput enum previously initialized by initEnum
+*	@brief Free the OutEnum previously initialized by initEnum
 *	@param oenu A pointer to the enum to free
+*	@param freeItself Boolean to know if the OutEnum needs to free itself
 */
-void freeOutEnum(OutEnum* oenu);
+void freeOutEnum(OutEnum* oenu, int freeItself);
 
 #endif // _OUTPUTENUM_H_

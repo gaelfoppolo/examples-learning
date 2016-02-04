@@ -73,7 +73,10 @@
 										}																				\
 									} while(0)
 
-
+/**
+*	@brief Remove the last element in the vector
+*	@param vect The vector to which remove the last element
+*/
 #define vectRemoveLast(vect) do {																						\
 									if((vect).size > 0) {																\
 										--(vect).size;																	\

@@ -1,7 +1,7 @@
 /**
  *
  * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin PHILIP Bastien
+ * @Ebatsin 	PHILIP Bastien
  *
  * @brief Structure of our model type
  */
@@ -27,5 +27,12 @@ typedef struct __basic_model_type {
     	Tree tree;
     };
 } ModelType;
+
+/**
+*	@brief Free the ModelType
+*	@param mt A pointer to the ModelType to be free
+*	@param freeItself Boolean to know if the ModelType needs to free itself
+*/
+void freeModelType(ModelType* mt, int freeItself);
 
 #endif // _MODELTYPE_H_

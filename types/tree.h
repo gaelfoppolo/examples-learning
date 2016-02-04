@@ -1,22 +1,22 @@
 /**
  *
  * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin PHILIP Bastien
+ * @Ebatsin 	PHILIP Bastien
  *
- * @brief Functions and structures used by the binary tree
+ * @brief Structure of our N-ary tree
  */
 
 #ifndef _TREE_H_
 #define _TREE_H_
 
- #include "vector.h"
+#include "vector.h"
 
 /**
- * @brief Binary tree structure
+ * @brief N-ary tree structure
  *
- * @field id Integer that represents the value of the Node/Leaf
- * @field *left Pointer to left child
- * @field *right Pointer to right child
+ * @field id Integer that represents the value of the node/leaf
+ * @field str The name of the node/leaf
+ * @field children Array of pointer to Tree: list of children
  *
  */
 typedef struct __tree {
@@ -38,15 +38,22 @@ Tree* createLeaf(int id, char* str);
 /**
  * @brief Create a new node (tree)
  *
- * @param id Id of the value to store in the Node
+ * @param id Id of the value to store in the node
  * @param str String that represents the real name of what is stored
- * @param[in] left The left child
- * @param[in] right The right child
+ * @param child The child to add to our new node
  *
- * @return A new Tree
+ * @return A new node (tree)
  */
 Tree* createNode(int id, char* str, Tree* child);
 
+/**
+ * @brief Add a child to a node (tree)
+ *
+ * @param node The node to which adds the child
+ * @param child The child to add to our new node
+ *
+ * @return A node (tree)
+ */
 Tree* addChild(Tree* node, Tree* child);
 
 /**
@@ -62,7 +69,7 @@ int isLeaf(Tree* t);
  * @brief Find the lowest common ancestor - Complexity θ(n)
  * @description We traverse from root to leaf(s).
  * When we find a node matching at least one, we pass it to its parent.
- * The parent tests if left or right child contains the value.
+ * The parent tests if a child contains the value.
  * If yes, the parent is the LCA, else, we pass its parent, up to root.
  * What is pass is the lower node or NULL
  *

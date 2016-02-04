@@ -22,15 +22,15 @@ typedef struct __basic_examples {
 } Examples;
 
 /**
-*	@brief Init examples object
+*	@brief Init examples fields
 *	@param exps A pointer to the Examples to be initialized
 */
-void initExamples(Examples * exps);
+void initExamples(Examples* exps);
 
 /**
-*	@brief Free examples object
+*	@brief Free examples fields
 *	@param exps A pointer to the Examples to be free
 */
-void freeExamples(Examples * exps);
+void freeExamples(Examples* exps);
 
 #endif // _EXAMPLES_H_
