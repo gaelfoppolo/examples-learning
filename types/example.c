@@ -1,22 +1,22 @@
 /**
  *
  * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin PHILIP Bastien
+ * @Ebatsin 	PHILIP Bastien
  *
- * @brief Functions used by the example
+ * @brief Structure of our example - Implementation
  */
 
 #include "example.h"
 
-void initExample(Example * e) {
-    vectInit(e->objects);
+void initExample(Example* exp) {
+    vectInit(exp->objects);
 }
 
-void freeExample(Example * e) {
-	for(unsigned int i = 0; i < vectSize(e->objects); ++i) {
-		free(vectAt(e->objects, i).name);
-		vectFree(vectAt(e->objects, i).attributes);
-		vectFree(vectAt(e->objects, i).relations);
+void freeExample(Example* exp, int freeItself) {
+	for(unsigned int i = 0; i < vectSize(exp->objects); ++i) {
+		// specify to not free itself
+		freeObject(&vectAt(exp->objects, i), 0);
 	}
-    vectFree(e->objects);
+    vectFree(exp->objects);
+    if (freeItself) free(exp);
 }

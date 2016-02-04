@@ -22,14 +22,15 @@ typedef struct __basic_example {
 
 /**
 *	@brief Init the example object
-*	@param e A pointer to the example to be initialized
+*	@param exp A pointer to the example to be initialized
 */
-void initExample(Example * e);
+void initExample(Example * exp);
 
 /**
 *	@brief free the example object
-*	@param e A pointer to the example to be freed
+*	@param exp A pointer to the example to be free
+*	@param freeItself Boolean to know if the object needs to free itself
 */
-void freeExample(Example * e);
+void freeExample(Example * exp, int freeItself);
 
 #endif // _EXAMPLE_H_

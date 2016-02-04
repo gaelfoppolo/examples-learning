@@ -12,7 +12,9 @@ void initObject(Object* obj) {
 	vectInit(obj->attributes);
 }
 
-void freeObject(Object* obj) {
+void freeObject(Object* obj, int freeItself) {
 	vectFree(obj->attributes);
-	free(obj);
+	vectFree(obj->relations);
+	free(obj->name);
+	if (freeItself)	free(obj);
 }

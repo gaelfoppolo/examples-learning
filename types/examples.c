@@ -8,33 +8,23 @@
 
 #include "examples.h"
 
-void initExamples(Examples * es) {
-    vectInit(es->examples);
-    vectInit(es->counterExamples);
+void initExamples(Examples* exps) {
+    vectInit(exps->examples);
+    vectInit(exps->counterExamples);
 }
 
-void freeExamples(Examples * es) {
+void freeExamples(Examples* exps) {
     //first free the examples
-    for(int i = 0; i < vectSize(es->examples); ++i) {
-		for(int j = 0; j < vectSize((vectAt(es->examples, i)).objects); ++j) {
-			vectFree(vectAt((vectAt(es->examples, i)).objects, j).attributes);
-            vectFree(vectAt((vectAt(es->examples, i)).objects, j).relations);
-            free(vectAt((vectAt(es->examples, i)).objects, j).name);
-		}
-        vectFree((vectAt(es->examples, i)).objects);
+    for(int i = 0; i < vectSize(exps->examples); ++i) {
+		freeExample(&vectAt(exps->examples, i), 0);
     }
     //then free the counter-examples
-    for(int i = 0; i < vectSize(es->counterExamples); ++i) {
-		for(int j = 0; j < vectSize((vectAt(es->counterExamples, i)).objects); ++j) {
-			vectFree(vectAt((vectAt(es->counterExamples, i)).objects, j).attributes);
-            vectFree(vectAt((vectAt(es->counterExamples, i)).objects, j).relations);
-            free(vectAt((vectAt(es->counterExamples, i)).objects, j).name);
-		}
-        vectFree((vectAt(es->counterExamples, i)).objects);
+    for(int i = 0; i < vectSize(exps->counterExamples); ++i) {
+		freeExample(&vectAt(exps->counterExamples, i), 0);
     }
 
-    vectFree(es->examples);
-    vectFree(es->counterExamples);
+    vectFree(exps->examples);
+    vectFree(exps->counterExamples);
 
-    free(es);
+    free(exps);
 }
