@@ -45,7 +45,7 @@ int main(int argc, char const *argv[]) {
 			return 1;
 		}
 
-		output(L1, SBDEFAULT "Loading example file: %s" SDEFAULT "\n", argv[argOffset]);
+		output(L1, SBDEFAULT "Loading examples file: %s" SDEFAULT "\n", argv[argOffset]);
 
 		Examples* e = loadExampleFile(argv[argOffset], m, includePosition);
 
@@ -56,8 +56,12 @@ int main(int argc, char const *argv[]) {
 			return 1;
 		}
 
+		output(L1, SBDEFAULT "Generating solutions...\n");
+
 		Solution* s = genAllCombi(m, e);
 		genAllRelations(s, e, m);
+
+		output(L0, SBDEFAULT "Solutions:\n\n");
 		
 		genOutput(s, m);
 

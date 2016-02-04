@@ -204,7 +204,6 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 		vectAt(ex->objects, id).id = id; // set the id of the object
 		vectAt(ex->objects, id).name = name; // set the name of the object
 
-		output(L3, "\n");
 		output(L2, "Object's name: " SBGREEN "%s" SDEFAULT "", name);
 
 		fgetc(fp); //reads the ':' char after the object's name
