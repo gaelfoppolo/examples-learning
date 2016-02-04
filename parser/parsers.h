@@ -1,7 +1,7 @@
 /**
  *
  * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin PHILIP Bastien
+ * @Ebatsin 	PHILIP Bastien
  *
  * @brief The parser
  */
@@ -58,7 +58,7 @@ unsigned int getNextExample(FILE* f);
 *	@param fp The file in which to read
 *	@param error In case of error, contains a description of the error. NULL if no error happened. Must be an uninitialized variable or data loss may occur.
 *	@param ex A pointer to the example object to populate
-*	@param model The Model object generated from the config file
+*	@param m The Model object generated from the config file
 *
 *	@return A boolean. 1 for success. 0 for failure.
 */
@@ -69,7 +69,7 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m);
 *	@param fp The file in which to read
 *	@param error In case of error, contains a description of the error. NULL if no error happened. Must be an uninitialized variable or data loss may occur.
 *	@param o A pointer to the object Object to populate
-*	@param model The Model object generated from the config file
+*	@param m The Model object generated from the config file
 *	@param seenObjects The names of the objects that have already been seen
 *
 *	@return A boolean. 1 for success. 0 for failure
@@ -114,13 +114,11 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 */
 Model* loadConfigFile(char const* pathname);
 
-// sub-parsers
-
 /**
 *	@brief Tries to parse the line as a config file attribute definition. If the line is empty, continues to read until it finds a line.
 *	@param fp The file in which to read
 *	@param error In case of error, contains a description of the error. NULL if no error append. Must be an uninitialized variable or data loss may happen
-*	@param out A pointer to the ModelAttribute object to populate
+*	@param out A pointer to the Model object to populate
 *
 *	@return A boolean. 1 for success. 0 for failure.
 */
@@ -156,7 +154,7 @@ Enum* parseAttrTypeEnum(FILE* fp, char** error);
 Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent);
 
 /**
-*	@brief Check wether the character is allowed in an attribute name or not
+*	@brief Check whether the character is allowed in an attribute name or not
 *	@param c The character to Check
 *	@param first Wether the character is the first to be read or not
 *

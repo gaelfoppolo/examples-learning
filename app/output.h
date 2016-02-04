@@ -1,9 +1,9 @@
 /**
  *
  * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin PHILIP Bastien
+ * @Ebatsin 	PHILIP Bastien
  *
- * @brief Convertion tools from structures to strings
+ * @brief Convertion tools from structures to human readable strings
  */
 
 #ifndef _OUTPUT_H_
@@ -63,7 +63,7 @@
 #define L7			7
 
 /**
-*	@brief returns a string that contains the representation of the object in a readable presentation
+*	@brief Returns a string that contains the representation of the object in a readable presentation
 *	@param sol Pointer to the object grouping the common traits of the other objects int the examples
 *	@param mdl Pointer to the model object containing structure of the model
 *	@return A string representing the object in a readable way. Need to be freed by the user
@@ -84,6 +84,11 @@ char* cPrint(const char* fmt, ...);
 *	@param level The level to set
 */
 void setOutputImportance(unsigned int level);
+
+/**
+*	@brief Gets the max level of the messages to output (0 : only critical messages, the higher the value, the less importance the messages)
+*	@param level The level to set
+*/
 unsigned int getOutputImportance();
 
 /**
@@ -96,7 +101,7 @@ unsigned int getOutputImportance();
 void output(unsigned int level, const char* fmt, ...);
 
 /**
-*	@brief Extract the verbosity value from the "-v[v" formated string.
+*	@brief Extract the verbosity value from the "-v[v..]" formated string.
 *	@param verbosity The string to extract the verbosity from
 *
 *	@return The level extracted

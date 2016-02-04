@@ -18,6 +18,7 @@ void genOutput(Solution* sol, Model* mdl) {
         // add name
         output(L0, SBPURPLE "%s: " SDEFAULT, oo.name);  
 
+        // display attribute name & value
         for (int j = 0; j < vectSize(oo.attributes); ++j) {
             // get current model attribute data
             ma = vectAt(mdl->ma, j);
@@ -28,15 +29,18 @@ void genOutput(Solution* sol, Model* mdl) {
             output(L0, " (" SBCYAN);         
 
             switch (ma.mt.type) {
+                // attribute is an interval
                 case TYPE_INT:
                     output(L0, "%d ; %d" SDEFAULT, oa.inter.min, oa.inter.max);
                     break;
+                // attribute is a list
                 case TYPE_ENUM:
                     for (int k = 0; k < vectSize(oa.oenu.oenu); ++k) {
                         output(L0, "%s" SDEFAULT, getEnumStr(vectAt(oa.oenu.oenu, k), mdl, j));
                         if (k+1 < vectSize(oa.oenu.oenu)) output(L0, ", " SBCYAN);
                     }
                     break;
+                // attribute is a tree
                 case TYPE_TREE:
                     output(L0, "%s" SDEFAULT, getTreeStr(oa.tree, mdl, j));
                     break;
@@ -44,6 +48,8 @@ void genOutput(Solution* sol, Model* mdl) {
             output(L0, ")");
             if (j+1 < vectSize(oo.attributes)) output(L0, ", ");
         }
+        
+        // display relations
         for (int j = 0; j < vectSize(oo.relations); ++j) {
         	ooo = vectAt(oo.relations, j);
         	if (ooo != NULL) {
@@ -81,7 +87,7 @@ unsigned int getOutputImportance() {
 
 void output(unsigned int level, const char* fmt, ...) {
 	// check if the message is important enough to be printed given the current setting value (&7 discard the error bit)
-	if((level & 7) > __output_importance_level) {
+	if((level & 7) > getOutputImportance()) {
 		return;
 	}
 
