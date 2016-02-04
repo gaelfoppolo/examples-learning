@@ -23,8 +23,6 @@ typedef struct __tree {
  	int id;
 	char* str;
 	Vector(struct __tree) children;
- 	//struct __tree *left;
- 	//struct __tree *right;
 } Tree;
 
 /**

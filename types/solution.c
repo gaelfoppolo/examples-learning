@@ -14,8 +14,7 @@ void initSolution(Solution* sol) {
 
 void freeSolution(Solution* sol) {
 	for(unsigned int i = 0; i < vectSize(sol->outobjects); ++i) {
-		//vectFree(vectAt(sol->outobjects, i).attributes);
-		//vectFree(vectAt(sol->outobjects, i).relations);
+		freeOutObject(&vectAt(sol->outobjects, i));
 	}
 	vectFree(sol->outobjects);
 	free(sol);

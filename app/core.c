@@ -46,6 +46,9 @@ OutObject* initOutObjectWithObject(Model* mdl, Object* o) {
 	for (int j = 0; j < vectSize(mdl->rel); ++j) {
 			vectPush(OutObject*, oo->relations, (OutObject*)NULL);
 	}
+
+	free(oa);
+
 	return oo;
 }
 
@@ -67,6 +70,7 @@ Solution* initAllCombi(Model* mdl, Examples* exp) {
 			oo = initOutObjectWithObject(mdl, o);
             oo->name = cPrint("S%d", vectSize(T->outobjects)+1);
 			vectPush(OutObject, T->outobjects, *oo);
+			free(oo);
 		}
 	}
 	return T;
@@ -134,7 +138,7 @@ static void __genAllRelations_rec(Solution* s, Examples* e, Model* m, ObjectIndi
 		for(unsigned int i = 0; i < vectSize(m->rel); ++i) {
 			vectInit(relIndices.indices);
 			allRel = 1;
-				for(unsigned int j = 0; j < vectSize(indices->indices); ++j) {
+			for(unsigned int j = 0; j < vectSize(indices->indices); ++j) {
 				if(vectAt(vectAt(vectAt(e->examples, j).objects, vectAt(indices->indices, j)).relations, i).type != TYPE_RELATION) {
 					allRel = 0;
 					break;
@@ -166,6 +170,8 @@ void genAllRelations(Solution* s, Examples* e, Model* m) {
 	vectInit(stack.indices);
 
 	__genAllRelations_rec(s, e, m, &stack, 0);
+
+	vectFree(stack.indices);
 }
 
 int getIndex(Examples* exp, ObjectIndice* oi) {

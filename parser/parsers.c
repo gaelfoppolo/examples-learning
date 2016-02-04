@@ -719,6 +719,7 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 		else {
 			output(LERROR, "Parenthesis expected but found '%c'.", c);
 		}
+		freeTree(t);
 		free(t);
 		return NULL;
 	}
@@ -727,7 +728,7 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 
 	if(t->str == NULL) {
 		output(LERROR, SBRED "Tree root value invalid." SDEFAULT);
-		free(t->str);
+		freeTree(t);
 		free(t);
 		return NULL;
 	}
@@ -737,47 +738,42 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 	readFileSpaces(fp, "\t\n ");
 	if((c = fgetc(fp)) != ')' && c != ',') {
 		output(LERROR, "Expected ')' or ',' but found '%c' instead", c);
-		free(t->str);
+		freeTree(t);
 		free(t);
 		return NULL;
 	}
 
-	if(c == ')') {
-		// leaf
-		return t;
-	}
-	else {
-		while(c != ')') {
-			// at least one child
-			readFileSpaces(fp, ",\t\n ");
-			if((c = fgetc(fp)) != '(') {
-				output(LERROR, "character '%c' unexpected while parsing the first child of [%s]", c, t->str);
-				free(t->str);
-				free(t);
-				return NULL;
-			}
-			fseek(fp, -1, SEEK_CUR);
-			// reccursive call
-			tmp = parseAttrTypeTree(fp, error, index, indent+1);
-			if(!tmp) {
-				output(LERROR, "An error occured while parsing the first child of [%s]", t->str);
-				freeTree(t);
-				return NULL;
-			}
+	while(c != ')') {
+		// at least one child
+		readFileSpaces(fp, ",\t\n ");
+		if((c = fgetc(fp)) != '(') {
+			output(LERROR, "character '%c' unexpected while parsing the first child of [%s]", c, t->str);
+			free(t->str);
+			free(t);
+			return NULL;
+		}
+		fseek(fp, -1, SEEK_CUR);
+		// reccursive call
+		tmp = parseAttrTypeTree(fp, error, index, indent+1);
+		if(!tmp) {
+			output(LERROR, "An error occured while parsing the first child of [%s]", t->str);
+			freeTree(t);
+			return NULL;
+		}
 
-			addChild(t, tmp);
+		addChild(t, tmp);
+		free(tmp);
 
-			// we are on the closing parenthesis of the first child.
-			if((c = fgetc(fp)) != ',' && c != ')') {
-				readFileSpaces(fp, "\t\n ");
-				c = fgetc(fp);
-			}
+		// we are on the closing parenthesis of the first child.
+		if((c = fgetc(fp)) != ',' && c != ')') {
+			readFileSpaces(fp, "\t\n ");
+			c = fgetc(fp);
+		}
 
-			if(c != ')' && c != ',') {
-				output(LERROR, "Expected ',' or ')' but '%c' found instead while parsing [%s]", c, t->str);
-				freeTree(t);
-				return NULL;
-			}
+		if(c != ')' && c != ',') {
+			output(LERROR, "Expected ',' or ')' but '%c' found instead while parsing [%s]", c, t->str);
+			freeTree(t);
+			return NULL;
 		}
 	}
 

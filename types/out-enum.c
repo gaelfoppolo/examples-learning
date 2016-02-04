@@ -14,5 +14,4 @@ void initOutEnum(OutEnum* oenu) {
 
 void freeOutEnum(OutEnum* oenu) {
 	vectFree(oenu->oenu);
-	free(oenu);
 }

@@ -14,13 +14,14 @@ void initOutObject(OutObject* oo) {
 }
 
 void freeOutObject(OutObject* oo) {
-	/*switch(oo->type) {
-		case TYPE_INT:
-			free(&oo->inter);
-			break;
-		case TYPE_ENUM:
-			freeOutEnum(&oo->oenu);
-			break;
+	if(oo->name) {
+		free(oo->name);
 	}
-	free(oo);*/
+	for(unsigned int i = 0; i < vectSize(oo->attributes); ++i) {
+		if(vectAt(oo->attributes, i).type == TYPE_ENUM) {
+			freeOutEnum(&vectAt(oo->attributes, i).oenu);
+		}
+	}
+	vectFree(oo->attributes);
+	vectFree(oo->relations);
 }

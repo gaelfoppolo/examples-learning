@@ -65,7 +65,6 @@ int main(int argc, char const *argv[]) {
 		freeModel(m);
 		freeExamples(e);
 		freeSolution(s);
-		//free(out);
 	}
 
 
