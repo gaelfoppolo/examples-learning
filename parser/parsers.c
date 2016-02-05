@@ -528,7 +528,7 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 
 	c = fgetc(fp);
 
-	if((c >= '0' && c <= '9') || c == '%' || c == '-') { // ether a integer (or negative integer) or a constant (%constant-name)
+	if((c >= '0' && c <= '9') || c == '%' || c == '-') { // either a integer (or negative integer) or a constant (%constant-name)
 		// reads int
 		current->type = TYPE_INT;
 		fseek(fp, -1, SEEK_CUR);
