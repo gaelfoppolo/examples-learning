@@ -139,6 +139,7 @@ static void __genAllRelations_rec(Solution* s, Examples* e, Model* m, ObjectIndi
 			vectInit(relIndices.indices);
 			allRel = 1;
 			for(unsigned int j = 0; j < vectSize(indices->indices); ++j) {
+				// check wether the current object has a relation defined for the ith relation
 				if(vectAt(vectAt(vectAt(e->examples, j).objects, vectAt(indices->indices, j)).relations, i).type != TYPE_RELATION) {
 					allRel = 0;
 					break;
@@ -149,7 +150,7 @@ static void __genAllRelations_rec(Solution* s, Examples* e, Model* m, ObjectIndi
 			}
 
 			if(allRel) { // every objects have the relation
-				// we get the linked objects
+				// get the combination of the objects linked and assign it to the relation of the current combination
 				vectAt(vectAt(s->outobjects, getIndex(e, indices)).relations, i) = &vectAt(s->outobjects, getIndex(e, &relIndices));
 			}
 			vectFree(relIndices.indices);

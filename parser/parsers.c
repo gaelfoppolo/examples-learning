@@ -101,7 +101,7 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
 		if(type == PARSED_EXAMPLE) {
 			vectPush(Example, e->examples, dflt); // add a default example to me modified by parseExample
 			if(!parseExample(fp, &error, &vectAt(e->examples, vectSize(e->examples) - 1), model)) {
-				// TODO : remove the last example parsed
+				vectRemoveLast(e->examples);
 				if(error) {
 					output(LERROR, "\n" SBRED "Error " SDEFAULT " : %s\n", error);
 					free(error);
@@ -113,7 +113,7 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
 		else {
 			vectPush(Example, e->counterExamples, dflt);
 			if(!parseExample(fp, &error, &vectAt(e->counterExamples, vectSize(e->counterExamples) - 1), model)) {
-				// TODO : remove the last example parsed
+				vectRemoveLast(e->counterExamples);
 				if(error) {
 					output(LERROR, "\n" SBRED "Error " SDEFAULT " : %s\n", error);
 					free(error);
@@ -132,7 +132,9 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
 unsigned int getNextExample(FILE* fp) {
 	char c;
 	readTil(fp, "\n");
+
 	output(L2, "\n");
+
 	while(!feof(fp) && (c = fgetc(fp))) {
 		if((c = fgetc(fp)) == '!') {
 			// counter-example
@@ -255,9 +257,9 @@ int parseExampleObject(FILE* fp, char** error, Object* o, Model* m, struct __bas
 	while(1) {
 		name = parseAttrName(fp, error);
 
-		position = getAttributePosition(name, m);
-		if(position == -1) {
-			position = getRelationPosition(name, m);
+		position = getAttributePosition(name, m); // get the attribute position in the model
+		if(position == -1) { // if not in the attributes, may be a relation or an error
+			position = getRelationPosition(name, m); // get the relation position in the model
 			if(position == -1) {
 				*error = cPrint(SBRED "The attribute " SWHITE "%s" SBRED " is not defined." SDEFAULT, name);
 				return 0;
@@ -294,12 +296,10 @@ int parseExampleObject(FILE* fp, char** error, Object* o, Model* m, struct __bas
 		readTil(fp, ")"); // reads til the closing parenthesis of the attribute's value
 		fgetc(fp); // reads the parenthesis
 		readFileSpaces(fp, " \t"); // reads potential spaces
-		if((c = fgetc(fp)) != ',') {
+		if((c = fgetc(fp)) != ',') { // end of the attributes, can exit the loop
 			fseek(fp, -1, SEEK_CUR);
 			break;
 		}
-
-		// loops
 	}
 
 	return 1;
@@ -334,6 +334,7 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 
 	readFileSpaces(fp, " \t");
 
+	// reads and store the value
 	while((c = fgetc(fp)) != EOF && c != ' ' && c != '\t' && c != ')') {
 		strPush(&str, c);
 	}
@@ -342,7 +343,8 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 
 	switch(type) {
 		case TYPE_INT:
-			attr->value = atoi(str.str);
+			attr->value = atoi(str.str); // in case of error, returns 0, no fail check
+			// bounds check (must be in between the in and max autorized by this interval type)
 			if(attr->value < vectAt(m->ma, position).mt.inter.min || attr->value > vectAt(m->ma, position).mt.inter.max) {
 				*error = cPrint("Integer value not in bounds (expected between %d and %d, found %d)", vectAt(m->ma, position).mt.inter.min, vectAt(m->ma, position).mt.inter.max, attr->value);
 				free(str.str);
@@ -402,8 +404,6 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 Model* loadConfigFile(char const* pathname) {
 	FILE* fp = fopen(pathname, "r");
 	Model* m = (Model*)malloc(sizeof(Model));
-	ModelAttribute deflt;
-	deflt.name = 0; // silents the uninitialized warning (its ugly, I know)
 	char* error;
 
 	vectInit(m->ma);
@@ -414,13 +414,7 @@ Model* loadConfigFile(char const* pathname) {
 		return NULL;
 	}
 
-	/*vectPush(ModelAttribute, m->ma, deflt);
-	while(parseConfigLine(fp, &error, &vectAt(m->ma, vectSize(m->ma) - 1))) {
-		vectPush(ModelAttribute, m->ma, deflt);
-	}*/
-	while(parseConfigLine(fp, &error, m));
-
-	//vectRemoveLast(m->ma);
+	while(parseConfigLine(fp, &error, m)); // a line is a whole attributeName : attributeValue set (multiline in case of a tree)
 
 	output(L2, "\n" SBDEFAULT "The model has %d attribute%s and %d relation%s" SDEFAULT ".\n", vectSize(m->ma), vectSize(m->ma) > 1 ? "s": "", vectSize(m->rel), vectSize(m->rel) > 1 ? "s": "");
 
@@ -445,7 +439,7 @@ int parseConfigLine(FILE* fp, char** error, Model* out) {
 		return 0;
 	}
 
-	if(strcmp(current.name, "relation") == 0) {
+	if(strcmp(current.name, "relation") == 0) { // check for keyword relation (case sensitive)
 		isRelation = 1;
 		output(L3, SBPURPLE "\nRelations" SDEFAULT " found: ");
 	}
@@ -454,7 +448,7 @@ int parseConfigLine(FILE* fp, char** error, Model* out) {
 	}
 
 
-	// reads til :
+	// reads spaces til the separator (':')
 	readFileSpaces(fp, "\t ");
 	if((c = fgetc(fp)) != ':') {
 		String err = strInit(strDuplicate(SBRED "Unexpected character '" SDEFAULT));
@@ -479,6 +473,7 @@ int parseConfigLine(FILE* fp, char** error, Model* out) {
 
 	// check wether it's a relation or a basic attribute
 	if(isRelation) {
+		// convert the enum parsed to a relation
 		for(unsigned int i = 0; i < vectSize(current.mt.enu.enu); ++i) {
 			vectPush(char*, out->rel, vectAt(current.mt.enu.enu, i).str);
 		}
@@ -502,6 +497,7 @@ char* parseAttrName(FILE* fp, char** error) {
 		return NULL;
 	}
 
+	// reads and store the attribute name while the chars are valid
 	if((c = fgetc(fp)) && isValidAttrChar(c, 1)) {
 		strPush(&attrName, c);
 		while((c = fgetc(fp)) && isValidAttrChar(c, 0)) {
@@ -523,6 +519,7 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 	*error = NULL;
 	char c;
 	ModelType* current = (ModelType*)malloc(sizeof(ModelType));
+
 	readFileSpaces(fp, "\t ");
 	if(feof(fp)) {
 		free(current);
@@ -531,7 +528,7 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 
 	c = fgetc(fp);
 
-	if((c >= '0' && c <= '9') || c == '%' || c == '-') {
+	if((c >= '0' && c <= '9') || c == '%' || c == '-') { // ether a integer (or negative integer) or a constant (%constant-name)
 		// reads int
 		current->type = TYPE_INT;
 		fseek(fp, -1, SEEK_CUR);
@@ -544,7 +541,7 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 		free(it);
 		output(L3, SBGREEN "Interval" SDEFAULT "\nRange: " SBCYAN "[%d ; %d]\n" SDEFAULT, current->inter.min, current->inter.max);
 	}
-	else if(c == '(') {
+	else if(c == '(') { // only trees starts with '('
 		// reads tree
 		output(L3, SBGREEN "Tree\n" SDEFAULT);
 		current->type = TYPE_TREE;
@@ -558,7 +555,7 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 		current->tree = *t;
 		free(t);
 	}
-	else {
+	else { // if none of the above, must be an enum
 		//reads enum
 		current->type = TYPE_ENUM;
 		fseek(fp, -1, SEEK_CUR);
@@ -571,7 +568,7 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 		free(e);
 		output(L3, SBGREEN "Enum" SDEFAULT "\n");
 		output(L4, "Values: ");
-		for(int i = 0; i < vectSize(current->enu.enu); ++i) {
+		for(int i = 0; i < vectSize(current->enu.enu); ++i) { // only pretty print. Does nothing
 			output(L4, SBCYAN "%s" SBYELLOW " (ID = %d)" SDEFAULT, vectAt(current->enu.enu, i).str, vectAt(current->enu.enu, i).id);
 			if (i+1 < vectSize(current->enu.enu)) {
 				output(L4, "\n\t");
@@ -589,7 +586,7 @@ Interval* parseAttrTypeInterval(FILE* fp, char** error) {
 	Interval* current = (Interval*)malloc(sizeof(Interval));
 	int min = 0, max = 0, minusMin = 0, minusMax = 0;
 
-	if((c = fgetc(fp)) == '%') {
+	if((c = fgetc(fp)) == '%') { // the value is a constant (%INT or %UINT)
 		if((c = fgetc(fp)) == 'U') {
 			current->min = 0;
 			current->max = INT_MAX;
@@ -607,14 +604,14 @@ Interval* parseAttrTypeInterval(FILE* fp, char** error) {
 		return NULL;
 	}
 
-	if(c == '-') {
+	if(c == '-') { // the number is negative
 		minusMin = 1;
 	}
 	else {
 		fseek(fp, -1, SEEK_CUR);
 	}
 
-	while((c = fgetc(fp)) && (c >= '0' && c <= '9')) {
+	while((c = fgetc(fp)) && (c >= '0' && c <= '9')) { // reads the first number and stores it
 		min = 10 * min + (c - '0');
 	}
 	if(!c) {
@@ -624,7 +621,7 @@ Interval* parseAttrTypeInterval(FILE* fp, char** error) {
 		return NULL;
 	}
 
-	// Finds the first '-'
+	// Finds the separator ('-')
 	if(c != '-') {
 		while((c = fgetc(fp)) && (c == ' ' || c == '\t'));
 		if(c != '-') {
@@ -644,13 +641,15 @@ Interval* parseAttrTypeInterval(FILE* fp, char** error) {
 		fseek(fp, -1, SEEK_CUR);
 	}
 
-	while((c = fgetc(fp)) != EOF && (c >= '0' && c <= '9')) {
+	while((c = fgetc(fp)) != EOF && (c >= '0' && c <= '9')) { // reads the second number and stores it
 		max = 10 * max + (c - '0');
 	}
 
+	// apply the sign
 	min = min * (minusMin ? -1 : 1);
 	max = max * (minusMax ? -1 : 1);
 
+	// in case interval is given in the wrong ordre, reverse it
 	if(min > max) {
 		current->min = max;
 		current->max = min;
@@ -673,6 +672,8 @@ Enum* parseAttrTypeEnum(FILE* fp, char** error) {
 	vectInit(current->enu);
 	char* name;
 	int index = 0;
+
+	// use the attributeName function to parse the values, the allowed characters are the same
 	while((name = parseAttrName(fp, error))) {
 		if(name[0] == '\0') { // end of line, no more enum possibilities
 			free(name);
@@ -723,7 +724,7 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 		return NULL;
 	}
 
-	t->str = parseAttrName(fp, error);
+	t->str = parseAttrName(fp, error); // trees values respect the same syntax as attributes name, can use the same function to parse them
 
 	if(t->str == NULL) {
 		output(LERROR, SBRED "Tree root value invalid." SDEFAULT);
@@ -731,7 +732,7 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 		free(t);
 		return NULL;
 	}
-	printIndent(indent);
+	printIndent(L4, indent);
 	output(L4, SBCYAN "%s" SBYELLOW " (ID = %d)\n" SDEFAULT, t->str, t->id);
 
 	readFileSpaces(fp, "\t\n ");
@@ -742,8 +743,8 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 		return NULL;
 	}
 
+	// reads while new chilren are found
 	while(c != ')') {
-		// at least one child
 		readFileSpaces(fp, ",\t\n ");
 		if((c = fgetc(fp)) != '(') {
 			output(LERROR, "character '%c' unexpected while parsing the first child of [%s]", c, t->str);
@@ -752,15 +753,17 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 			return NULL;
 		}
 		fseek(fp, -1, SEEK_CUR);
-		// reccursive call
+
+		// reccursive call, get the subtree
 		tmp = parseAttrTypeTree(fp, error, index, indent+1);
+
 		if(!tmp) {
 			output(LERROR, "An error occured while parsing the first child of [%s]", t->str);
 			freeTree(t);
 			return NULL;
 		}
 
-		addChild(t, tmp);
+		addChild(t, tmp); // append the subtree found a a child of t
 		free(tmp);
 
 		// we are on the closing parenthesis of the first child.
@@ -780,7 +783,7 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 }
 
 int isValidAttrChar(char c, unsigned int first) {
-	if((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '_') {
+	if((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '_') { // check if the character match [a-zA-Z_\-\d] (or [a-zA-Z_] if first character)
 		return 1;
 	}
 	return first ? 0 : ((c >= '0' && c <= '9') || c == '-');
@@ -792,7 +795,7 @@ void readFileSpaces(FILE* fp, char const* set) {
 	while((current = fgetc(fp)) != EOF) {
 		i = 0;
 		inSet = 0;
-		while(set[i]) {
+		while(set[i]) { // check if the current char is in the set
 			if(set[i] == current) {
 				inSet = 1;
 				break;
@@ -811,7 +814,7 @@ void readTil(FILE* fp, char const* set) {
 	unsigned int i;
 	while((current = fgetc(fp)) != EOF) {
 		i = 0;
-		while(set[i]) {
+		while(set[i]) { // check if the currrent char is in the set
 			if(set[i] == current) {
 				fseek(fp, -1, SEEK_CUR);
 				return;
@@ -821,8 +824,8 @@ void readTil(FILE* fp, char const* set) {
 	}
 }
 
-void printIndent(int indent) {
+void printIndent(unsigned int flag, int indent) {
 	for (int i = 0; i < indent; ++i) {
-		output(L4, "\t");
+		output(flag, "\t");
 	}
 }

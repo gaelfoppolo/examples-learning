@@ -178,9 +178,10 @@ void readTil(FILE* fp, char const* set);
 
 /**
 *	@brief Display tabs(s)
+*	@param flag The output flag to use (L1 to L7 and/or LERROR)
 *	@param indent The number of tabs to display
 */
-void printIndent(int indent);
+void printIndent(unsigned int flag, int indent);
 
 
 #endif // _PARSERS_H_
