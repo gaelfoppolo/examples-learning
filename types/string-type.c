@@ -13,6 +13,7 @@ String strInit(char* str) {
 
 	s.str = str;
 
+	// get the length of str
 	char const* begin = str;
 	while(*str++);
 	s.length = str - begin - 1;
@@ -40,11 +41,13 @@ void strPush(String* str, char c) {
 }
 
 void strPushStr(String* str, char* str2) {
+	// get the length of str2
 	char const* begin = str2;
 	char* current = str2;
 	while(*current++);
 	unsigned int length = current - begin - 1; // str2 length
 
+	// resize str to fit str2
 	if(str->length + length >= str->availableLength - 1) {
 		if(str->availableLength < 10) str->availableLength = 10;
 
@@ -63,6 +66,7 @@ void strPushStr(String* str, char* str2) {
 }
 
 char* strDuplicate(char* str) {
+	// get the size of str
 	char* begin = str;
 	char* current = str;
 	while(*current++);

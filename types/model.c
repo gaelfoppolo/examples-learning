@@ -41,11 +41,14 @@ int getEnumId(const char* str, Model* mdl, unsigned int index) {
 	return -1;
 }
 
-int getTreeId(const char* str, Model* mdl, unsigned int index) {
-	return __getTreeId_rec(str, &vectAt(mdl->ma, index).mt.tree);
-}
-
-int __getTreeId_rec(const char* str, Tree* t) {
+/**
+*	@brief NOT FOR USE - Used by getTreeId - Recursively search in the tree to find the id that match the value's name.
+*	@param str The enum value to which the id is wanted
+*	@param t The root of the tree in which to search
+*
+*	@return Returns the id if found, -1 otherwise
+*/
+static int __getTreeId_rec(const char* str, Tree* t) {
 	if(t) {
 		if(strcmp(str, t->str) == 0) {
 			return t->id;
@@ -60,6 +63,10 @@ int __getTreeId_rec(const char* str, Tree* t) {
 	}
 
 	return -1;
+}
+
+int getTreeId(const char* str, Model* mdl, unsigned int index) {
+	return __getTreeId_rec(str, &vectAt(mdl->ma, index).mt.tree);
 }
 
 char* getEnumStr(int id, Model* mdl, unsigned int index) {

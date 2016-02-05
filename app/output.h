@@ -52,6 +52,7 @@
 #define SBUCYAN		"\e[1;4;36m"
 #define SBUWHITE	"\e[1;4;37m"
 
+// output level of importance
 #define LERROR		8
 #define L0			0
 #define L1			1
@@ -87,7 +88,6 @@ void setOutputImportance(unsigned int level);
 
 /**
 *	@brief Gets the max level of the messages to output (0 : only critical messages, the higher the value, the less importance the messages)
-*	@param level The level to set
 */
 unsigned int getOutputImportance();
 

@@ -68,7 +68,7 @@ void combiOutObjectObject(Model* mdl, OutObject* oo, Object*o);
  * @brief Generate all the combinations for our examples
  *
  * @param mdl Pointer to the Model
- * @param eex Pointer to our Examples to combine
+ * @param exp Pointer to our Examples to combine
  * 
  * @return Pointer to Solution containing all our combinaisons
  */

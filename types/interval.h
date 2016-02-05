@@ -23,7 +23,7 @@ typedef struct __interval {
  * @brief Increase the interval to contains x
  *
  * @param inter The interval to increase
- * @param[in] x An integer to add into the interval
+ * @param x An integer to add into the interval
  */
 void addToInterval(Interval* inter, int x);
 
