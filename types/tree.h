@@ -9,7 +9,13 @@
 #ifndef _TREE_H_
 #define _TREE_H_
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+
 #include "vector.h"
+
+#define max(a,b) ((a) > (b) ? (a) : (b))
 
 /**
  * @brief N-ary tree structure
@@ -64,6 +70,35 @@ Tree* addChild(Tree* node, Tree* child);
  * @return 0 (false) ou 1 (true)
  */
 int isLeaf(Tree* t);
+
+/**
+ * @brief Get the height of a tree
+ *
+ * @param t The tree
+ *
+ * @return The height of the tree (integer)
+ */
+int height(Tree* t);
+
+/**
+ * @brief Get the depth of a node in the tree
+ *
+ * @param root The root of tree
+ * @param id The id of the node
+ *
+ * @return The depth of the node in the tree (integer)
+ */
+int depth(Tree* root, int id);
+
+/**
+*	@brief NOT FOR USE - Used by depth - Recursively go down into the tree with the current depth
+*	@param t The tree (node) to search into
+*	@param id The id of the node
+*	@param dpth The current depth of t
+*
+*	@return Returns the depth of the node matching the id
+*/
+int depth_rec(Tree* t, int id, int dpth);
 
 /**
  * @brief Find the lowest common ancestor - Complexity θ(n)

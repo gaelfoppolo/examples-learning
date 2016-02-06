@@ -65,6 +65,12 @@ int main(int argc, char const *argv[]) {
 		
 		genOutput(s, m);
 
+		printf("Height of the tree: %d\n", height(&vectAt(m->ma, 2).mt.tree));
+
+		int id = 9;
+
+		printf("Depth of %s: %d\n", getTreeStr(id, m, 2), depth(&vectAt(m->ma, 2).mt.tree, id));
+
 		free(c);
 		freeModel(m);
 		freeExamples(e);

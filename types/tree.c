@@ -6,9 +6,6 @@
  * @brief Structure of our N-ary tree - Implementation
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-
 #include "tree.h"
 
 Tree* createLeaf(int id, char* str) {
@@ -37,6 +34,58 @@ Tree* addChild(Tree* node, Tree* child) {
 
 int isLeaf(Tree* t) {
 	return vectSize(t->children) == 0;
+}
+
+Tree* getTreeFromID(Tree* root, int id) {
+	if(root->id == id) {
+		return root;
+	}
+	else {
+		Tree* tree;
+		for (unsigned int i = 0; i < vectSize(root->children); ++i) {
+			tree = getTreeFromID(&vectAt(root->children, i), id);
+		}
+		return tree;
+	}
+}
+
+int height(Tree* t) {
+    
+    if(isLeaf(t)){
+		return 0;
+	}
+	else {
+		int heightTree = 0;
+		for (unsigned int i = 0; i < vectSize(t->children); ++i) {
+			heightTree = max(heightTree, height(&vectAt(t->children, i)));
+		}
+		return heightTree+1;
+	}
+}
+
+int depth(Tree* root, int id) {
+	// launch the search with a depth of 0
+	return depth_rec(root, id, 0);
+}
+
+int depth_rec(Tree* t, int id, int dpth) {
+	// node found, dpth is our depth
+	if (t->id == id) {
+		return dpth;
+	}
+	// no children so our node can't be here
+	// return neutral of depth
+	else if (vectSize(t->children) == 0) {
+		return 0;
+	}
+	// search in each child, increasing depth by one, since we go down
+	else {
+		int depthTree = 0;
+		for (unsigned int i = 0; i < vectSize(t->children); ++i) {
+			depthTree = max(depthTree, depth_rec(&vectAt(t->children, i), id ,dpth+1));
+		}
+		return depthTree;
+	}
 }
 
 Tree* LCA(Tree* root, int id1, int id2) {
