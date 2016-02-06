@@ -12,13 +12,15 @@
 #include "out-attribute.h"
 
 /**
-*   @brief All the attributes composing the output object
-*   @field name Name of the OutObject
-*   @field attributes All the attributes of the object
+*	@brief All the attributes composing the output object
+*	@field name Name of the OutObject
+*	@field specificity Level of specifity of the OutObject. Between 1 (= none) and 100 (= very). 0 = duplicate
+*	@field attributes All the attributes of the object
 *	@field relations All the relations of the object
 */
 typedef struct __basic_outobject {
 	char* name;
+	unsigned char specificity;
 	Vector(OutAttribute) attributes;
 	Vector(struct __basic_outobject*) relations;
 } OutObject;

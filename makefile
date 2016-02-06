@@ -12,7 +12,7 @@
 
 # Declaration of variables
 CC = clang
-CC_FLAGS = -Wall -O2 -Wno-uninitialized
+CC_FLAGS = -Wall -O2 #-Wno-uninitialized
 RM = rm -rf
 
 # File names

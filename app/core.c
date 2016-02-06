@@ -186,3 +186,35 @@ int getIndex(Examples* exp, ObjectIndice* oi) {
 	}
 	return index+vectAt(oi->indices, i);
 }
+
+int genSpecificity(Model* mdl, OutObject* oo) {
+	float specificity = 0, tmpTree;
+	OutAttribute oa;
+	ModelType mt;
+	for (int i = 0; i < vectSize(oo->attributes); ++i) {
+		oa = vectAt(oo->attributes, i);
+		mt = vectAt(mdl->ma, i).mt;
+
+		// for each we use weighted values
+		switch(oa.type) {
+			case TYPE_INT:
+				// (model max - model min) - (oo max - oo min) / (model max - model min)
+				specificity += (float)abs((mt.inter.max-mt.inter.min)-(oa.inter.max-oa.inter.min))/(float)(mt.inter.max-mt.inter.min);
+				break;
+			case TYPE_ENUM:
+				// (model size of enum) - (oo size of enum) / (model size of enum)
+				specificity += (float)abs(vectSize(mt.enu.enu)-vectSize(oa.oenu.oenu))/(float)vectSize(mt.enu.enu);
+				break;
+			case TYPE_TREE:
+				// (model tree height) - (oo node depth in tree) / (model tree depth)
+				// if depth = height, we get 0.0, but because it is the best, we need to add 1.0
+				// if depth = 0, we get 1.0, but because it is the worst, we need to add 0.0
+				tmpTree = (float)(height(&mt.tree)-depth(&mt.tree, oa.tree))/(float)height(&mt.tree);
+				specificity += (tmpTree == 0.0 || tmpTree == 1.0) ? fabs(tmpTree-1.0) : tmpTree;
+				break;
+		}	
+	}
+	// if specificity = 0.0, that means it's the worst so we set specificity to 1
+	// because 0.0 means duplicate in our model specification
+	return (specificity == 0.0) ? 1 : (int)(specificity/(float)vectSize(oo->attributes)*100);
+}

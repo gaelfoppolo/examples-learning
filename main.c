@@ -71,6 +71,15 @@ int main(int argc, char const *argv[]) {
 
 		printf("Depth of %s: %d\n", getTreeStr(id, m, 2), depth(&vectAt(m->ma, 2).mt.tree, id));
 
+		int maxSpe = 1; 
+		
+		for (int i = 0; i < vectSize(s->outobjects); ++i) {
+			printf("Specificity oo n°%d = %d\n", i, genSpecificity(m, &vectAt(s->outobjects, i)));
+			maxSpe = max(maxSpe, genSpecificity(m, &vectAt(s->outobjects, i)));
+		}
+
+		printf("Best specificity = %d\n", maxSpe);
+
 		free(c);
 		freeModel(m);
 		freeExamples(e);

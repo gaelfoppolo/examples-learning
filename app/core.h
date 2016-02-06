@@ -10,6 +10,7 @@
 #define _CORE_H_
 
 #include <stdio.h>
+#include <math.h>
 
 #include "../types/model.h"
 #include "../types/examples.h"
@@ -91,5 +92,15 @@ void genAllRelations(Solution* s, Examples* e, Model* m);
  * @return An integer
  */
 int getIndex(Examples* exp, ObjectIndice* oi);
+
+/**
+ * @brief Calculate the level of specifity of an OutObject based on the model
+ *
+ * @param mdl Pointer to the model
+ * @param oo Pointer to the OutObject
+ * 
+ * @return The level of specificity (integer)
+ */
+int genSpecificity(Model* mdl, OutObject* oo);
 
 #endif // _CORE_H_
