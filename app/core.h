@@ -102,4 +102,21 @@ int getIndex(Examples* exp, ObjectIndice* oi);
  */
 void genSpecificity(Model* mdl, OutObject* oo);
 
+/**
+ * @brief Compare two OutObjects
+ *
+ * @param oo1 Pointer to the first OutObject (reference)
+ * @param oo2 Pointer to the second OutObject
+ * 
+ * @return An integer: -1 = oo2 less specific than oo1, 0 = same, 1 = oo2 more specific than oo1 or different values
+ */
+int compareOutObjects(OutObject* oo1, OutObject* oo2);
+
+/**
+ * @brief Generalisation of our solution(s)
+ *
+ * @param s Pointer to the Solution
+ */
+void genGeneralisation(Solution* s);
+
 #endif // _CORE_H_

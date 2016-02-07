@@ -222,7 +222,7 @@ void genSpecificity(Model* mdl, OutObject* oo) {
 
 	// add relations
 	for (int i = 0; i < vectSize(oo->relations); ++i) {
-		if (vectAt(oo->relations , i) != NULL) relCount++;
+		if (vectAt(oo->relations, i) != NULL) relCount++;
 	}
 
 	// ((relCount) / (model size of rel))
@@ -232,4 +232,72 @@ void genSpecificity(Model* mdl, OutObject* oo) {
 	// if specificity = 0.0, that means it's the worst so we set specificity to 1
 	// because 0.0 means duplicate in our model specification
 	oo->specificity = (specificity == 0.0) ? 1 : (int)(specificity/(float)(vectSize(oo->attributes)+1)*100);
+}
+
+int compareOutObjects(OutObject* oo1, OutObject* oo2) {
+	OutAttribute oa1, oa2;
+
+	// for all attributes
+	for(int i = 0; i < vectSize(oo1->attributes); ++i) {
+		
+		oa1 = vectAt(oo1->attributes, i);
+		oa2 = vectAt(oo2->attributes, i);
+
+		// still don't know how to value each attribute
+		// a simple addition should work but need to run some tests
+
+		switch(oa1.type) {
+			// tests will probably not be in that order
+			// and probably delegate to interval.h, enum.h and tree.h
+			case TYPE_INT:
+				// are interval bounds the same? -> 0
+				// is the interval (max-min) the same or smaller? -> 1
+				// is the interval bigger? -1
+				break;
+			case TYPE_ENUM:
+				// is the size the same? then:
+					// all values the same? -> 0
+					// at least one different? -> 1
+				// is the size smaller? -> 1
+				// is the size bigger? -> -1
+				break;
+			case TYPE_TREE:
+				// is the depth bigger? -> 1
+				// is the depth smaller? -> -1
+				// is the depth the same? then:
+					// same id? -> 0
+					// different id? -> 1
+				break;
+		}		
+	}
+
+	// don't forget relations
+	for (int i = 0; i < vectSize(oo1->relations); ++i){
+		// count relations not null for the oo1 and oo2
+		// is the same? then:
+			// all relations not null are the same? -> 0
+			// at least one relation is different? -> 1
+		// so count is different, then:
+			// count of oo2 bigger? -> 1
+			// count of oo2 smaller? -> -1
+	}
+
+	// here we can have:
+		// x <= -1: so return -1
+		// x = 0: so return 0
+		// x => 1: so return 1
+
+	// and return the result: -1 (bad), 0 (same) or 1 (best or different)
+	return 0;
+}
+
+void genGeneralisation(Solution* s) {
+	for (int i = 0; i < vectSize(s->outobjects)-1; ++i) {
+		for (int j = i+1; j < vectSize(s->outobjects); ++j) {
+			if ((&vectAt(s->outobjects, j))->specificity != 0) {
+				// (!a) ?: b; equal (a)? b: nothing;
+				(&vectAt(s->outobjects, j))->specificity = (compareOutObjects(&vectAt(s->outobjects, i), &vectAt(s->outobjects, j)) > 0) ?: 0;
+			}	
+		}
+	}
 }
