@@ -61,24 +61,26 @@ int main(int argc, char const *argv[]) {
 		Solution* s = genAllCombi(m, e);
 		genAllRelations(s, e, m);
 
+		genGeneralisation(s);
+
 		output(L1, SBDEFAULT "Solutions:\n\n");
 		
 		genOutput(s, m);
 
-		printf("Height of the tree: %d\n", height(&vectAt(m->ma, 2).mt.tree));
+		// printf("Height of the tree: %d\n", height(&vectAt(m->ma, 2).mt.tree));
 
-		int id = 9;
+		// int id = 9;
 
-		printf("Depth of %s: %d\n", getTreeStr(id, m, 2), depth(&vectAt(m->ma, 2).mt.tree, id));
+		// printf("Depth of %s: %d\n", getTreeStr(id, m, 2), depth(&vectAt(m->ma, 2).mt.tree, id));
 
-		int maxSpe = 1; 
+		// int maxSpe = 1; 
 		
-		for (int i = 0; i < vectSize(s->outobjects); ++i) {
-			printf("Specificity oo n°%d = %d\n", i, vectAt(s->outobjects, i).specificity);
-			maxSpe = max(maxSpe, vectAt(s->outobjects, i).specificity);
-		}
+		// for (int i = 0; i < vectSize(s->outobjects); ++i) {
+		// 	printf("Specificity oo n°%d = %d\n", i, vectAt(s->outobjects, i).specificity);
+		// 	maxSpe = max(maxSpe, vectAt(s->outobjects, i).specificity);
+		// }
 
-		printf("Best specificity = %d\n", maxSpe);
+		// printf("Best specificity = %d\n", maxSpe);
 
 		free(c);
 		freeModel(m);

@@ -23,51 +23,54 @@ void genOutput(Solution* sol, Model* mdl) {
         // get current OutObject
         oo = vectAt(sol->outobjects, i);
 
-        // add name
-        output(L0, SBPURPLE "%s: " SDEFAULT, oo.name);  
+        if(oo.specificity != 0) {
 
-        // display attribute name & value
-        for (int j = 0; j < vectSize(oo.attributes); ++j) {
-            // get current model attribute data
-            ma = vectAt(mdl->ma, j);
-            oa = vectAt(oo.attributes, j);
+            // add name
+            output(L0, SBPURPLE "%s: " SDEFAULT, oo.name);  
 
-            // add attribute name
-            output(L0, SBGREEN "%s" SDEFAULT, ma.name);         
-            output(L0, " (" SBCYAN);         
+            // display attribute name & value
+            for (int j = 0; j < vectSize(oo.attributes); ++j) {
+                // get current model attribute data
+                ma = vectAt(mdl->ma, j);
+                oa = vectAt(oo.attributes, j);
 
-            switch (ma.mt.type) {
-                // attribute is an interval
-                case TYPE_INT:
-                    output(L0, "%d ; %d" SDEFAULT, oa.inter.min, oa.inter.max);
-                    break;
-                // attribute is a list
-                case TYPE_ENUM:
-                    for (int k = 0; k < vectSize(oa.oenu.oenu); ++k) {
-                        output(L0, "%s" SDEFAULT, getEnumStr(vectAt(oa.oenu.oenu, k), mdl, j));
-                        if (k+1 < vectSize(oa.oenu.oenu)) output(L0, ", " SBCYAN);
-                    }
-                    break;
-                // attribute is a tree
-                case TYPE_TREE:
-                    output(L0, "%s" SDEFAULT, getTreeStr(oa.tree, mdl, j));
-                    break;
+                // add attribute name
+                output(L0, SBGREEN "%s" SDEFAULT, ma.name);         
+                output(L0, " (" SBCYAN);         
+
+                switch (ma.mt.type) {
+                    // attribute is an interval
+                    case TYPE_INT:
+                        output(L0, "%d ; %d" SDEFAULT, oa.inter.min, oa.inter.max);
+                        break;
+                    // attribute is a list
+                    case TYPE_ENUM:
+                        for (int k = 0; k < vectSize(oa.oenu.oenu); ++k) {
+                            output(L0, "%s" SDEFAULT, getEnumStr(vectAt(oa.oenu.oenu, k), mdl, j));
+                            if (k+1 < vectSize(oa.oenu.oenu)) output(L0, ", " SBCYAN);
+                        }
+                        break;
+                    // attribute is a tree
+                    case TYPE_TREE:
+                        output(L0, "%s" SDEFAULT, getTreeStr(oa.tree, mdl, j));
+                        break;
+                }
+                output(L0, ")");
+                if (j+1 < vectSize(oo.attributes)) output(L0, ", ");
             }
-            output(L0, ")");
-            if (j+1 < vectSize(oo.attributes)) output(L0, ", ");
-        }
-        
-        // display relations
-        for (int j = 0; j < vectSize(oo.relations); ++j) {
-        	ooo = vectAt(oo.relations, j);
-        	if (ooo != NULL) {
-        		if (j+1 < vectSize(oo.relations)) output(L0, ", ");
-        		output(L0, SBGREEN "%s " SDEFAULT, vectAt(mdl->rel, j));
-        		output(L0, "(" SBPURPLE "%s" SDEFAULT") ", ooo->name);
-        	}
-        }
-        output(L0, "\n");
-    }
+            
+            // display relations
+            for (int j = 0; j < vectSize(oo.relations); ++j) {
+            	ooo = vectAt(oo.relations, j);
+            	if (ooo != NULL) {
+            		if (j+1 < vectSize(oo.relations)) output(L0, ", ");
+            		output(L0, SBGREEN "%s " SDEFAULT, vectAt(mdl->rel, j));
+            		output(L0, "(" SBPURPLE "%s" SDEFAULT") ", ooo->name);
+            	}
+            }
+            output(L0, "\n");
+        }    
+    }   
 }
 
 char* cPrint(const char* fmt, ...) {

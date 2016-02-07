@@ -237,6 +237,8 @@ void genSpecificity(Model* mdl, OutObject* oo) {
 int compareOutObjects(OutObject* oo1, OutObject* oo2) {
 	OutAttribute oa1, oa2;
 
+	int tmp = 0;
+
 	// for all attributes
 	for(int i = 0; i < vectSize(oo1->attributes); ++i) {
 		
@@ -251,10 +253,18 @@ int compareOutObjects(OutObject* oo1, OutObject* oo2) {
 			// and probably delegate to interval.h, enum.h and tree.h
 			case TYPE_INT:
 				// are interval bounds the same? -> 0
+				tmp += ((oa1.inter.min == oa2.inter.min) && (oa1.inter.max == oa2.inter.max)) ? 0 : 1;
 				// is the interval (max-min) the same or smaller? -> 1
 				// is the interval bigger? -1
 				break;
 			case TYPE_ENUM:
+				if (vectSize(oa1.oenu.oenu) == vectSize(oa2.oenu.oenu)) {
+					for (int i = 0; i < vectSize(oa1.oenu.oenu); ++i){
+						tmp += (vectAt(oa1.oenu.oenu, i) == vectAt(oa2.oenu.oenu, i)) ? 0 : 1;
+					}
+				} else {
+					tmp += 1;
+				}				
 				// is the size the same? then:
 					// all values the same? -> 0
 					// at least one different? -> 1
@@ -262,6 +272,7 @@ int compareOutObjects(OutObject* oo1, OutObject* oo2) {
 				// is the size bigger? -> -1
 				break;
 			case TYPE_TREE:
+				tmp += ((oa1.tree) == (oa2.tree)) ? 0 : 1;
 				// is the depth bigger? -> 1
 				// is the depth smaller? -> -1
 				// is the depth the same? then:
@@ -288,7 +299,7 @@ int compareOutObjects(OutObject* oo1, OutObject* oo2) {
 		// x => 1: so return 1
 
 	// and return the result: -1 (bad), 0 (same) or 1 (best or different)
-	return 0;
+	return tmp;
 }
 
 void genGeneralisation(Solution* s) {
