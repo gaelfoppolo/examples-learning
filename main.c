@@ -74,8 +74,8 @@ int main(int argc, char const *argv[]) {
 		int maxSpe = 1; 
 		
 		for (int i = 0; i < vectSize(s->outobjects); ++i) {
-			printf("Specificity oo n°%d = %d\n", i, genSpecificity(m, &vectAt(s->outobjects, i)));
-			maxSpe = max(maxSpe, genSpecificity(m, &vectAt(s->outobjects, i)));
+			printf("Specificity oo n°%d = %d\n", i, vectAt(s->outobjects, i).specificity);
+			maxSpe = max(maxSpe, vectAt(s->outobjects, i).specificity);
 		}
 
 		printf("Best specificity = %d\n", maxSpe);

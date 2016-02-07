@@ -99,8 +99,7 @@ int getIndex(Examples* exp, ObjectIndice* oi);
  * @param mdl Pointer to the model
  * @param oo Pointer to the OutObject
  * 
- * @return The level of specificity (integer)
  */
-int genSpecificity(Model* mdl, OutObject* oo);
+void genSpecificity(Model* mdl, OutObject* oo);
 
 #endif // _CORE_H_

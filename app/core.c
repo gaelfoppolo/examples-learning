@@ -155,7 +155,8 @@ static void __genAllRelations_rec(Solution* s, Examples* e, Model* m, ObjectIndi
 			}
 			vectFree(relIndices.indices);
 		}
-
+		// and we calculate the specificity for the current OutObject
+		genSpecificity(m, &vectAt(s->outobjects, getIndex(e, indices)));
 		return;
 	}
 
@@ -187,7 +188,7 @@ int getIndex(Examples* exp, ObjectIndice* oi) {
 	return index+vectAt(oi->indices, i);
 }
 
-int genSpecificity(Model* mdl, OutObject* oo) {
+void genSpecificity(Model* mdl, OutObject* oo) {
 	float specificity = 0, tmp;
 	int relCount = 0;
 	OutAttribute oa;
@@ -230,5 +231,5 @@ int genSpecificity(Model* mdl, OutObject* oo) {
 
 	// if specificity = 0.0, that means it's the worst so we set specificity to 1
 	// because 0.0 means duplicate in our model specification
-	return (specificity == 0.0) ? 1 : (int)(specificity/(float)(vectSize(oo->attributes)+1)*100);
+	oo->specificity = (specificity == 0.0) ? 1 : (int)(specificity/(float)(vectSize(oo->attributes)+1)*100);
 }
