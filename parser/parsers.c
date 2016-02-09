@@ -240,6 +240,12 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 
 	vectFree(seenObjects.seen);
 
+	// if the example is emtpy, print a warning, return 0 but raise no error
+	if(vectSize(ex->objects) == 0) {
+		output(LERROR | L1, SBYELLOW "Warning : empty example found (to remove this warning, delete the empty example)\n" SDEFAULT);
+		return 0;
+	}
+
 	return 1;
 }
 

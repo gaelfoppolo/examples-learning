@@ -6,6 +6,7 @@ E1
 	x3:shape(triangle), size(10), color(blue)
 	x4:shape(trapeze), size(10), color(blue), behind(x1)
 	x5:shape(rectangle), size(7), color(orange), next-to(x1)
+E10
 !E1
 	x6:shape(circle), size(3), color(red)
 	x7:shape(quadrilateral), size(6), color(red)
