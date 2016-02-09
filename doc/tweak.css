@@ -172,3 +172,10 @@ blockquote {
     padding: 0 12px 0 16px;
 }
 
+.memname tr {
+    float: left;
+}
+
+.memname tr:not(:last-child):not(:nth-last-child(2)) {
+    margin-right: 7px;
+}
