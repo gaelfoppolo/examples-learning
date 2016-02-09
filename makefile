@@ -16,7 +16,6 @@ CC_FLAGS = -Wall -O2
 RM = rm -rf
 DOXYGEN = doxygen doc/doxygen.cfg
 
-
 # File names
 OUT = learning
 # Looking for C files in working and subdirectories
@@ -26,13 +25,12 @@ OBJECTS = $(SOURCES:.c=.o)
 # Main target
 $(OUT): $(OBJECTS)
 	$(CC) $(OBJECTS) -o $(OUT)
-	# Build documentation
 	$(DOXYGEN)
 
 # To obtain object files
 %.o: %.c
 	$(CC) -c $(CC_FLAGS) $< -o $@
-	
+
 # To remove generated files except the binary
 clean:
 	-$(RM) $(OBJECTS) 
