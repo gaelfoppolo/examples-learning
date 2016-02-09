@@ -1,7 +1,0 @@
-.memname tr {
-	float: left;
-}
-
-.memname tr:not(:last-child):not(:nth-last-child(2)) {	
-	margin-right: 7px;
-}
