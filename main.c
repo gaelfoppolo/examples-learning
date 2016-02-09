@@ -10,12 +10,19 @@
 #include "app/core.h"
 #include "app/output.h"
 
+ #define PROG_NAME "learning"
+
 int main(int argc, char const *argv[]) {
 
 	unsigned int argOffset = 1; // the place where the path to the exp file is expected in the argv array
 
-	if(argc < 2) {
-		output(LERROR, "You must pass the example file as argument like this : ./learning examples.exp\nThe example file must contains a link to the config file (include).\n");
+	if(argc < 2 || strcmp(argv[1], "-h") == 0 || strcmp(argv[1], "--help") == 0) {
+		output(L0, PROG_NAME " is a programs that aims to find similarities in objects of same type.\n");
+		output(L0, "Usage: " PROG_NAME " --help\n");
+		output(L0, "       " PROG_NAME " <example-file-path> [--extend-relations]\n\n");
+		output(L0, "--extend-relations	On solution objects that contains relations, print the object linked instead of writing its name\n");
+		output(L0, "-v                	Set the verbosity level. 4 levels are available (up to -vvvv)\n");
+
 		return 1;
 	}
 
@@ -33,7 +40,7 @@ int main(int argc, char const *argv[]) {
 	char* c = getIncludeFile(argv[argOffset], &includePosition);
 
 	if(c == NULL) {
-		output(LERROR, "The loading of the configuration file failed. The configuration must be linked in the example file.\n");
+		output(LERROR, "The loading of the configuration file failed. The configuration must be linked in the example file (example file loaded : %s).\n", argv[argOffset]);
 	}
 	else {
 		output(L1, SBDEFAULT "Loading configuation file : %s" SDEFAULT "\n", c);
