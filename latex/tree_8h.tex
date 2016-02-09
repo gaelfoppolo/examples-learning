@@ -1,0 +1,230 @@
+\hypertarget{tree_8h}{}\section{types/tree.h File Reference}
+\label{tree_8h}\index{types/tree.\+h@{types/tree.\+h}}
+
+
+File containing the definition of the trees.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}vector.\+h\char`\"{}}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_tree}{Tree}
+\begin{DoxyCompactList}\small\item\em Defines the trees. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{tree_8h_affe776513b24d84b39af8ab0930fef7f}{max}(a,  b)~((a) $>$ (b) ? (a) \+: (b))\hypertarget{tree_8h_affe776513b24d84b39af8ab0930fef7f}{}\label{tree_8h_affe776513b24d84b39af8ab0930fef7f}
+
+\begin{DoxyCompactList}\small\item\em Computes the maximum of {\itshape a} and {\itshape b}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{struct_tree}{Tree} {\bfseries Tree}\hypertarget{tree_8h_a3f28c654bbd2757691fc74e8cb9822c4}{}\label{tree_8h_a3f28c654bbd2757691fc74e8cb9822c4}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_tree}{Tree} $\ast$ \hyperlink{tree_8h_a23371a58349a9b88e641b1cfbf8ea88a}{create\+Leaf} (int id, char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Create a new leaf. \end{DoxyCompactList}\item 
+\hyperlink{struct_tree}{Tree} $\ast$ \hyperlink{tree_8h_a51bc54756c62f7a6d9df0d3dda1188be}{create\+Node} (int id, char $\ast$str, \hyperlink{struct_tree}{Tree} $\ast$child)
+\begin{DoxyCompactList}\small\item\em Create a new node. \end{DoxyCompactList}\item 
+\hyperlink{struct_tree}{Tree} $\ast$ \hyperlink{tree_8h_a20cf113144a4d78318cae514493540c2}{add\+Child} (\hyperlink{struct_tree}{Tree} $\ast$node, \hyperlink{struct_tree}{Tree} $\ast$child)
+\begin{DoxyCompactList}\small\item\em Add a child to a node. \end{DoxyCompactList}\item 
+int \hyperlink{tree_8h_a13511abcf3d362ccaf18d3a8288e9a9c}{is\+Leaf} (\hyperlink{struct_tree}{Tree} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Check wether the tree is a leaf or not. \end{DoxyCompactList}\item 
+int \hyperlink{tree_8h_a93f43312ed098f9d7e6f79bc709e38c7}{height} (\hyperlink{struct_tree}{Tree} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Get the height of a tree. \end{DoxyCompactList}\item 
+int \hyperlink{tree_8h_a8e8d3bc70508ca9f8e5fef6b67487e26}{depth} (\hyperlink{struct_tree}{Tree} $\ast$root, int id)
+\begin{DoxyCompactList}\small\item\em Get the depth of a node in the tree. \end{DoxyCompactList}\item 
+\hyperlink{struct_tree}{Tree} $\ast$ \hyperlink{tree_8h_a0a7a9c4c37381d59c0c406c8ce670a9c}{L\+CA} (\hyperlink{struct_tree}{Tree} $\ast$root, int id1, int id2)
+\begin{DoxyCompactList}\small\item\em Find the lowest common ancestor We traverse from root to leaf. When we find a node matching at least one value, we pass it to its parent. The parent tests wether a child contains the value or not. If yes, the parent is the L\+CA, otherwise, we pass its parent, up to root. What is passed is the lower node or N\+U\+LL. \end{DoxyCompactList}\item 
+void \hyperlink{tree_8h_a69fb3a3292bd8c145020d0fe58af26ba}{free\+Tree} (\hyperlink{struct_tree}{Tree} $\ast$t)
+\begin{DoxyCompactList}\small\item\em Free the tree. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File containing the definition of the trees. 
+
+\begin{DoxyAuthor}{Author}
+Bastien Philip (ebatsin) 
+
+Gaël Foppolo (gaelfoppolo) 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{tree.\+h@{tree.\+h}!add\+Child@{add\+Child}}
+\index{add\+Child@{add\+Child}!tree.\+h@{tree.\+h}}
+\subsubsection[{\texorpdfstring{add\+Child(\+Tree $\ast$node, Tree $\ast$child)}{addChild(Tree *node, Tree *child)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Tree}$\ast$ add\+Child (
+\begin{DoxyParamCaption}
+\item[{{\bf Tree} $\ast$}]{node, }
+\item[{{\bf Tree} $\ast$}]{child}
+\end{DoxyParamCaption}
+)}\hypertarget{tree_8h_a20cf113144a4d78318cae514493540c2}{}\label{tree_8h_a20cf113144a4d78318cae514493540c2}
+
+
+Add a child to a node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The node to which to add the child \\
+\hline
+{\em child} & The child to add to our node\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The modified node (same as given as parameter) 
+\end{DoxyReturn}
+\index{tree.\+h@{tree.\+h}!create\+Leaf@{create\+Leaf}}
+\index{create\+Leaf@{create\+Leaf}!tree.\+h@{tree.\+h}}
+\subsubsection[{\texorpdfstring{create\+Leaf(int id, char $\ast$str)}{createLeaf(int id, char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Tree}$\ast$ create\+Leaf (
+\begin{DoxyParamCaption}
+\item[{int}]{id, }
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}\hypertarget{tree_8h_a23371a58349a9b88e641b1cfbf8ea88a}{}\label{tree_8h_a23371a58349a9b88e641b1cfbf8ea88a}
+
+
+Create a new leaf. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The value to store in the leaf \\
+\hline
+{\em str} & \hyperlink{struct_string}{String} that represents the real name of what is stored\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new leaf
+\end{DoxyReturn}
+Create a new leaf.
+
+F\+O\+P\+P\+O\+LO Gaël  P\+H\+I\+L\+IP Bastien \index{tree.\+h@{tree.\+h}!create\+Node@{create\+Node}}
+\index{create\+Node@{create\+Node}!tree.\+h@{tree.\+h}}
+\subsubsection[{\texorpdfstring{create\+Node(int id, char $\ast$str, Tree $\ast$child)}{createNode(int id, char *str, Tree *child)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Tree}$\ast$ create\+Node (
+\begin{DoxyParamCaption}
+\item[{int}]{id, }
+\item[{char $\ast$}]{str, }
+\item[{{\bf Tree} $\ast$}]{child}
+\end{DoxyParamCaption}
+)}\hypertarget{tree_8h_a51bc54756c62f7a6d9df0d3dda1188be}{}\label{tree_8h_a51bc54756c62f7a6d9df0d3dda1188be}
+
+
+Create a new node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The value to store in the node \\
+\hline
+{\em str} & \hyperlink{struct_string}{String} that represents the real name of what is stored \\
+\hline
+{\em child} & The child to add to our new node\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new node 
+\end{DoxyReturn}
+\index{tree.\+h@{tree.\+h}!depth@{depth}}
+\index{depth@{depth}!tree.\+h@{tree.\+h}}
+\subsubsection[{\texorpdfstring{depth(\+Tree $\ast$root, int id)}{depth(Tree *root, int id)}}]{\setlength{\rightskip}{0pt plus 5cm}int depth (
+\begin{DoxyParamCaption}
+\item[{{\bf Tree} $\ast$}]{root, }
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}\hypertarget{tree_8h_a8e8d3bc70508ca9f8e5fef6b67487e26}{}\label{tree_8h_a8e8d3bc70508ca9f8e5fef6b67487e26}
+
+
+Get the depth of a node in the tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & The root of the tree \\
+\hline
+{\em id} & The id of the node of which the depth is needed\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The depth of the node in the tree 
+\end{DoxyReturn}
+\index{tree.\+h@{tree.\+h}!free\+Tree@{free\+Tree}}
+\index{free\+Tree@{free\+Tree}!tree.\+h@{tree.\+h}}
+\subsubsection[{\texorpdfstring{free\+Tree(\+Tree $\ast$t)}{freeTree(Tree *t)}}]{\setlength{\rightskip}{0pt plus 5cm}void free\+Tree (
+\begin{DoxyParamCaption}
+\item[{{\bf Tree} $\ast$}]{t}
+\end{DoxyParamCaption}
+)}\hypertarget{tree_8h_a69fb3a3292bd8c145020d0fe58af26ba}{}\label{tree_8h_a69fb3a3292bd8c145020d0fe58af26ba}
+
+
+Free the tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & Pointer to the tree \\
+\hline
+\end{DoxyParams}
+\index{tree.\+h@{tree.\+h}!height@{height}}
+\index{height@{height}!tree.\+h@{tree.\+h}}
+\subsubsection[{\texorpdfstring{height(\+Tree $\ast$t)}{height(Tree *t)}}]{\setlength{\rightskip}{0pt plus 5cm}int height (
+\begin{DoxyParamCaption}
+\item[{{\bf Tree} $\ast$}]{t}
+\end{DoxyParamCaption}
+)}\hypertarget{tree_8h_a93f43312ed098f9d7e6f79bc709e38c7}{}\label{tree_8h_a93f43312ed098f9d7e6f79bc709e38c7}
+
+
+Get the height of a tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & The tree of which the height is needed\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The height of the tree 
+\end{DoxyReturn}
+\index{tree.\+h@{tree.\+h}!is\+Leaf@{is\+Leaf}}
+\index{is\+Leaf@{is\+Leaf}!tree.\+h@{tree.\+h}}
+\subsubsection[{\texorpdfstring{is\+Leaf(\+Tree $\ast$t)}{isLeaf(Tree *t)}}]{\setlength{\rightskip}{0pt plus 5cm}int is\+Leaf (
+\begin{DoxyParamCaption}
+\item[{{\bf Tree} $\ast$}]{t}
+\end{DoxyParamCaption}
+)}\hypertarget{tree_8h_a13511abcf3d362ccaf18d3a8288e9a9c}{}\label{tree_8h_a13511abcf3d362ccaf18d3a8288e9a9c}
+
+
+Check wether the tree is a leaf or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & The tree to check\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns 1 if the parameter is a leaf, 0 otherwise 
+\end{DoxyReturn}
+\index{tree.\+h@{tree.\+h}!L\+CA@{L\+CA}}
+\index{L\+CA@{L\+CA}!tree.\+h@{tree.\+h}}
+\subsubsection[{\texorpdfstring{L\+C\+A(\+Tree $\ast$root, int id1, int id2)}{LCA(Tree *root, int id1, int id2)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Tree}$\ast$ L\+CA (
+\begin{DoxyParamCaption}
+\item[{{\bf Tree} $\ast$}]{root, }
+\item[{int}]{id1, }
+\item[{int}]{id2}
+\end{DoxyParamCaption}
+)}\hypertarget{tree_8h_a0a7a9c4c37381d59c0c406c8ce670a9c}{}\label{tree_8h_a0a7a9c4c37381d59c0c406c8ce670a9c}
+
+
+Find the lowest common ancestor We traverse from root to leaf. When we find a node matching at least one value, we pass it to its parent. The parent tests wether a child contains the value or not. If yes, the parent is the L\+CA, otherwise, we pass its parent, up to root. What is passed is the lower node or N\+U\+LL. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & The root of the tree \\
+\hline
+{\em id1} & The first value \\
+\hline
+{\em id2} & The second value\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The lowest common ancestor (node or leaf) 
+\end{DoxyReturn}

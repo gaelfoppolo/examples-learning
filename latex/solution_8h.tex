@@ -1,0 +1,75 @@
+\hypertarget{solution_8h}{}\section{types/solution.h File Reference}
+\label{solution_8h}\index{types/solution.\+h@{types/solution.\+h}}
+
+
+File containing the definition of the solution.  
+
+
+{\ttfamily \#include \char`\"{}vector.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}out-\/object.\+h\char`\"{}}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_solution}{Solution}
+\begin{DoxyCompactList}\small\item\em Contains all the possible solutions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{struct_solution}{Solution} {\bfseries Solution}\hypertarget{solution_8h_a8ec291b0d92ca14cd34aa4fd9f72bd66}{}\label{solution_8h_a8ec291b0d92ca14cd34aa4fd9f72bd66}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{solution_8h_a079f5d37b0750dcb4df89503c136d445}{init\+Solution} (\hyperlink{struct_solution}{Solution} $\ast$sol)
+\begin{DoxyCompactList}\small\item\em Init the solution. \end{DoxyCompactList}\item 
+void \hyperlink{solution_8h_aad83f5210589d49565d05a63e8f05d34}{free\+Solution} (\hyperlink{struct_solution}{Solution} $\ast$sol)
+\begin{DoxyCompactList}\small\item\em Free the solution previously initialized by init\+Solution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File containing the definition of the solution. 
+
+\begin{DoxyAuthor}{Author}
+Bastien Philip (ebatsin) 
+
+Gaël Foppolo (gaelfoppolo) 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{solution.\+h@{solution.\+h}!free\+Solution@{free\+Solution}}
+\index{free\+Solution@{free\+Solution}!solution.\+h@{solution.\+h}}
+\subsubsection[{\texorpdfstring{free\+Solution(\+Solution $\ast$sol)}{freeSolution(Solution *sol)}}]{\setlength{\rightskip}{0pt plus 5cm}void free\+Solution (
+\begin{DoxyParamCaption}
+\item[{{\bf Solution} $\ast$}]{sol}
+\end{DoxyParamCaption}
+)}\hypertarget{solution_8h_aad83f5210589d49565d05a63e8f05d34}{}\label{solution_8h_aad83f5210589d49565d05a63e8f05d34}
+
+
+Free the solution previously initialized by init\+Solution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sol} & A pointer to the solution to free \\
+\hline
+\end{DoxyParams}
+\index{solution.\+h@{solution.\+h}!init\+Solution@{init\+Solution}}
+\index{init\+Solution@{init\+Solution}!solution.\+h@{solution.\+h}}
+\subsubsection[{\texorpdfstring{init\+Solution(\+Solution $\ast$sol)}{initSolution(Solution *sol)}}]{\setlength{\rightskip}{0pt plus 5cm}void init\+Solution (
+\begin{DoxyParamCaption}
+\item[{{\bf Solution} $\ast$}]{sol}
+\end{DoxyParamCaption}
+)}\hypertarget{solution_8h_a079f5d37b0750dcb4df89503c136d445}{}\label{solution_8h_a079f5d37b0750dcb4df89503c136d445}
+
+
+Init the solution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sol} & A pointer to the solution to init\\
+\hline
+\end{DoxyParams}
+Init the solution.
+
+F\+O\+P\+P\+O\+LO Gaël  P\+H\+I\+L\+IP Bastien 

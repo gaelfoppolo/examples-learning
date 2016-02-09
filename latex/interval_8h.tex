@@ -1,0 +1,58 @@
+\hypertarget{interval_8h}{}\section{types/interval.h File Reference}
+\label{interval_8h}\index{types/interval.\+h@{types/interval.\+h}}
+
+
+File containing the definition of the interval type.  
+
+
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_interval}{Interval}
+\begin{DoxyCompactList}\small\item\em Structure that contains a signed integer interval. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{struct_interval}{Interval} {\bfseries Interval}\hypertarget{interval_8h_ad581781adf44f4a9db073013c8aa1d33}{}\label{interval_8h_ad581781adf44f4a9db073013c8aa1d33}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{interval_8h_a3b2ba6661e7243544722507c539f34c1}{add\+To\+Interval} (\hyperlink{struct_interval}{Interval} $\ast$inter, int x)
+\begin{DoxyCompactList}\small\item\em Change the interval (if needed) to contain a new value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File containing the definition of the interval type. 
+
+\begin{DoxyAuthor}{Author}
+Bastien Philip (ebatsin) 
+
+Gaël Foppolo (gaelfoppolo) 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{interval.\+h@{interval.\+h}!add\+To\+Interval@{add\+To\+Interval}}
+\index{add\+To\+Interval@{add\+To\+Interval}!interval.\+h@{interval.\+h}}
+\subsubsection[{\texorpdfstring{add\+To\+Interval(\+Interval $\ast$inter, int x)}{addToInterval(Interval *inter, int x)}}]{\setlength{\rightskip}{0pt plus 5cm}void add\+To\+Interval (
+\begin{DoxyParamCaption}
+\item[{{\bf Interval} $\ast$}]{inter, }
+\item[{int}]{x}
+\end{DoxyParamCaption}
+)}\hypertarget{interval_8h_a3b2ba6661e7243544722507c539f34c1}{}\label{interval_8h_a3b2ba6661e7243544722507c539f34c1}
+
+
+Change the interval (if needed) to contain a new value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inter} & The interval to change \\
+\hline
+{\em x} & The integer to add in the interval\\
+\hline
+\end{DoxyParams}
+Change the interval (if needed) to contain a new value.
+
+F\+O\+P\+P\+O\+LO Gaël  P\+H\+I\+L\+IP Bastien 
