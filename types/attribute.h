@@ -1,9 +1,9 @@
 /**
+ *	@file attribute.h
+ *	@author Bastien Philip (ebatsin)
+ *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin 	PHILIP Bastien
- *
- * @brief Structure of our attribute
+ *	@brief File containing the definition of the attributes
  */
 
 #ifndef _ATTRIBUTE_H_
@@ -12,12 +12,17 @@
 #include "attribute-types.h"
 
 /**
-*   @brief Represents an attribute and the value it holds
-*   @field type The attribute's type
-*   @field value The attribute's value
+*	@struct Attribute
+*	@brief Represents an attribute and the value it holds
+*	
+*	This structure holds an attribute of an object. Attributes can hold values of different types
+*	(signed integer, item of an enumeration, node or leaf of a tree), each of these types can be
+*	represented by an integer (either the true value, or the ID of the real value).
 */
-typedef struct __basic_attribute {
+typedef struct Attribute {
+	/** @brief The type of the attribute */
     attrType type;
+    /** @brief The value of the attribute */
     int value;
 } Attribute;
 

@@ -1,9 +1,9 @@
 /**
+ *	@file model-type.h
+ *	@author Bastien Philip (ebatsin)
+ *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin 	PHILIP Bastien
- *
- * @brief Structure of our model type
+ *	@brief File containing the definition of an attribute's type
  */
 
 #ifndef _MODELTYPE_H_
@@ -15,23 +15,30 @@
 #include "tree.h"
 
 /**
-*   @brief Structure that contains the model attribute
-*   @field type Type of the attribute
-*   @field union (inter or enum or tree) The attribute depending on the type
+*	@struct ModelType
+*   @brief Structure that contains the definition of the type
 */
-typedef struct __basic_model_type {
+typedef struct ModelType {
+	/** @brief The type contained */
     attrType type;
+    /**
+	*	@union
+	*	@brief As model types can be of 3 different types, each is defined, the good one is selected via the type field
+    */
     union {
+    	/** @brief Contains the definition of the type if it is an interval */
     	Interval inter;
+    	/** @brief Contains the definition of the type if it is an enumeration */
     	Enum enu;
+    	/** @brief Contains the definition of the type if it is a tree */
     	Tree tree;
     };
 } ModelType;
 
 /**
 *	@brief Free the ModelType
-*	@param mt A pointer to the ModelType to be free
-*	@param freeItself Boolean to know if the ModelType needs to free itself
+*	@param mt A pointer to the ModelType to be freed
+*	@param freeItself Boolean to know wether the ModelType is to be freed or not
 */
 void freeModelType(ModelType* mt, int freeItself);
 

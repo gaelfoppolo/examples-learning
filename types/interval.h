@@ -1,29 +1,32 @@
 /**
+ *	@file interval.h
+ *	@author Bastien Philip (ebatsin)
+ *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin 	PHILIP Bastien
- *
- * @brief Structure of our interval
+ *	@brief File containing the definition of the interval type
  */
 
 #ifndef _INTERVAL_H_
 #define _INTERVAL_H_
 
 /**
-*   @brief Represents an integer interval
-*   @field min Lower bound
-*   @field max Upper bound
+*	@struct Interval
+*   @brief Structure that contains a signed integer interval.
+*
+*	An Interval represents the interval between a lower and an upper bound
 */
-typedef struct __interval {
+typedef struct Interval {
+	/** @brief The lower bound */
     int min;
+	/** @brief The upper bound */
     int max;
 } Interval;
 
 /**
- * @brief Increase the interval to contains x
+ * @brief Change the interval (if needed) to contain a new value
  *
- * @param inter The interval to increase
- * @param x An integer to add into the interval
+ * @param inter The interval to change
+ * @param x The integer to add in the interval
  */
 void addToInterval(Interval* inter, int x);
 

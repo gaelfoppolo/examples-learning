@@ -1,9 +1,9 @@
 /**
+ *	@file out-object.h
+ *	@author Bastien Philip (ebatsin)
+ *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin 	PHILIP Bastien
- *
- * @brief Structure of our output object
+ *	@brief File containing the definition of the out-objects. Generated when combining multiple objects
  */
 
 #ifndef _OUTOBJECT_H_
@@ -12,17 +12,24 @@
 #include "out-attribute.h"
 
 /**
-*	@brief All the attributes composing the output object
-*	@field name Name of the OutObject
-*	@field specificity Level of specifity of the OutObject. Between 1 (= none) and 100 (= very). 0 = duplicate
-*	@field attributes All the attributes of the object
-*	@field relations All the relations of the object
+*	@struct OutObject
+*	@brief Contains all the attributes and relations that compose an outObject
 */
-typedef struct __basic_outobject {
+typedef struct OutObject {
+	/** @brief Name of the out object */
 	char* name;
+	/** @brief Level of specificity of the out object. Between 1 (none) and 100 (very), 0 if a duplicate */
 	unsigned char specificity;
+	/** 
+	*	@brief Array of the attributes of the out object.
+	*	Each attribute must be at the same index as its definition in the Model
+	*/
 	Vector(OutAttribute) attributes;
-	Vector(struct __basic_outobject*) relations;
+	/** 
+	*	@brief Array of the relations of the out object.
+	*	Each relation must be at the same index as its definition in the Model
+	*/
+	Vector(struct OutObject*) relations;
 } OutObject;
 
 /**
@@ -34,7 +41,7 @@ void initOutObject(OutObject* oo);
 /**
 *	@brief Free the outobject previously initialized by initOutObject
 *	@param oo A pointer to the outobject to free
-*	@param freeItself Boolean to know if the OutObject needs to free itself
+*	@param freeItself Boolean to know wether the OutObject is to be freed or not
 */
 void freeOutObject(OutObject* oo, int freeItself);
 

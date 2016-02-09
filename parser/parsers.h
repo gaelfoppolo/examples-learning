@@ -1,9 +1,9 @@
 /**
+ *	@file parsers.h
+ *	@author Bastien Philip (ebatsin)
+ *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin 	PHILIP Bastien
- *
- * @brief The parser
+ *	@brief File containing the example and model file parser
  */
 
 #ifndef _PARSERS_H_
@@ -19,10 +19,16 @@
 #include "../types/string-type.h"
 #include "../app/output.h"
 
-#define PARSED_EXAMPLE 1 // value returned by the getNextExample function if the example is an example
-#define PARSED_COUNTEREXAMPLE 2 // value returned by the getNextExample function if the example is a counter-example
+/** @brief Value representing an example in the example file */
+#define PARSED_EXAMPLE 1
+/** @brief Value representing a counter-example in the example file */
+#define PARSED_COUNTEREXAMPLE 2
 
-struct __basic_string_vector {
+/**
+*	@brief Stores an array or C string
+*/
+struct StringVector {
+	/** @brief An array of strings */
 	Vector(char*) seen;
 };
 
@@ -74,7 +80,7 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m);
 *
 *	@return A boolean. 1 for success. 0 for failure
 */
-int parseExampleObject(FILE* fp, char** error, Object* o, Model* m, struct __basic_string_vector* seenObjects);
+int parseExampleObject(FILE* fp, char** error, Object* o, Model* m, struct StringVector* seenObjects);
 
 /**
 *	@brief Returns the position at which can be found an attribute (by name)
@@ -104,7 +110,7 @@ int getRelationPosition(const char* rel, Model* m);
 *	@param position The position of the attribute in the model
 *	@param seenObjects The names of the objects that have already been seen
 */
-void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* attr, unsigned int position, struct __basic_string_vector* seenObjects);
+void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* attr, unsigned int position, struct StringVector* seenObjects);
 
 /**
 *	@brief Loads the config file given anf the generate the Model object that represents its content
@@ -143,14 +149,30 @@ char* parseAttrName(FILE* fp, char** error);
 ModelType* parseAttrType(FILE* fp, char** error);
 
 /**
-*	@brief Tries to parse a specific type of attribute's type defininition
+*	@brief Tries to parse an interval
 *	@param fp Ther file in which to read
 *	@param error In case of error, contains a description of the error. NULL if no error append. Must be an uninitialized variable or data loss may happen
 *
 *	@return The parsed value or NULL in case of error
 */
 Interval* parseAttrTypeInterval(FILE* fp, char** error);
+
+/**
+*	@brief Tries to parse an enumeration
+*	@param fp Ther file in which to read
+*	@param error In case of error, contains a description of the error. NULL if no error append. Must be an uninitialized variable or data loss may happen
+*
+*	@return The parsed value or NULL in case of error
+*/
 Enum* parseAttrTypeEnum(FILE* fp, char** error);
+
+/**
+*	@brief Tries to parse a tree
+*	@param fp Ther file in which to read
+*	@param error In case of error, contains a description of the error. NULL if no error append. Must be an uninitialized variable or data loss may happen
+*
+*	@return The parsed value or NULL in case of error
+*/
 Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent);
 
 /**

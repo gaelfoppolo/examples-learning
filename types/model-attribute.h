@@ -1,9 +1,9 @@
 /**
+ *	@file model-attribute.h
+ *	@author Bastien Philip (ebatsin)
+ *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin 	PHILIP Bastien
- *
- * @brief Structure of our model attribute
+ *	@brief File containing the definition of the attributes (as defined by the model file)
  */
 
 #ifndef _MODEL_ATTRIB_H_
@@ -14,19 +14,24 @@
 #include "model-type.h"
 
 /**
-*	@brief The attribute possible value and its name
-*	@field mt The possible value of the attribute
-*	@field name The name of the attribute
+*	@struct ModelAttribute
+*	@brief Contains the definition of an attribute and its type
+*
+*	Each attribute can be of 4 types (signed integer, enumeration item, tree node or leaf, relation)
+*	This structure contains the link between an attribute, its name and the type it holds (and 
+*	the boundaries of this type (bounds of the interval, possible values of the enumerations, etc...))
 */
-typedef struct __basic_model_attribute {
+typedef struct ModelAttribute {
+	/** @brief The definition of the value this attribute can hold */
 	ModelType mt;
+	/** @brief The name of this attribute, as found in the model file */
 	char* name;
 } ModelAttribute;
 
 /**
 *	@brief Free the ModelAttribute
-*	@param ma A pointer to the ModelAttribute to be free
-*	@param freeItself Boolean to know if the ModelAttribute needs to free itself
+*	@param ma A pointer to the ModelAttribute to be freed
+*	@param freeItself Boolean to know wether the ModelAttribute is to be freed or not
 */
 void freeModelAttribute(ModelAttribute* ma, int freeItself);
 

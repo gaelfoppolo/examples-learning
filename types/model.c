@@ -65,6 +65,15 @@ static int __getTreeId_rec(const char* str, Tree* t) {
 	return -1;
 }
 
+/**
+*	@brief NOT FOR USE - Used by getTreeStr - Recursively search in the tree to find the str that match the id.
+*	@param id The enum id to which the str is wanted
+*	@param t The root of the tree in which to search
+*
+*	@return Returns the str if found, NULL otherwise
+*/
+static char* __getTreeStr_rec(int id, Tree* t);
+
 int getTreeId(const char* str, Model* mdl, unsigned int index) {
 	return __getTreeId_rec(str, &vectAt(mdl->ma, index).mt.tree);
 }

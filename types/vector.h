@@ -1,9 +1,9 @@
 /**
+ *	@file vector.h
+ *	@author Bastien Philip (ebatsin)
+ *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin PHILIP Bastien
- *
- * @brief Dynamic array (vector) implementation
+ *	@brief File containing the definition of the vectors (dynamic & generic arrays)
  */
 
 #ifndef _VECTOR_H_
@@ -12,7 +12,8 @@
 #include <stdlib.h>
 
 /**
-*	@brief define a dynamic array of type t
+*	@brief define a dynamic array
+*	@param t The type of the items to store in the vector
 */
 #define Vector(t) struct {int size, capacity; t *data; }
 

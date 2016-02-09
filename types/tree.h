@@ -1,124 +1,109 @@
 /**
+ *	@file tree.h
+ *	@author Bastien Philip (ebatsin)
+ *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin 	PHILIP Bastien
- *
- * @brief Structure of our N-ary tree
+ *	@brief File containing the definition of the trees
  */
 
 #ifndef _TREE_H_
 #define _TREE_H_
 
 #include <stdio.h>
-
 #include "vector.h"
 
+/**
+*	@def max(a, b)
+*	@brief Computes the maximum of @a a and @a b
+*/
 #define max(a,b) ((a) > (b) ? (a) : (b))
 
 /**
- * @brief N-ary tree structure
- *
- * @field id Integer that represents the value of the node/leaf
- * @field str The name of the node/leaf
- * @field children Array of pointer to Tree: list of children
- *
- */
-typedef struct __tree {
+*	@struct Tree
+*	@brief Defines the trees
+*/
+typedef struct Tree {
+	/** @brief The unique identifier of this node or leaf */
  	int id;
+ 	/** @brief The name of this node or leaf */
 	char* str;
-	Vector(struct __tree) children;
+	/** @brief all the children of this node (or nothing if a leaf) */
+	Vector(struct Tree) children;
 } Tree;
 
 /**
- * @brief Create a new leaf (tree)
- *
- * @param id Id of the value to store in the leaf
- * @param str String that represents the real name of what is stored
- *
- * @return A new Tree
- */
+*	@brief Create a new leaf
+*	@param id The value to store in the leaf
+*	@param str String that represents the real name of what is stored
+*
+*	@return A new leaf
+*/
 Tree* createLeaf(int id, char* str);
 
 /**
- * @brief Create a new node (tree)
- *
- * @param id Id of the value to store in the node
- * @param str String that represents the real name of what is stored
- * @param child The child to add to our new node
- *
- * @return A new node (tree)
- */
+*	@brief Create a new node
+*	@param id The value to store in the node
+*	@param str String that represents the real name of what is stored
+*	@param child The child to add to our new node
+*
+*	@return A new node
+*/
 Tree* createNode(int id, char* str, Tree* child);
 
 /**
- * @brief Add a child to a node (tree)
- *
- * @param node The node to which adds the child
- * @param child The child to add to our new node
- *
- * @return A node (tree)
- */
+*	@brief Add a child to a node
+*	@param node The node to which to add the child
+*	@param child The child to add to our node
+*
+*	@return The modified node (same as given as parameter)
+*/
 Tree* addChild(Tree* node, Tree* child);
 
 /**
- * @brief Check if a tree is a leaf
- *
- * @param t The tree to check
- *
- * @return 0 (false) ou 1 (true)
- */
+*	@brief Check wether the tree is a leaf or not
+*	@param t The tree to check
+*
+*	@return Returns 1 if the parameter is a leaf, 0 otherwise
+*/
 int isLeaf(Tree* t);
 
 /**
- * @brief Get the height of a tree
- *
- * @param t The tree
- *
- * @return The height of the tree (integer)
- */
+*	@brief Get the height of a tree
+*	@param t The tree of which the height is needed
+*
+*	@return The height of the tree
+*/
 int height(Tree* t);
 
 /**
- * @brief Get the depth of a node in the tree
- *
- * @param root The root of tree
- * @param id The id of the node
- *
- * @return The depth of the node in the tree (integer)
- */
+*	@brief Get the depth of a node in the tree
+*	@param root The root of the tree
+*	@param id The id of the node of which the depth is needed
+*
+*	@return The depth of the node in the tree
+*/
 int depth(Tree* root, int id);
 
 /**
-*	@brief NOT FOR USE - Used by depth - Recursively go down into the tree with the current depth
-*	@param t The tree (node) to search into
-*	@param id The id of the node
-*	@param dpth The current depth of t
+*	@brief Find the lowest common ancestor
+*	We traverse from root to leaf.
+*	When we find a node matching at least one value, we pass it to its parent.
+*	The parent tests wether a child contains the value or not.
+*	If yes, the parent is the LCA, otherwise, we pass its parent, up to root.
+*	What is passed is the lower node or NULL
 *
-*	@return Returns the depth of the node matching the id
+*	@param root The root of the tree
+*	@param id1 The first value
+*	@param id2 The second value
+*
+*	@return The lowest common ancestor (node or leaf)
 */
-int depth_rec(Tree* t, int id, int dpth);
-
-/**
- * @brief Find the lowest common ancestor - Complexity θ(n)
- * @description We traverse from root to leaf(s).
- * When we find a node matching at least one, we pass it to its parent.
- * The parent tests if a child contains the value.
- * If yes, the parent is the LCA, else, we pass its parent, up to root.
- * What is pass is the lower node or NULL
- *
- * @param root The root of the tree
- * @param id1 The first value
- * @param id2 The second value
- *
- * @return The lowest common ancestor (node or leaf)
- */
 Tree* LCA(Tree* root, int id1, int id2);
 
 /**
- * @brief Remove from the memory, the space used by the tree
- *
- * @param t Pointer of the tree
- */
+*	@brief Free the tree
+*	@param t Pointer to the tree
+*/
 void freeTree(Tree* t);
 
 #endif // _TREE_H_

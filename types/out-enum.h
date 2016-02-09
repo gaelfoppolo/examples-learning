@@ -1,9 +1,9 @@
 /**
+ *	@file out-enum.h
+ *	@author Bastien Philip (ebatsin)
+ *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin 	PHILIP Bastien
- *
- * @brief Structure of our output enum
+ *	@brief File containing the definition of the enumeration extracts
  */
 
 #ifndef _OUTPUTENUM_H_
@@ -12,23 +12,25 @@
 #include "vector.h"
 
 /**
-*   @brief All the integer composing the enum
-*   @field oenu The list of the solution's integers
+*	@struct OutEnum
+*   @brief Contains multiple enumeration items
+*	When combining multiple Object, each enumeration item is to be stored, this structure does that
 */
-typedef struct __basic_outenum {
+typedef struct OutEnum {
+	/** @brief An array that contains the identifier of each enumeration item contained */
     Vector(int) oenu;
 } OutEnum;
 
 /**
 *	@brief Init the output enum
-*	@param enu A pointer to the enum to init
+*	@param oenu A pointer to the enum to init
 */
 void initOutEnum(OutEnum* oenu);
 
 /**
 *	@brief Free the OutEnum previously initialized by initEnum
 *	@param oenu A pointer to the enum to free
-*	@param freeItself Boolean to know if the OutEnum needs to free itself
+*	@param freeItself Boolean to know wether the OutEnum is to be freed or not
 */
 void freeOutEnum(OutEnum* oenu, int freeItself);
 

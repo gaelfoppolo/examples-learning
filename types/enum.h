@@ -1,9 +1,9 @@
 /**
+ *	@file enum.h
+ *	@author Bastien Philip (ebatsin)
+ *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin 	PHILIP Bastien
- *
- * @brief Structure of our enumeration model
+ *	@brief File containing the definition of the enumerations that can be used as types for the attributes
  */
 
 #ifndef _ENUM_H_
@@ -12,34 +12,39 @@
 #include "vector.h"
 
 /**
-*   @brief Structure that contains a value of an Enum
-*   @field id The unique identifier of the value
-*   @field str String matching the unique id
+*	@struct EnumType
+*   @brief Structure that contains an item of the enumeration
+*
+*	Enumerations are arrays of EnumType, each of which contain an item of the enumeration,
+*	caracterized by a unique identifier and his name as a string
 */
-typedef struct __basic_type_enum {
+typedef struct EnumType {
+	/** @brief The unique identifier of the value */
     int id;
+    /** @brief The name of this item of the enumeration */
     char* str;
 } EnumType;
 
 /**
-*   @brief Structure that contains the Enum (array of values)
-*   @field enum The vector that contains all the values of the Enum
+*	@struct Enum
+*   @brief Structure that defines the enumeration type
 */
-typedef struct __basic_enum {
+typedef struct Enum {
+	/** @brief Array of each items composing the enumeration */
 	Vector(EnumType) enu;
 } Enum;
 
 /**
 *	@brief Free the EnumType
-*	@param enuty A pointer to the EnumType to be free
-*	@param freeItself Boolean to know if the EnumType needs to free itself
+*	@param enuty A pointer to the EnumType to be freed
+*	@param freeItself Boolean to know wether the EnumType is to be freed or not
 */
 void freeEnumType(EnumType* enuty, int freeItself);
 
 /**
 *	@brief Free the Enum
-*	@param enu A pointer to the Enum to be free
-*	@param freeItself Boolean to know if the Enum needs to free itself
+*	@param enu A pointer to the Enum to be freed
+*	@param freeItself Boolean to know wether the Enum is to be freed or not
 */
 void freeEnum(Enum* enu, int freeItself);
 

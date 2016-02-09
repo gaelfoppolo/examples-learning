@@ -63,6 +63,16 @@ int height(Tree* t) {
 	}
 }
 
+/**
+*	@brief NOT FOR USE - Used by depth - Recursively go down into the tree with the current depth
+*	@param t The tree (node) to search into
+*	@param id The id of the node
+*	@param dpth The current depth of t
+*
+*	@return Returns the depth of the node matching the id
+*/
+static int depth_rec(Tree* t, int id, int dpth);
+
 int depth(Tree* root, int id) {
 	// launch the search with a depth of 0
 	return depth_rec(root, id, 0);

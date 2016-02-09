@@ -1,9 +1,9 @@
 /**
+ *	@file output.h
+ *	@author Bastien Philip (ebatsin)
+ *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin 	PHILIP Bastien
- *
- * @brief Convertion tools from structures to human readable strings
+ *	@brief File containing the output functions and helpers
  */
 
 #ifndef _OUTPUT_H_
@@ -16,7 +16,11 @@
 #include "../types/solution.h"
 #include "../types/string-type.h"
 
-// Bash colors
+/**
+*	@name TTY colors
+*	@brief Color values in Unix and MacOS terminals
+*/
+//@{
 #define SDEFAULT	"\e[0m"
 #define SBDEFAULT	"\e[1m"
 #define SBLACK		"\e[0;30m"
@@ -51,9 +55,15 @@
 #define SBUPURPLE	"\e[1;4;35m"
 #define SBUCYAN		"\e[1;4;36m"
 #define SBUWHITE	"\e[1;4;37m"
+//@}
 
-// output level of importance
+/** @brief Flag for the output function. Represents an error */
 #define LERROR		8
+/**
+*	@name output importance
+*	@brief Flags for the output function. Represents levels of importance
+*/
+//@{
 #define L0			0
 #define L1			1
 #define L2			2
@@ -62,6 +72,7 @@
 #define L5			5
 #define L6			6
 #define L7			7
+//@}
 
 /**
 *	@brief Returns a string that contains the representation of the object in a readable presentation

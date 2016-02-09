@@ -161,7 +161,7 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 	Attribute dfltAttr;
 	char* name;
 	char c;
-	struct __basic_string_vector seenObjects; // contains the objects already seen
+	struct StringVector seenObjects; // contains the objects already seen
 	int id; // the id of the current object
 
 	*error = NULL;
@@ -249,7 +249,7 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 	return 1;
 }
 
-int parseExampleObject(FILE* fp, char** error, Object* o, Model* m, struct __basic_string_vector* seenObjects) {
+int parseExampleObject(FILE* fp, char** error, Object* o, Model* m, struct StringVector* seenObjects) {
 	*error = NULL;
 	char* name;
 	int position;
@@ -331,7 +331,7 @@ int getRelationPosition(const char* rel, Model* m) {
 	return -1;
 }
 
-void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* attr, unsigned int position, struct __basic_string_vector* seenObjects) {
+void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* attr, unsigned int position, struct StringVector* seenObjects) {
 	String str = strInit(strDuplicate(""));
 	char c;
 	int tmp;

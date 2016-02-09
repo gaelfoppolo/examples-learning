@@ -1,9 +1,9 @@
 /**
+ *	@file core.h
+ *	@author Bastien Philip (ebatsin)
+ *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin 	PHILIP Bastien
- *
- * @brief The core
+ *	@brief File containing the core that generates the solutions
  */
 
 #ifndef _CORE_H_
@@ -18,61 +18,57 @@
 #include "output.h"
 
 /**
-*   @brief Represent the indices of the objects combined
-*   @field indices the indices of the objects combined
+*	@struct ObjectIndice
+*   @brief Stores a list of indexes
+*	When combining multiple objects, the identifier of each of them can be stored in this structure
 */
-typedef struct __basic_objindex {
+typedef struct ObjectIndice {
+	/** @brief The indexes of the combined objects */
 	Vector(int) indices;
 } ObjectIndice;
 
 /**
- * @brief Calculate the number of combinaisons possible for our examples from an example
- *
- * @param exp Pointer to our array of exemple
- * @param expIndice The example number (= indice)
- *
- * @return The number of combinaisons starting at expIndice example
- */
+*	@brief Computes the number of combinations possible for our examples from an example
+*	@param exp Pointer to our array of exemple
+*	@param expIndice The example number (= indice)
+*
+*	@return The number of combinations starting at expIndice example
+*/
 int nbCombi(Examples* exp, int expIndice);
 
 /**
- * @brief Generate a filled OutObject based on an object values
- *
- * @param mdl Pointer to the Model
- * @param o Pointer to the Object
- * 
- * @return Pointer to OutObject
- */
+*	@brief Generate a filled OutObject based on an object values
+*	@param mdl Pointer to the Model
+*	@param o Pointer to the Object
+* 
+*	@return Pointer to OutObject
+*/
 OutObject* initOutObjectWithObject(Model* mdl, Object* o);
 
 /**
- * @brief Init all combinaisons with last example objects
- *
- * @param mdl Pointer to the Model
- * @param exp Pointer to the Examples
- * 
- * @return Pointer to Solution inizialized
- */
+*	@brief Init all combinaisons with last example objects
+*	@param mdl Pointer to the Model
+*	@param exp Pointer to the Examples
+* 
+*	@return Pointer to Solution inizialized
+*/
 Solution* initAllCombi(Model* mdl, Examples* exp);
 
 /**
- * @brief Combine an OutObject and an Object into an OutObject
- *
- * @param mdl Pointer to the Model
- * @param oo Pointer to the OutObject to combine with Object
- * @param o Pointer to the Object to combine with OutObject
- * 
- */
+*	@brief Combine an OutObject and an Object into an OutObject
+*	@param mdl Pointer to the Model
+*	@param oo Pointer to the OutObject to combine with Object
+*	@param o Pointer to the Object to combine with OutObject
+*/
 void combiOutObjectObject(Model* mdl, OutObject* oo, Object*o);
 
 /**
- * @brief Generate all the combinations for our examples
- *
- * @param mdl Pointer to the Model
- * @param exp Pointer to our Examples to combine
- * 
- * @return Pointer to Solution containing all our combinaisons
- */
+*	@brief Generate all the combinations for our examples
+*	@param mdl Pointer to the Model
+*	@param exp Pointer to our Examples to combine
+* 
+*	@return Pointer to Solution containing all our combinaisons
+*/
 Solution* genAllCombi(Model* mdl, Examples* exp);
 
 /**
@@ -84,39 +80,35 @@ Solution* genAllCombi(Model* mdl, Examples* exp);
 void genAllRelations(Solution* s, Examples* e, Model* m);
 
 /**
- * @brief Get the index of the combinaisons of object in the array
- *
- * @param exp Pointer to the examples
- * @param oi Pointer to the objects's indices
- * 
- * @return An integer
- */
+*	@brief Get the index of the combinaisons of object in the array
+*	@param exp Pointer to the examples
+*	@param oi Pointer to the objects's indices
+* 
+*	@return An integer
+*/
 int getIndex(Examples* exp, ObjectIndice* oi);
 
 /**
- * @brief Calculate the level of specifity of an OutObject based on the model
- *
- * @param mdl Pointer to the model
- * @param oo Pointer to the OutObject
- * 
- */
+*	@brief Calculate the level of specifity of an OutObject based on the model
+*	@param mdl Pointer to the model
+*	@param oo Pointer to the OutObject 
+*/
 void genSpecificity(Model* mdl, OutObject* oo);
 
 /**
- * @brief Compare two OutObjects
- *
- * @param oo1 Pointer to the first OutObject (reference)
- * @param oo2 Pointer to the second OutObject
- * 
- * @return An integer: -1 = oo2 less specific than oo1, 0 = same, 1 = oo2 more specific than oo1 or different values
- */
+*	@brief Compare two OutObjects
+*	@param oo1 Pointer to the first OutObject (reference)
+*	@param oo2 Pointer to the second OutObject
+* 
+*	@return An integer: -1 = oo2 less specific than oo1, 0 = same, 1 = oo2 more specific than oo1 or different values
+*/
 int compareOutObjects(OutObject* oo1, OutObject* oo2);
 
 /**
- * @brief Generalisation of our solution(s)
- *
- * @param s Pointer to the Solution
- */
+*	@brief Generalisation of our solution(s)
+*
+*	@param s Pointer to the Solution
+*/
 void genGeneralisation(Solution* s);
 
 #endif // _CORE_H_

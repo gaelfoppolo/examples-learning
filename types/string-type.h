@@ -1,9 +1,9 @@
 /**
+ *	@file string-type.h
+ *	@author Bastien Philip (ebatsin)
+ *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin 	PHILIP Bastien
- *
- * @brief String implementation type
+ *	@brief File containing the definition of the String type and some tools to use it
  */
 
 #ifndef _STRING_TYPE_H_
@@ -12,27 +12,31 @@
 #include <stdlib.h>
 
 /**
+*	@struct String
 *   @brief Dynamic string handler
-*   @field str The normal nul terminated char array that represents the string
-*	@field length The current string length
-*	@field availableLength The current available max length for the string
+*
+*	Allows to work on string an perform additions to the string without having to care about
+*	memory management and reallocations
 */
-typedef struct __basic_string {
+typedef struct String {
+	/** @brief The normal, nul terminated char array that represents the string */
 	char* str;
+	/** @brief The current string length (number of characters in the string) */
 	unsigned int length;
+	/** @brief Size of the bloc allocated */
 	unsigned int availableLength;
 } String;
 
 /**
-*	@brief Transforms a char* to a string. The char* MUST be a nul terminated array
-*	@param str The basic C char array
+*	@brief Transforms a char* to a string. The char* MUST be a nul terminated array allocated with malloc
+*	@param str The original string (the original is used, no copy is performed)
 *
-*	@return The newly created string
+*	@return The newly created string structure
 */
 String strInit(char* str);
 
 /**
-*	@brief Returns the current string size
+*	@brief Returns the current string length
 *	@param str The string of which the length is returned
 *
 *	@return The length of the string

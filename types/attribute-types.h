@@ -1,24 +1,33 @@
 /**
+ *	@file attribute-types.h
+ *	@author Bastien Philip (ebatsin)
+ *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin 	PHILIP Bastien
- *
- * @brief Attribute types definition
+ *	@brief File containing the attribute's types definition
  */
 
 #ifndef _ATTRIBUTE_TYPES_H_
 #define _ATTRIBUTE_TYPES_H_
 
 /**
- * @brief Attribute type
+ *	@typedef unsigned char attrType
+ *	@brief Stores the type of the attribute
  */
 typedef unsigned char attrType;
 
-#define TYPE_INT 1 // attribute that represents an integer
-#define TYPE_ENUM 2 // attribute that represents an enumeration
-#define TYPE_TREE 3 // attribute that represents a tree
+/** @brief Indicate a type that stores signed integers */
+#define TYPE_INT 1
 
-#define TYPE_RELATION 4 // attribute that represents a relation
-#define TYPE_NORELATION 5 // attribute that represents the lack of relation
+/** @brief Indicate a type that stores enumerations */
+#define TYPE_ENUM 2
+
+/** @brief Indicate a type that stores a tree */
+#define TYPE_TREE 3
+
+/** @brief Indicate a type that stores a relation */
+#define TYPE_RELATION 4
+
+/** @brief Denote the absence of a relation in this attribute */
+#define TYPE_NORELATION 5
 
 #endif // _ATTRIBUTE_TYPES_H_

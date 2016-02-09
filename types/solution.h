@@ -1,9 +1,9 @@
 /**
+ *	@file solution.h
+ *	@author Bastien Philip (ebatsin)
+ *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin 	PHILIP Bastien
- *
- * @brief Structure of our solution
+ *	@brief File containing the definition of the solution
  */
 
 #ifndef _SOLUTION_H_
@@ -13,10 +13,11 @@
 #include "out-object.h"
 
 /**
-*   @brief All the OutObject composing the solution
-*   @field outobjects The list of OutObject
+*	@struct Solution
+*   @brief Contains all the possible solutions
 */
-typedef struct __basic_solution {
+typedef struct Solution {
+	/** @brief An array of out objects, each one representing a solution */
     Vector(OutObject) outobjects;
 } Solution;
 
