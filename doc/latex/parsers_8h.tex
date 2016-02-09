@@ -1,0 +1,522 @@
+\hypertarget{parsers_8h}{}\section{parser/parsers.h File Reference}
+\label{parsers_8h}\index{parser/parsers.\+h@{parser/parsers.\+h}}
+
+
+File containing the example and model file parser.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$limits.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}../types/examples.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../types/model.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../types/string-\/type.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}../app/output.\+h\char`\"{}}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_string_vector}{String\+Vector}
+\begin{DoxyCompactList}\small\item\em Stores an array or C string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{parsers_8h_a3a85a5008f41bf35acc0aeda54d9e2cb}{P\+A\+R\+S\+E\+D\+\_\+\+E\+X\+A\+M\+P\+LE}~1\hypertarget{parsers_8h_a3a85a5008f41bf35acc0aeda54d9e2cb}{}\label{parsers_8h_a3a85a5008f41bf35acc0aeda54d9e2cb}
+
+\begin{DoxyCompactList}\small\item\em Value representing an example in the example file. \end{DoxyCompactList}\item 
+\#define \hyperlink{parsers_8h_a02fbf74237dc049ff06d525b1238607e}{P\+A\+R\+S\+E\+D\+\_\+\+C\+O\+U\+N\+T\+E\+R\+E\+X\+A\+M\+P\+LE}~2\hypertarget{parsers_8h_a02fbf74237dc049ff06d525b1238607e}{}\label{parsers_8h_a02fbf74237dc049ff06d525b1238607e}
+
+\begin{DoxyCompactList}\small\item\em Value representing a counter-\/example in the example file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{parsers_8h_a7b3b6b2e401d5aa94a878d2deac4a2c1}{get\+Include\+File} (char const $\ast$pathname, size\+\_\+t $\ast$pos)
+\begin{DoxyCompactList}\small\item\em Get the pathname to the config file included at the begening of an example file. \end{DoxyCompactList}\item 
+\hyperlink{struct_examples}{Examples} $\ast$ \hyperlink{parsers_8h_aca92bb4f3796c5f7f336f681a06611d2}{load\+Example\+File} (char const $\ast$pathname, \hyperlink{struct_model}{Model} $\ast$model, size\+\_\+t start\+Pos)
+\begin{DoxyCompactList}\small\item\em Loads the example file given and generate the \hyperlink{struct_example}{Example} object that represents its content. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{parsers_8h_a2fb9a449bdc233d731bd618fee11723f}{get\+Next\+Example} (F\+I\+LE $\ast$f)
+\begin{DoxyCompactList}\small\item\em Get the type of the next example (example or counter-\/example). Stop reading at the end of the example name, on the last character. \end{DoxyCompactList}\item 
+int \hyperlink{parsers_8h_aad08054ce5747601c351fa6965bb42c5}{parse\+Example} (F\+I\+LE $\ast$fp, char $\ast$$\ast$error, \hyperlink{struct_example}{Example} $\ast$ex, \hyperlink{struct_model}{Model} $\ast$m)
+\begin{DoxyCompactList}\small\item\em Parse an example or a counterexample. \end{DoxyCompactList}\item 
+int \hyperlink{parsers_8h_a53ddbc56bfe6f0320f04e39432ccb776}{parse\+Example\+Object} (F\+I\+LE $\ast$fp, char $\ast$$\ast$error, \hyperlink{struct_object}{Object} $\ast$o, \hyperlink{struct_model}{Model} $\ast$m, struct \hyperlink{struct_string_vector}{String\+Vector} $\ast$seen\+Objects)
+\begin{DoxyCompactList}\small\item\em Parse an object (only its properties. The name must already be known) \end{DoxyCompactList}\item 
+int \hyperlink{parsers_8h_acbb17ae374bfa9efbd8091a982c313f0}{get\+Attribute\+Position} (const char $\ast$attr, \hyperlink{struct_model}{Model} $\ast$m)
+\begin{DoxyCompactList}\small\item\em Returns the position at which can be found an attribute (by name) \end{DoxyCompactList}\item 
+int \hyperlink{parsers_8h_ac201146b4e2a65edf1d8ddc97fcb5f78}{get\+Relation\+Position} (const char $\ast$rel, \hyperlink{struct_model}{Model} $\ast$m)
+\begin{DoxyCompactList}\small\item\em Returns the position at which can be found a relation (by name) \end{DoxyCompactList}\item 
+void \hyperlink{parsers_8h_ae2f6a660e8fc746879c84057a2a27e43}{parse\+Attr\+Value} (F\+I\+LE $\ast$fp, char $\ast$$\ast$error, \hyperlink{struct_model}{Model} $\ast$m, \hyperlink{attribute-types_8h_a1d7db01768b8c6ad96eb92c7f6a30f1b}{attr\+Type} type, \hyperlink{struct_attribute}{Attribute} $\ast$attr, unsigned int position, struct \hyperlink{struct_string_vector}{String\+Vector} $\ast$seen\+Objects)
+\begin{DoxyCompactList}\small\item\em Parse the attribute\textquotesingle{}s value and populate the \hyperlink{struct_attribute}{Attribute} object accordingly. \end{DoxyCompactList}\item 
+\hyperlink{struct_model}{Model} $\ast$ \hyperlink{parsers_8h_aba6c3205292b2157b07d26db9753f366}{load\+Config\+File} (char const $\ast$pathname)
+\begin{DoxyCompactList}\small\item\em Loads the config file given anf the generate the \hyperlink{struct_model}{Model} object that represents its content. \end{DoxyCompactList}\item 
+int \hyperlink{parsers_8h_a986cbbf2bc6509e1217346c2e1adaad2}{parse\+Config\+Line} (F\+I\+LE $\ast$fp, char $\ast$$\ast$error, \hyperlink{struct_model}{Model} $\ast$out)
+\begin{DoxyCompactList}\small\item\em Tries to parse the line as a config file attribute definition. If the line is empty, continues to read until it finds a line. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{parsers_8h_a15665e9aae62362f0948994136b44f8b}{parse\+Attr\+Name} (F\+I\+LE $\ast$fp, char $\ast$$\ast$error)
+\begin{DoxyCompactList}\small\item\em Tries to parse the attribute name at the current position in the file (spaces \& tabs are ommited) \end{DoxyCompactList}\item 
+\hyperlink{struct_model_type}{Model\+Type} $\ast$ \hyperlink{parsers_8h_aa7a8052bc2ac6c4c70496e0b8f9ba458}{parse\+Attr\+Type} (F\+I\+LE $\ast$fp, char $\ast$$\ast$error)
+\begin{DoxyCompactList}\small\item\em Tries to parse the attribute\textquotesingle{}s value definition at the current position in the file (may read more than one line in case of trees) \end{DoxyCompactList}\item 
+\hyperlink{struct_interval}{Interval} $\ast$ \hyperlink{parsers_8h_abc29c7ff0d736d1ab0d9a80b7ff2eab0}{parse\+Attr\+Type\+Interval} (F\+I\+LE $\ast$fp, char $\ast$$\ast$error)
+\begin{DoxyCompactList}\small\item\em Tries to parse an interval. \end{DoxyCompactList}\item 
+\hyperlink{struct_enum}{Enum} $\ast$ \hyperlink{parsers_8h_ab456bb242016ec949b25498e0a506fad}{parse\+Attr\+Type\+Enum} (F\+I\+LE $\ast$fp, char $\ast$$\ast$error)
+\begin{DoxyCompactList}\small\item\em Tries to parse an enumeration. \end{DoxyCompactList}\item 
+\hyperlink{struct_tree}{Tree} $\ast$ \hyperlink{parsers_8h_ab5b90eac71609ac27833b96da19fa57d}{parse\+Attr\+Type\+Tree} (F\+I\+LE $\ast$fp, char $\ast$$\ast$error, int $\ast$index, int indent)
+\begin{DoxyCompactList}\small\item\em Tries to parse a tree. \end{DoxyCompactList}\item 
+int \hyperlink{parsers_8h_a5b1ce78200962639956078ce45c6b2e3}{is\+Valid\+Attr\+Char} (char c, unsigned int first)
+\begin{DoxyCompactList}\small\item\em Check whether the character is allowed in an attribute name or not. \end{DoxyCompactList}\item 
+void \hyperlink{parsers_8h_a521906155e2c1df4118a98297d69bb2e}{read\+File\+Spaces} (F\+I\+LE $\ast$fp, char const $\ast$set)
+\begin{DoxyCompactList}\small\item\em Reads a file from the current position and reads while characters are in the set. Stops on the last one. \end{DoxyCompactList}\item 
+void \hyperlink{parsers_8h_a961b4c03ca09188c780c9bae74f311d4}{read\+Til} (F\+I\+LE $\ast$fp, char const $\ast$set)
+\begin{DoxyCompactList}\small\item\em Reads a file from the current position and reads until it finds a character in the set. Stops on the last character not in the set. \end{DoxyCompactList}\item 
+void \hyperlink{parsers_8h_aa13acbba3c52feffbd12fcae8cdf3c9e}{print\+Indent} (unsigned int flag, int indent)
+\begin{DoxyCompactList}\small\item\em Display tabs(s) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File containing the example and model file parser. 
+
+\begin{DoxyAuthor}{Author}
+Bastien Philip (ebatsin) 
+
+Gaël Foppolo (gaelfoppolo) 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{parsers.\+h@{parsers.\+h}!get\+Attribute\+Position@{get\+Attribute\+Position}}
+\index{get\+Attribute\+Position@{get\+Attribute\+Position}!parsers.\+h@{parsers.\+h}}
+\subsubsection[{\texorpdfstring{get\+Attribute\+Position(const char $\ast$attr, Model $\ast$m)}{getAttributePosition(const char *attr, Model *m)}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Attribute\+Position (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{attr, }
+\item[{{\bf Model} $\ast$}]{m}
+\end{DoxyParamCaption}
+)}\hypertarget{parsers_8h_acbb17ae374bfa9efbd8091a982c313f0}{}\label{parsers_8h_acbb17ae374bfa9efbd8091a982c313f0}
+
+
+Returns the position at which can be found an attribute (by name) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em attr} & the attribute to search for \\
+\hline
+{\em m} & The model in which to find the order\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the index of the attribute (or -\/1 in case the attributes is not in the model) 
+\end{DoxyReturn}
+\index{parsers.\+h@{parsers.\+h}!get\+Include\+File@{get\+Include\+File}}
+\index{get\+Include\+File@{get\+Include\+File}!parsers.\+h@{parsers.\+h}}
+\subsubsection[{\texorpdfstring{get\+Include\+File(char const $\ast$pathname, size\+\_\+t $\ast$pos)}{getIncludeFile(char const *pathname, size_t *pos)}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ get\+Include\+File (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{pathname, }
+\item[{size\+\_\+t $\ast$}]{pos}
+\end{DoxyParamCaption}
+)}\hypertarget{parsers_8h_a7b3b6b2e401d5aa94a878d2deac4a2c1}{}\label{parsers_8h_a7b3b6b2e401d5aa94a878d2deac4a2c1}
+
+
+Get the pathname to the config file included at the begening of an example file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pathname} & The path to the example file \\
+\hline
+{\em pos} & Will contain the position of the character after the last character of the include (basically, a \char`\"{} \char`\"{}, \char`\"{}\textbackslash{}t\char`\"{} or \char`\"{}\textbackslash{}n\char`\"{})\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If the file to include is found, the file name. N\+U\+LL otherwise
+\end{DoxyReturn}
+Get the pathname to the config file included at the begening of an example file.
+
+F\+O\+P\+P\+O\+LO Gaël  P\+H\+I\+L\+IP Bastien \index{parsers.\+h@{parsers.\+h}!get\+Next\+Example@{get\+Next\+Example}}
+\index{get\+Next\+Example@{get\+Next\+Example}!parsers.\+h@{parsers.\+h}}
+\subsubsection[{\texorpdfstring{get\+Next\+Example(\+F\+I\+L\+E $\ast$f)}{getNextExample(FILE *f)}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int get\+Next\+Example (
+\begin{DoxyParamCaption}
+\item[{F\+I\+LE $\ast$}]{f}
+\end{DoxyParamCaption}
+)}\hypertarget{parsers_8h_a2fb9a449bdc233d731bd618fee11723f}{}\label{parsers_8h_a2fb9a449bdc233d731bd618fee11723f}
+
+
+Get the type of the next example (example or counter-\/example). Stop reading at the end of the example name, on the last character. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & The file to be read\\
+\hline
+{\em Returns} & 0 in case of error, P\+A\+R\+S\+E\+D\+\_\+\+E\+X\+A\+M\+P\+LE if the line is an example, P\+A\+R\+S\+E\+D\+\_\+\+C\+O\+U\+N\+T\+E\+R\+E\+X\+A\+M\+P\+LE if the line is a counter-\/example \\
+\hline
+\end{DoxyParams}
+\index{parsers.\+h@{parsers.\+h}!get\+Relation\+Position@{get\+Relation\+Position}}
+\index{get\+Relation\+Position@{get\+Relation\+Position}!parsers.\+h@{parsers.\+h}}
+\subsubsection[{\texorpdfstring{get\+Relation\+Position(const char $\ast$rel, Model $\ast$m)}{getRelationPosition(const char *rel, Model *m)}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+Relation\+Position (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{rel, }
+\item[{{\bf Model} $\ast$}]{m}
+\end{DoxyParamCaption}
+)}\hypertarget{parsers_8h_ac201146b4e2a65edf1d8ddc97fcb5f78}{}\label{parsers_8h_ac201146b4e2a65edf1d8ddc97fcb5f78}
+
+
+Returns the position at which can be found a relation (by name) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rel} & the relation to search for \\
+\hline
+{\em m} & The model in which to find the order\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the index of the attribute (or -\/1 in case the attributes is not in the model) 
+\end{DoxyReturn}
+\index{parsers.\+h@{parsers.\+h}!is\+Valid\+Attr\+Char@{is\+Valid\+Attr\+Char}}
+\index{is\+Valid\+Attr\+Char@{is\+Valid\+Attr\+Char}!parsers.\+h@{parsers.\+h}}
+\subsubsection[{\texorpdfstring{is\+Valid\+Attr\+Char(char c, unsigned int first)}{isValidAttrChar(char c, unsigned int first)}}]{\setlength{\rightskip}{0pt plus 5cm}int is\+Valid\+Attr\+Char (
+\begin{DoxyParamCaption}
+\item[{char}]{c, }
+\item[{unsigned int}]{first}
+\end{DoxyParamCaption}
+)}\hypertarget{parsers_8h_a5b1ce78200962639956078ce45c6b2e3}{}\label{parsers_8h_a5b1ce78200962639956078ce45c6b2e3}
+
+
+Check whether the character is allowed in an attribute name or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & The character to Check \\
+\hline
+{\em first} & Wether the character is the first to be read or not\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns 1 if the character is valid. 0 otherwise 
+\end{DoxyReturn}
+\index{parsers.\+h@{parsers.\+h}!load\+Config\+File@{load\+Config\+File}}
+\index{load\+Config\+File@{load\+Config\+File}!parsers.\+h@{parsers.\+h}}
+\subsubsection[{\texorpdfstring{load\+Config\+File(char const $\ast$pathname)}{loadConfigFile(char const *pathname)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Model}$\ast$ load\+Config\+File (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{pathname}
+\end{DoxyParamCaption}
+)}\hypertarget{parsers_8h_aba6c3205292b2157b07d26db9753f366}{}\label{parsers_8h_aba6c3205292b2157b07d26db9753f366}
+
+
+Loads the config file given anf the generate the \hyperlink{struct_model}{Model} object that represents its content. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pathname} & The path tp the config file to be read\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A newly created \hyperlink{struct_model}{Model} object 
+\end{DoxyReturn}
+\index{parsers.\+h@{parsers.\+h}!load\+Example\+File@{load\+Example\+File}}
+\index{load\+Example\+File@{load\+Example\+File}!parsers.\+h@{parsers.\+h}}
+\subsubsection[{\texorpdfstring{load\+Example\+File(char const $\ast$pathname, Model $\ast$model, size\+\_\+t start\+Pos)}{loadExampleFile(char const *pathname, Model *model, size_t startPos)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Examples}$\ast$ load\+Example\+File (
+\begin{DoxyParamCaption}
+\item[{char const $\ast$}]{pathname, }
+\item[{{\bf Model} $\ast$}]{model, }
+\item[{size\+\_\+t}]{start\+Pos}
+\end{DoxyParamCaption}
+)}\hypertarget{parsers_8h_aca92bb4f3796c5f7f336f681a06611d2}{}\label{parsers_8h_aca92bb4f3796c5f7f336f681a06611d2}
+
+
+Loads the example file given and generate the \hyperlink{struct_example}{Example} object that represents its content. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pathname} & The path to the example file to be read \\
+\hline
+{\em model} & The \hyperlink{struct_model}{Model} object generated from the config file \\
+\hline
+{\em start\+Pos} & The position at which to start parsing the file\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A newly created \hyperlink{struct_examples}{Examples} object 
+\end{DoxyReturn}
+\index{parsers.\+h@{parsers.\+h}!parse\+Attr\+Name@{parse\+Attr\+Name}}
+\index{parse\+Attr\+Name@{parse\+Attr\+Name}!parsers.\+h@{parsers.\+h}}
+\subsubsection[{\texorpdfstring{parse\+Attr\+Name(\+F\+I\+L\+E $\ast$fp, char $\ast$$\ast$error)}{parseAttrName(FILE *fp, char **error)}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ parse\+Attr\+Name (
+\begin{DoxyParamCaption}
+\item[{F\+I\+LE $\ast$}]{fp, }
+\item[{char $\ast$$\ast$}]{error}
+\end{DoxyParamCaption}
+)}\hypertarget{parsers_8h_a15665e9aae62362f0948994136b44f8b}{}\label{parsers_8h_a15665e9aae62362f0948994136b44f8b}
+
+
+Tries to parse the attribute name at the current position in the file (spaces \& tabs are ommited) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fp} & Ther file in which to read \\
+\hline
+{\em error} & In case of error, contains a description of the error. N\+U\+LL if no error append. Must be an uninitialized variable or data loss may happen\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a new string that contains the attribute name or N\+U\+LL in case of error 
+\end{DoxyReturn}
+\index{parsers.\+h@{parsers.\+h}!parse\+Attr\+Type@{parse\+Attr\+Type}}
+\index{parse\+Attr\+Type@{parse\+Attr\+Type}!parsers.\+h@{parsers.\+h}}
+\subsubsection[{\texorpdfstring{parse\+Attr\+Type(\+F\+I\+L\+E $\ast$fp, char $\ast$$\ast$error)}{parseAttrType(FILE *fp, char **error)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Model\+Type}$\ast$ parse\+Attr\+Type (
+\begin{DoxyParamCaption}
+\item[{F\+I\+LE $\ast$}]{fp, }
+\item[{char $\ast$$\ast$}]{error}
+\end{DoxyParamCaption}
+)}\hypertarget{parsers_8h_aa7a8052bc2ac6c4c70496e0b8f9ba458}{}\label{parsers_8h_aa7a8052bc2ac6c4c70496e0b8f9ba458}
+
+
+Tries to parse the attribute\textquotesingle{}s value definition at the current position in the file (may read more than one line in case of trees) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fp} & Ther file in which to read \\
+\hline
+{\em error} & In case of error, contains a description of the error. N\+U\+LL if no error append. Must be an uninitialized variable or data loss may happen\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the \hyperlink{struct_model_type}{Model\+Type} built from the file definition or N\+U\+LL in case of error 
+\end{DoxyReturn}
+\index{parsers.\+h@{parsers.\+h}!parse\+Attr\+Type\+Enum@{parse\+Attr\+Type\+Enum}}
+\index{parse\+Attr\+Type\+Enum@{parse\+Attr\+Type\+Enum}!parsers.\+h@{parsers.\+h}}
+\subsubsection[{\texorpdfstring{parse\+Attr\+Type\+Enum(\+F\+I\+L\+E $\ast$fp, char $\ast$$\ast$error)}{parseAttrTypeEnum(FILE *fp, char **error)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Enum}$\ast$ parse\+Attr\+Type\+Enum (
+\begin{DoxyParamCaption}
+\item[{F\+I\+LE $\ast$}]{fp, }
+\item[{char $\ast$$\ast$}]{error}
+\end{DoxyParamCaption}
+)}\hypertarget{parsers_8h_ab456bb242016ec949b25498e0a506fad}{}\label{parsers_8h_ab456bb242016ec949b25498e0a506fad}
+
+
+Tries to parse an enumeration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fp} & Ther file in which to read \\
+\hline
+{\em error} & In case of error, contains a description of the error. N\+U\+LL if no error append. Must be an uninitialized variable or data loss may happen\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The parsed value or N\+U\+LL in case of error 
+\end{DoxyReturn}
+\index{parsers.\+h@{parsers.\+h}!parse\+Attr\+Type\+Interval@{parse\+Attr\+Type\+Interval}}
+\index{parse\+Attr\+Type\+Interval@{parse\+Attr\+Type\+Interval}!parsers.\+h@{parsers.\+h}}
+\subsubsection[{\texorpdfstring{parse\+Attr\+Type\+Interval(\+F\+I\+L\+E $\ast$fp, char $\ast$$\ast$error)}{parseAttrTypeInterval(FILE *fp, char **error)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Interval}$\ast$ parse\+Attr\+Type\+Interval (
+\begin{DoxyParamCaption}
+\item[{F\+I\+LE $\ast$}]{fp, }
+\item[{char $\ast$$\ast$}]{error}
+\end{DoxyParamCaption}
+)}\hypertarget{parsers_8h_abc29c7ff0d736d1ab0d9a80b7ff2eab0}{}\label{parsers_8h_abc29c7ff0d736d1ab0d9a80b7ff2eab0}
+
+
+Tries to parse an interval. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fp} & Ther file in which to read \\
+\hline
+{\em error} & In case of error, contains a description of the error. N\+U\+LL if no error append. Must be an uninitialized variable or data loss may happen\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The parsed value or N\+U\+LL in case of error 
+\end{DoxyReturn}
+\index{parsers.\+h@{parsers.\+h}!parse\+Attr\+Type\+Tree@{parse\+Attr\+Type\+Tree}}
+\index{parse\+Attr\+Type\+Tree@{parse\+Attr\+Type\+Tree}!parsers.\+h@{parsers.\+h}}
+\subsubsection[{\texorpdfstring{parse\+Attr\+Type\+Tree(\+F\+I\+L\+E $\ast$fp, char $\ast$$\ast$error, int $\ast$index, int indent)}{parseAttrTypeTree(FILE *fp, char **error, int *index, int indent)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Tree}$\ast$ parse\+Attr\+Type\+Tree (
+\begin{DoxyParamCaption}
+\item[{F\+I\+LE $\ast$}]{fp, }
+\item[{char $\ast$$\ast$}]{error, }
+\item[{int $\ast$}]{index, }
+\item[{int}]{indent}
+\end{DoxyParamCaption}
+)}\hypertarget{parsers_8h_ab5b90eac71609ac27833b96da19fa57d}{}\label{parsers_8h_ab5b90eac71609ac27833b96da19fa57d}
+
+
+Tries to parse a tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fp} & Ther file in which to read \\
+\hline
+{\em error} & In case of error, contains a description of the error. N\+U\+LL if no error append. Must be an uninitialized variable or data loss may happen\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The parsed value or N\+U\+LL in case of error 
+\end{DoxyReturn}
+\index{parsers.\+h@{parsers.\+h}!parse\+Attr\+Value@{parse\+Attr\+Value}}
+\index{parse\+Attr\+Value@{parse\+Attr\+Value}!parsers.\+h@{parsers.\+h}}
+\subsubsection[{\texorpdfstring{parse\+Attr\+Value(\+F\+I\+L\+E $\ast$fp, char $\ast$$\ast$error, Model $\ast$m, attr\+Type type, Attribute $\ast$attr, unsigned int position, struct String\+Vector $\ast$seen\+Objects)}{parseAttrValue(FILE *fp, char **error, Model *m, attrType type, Attribute *attr, unsigned int position, struct StringVector *seenObjects)}}]{\setlength{\rightskip}{0pt plus 5cm}void parse\+Attr\+Value (
+\begin{DoxyParamCaption}
+\item[{F\+I\+LE $\ast$}]{fp, }
+\item[{char $\ast$$\ast$}]{error, }
+\item[{{\bf Model} $\ast$}]{m, }
+\item[{{\bf attr\+Type}}]{type, }
+\item[{{\bf Attribute} $\ast$}]{attr, }
+\item[{unsigned int}]{position, }
+\item[{struct {\bf String\+Vector} $\ast$}]{seen\+Objects}
+\end{DoxyParamCaption}
+)}\hypertarget{parsers_8h_ae2f6a660e8fc746879c84057a2a27e43}{}\label{parsers_8h_ae2f6a660e8fc746879c84057a2a27e43}
+
+
+Parse the attribute\textquotesingle{}s value and populate the \hyperlink{struct_attribute}{Attribute} object accordingly. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fp} & The file in which to read \\
+\hline
+{\em error} & In case of error, contains a description of the error. N\+U\+LL if no error happened. Must be an uninitialized variable or data loss may occur. \\
+\hline
+{\em m} & The model to use for the parsing \\
+\hline
+{\em type} & The expected type of the attribute \\
+\hline
+{\em attr} & A pointer to the attribute to populate \\
+\hline
+{\em position} & The position of the attribute in the model \\
+\hline
+{\em seen\+Objects} & The names of the objects that have already been seen \\
+\hline
+\end{DoxyParams}
+\index{parsers.\+h@{parsers.\+h}!parse\+Config\+Line@{parse\+Config\+Line}}
+\index{parse\+Config\+Line@{parse\+Config\+Line}!parsers.\+h@{parsers.\+h}}
+\subsubsection[{\texorpdfstring{parse\+Config\+Line(\+F\+I\+L\+E $\ast$fp, char $\ast$$\ast$error, Model $\ast$out)}{parseConfigLine(FILE *fp, char **error, Model *out)}}]{\setlength{\rightskip}{0pt plus 5cm}int parse\+Config\+Line (
+\begin{DoxyParamCaption}
+\item[{F\+I\+LE $\ast$}]{fp, }
+\item[{char $\ast$$\ast$}]{error, }
+\item[{{\bf Model} $\ast$}]{out}
+\end{DoxyParamCaption}
+)}\hypertarget{parsers_8h_a986cbbf2bc6509e1217346c2e1adaad2}{}\label{parsers_8h_a986cbbf2bc6509e1217346c2e1adaad2}
+
+
+Tries to parse the line as a config file attribute definition. If the line is empty, continues to read until it finds a line. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fp} & The file in which to read \\
+\hline
+{\em error} & In case of error, contains a description of the error. N\+U\+LL if no error append. Must be an uninitialized variable or data loss may happen \\
+\hline
+{\em out} & A pointer to the \hyperlink{struct_model}{Model} object to populate\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean. 1 for success. 0 for failure. 
+\end{DoxyReturn}
+\index{parsers.\+h@{parsers.\+h}!parse\+Example@{parse\+Example}}
+\index{parse\+Example@{parse\+Example}!parsers.\+h@{parsers.\+h}}
+\subsubsection[{\texorpdfstring{parse\+Example(\+F\+I\+L\+E $\ast$fp, char $\ast$$\ast$error, Example $\ast$ex, Model $\ast$m)}{parseExample(FILE *fp, char **error, Example *ex, Model *m)}}]{\setlength{\rightskip}{0pt plus 5cm}int parse\+Example (
+\begin{DoxyParamCaption}
+\item[{F\+I\+LE $\ast$}]{fp, }
+\item[{char $\ast$$\ast$}]{error, }
+\item[{{\bf Example} $\ast$}]{ex, }
+\item[{{\bf Model} $\ast$}]{m}
+\end{DoxyParamCaption}
+)}\hypertarget{parsers_8h_aad08054ce5747601c351fa6965bb42c5}{}\label{parsers_8h_aad08054ce5747601c351fa6965bb42c5}
+
+
+Parse an example or a counterexample. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fp} & The file in which to read \\
+\hline
+{\em error} & In case of error, contains a description of the error. N\+U\+LL if no error happened. Must be an uninitialized variable or data loss may occur. \\
+\hline
+{\em ex} & A pointer to the example object to populate \\
+\hline
+{\em m} & The \hyperlink{struct_model}{Model} object generated from the config file\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean. 1 for success. 0 for failure. 
+\end{DoxyReturn}
+\index{parsers.\+h@{parsers.\+h}!parse\+Example\+Object@{parse\+Example\+Object}}
+\index{parse\+Example\+Object@{parse\+Example\+Object}!parsers.\+h@{parsers.\+h}}
+\subsubsection[{\texorpdfstring{parse\+Example\+Object(\+F\+I\+L\+E $\ast$fp, char $\ast$$\ast$error, Object $\ast$o, Model $\ast$m, struct String\+Vector $\ast$seen\+Objects)}{parseExampleObject(FILE *fp, char **error, Object *o, Model *m, struct StringVector *seenObjects)}}]{\setlength{\rightskip}{0pt plus 5cm}int parse\+Example\+Object (
+\begin{DoxyParamCaption}
+\item[{F\+I\+LE $\ast$}]{fp, }
+\item[{char $\ast$$\ast$}]{error, }
+\item[{{\bf Object} $\ast$}]{o, }
+\item[{{\bf Model} $\ast$}]{m, }
+\item[{struct {\bf String\+Vector} $\ast$}]{seen\+Objects}
+\end{DoxyParamCaption}
+)}\hypertarget{parsers_8h_a53ddbc56bfe6f0320f04e39432ccb776}{}\label{parsers_8h_a53ddbc56bfe6f0320f04e39432ccb776}
+
+
+Parse an object (only its properties. The name must already be known) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fp} & The file in which to read \\
+\hline
+{\em error} & In case of error, contains a description of the error. N\+U\+LL if no error happened. Must be an uninitialized variable or data loss may occur. \\
+\hline
+{\em o} & A pointer to the object \hyperlink{struct_object}{Object} to populate \\
+\hline
+{\em m} & The \hyperlink{struct_model}{Model} object generated from the config file \\
+\hline
+{\em seen\+Objects} & The names of the objects that have already been seen\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean. 1 for success. 0 for failure 
+\end{DoxyReturn}
+\index{parsers.\+h@{parsers.\+h}!print\+Indent@{print\+Indent}}
+\index{print\+Indent@{print\+Indent}!parsers.\+h@{parsers.\+h}}
+\subsubsection[{\texorpdfstring{print\+Indent(unsigned int flag, int indent)}{printIndent(unsigned int flag, int indent)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+Indent (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{flag, }
+\item[{int}]{indent}
+\end{DoxyParamCaption}
+)}\hypertarget{parsers_8h_aa13acbba3c52feffbd12fcae8cdf3c9e}{}\label{parsers_8h_aa13acbba3c52feffbd12fcae8cdf3c9e}
+
+
+Display tabs(s) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag} & The output flag to use (L1 to L7 and/or L\+E\+R\+R\+OR) \\
+\hline
+{\em indent} & The number of tabs to display \\
+\hline
+\end{DoxyParams}
+\index{parsers.\+h@{parsers.\+h}!read\+File\+Spaces@{read\+File\+Spaces}}
+\index{read\+File\+Spaces@{read\+File\+Spaces}!parsers.\+h@{parsers.\+h}}
+\subsubsection[{\texorpdfstring{read\+File\+Spaces(\+F\+I\+L\+E $\ast$fp, char const $\ast$set)}{readFileSpaces(FILE *fp, char const *set)}}]{\setlength{\rightskip}{0pt plus 5cm}void read\+File\+Spaces (
+\begin{DoxyParamCaption}
+\item[{F\+I\+LE $\ast$}]{fp, }
+\item[{char const $\ast$}]{set}
+\end{DoxyParamCaption}
+)}\hypertarget{parsers_8h_a521906155e2c1df4118a98297d69bb2e}{}\label{parsers_8h_a521906155e2c1df4118a98297d69bb2e}
+
+
+Reads a file from the current position and reads while characters are in the set. Stops on the last one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & The file to be read \\
+\hline
+{\em set} & A nul terminated array of char that contains the set of characters \\
+\hline
+\end{DoxyParams}
+\index{parsers.\+h@{parsers.\+h}!read\+Til@{read\+Til}}
+\index{read\+Til@{read\+Til}!parsers.\+h@{parsers.\+h}}
+\subsubsection[{\texorpdfstring{read\+Til(\+F\+I\+L\+E $\ast$fp, char const $\ast$set)}{readTil(FILE *fp, char const *set)}}]{\setlength{\rightskip}{0pt plus 5cm}void read\+Til (
+\begin{DoxyParamCaption}
+\item[{F\+I\+LE $\ast$}]{fp, }
+\item[{char const $\ast$}]{set}
+\end{DoxyParamCaption}
+)}\hypertarget{parsers_8h_a961b4c03ca09188c780c9bae74f311d4}{}\label{parsers_8h_a961b4c03ca09188c780c9bae74f311d4}
+
+
+Reads a file from the current position and reads until it finds a character in the set. Stops on the last character not in the set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & The file to be read \\
+\hline
+{\em set} & A nul terminated array of char that contains the set of characters to reach \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,62 @@
+\hypertarget{model-type_8h}{}\section{types/model-\/type.h File Reference}
+\label{model-type_8h}\index{types/model-\/type.\+h@{types/model-\/type.\+h}}
+
+
+File containing the definition of an attribute\textquotesingle{}s type.  
+
+
+{\ttfamily \#include \char`\"{}attribute-\/types.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}interval.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}enum.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}tree.\+h\char`\"{}}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_model_type}{Model\+Type}
+\begin{DoxyCompactList}\small\item\em Structure that contains the definition of the type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{struct_model_type}{Model\+Type} {\bfseries Model\+Type}\hypertarget{model-type_8h_a461663496a22a2e5708b7cbd2cf2e643}{}\label{model-type_8h_a461663496a22a2e5708b7cbd2cf2e643}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{model-type_8h_ad4abcd53e26c93d68af7c0944d506fb9}{free\+Model\+Type} (\hyperlink{struct_model_type}{Model\+Type} $\ast$mt, int free\+Itself)
+\begin{DoxyCompactList}\small\item\em Free the \hyperlink{struct_model_type}{Model\+Type}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File containing the definition of an attribute\textquotesingle{}s type. 
+
+\begin{DoxyAuthor}{Author}
+Bastien Philip (ebatsin) 
+
+Gaël Foppolo (gaelfoppolo) 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{model-\/type.\+h@{model-\/type.\+h}!free\+Model\+Type@{free\+Model\+Type}}
+\index{free\+Model\+Type@{free\+Model\+Type}!model-\/type.\+h@{model-\/type.\+h}}
+\subsubsection[{\texorpdfstring{free\+Model\+Type(\+Model\+Type $\ast$mt, int free\+Itself)}{freeModelType(ModelType *mt, int freeItself)}}]{\setlength{\rightskip}{0pt plus 5cm}void free\+Model\+Type (
+\begin{DoxyParamCaption}
+\item[{{\bf Model\+Type} $\ast$}]{mt, }
+\item[{int}]{free\+Itself}
+\end{DoxyParamCaption}
+)}\hypertarget{model-type_8h_ad4abcd53e26c93d68af7c0944d506fb9}{}\label{model-type_8h_ad4abcd53e26c93d68af7c0944d506fb9}
+
+
+Free the \hyperlink{struct_model_type}{Model\+Type}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mt} & A pointer to the \hyperlink{struct_model_type}{Model\+Type} to be freed \\
+\hline
+{\em free\+Itself} & Boolean to know wether the \hyperlink{struct_model_type}{Model\+Type} is to be freed or not\\
+\hline
+\end{DoxyParams}
+Free the \hyperlink{struct_model_type}{Model\+Type}.
+
+F\+O\+P\+P\+O\+LO Gaël  P\+H\+I\+L\+IP Bastien 

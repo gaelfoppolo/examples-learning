@@ -1,0 +1,142 @@
+\hypertarget{string-type_8h}{}\section{types/string-\/type.h File Reference}
+\label{string-type_8h}\index{types/string-\/type.\+h@{types/string-\/type.\+h}}
+
+
+File containing the definition of the \hyperlink{struct_string}{String} type and some tools to use it.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_string}{String}
+\begin{DoxyCompactList}\small\item\em Dynamic string handler. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{struct_string}{String} {\bfseries String}\hypertarget{string-type_8h_afca3b9ff667e55f822ff05e2f13237d1}{}\label{string-type_8h_afca3b9ff667e55f822ff05e2f13237d1}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_string}{String} \hyperlink{string-type_8h_ab9893f2c904ee5ff139589712c1284d1}{str\+Init} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Transforms a char$\ast$ to a string. The char$\ast$ M\+U\+ST be a nul terminated array allocated with malloc. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{string-type_8h_a6c362d400c8b2016bc08876470e2d00d}{str\+Length} (\hyperlink{struct_string}{String} $\ast$str)
+\begin{DoxyCompactList}\small\item\em Returns the current string length. \end{DoxyCompactList}\item 
+void \hyperlink{string-type_8h_ae3068dd8c60d7a42a93f0351ef8f09e1}{str\+Push} (\hyperlink{struct_string}{String} $\ast$str, char c)
+\begin{DoxyCompactList}\small\item\em Adds a character at the end of the string. \end{DoxyCompactList}\item 
+void \hyperlink{string-type_8h_a9ba8f8e2307743ae902d0c31042bfb08}{str\+Push\+Str} (\hyperlink{struct_string}{String} $\ast$str, char $\ast$str2)
+\begin{DoxyCompactList}\small\item\em Add a string at the end of the current string. \end{DoxyCompactList}\item 
+char $\ast$ \hyperlink{string-type_8h_ae28db08bad9d3c4511ab5241534a89c0}{str\+Duplicate} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Create a perfect copy of the string given. Used when a malloc created string is needed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File containing the definition of the \hyperlink{struct_string}{String} type and some tools to use it. 
+
+\begin{DoxyAuthor}{Author}
+Bastien Philip (ebatsin) 
+
+Gaël Foppolo (gaelfoppolo) 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{string-\/type.\+h@{string-\/type.\+h}!str\+Duplicate@{str\+Duplicate}}
+\index{str\+Duplicate@{str\+Duplicate}!string-\/type.\+h@{string-\/type.\+h}}
+\subsubsection[{\texorpdfstring{str\+Duplicate(char $\ast$str)}{strDuplicate(char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ str\+Duplicate (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}\hypertarget{string-type_8h_ae28db08bad9d3c4511ab5241534a89c0}{}\label{string-type_8h_ae28db08bad9d3c4511ab5241534a89c0}
+
+
+Create a perfect copy of the string given. Used when a malloc created string is needed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The original string\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A new string created with malloc 
+\end{DoxyReturn}
+\index{string-\/type.\+h@{string-\/type.\+h}!str\+Init@{str\+Init}}
+\index{str\+Init@{str\+Init}!string-\/type.\+h@{string-\/type.\+h}}
+\subsubsection[{\texorpdfstring{str\+Init(char $\ast$str)}{strInit(char *str)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} str\+Init (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}\hypertarget{string-type_8h_ab9893f2c904ee5ff139589712c1284d1}{}\label{string-type_8h_ab9893f2c904ee5ff139589712c1284d1}
+
+
+Transforms a char$\ast$ to a string. The char$\ast$ M\+U\+ST be a nul terminated array allocated with malloc. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The original string (the original is used, no copy is performed)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The newly created string structure
+\end{DoxyReturn}
+Transforms a char$\ast$ to a string. The char$\ast$ M\+U\+ST be a nul terminated array allocated with malloc.
+
+F\+O\+P\+P\+O\+LO Gaël  P\+H\+I\+L\+IP Bastien \index{string-\/type.\+h@{string-\/type.\+h}!str\+Length@{str\+Length}}
+\index{str\+Length@{str\+Length}!string-\/type.\+h@{string-\/type.\+h}}
+\subsubsection[{\texorpdfstring{str\+Length(\+String $\ast$str)}{strLength(String *str)}}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int str\+Length (
+\begin{DoxyParamCaption}
+\item[{{\bf String} $\ast$}]{str}
+\end{DoxyParamCaption}
+)}\hypertarget{string-type_8h_a6c362d400c8b2016bc08876470e2d00d}{}\label{string-type_8h_a6c362d400c8b2016bc08876470e2d00d}
+
+
+Returns the current string length. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string of which the length is returned\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The length of the string 
+\end{DoxyReturn}
+\index{string-\/type.\+h@{string-\/type.\+h}!str\+Push@{str\+Push}}
+\index{str\+Push@{str\+Push}!string-\/type.\+h@{string-\/type.\+h}}
+\subsubsection[{\texorpdfstring{str\+Push(\+String $\ast$str, char c)}{strPush(String *str, char c)}}]{\setlength{\rightskip}{0pt plus 5cm}void str\+Push (
+\begin{DoxyParamCaption}
+\item[{{\bf String} $\ast$}]{str, }
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{string-type_8h_ae3068dd8c60d7a42a93f0351ef8f09e1}{}\label{string-type_8h_ae3068dd8c60d7a42a93f0351ef8f09e1}
+
+
+Adds a character at the end of the string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string at the end of which the char is added \\
+\hline
+{\em c} & The char to be added \\
+\hline
+\end{DoxyParams}
+\index{string-\/type.\+h@{string-\/type.\+h}!str\+Push\+Str@{str\+Push\+Str}}
+\index{str\+Push\+Str@{str\+Push\+Str}!string-\/type.\+h@{string-\/type.\+h}}
+\subsubsection[{\texorpdfstring{str\+Push\+Str(\+String $\ast$str, char $\ast$str2)}{strPushStr(String *str, char *str2)}}]{\setlength{\rightskip}{0pt plus 5cm}void str\+Push\+Str (
+\begin{DoxyParamCaption}
+\item[{{\bf String} $\ast$}]{str, }
+\item[{char $\ast$}]{str2}
+\end{DoxyParamCaption}
+)}\hypertarget{string-type_8h_a9ba8f8e2307743ae902d0c31042bfb08}{}\label{string-type_8h_a9ba8f8e2307743ae902d0c31042bfb08}
+
+
+Add a string at the end of the current string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string at the end of which the second string is added \\
+\hline
+{\em str2} & The string to be added (need to be nul terminated) \\
+\hline
+\end{DoxyParams}

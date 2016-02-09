@@ -1,0 +1,60 @@
+\hypertarget{model-attribute_8h}{}\section{types/model-\/attribute.h File Reference}
+\label{model-attribute_8h}\index{types/model-\/attribute.\+h@{types/model-\/attribute.\+h}}
+
+
+File containing the definition of the attributes (as defined by the model file)  
+
+
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}model-\/type.\+h\char`\"{}}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_model_attribute}{Model\+Attribute}
+\begin{DoxyCompactList}\small\item\em Contains the definition of an attribute and its type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{struct_model_attribute}{Model\+Attribute} {\bfseries Model\+Attribute}\hypertarget{model-attribute_8h_a1905627f613f3d101010c52d122d9120}{}\label{model-attribute_8h_a1905627f613f3d101010c52d122d9120}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{model-attribute_8h_aeccf8686b4feb95749f4f46f6c3c3720}{free\+Model\+Attribute} (\hyperlink{struct_model_attribute}{Model\+Attribute} $\ast$ma, int free\+Itself)
+\begin{DoxyCompactList}\small\item\em Free the \hyperlink{struct_model_attribute}{Model\+Attribute}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File containing the definition of the attributes (as defined by the model file) 
+
+\begin{DoxyAuthor}{Author}
+Bastien Philip (ebatsin) 
+
+Gaël Foppolo (gaelfoppolo) 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{model-\/attribute.\+h@{model-\/attribute.\+h}!free\+Model\+Attribute@{free\+Model\+Attribute}}
+\index{free\+Model\+Attribute@{free\+Model\+Attribute}!model-\/attribute.\+h@{model-\/attribute.\+h}}
+\subsubsection[{\texorpdfstring{free\+Model\+Attribute(\+Model\+Attribute $\ast$ma, int free\+Itself)}{freeModelAttribute(ModelAttribute *ma, int freeItself)}}]{\setlength{\rightskip}{0pt plus 5cm}void free\+Model\+Attribute (
+\begin{DoxyParamCaption}
+\item[{{\bf Model\+Attribute} $\ast$}]{ma, }
+\item[{int}]{free\+Itself}
+\end{DoxyParamCaption}
+)}\hypertarget{model-attribute_8h_aeccf8686b4feb95749f4f46f6c3c3720}{}\label{model-attribute_8h_aeccf8686b4feb95749f4f46f6c3c3720}
+
+
+Free the \hyperlink{struct_model_attribute}{Model\+Attribute}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ma} & A pointer to the \hyperlink{struct_model_attribute}{Model\+Attribute} to be freed \\
+\hline
+{\em free\+Itself} & Boolean to know wether the \hyperlink{struct_model_attribute}{Model\+Attribute} is to be freed or not\\
+\hline
+\end{DoxyParams}
+Free the \hyperlink{struct_model_attribute}{Model\+Attribute}.
+
+F\+O\+P\+P\+O\+LO Gaël  P\+H\+I\+L\+IP Bastien 

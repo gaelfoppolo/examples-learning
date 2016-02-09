@@ -1,0 +1,77 @@
+\hypertarget{out-enum_8h}{}\section{types/out-\/enum.h File Reference}
+\label{out-enum_8h}\index{types/out-\/enum.\+h@{types/out-\/enum.\+h}}
+
+
+File containing the definition of the enumeration extracts.  
+
+
+{\ttfamily \#include \char`\"{}vector.\+h\char`\"{}}\\*
+\subsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_out_enum}{Out\+Enum}
+\begin{DoxyCompactList}\small\item\em Contains multiple enumeration items When combining multiple \hyperlink{struct_object}{Object}, each enumeration item is to be stored, this structure does that. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{struct_out_enum}{Out\+Enum} {\bfseries Out\+Enum}\hypertarget{out-enum_8h_a1248050dd67a829740c90433bcb35977}{}\label{out-enum_8h_a1248050dd67a829740c90433bcb35977}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{out-enum_8h_af415f1148748b664423a90f8a9a340a4}{init\+Out\+Enum} (\hyperlink{struct_out_enum}{Out\+Enum} $\ast$oenu)
+\begin{DoxyCompactList}\small\item\em Init the output enum. \end{DoxyCompactList}\item 
+void \hyperlink{out-enum_8h_a5236ea757d0e93f3a0925de1a77c8362}{free\+Out\+Enum} (\hyperlink{struct_out_enum}{Out\+Enum} $\ast$oenu, int free\+Itself)
+\begin{DoxyCompactList}\small\item\em Free the \hyperlink{struct_out_enum}{Out\+Enum} previously initialized by init\+Enum. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File containing the definition of the enumeration extracts. 
+
+\begin{DoxyAuthor}{Author}
+Bastien Philip (ebatsin) 
+
+Gaël Foppolo (gaelfoppolo) 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{out-\/enum.\+h@{out-\/enum.\+h}!free\+Out\+Enum@{free\+Out\+Enum}}
+\index{free\+Out\+Enum@{free\+Out\+Enum}!out-\/enum.\+h@{out-\/enum.\+h}}
+\subsubsection[{\texorpdfstring{free\+Out\+Enum(\+Out\+Enum $\ast$oenu, int free\+Itself)}{freeOutEnum(OutEnum *oenu, int freeItself)}}]{\setlength{\rightskip}{0pt plus 5cm}void free\+Out\+Enum (
+\begin{DoxyParamCaption}
+\item[{{\bf Out\+Enum} $\ast$}]{oenu, }
+\item[{int}]{free\+Itself}
+\end{DoxyParamCaption}
+)}\hypertarget{out-enum_8h_a5236ea757d0e93f3a0925de1a77c8362}{}\label{out-enum_8h_a5236ea757d0e93f3a0925de1a77c8362}
+
+
+Free the \hyperlink{struct_out_enum}{Out\+Enum} previously initialized by init\+Enum. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em oenu} & A pointer to the enum to free \\
+\hline
+{\em free\+Itself} & Boolean to know wether the \hyperlink{struct_out_enum}{Out\+Enum} is to be freed or not \\
+\hline
+\end{DoxyParams}
+\index{out-\/enum.\+h@{out-\/enum.\+h}!init\+Out\+Enum@{init\+Out\+Enum}}
+\index{init\+Out\+Enum@{init\+Out\+Enum}!out-\/enum.\+h@{out-\/enum.\+h}}
+\subsubsection[{\texorpdfstring{init\+Out\+Enum(\+Out\+Enum $\ast$oenu)}{initOutEnum(OutEnum *oenu)}}]{\setlength{\rightskip}{0pt plus 5cm}void init\+Out\+Enum (
+\begin{DoxyParamCaption}
+\item[{{\bf Out\+Enum} $\ast$}]{oenu}
+\end{DoxyParamCaption}
+)}\hypertarget{out-enum_8h_af415f1148748b664423a90f8a9a340a4}{}\label{out-enum_8h_af415f1148748b664423a90f8a9a340a4}
+
+
+Init the output enum. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em oenu} & A pointer to the enum to init\\
+\hline
+\end{DoxyParams}
+Init the output enum.
+
+F\+O\+P\+P\+O\+LO Gaël  P\+H\+I\+L\+IP Bastien 
