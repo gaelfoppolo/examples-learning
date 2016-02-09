@@ -14,7 +14,7 @@
 CC = clang
 CC_FLAGS = -Wall -O2
 RM = rm -rf
-DOXYGEN = doxygen doxygen.cfg
+DOXYGEN = doxygen doc/doxygen.cfg
 
 
 # File names
@@ -26,16 +26,13 @@ OBJECTS = $(SOURCES:.c=.o)
 # Main target
 $(OUT): $(OBJECTS)
 	$(CC) $(OBJECTS) -o $(OUT)
-	$(MAKE) doc
+# Build documentation
+	$(DOXYGEN)
 
 # To obtain object files
 %.o: %.c
 	$(CC) -c $(CC_FLAGS) $< -o $@
 
-# Build documentation
-doc:
-	$(DOXYGEN)
-	
 # To remove generated files except the binary
 clean:
 	-$(RM) $(OBJECTS) 
