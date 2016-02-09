@@ -14,6 +14,10 @@
 CC = clang
 CC_FLAGS = -Wall -O2 #-Wno-uninitialized
 RM = rm -rf
+DOXYGEN = doxygen doxygen.cfg
+DOC_PATH = doc
+LATEX_DOC_PATH = $(DOC_PATH)/latex
+
 
 # File names
 OUT = learning
@@ -28,11 +32,16 @@ $(OUT): $(OBJECTS)
 # To obtain object files
 %.o: %.c
 	$(CC) -c $(CC_FLAGS) $< -o $@
+# Build documentation
+	-$(DOXYGEN)
+	-mv $(LATEX_DOC_PATH)/refman.pdf $(DOC_PATH)/documentation.pdf
 
 # To remove generated files except the binary
 clean:
-	$(RM) $(OBJECTS)
+	-$(RM) $(OBJECTS) 
+	-$(RM) $(LATEX_DOC_PATH)
 
 # Remove generated files
-extraclean:
-	$(RM) $(OUT) $(OBJECTS)
+cleanall:
+	-$(MAKE) clean
+	-$(RM) $(OUT)
