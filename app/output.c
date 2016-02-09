@@ -25,9 +25,6 @@ void genOutput(Solution* sol, Model* mdl) {
 
         if(oo.specificity != 0) {
 
-            // add name
-            output(L0, SBPURPLE "%s: " SDEFAULT, oo.name);  
-
             // display attribute name & value
             for (int j = 0; j < vectSize(oo.attributes); ++j) {
                 // get current model attribute data
@@ -65,7 +62,7 @@ void genOutput(Solution* sol, Model* mdl) {
             	if (ooo != NULL) {
             		if (j+1 < vectSize(oo.relations)) output(L0, ", ");
             		output(L0, SBGREEN "%s " SDEFAULT, vectAt(mdl->rel, j));
-            		output(L0, "(" SBPURPLE "%s" SDEFAULT") ", ooo->name);
+            		output(L0, "(" SBPURPLE "something" SDEFAULT") ");
             	}
             }
             output(L0, "\n");

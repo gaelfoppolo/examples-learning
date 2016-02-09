@@ -68,7 +68,7 @@ Solution* initAllCombi(Model* mdl, Examples* exp) {
 			// get the adress of the i object in the last exemple
 			o = &vectAt(lastExample.objects, i);
 			oo = initOutObjectWithObject(mdl, o);
-            oo->name = cPrint("S%d", vectSize(T->outobjects)+1);
+			oo->specificity = 1;
 			vectPush(OutObject, T->outobjects, *oo);
 			free(oo);
 		}
@@ -155,8 +155,6 @@ static void __genAllRelations_rec(Solution* s, Examples* e, Model* m, ObjectIndi
 			}
 			vectFree(relIndices.indices);
 		}
-		// and we calculate the specificity for the current OutObject
-		genSpecificity(m, &vectAt(s->outobjects, getIndex(e, indices)));
 		return;
 	}
 
@@ -188,52 +186,6 @@ int getIndex(Examples* exp, ObjectIndice* oi) {
 	return index+vectAt(oi->indices, i);
 }
 
-void genSpecificity(Model* mdl, OutObject* oo) {
-	float specificity = 0, tmp;
-	int relCount = 0;
-	OutAttribute oa;
-	ModelType mt;
-	// for all attributes
-	for (int i = 0; i < vectSize(oo->attributes); ++i) {
-		oa = vectAt(oo->attributes, i);
-		mt = vectAt(mdl->ma, i).mt;
-
-		// for each we use weighted values
-		switch(oa.type) {
-			case TYPE_INT:
-				// (oo max - oo min) / (model max - model min)
-				tmp = (float)(oa.inter.max-oa.inter.min)/(float)(mt.inter.max-mt.inter.min);
-				break;
-			case TYPE_ENUM:
-				// (oo size of enum) / (model size of enum)
-				tmp = (float)(vectSize(oa.oenu.oenu))/(float)vectSize(mt.enu.enu);
-				break;
-			case TYPE_TREE:
-				// (oo node depth in tree) / (model tree depth)
-				// if depth = height, we get 1.0, but because it is the best, 0.0 to fit our spec
-				// if depth = 0, we get 0.0, but because it is the worst, 1.0 to fit our spec
-				tmp = 1.0-(float)(depth(&mt.tree, oa.tree))/(float)height(&mt.tree);
-				break;
-		}
-		// if tmp = 0, it means it is the best, so set to 1
-		// if tmp = 1, it means it is the worst, so set to 0
-		specificity += (tmp == 0.0 || tmp == 1.0) ? fabs(tmp-1.0) : 1.0-tmp;	
-	}
-
-	// add relations
-	for (int i = 0; i < vectSize(oo->relations); ++i) {
-		if (vectAt(oo->relations, i) != NULL) relCount++;
-	}
-
-	// ((relCount) / (model size of rel))
-	specificity += (float)relCount/(float)vectSize(mdl->rel);
-
-
-	// if specificity = 0.0, that means it's the worst so we set specificity to 1
-	// because 0.0 means duplicate in our model specification
-	oo->specificity = (specificity == 0.0) ? 1 : (int)(specificity/(float)(vectSize(oo->attributes)+1)*100);
-}
-
 int compareOutObjects(OutObject* oo1, OutObject* oo2) {
 	OutAttribute oa1, oa2;
 
@@ -247,6 +199,8 @@ int compareOutObjects(OutObject* oo1, OutObject* oo2) {
 
 		// still don't know how to value each attribute
 		// a simple addition should work but need to run some tests
+		
+		// don't forget to test if specificity == 0
 
 		switch(oa1.type) {
 			// tests will probably not be in that order

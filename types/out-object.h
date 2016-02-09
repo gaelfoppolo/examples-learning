@@ -16,9 +16,7 @@
 *	@brief Contains all the attributes and relations that compose an outObject
 */
 typedef struct OutObject {
-	/** @brief Name of the out object */
-	char* name;
-	/** @brief Level of specificity of the out object. Between 1 (none) and 100 (very), 0 if a duplicate */
+	/** @brief Level of specificity of the OutputObject: 0 (duplicate or less specific) and 1 (specific) */
 	unsigned char specificity;
 	/** 
 	*	@brief Array of the attributes of the out object.

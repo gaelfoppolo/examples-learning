@@ -89,13 +89,6 @@ void genAllRelations(Solution* s, Examples* e, Model* m);
 int getIndex(Examples* exp, ObjectIndice* oi);
 
 /**
-*	@brief Calculate the level of specifity of an OutObject based on the model
-*	@param mdl Pointer to the model
-*	@param oo Pointer to the OutObject 
-*/
-void genSpecificity(Model* mdl, OutObject* oo);
-
-/**
 *	@brief Compare two OutObjects
 *	@param oo1 Pointer to the first OutObject (reference)
 *	@param oo2 Pointer to the second OutObject
