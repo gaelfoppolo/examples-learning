@@ -4,7 +4,6 @@ var searchData=
   ['genallrelations',['genAllRelations',['../core_8h.html#a6b4fd5c6dd489997dfab9f47f4f2c1f7',1,'core.c']]],
   ['gengeneralisation',['genGeneralisation',['../core_8h.html#a03c92927027669feb1ab399275f9c3d3',1,'core.c']]],
   ['genoutput',['genOutput',['../output_8h.html#a427d5958a1aae2fa9b0564cfdd253bfb',1,'output.c']]],
-  ['genspecificity',['genSpecificity',['../core_8h.html#ad26257ca362aa9d922bcc3d590c70ea5',1,'core.c']]],
   ['getattributeposition',['getAttributePosition',['../parsers_8h.html#acbb17ae374bfa9efbd8091a982c313f0',1,'parsers.c']]],
   ['getenumid',['getEnumId',['../model_8h.html#ae6000e5ddc7edc9303eddc0cf9d66bd8',1,'model.c']]],
   ['getenumstr',['getEnumStr',['../model_8h.html#a8fb65a244ba33917f93bfd4083120a2e',1,'model.c']]],
