@@ -6,13 +6,13 @@
  # @brief Makefile
  #
  # To generate : type "make" or "make learning"
- # To clean : type "make clean"
+ # To clean : type "make clean" or "make extraclean"
  #
 ##
 
 # Declaration of variables
 CC = clang
-CC_FLAGS = -Wall -O2 #-Wno-uninitialized
+CC_FLAGS = -Wall -O2
 RM = rm -rf
 DOXYGEN = doxygen doxygen.cfg
 
@@ -26,12 +26,15 @@ OBJECTS = $(SOURCES:.c=.o)
 # Main target
 $(OUT): $(OBJECTS)
 	$(CC) $(OBJECTS) -o $(OUT)
+	$(MAKE) doc
 
 # To obtain object files
 %.o: %.c
 	$(CC) -c $(CC_FLAGS) $< -o $@
+
 # Build documentation
-	-$(DOXYGEN)
+doc:
+	$(DOXYGEN)
 	
 # To remove generated files except the binary
 clean:
