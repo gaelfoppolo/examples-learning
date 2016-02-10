@@ -130,9 +130,9 @@ Solution* genAllCombi(Model* mdl, Examples* exp) {
 	return T;
 }
 
-static void __genAllRelations_rec(Solution* s, Examples* e, Model* m, ObjectIndice* indices, unsigned int currentIndex) {
+static void __genAllRelations_rec(Solution* s, Examples* e, Model* m, ObjectIndex* indices, unsigned int currentIndex) {
 	int allRel;
-	ObjectIndice relIndices;
+	ObjectIndex relIndices;
 	// end of the examples
 	if(currentIndex == vectSize(e->examples)) {
 		// loop through all the relations
@@ -167,7 +167,7 @@ static void __genAllRelations_rec(Solution* s, Examples* e, Model* m, ObjectIndi
 }
 
 void genAllRelations(Solution* s, Examples* e, Model* m) {
-	ObjectIndice stack;
+	ObjectIndex stack;
 	vectInit(stack.indices);
 
 	__genAllRelations_rec(s, e, m, &stack, 0);
@@ -175,7 +175,7 @@ void genAllRelations(Solution* s, Examples* e, Model* m) {
 	vectFree(stack.indices);
 }
 
-int getIndex(Examples* exp, ObjectIndice* oi) {
+int getIndex(Examples* exp, ObjectIndex* oi) {
 	int index = 0, inside, i;
 	for (i = 0; i <= vectSize(exp->examples)-2; ++i) {
 		inside = 1;
@@ -189,7 +189,6 @@ int getIndex(Examples* exp, ObjectIndice* oi) {
 
 int compareOutObjects(Model* mdl, OutObject* oo1, OutObject* oo2) {
 	OutAttribute oa1, oa2;
-	ObjectIndice rel1, rel2;
 
 	int tmp = 0;
 
@@ -213,29 +212,6 @@ int compareOutObjects(Model* mdl, OutObject* oo1, OutObject* oo2) {
 		}		
 	}
 
-	// count relations not null for the oo1 and oo2
-		// is the same? then:
-			// all relations not null are the same? -> 0
-			// at least one relation is different? -> 1
-		// so count is different, then:
-			// count of oo2 bigger? -> 1
-			// count of oo2 smaller? -> 0
-	
-	vectInit(rel1.indices);
-	vectInit(rel2.indices);
-	for (int i = 0; i < vectSize(oo1->relations); ++i){
-		if(vectAt(oo1->relations, i) != 0) vectPush(int, rel1.indices, i);
-		if(vectAt(oo2->relations, i) != 0) vectPush(int, rel2.indices, i);
-	}
-
-	if (vectSize(rel1.indices) == vectSize(rel2.indices)) {
-		for (int i = 0; i < vectSize(rel1.indices); ++i) {
-			tmp += (vectAt(oo2->relations, i) == vectAt(oo2->relations, i)) ? 0 : 1;
-		}
-	} else {
-		tmp += (vectSize(rel1.indices) < vectSize(rel2.indices)) ? 1 : 0;
-	}
-
 	// here we can have:
 		// x = 0: so return 0
 		// x => 1: so return 1
@@ -244,11 +220,16 @@ int compareOutObjects(Model* mdl, OutObject* oo1, OutObject* oo2) {
 }
 
 void genGeneralisation(Model* mdl, Solution* s) {
+	// for each OutObjects
 	for (int i = 0; i < vectSize(s->outobjects)-1; ++i) {
+		// if the OutObject is still usefull
 		if ((&vectAt(s->outobjects, i))->specificity != 0) {
+			// compare it to all next OutObjects
 			for (int j = i+1; j < vectSize(s->outobjects); ++j) {
-				if ((&vectAt(s->outobjects, j))->specificity != 0) {
-					// (!a) ?: b; equal (a)? b: nothing;
+				// but only if the OutObject to compare to is usefull
+				// and the two OutObjects have exactly the same relations
+				if ((&vectAt(s->outobjects, j))->specificity != 0 && haveSameRelations(&vectAt(s->outobjects, i), &vectAt(s->outobjects, j))) {
+					// will change specificity of the second OutObject
 					(&vectAt(s->outobjects, j))->specificity = compareOutObjects(mdl, &vectAt(s->outobjects, i), &vectAt(s->outobjects, j));
 				}	
 			}

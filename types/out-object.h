@@ -45,4 +45,13 @@ void initOutObject(OutObject* oo);
 */
 void freeOutObject(OutObject* oo, int freeItself);
 
+/**
+*	@brief Test if two OutObject have the same relations
+*	@param oo1 A pointer to the first OutObject
+*	@param oo2 A pointer to the second OutObject
+*	
+*	@return 1 if the same, 0 else
+*/
+int haveSameRelations(OutObject* oo1, OutObject* oo2);
+
 #endif // _OUTOBJECT_H_

@@ -149,7 +149,6 @@ int compareNode(Tree* t, int node1, int node2) {
 
 	int depth1, depth2, tmp;
 	
-
 	if(node1 == node2) {
 		tmp = 0;
 	} else {

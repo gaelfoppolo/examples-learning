@@ -15,17 +15,8 @@
 #include "../types/model.h"
 #include "../types/examples.h"
 #include "../types/solution.h"
+#include "../types/object-index.h"
 #include "output.h"
-
-/**
-*	@struct ObjectIndice
-*   @brief Stores a list of indexes
-*	When combining multiple objects, the identifier of each of them can be stored in this structure
-*/
-typedef struct ObjectIndice {
-	/** @brief The indexes of the combined objects */
-	Vector(int) indices;
-} ObjectIndice;
 
 /**
 *	@brief Computes the number of combinations possible for our examples from an example
@@ -86,7 +77,7 @@ void genAllRelations(Solution* s, Examples* e, Model* m);
 * 
 *	@return An integer
 */
-int getIndex(Examples* exp, ObjectIndice* oi);
+int getIndex(Examples* exp, ObjectIndex* oi);
 
 /**
 *	@brief Compare two OutObjects

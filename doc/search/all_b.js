@@ -2,7 +2,7 @@ var searchData=
 [
   ['object',['Object',['../struct_object.html',1,'']]],
   ['object_2eh',['object.h',['../object_8h.html',1,'']]],
-  ['objectindice',['ObjectIndice',['../struct_object_indice.html',1,'']]],
+  ['objectindex',['ObjectIndex',['../struct_object_index.html',1,'']]],
   ['oenu',['oenu',['../struct_out_attribute.html#a4225b965bbcb80c0ee54c3724df694bb',1,'OutAttribute']]],
   ['out_2dattribute_2eh',['out-attribute.h',['../out-attribute_8h.html',1,'']]],
   ['out_2denum_2eh',['out-enum.h',['../out-enum_8h.html',1,'']]],
