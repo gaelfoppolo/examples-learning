@@ -1,7 +1,7 @@
 /**
  *
- * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin 	PHILIP Bastien
+ *	@author Bastien Philip (ebatsin)
+ *	@author Gaël Foppolo (gaelfoppolo)
  *
  * @brief Structure of our solution - Implementation
  */

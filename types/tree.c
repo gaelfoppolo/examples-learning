@@ -1,7 +1,7 @@
 /**
  *
- * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin 	PHILIP Bastien
+ *	@author Gaël Foppolo (gaelfoppolo)
+ *	@author Bastien Philip (ebatsin)
  *
  * @brief Structure of our N-ary tree - Implementation
  */

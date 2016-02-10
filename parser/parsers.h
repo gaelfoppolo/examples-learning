@@ -55,7 +55,7 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos);
 *	@brief Get the type of the next example (example or counter-example). Stop reading at the end of the example name, on the last character
 *	@param f The file to be read
 *
-*	@param Returns 0 in case of error, PARSED_EXAMPLE if the line is an example, PARSED_COUNTEREXAMPLE if the line is a counter-example
+*	@return 0 in case of error, PARSED_EXAMPLE if the line is an example, PARSED_COUNTEREXAMPLE if the line is a counter-example
 */
 unsigned int getNextExample(FILE* f);
 
@@ -170,6 +170,8 @@ Enum* parseAttrTypeEnum(FILE* fp, char** error);
 *	@brief Tries to parse a tree
 *	@param fp Ther file in which to read
 *	@param error In case of error, contains a description of the error. NULL if no error append. Must be an uninitialized variable or data loss may happen
+*	@param index Pointer to the counter of nodes (id)
+*	@param indent Number of tab to print
 *
 *	@return The parsed value or NULL in case of error
 */
@@ -186,14 +188,14 @@ int isValidAttrChar(char c, unsigned int first);
 
 /**
 *	@brief Reads a file from the current position and reads while characters are in the set. Stops on the last one
-*	@param f The file to be read
+*	@param fp The file to be read
 *	@param set A nul terminated array of char that contains the set of characters
 */
 void readFileSpaces(FILE* fp, char const* set);
 
 /**
 *	@brief Reads a file from the current position and reads until it finds a character in the set. Stops on the last character not in the set
-*	@param f The file to be read
+*	@param fp The file to be read
 *	@param set A nul terminated array of char that contains the set of characters to reach
 */
 void readTil(FILE* fp, char const* set);

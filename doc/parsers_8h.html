@@ -266,7 +266,9 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>If the file to include is found, the file name. NULL otherwise</dd></dl>
 <p>Get the pathname to the config file included at the begening of an example file.</p>
-<p>FOPPOLO Gaël  PHILIP Bastien </p>
+<dl class="section author"><dt>Author</dt><dd>Bastien Philip (ebatsin) </dd>
+<dd>
+Gaël Foppolo (gaelfoppolo) </dd></dl>
 
 </div>
 </div>
@@ -288,10 +290,10 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">f</td><td>The file to be read</td></tr>
-    <tr><td class="paramname">Returns</td><td>0 in case of error, PARSED_EXAMPLE if the line is an example, PARSED_COUNTEREXAMPLE if the line is a counter-example </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>0 in case of error, PARSED_EXAMPLE if the line is an example, PARSED_COUNTEREXAMPLE if the line is a counter-example </dd></dl>
 
 </div>
 </div>
@@ -619,7 +621,9 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">fp</td><td>Ther file in which to read </td></tr>
-    <tr><td class="paramname">error</td><td>In case of error, contains a description of the error. NULL if no error append. Must be an uninitialized variable or data loss may happen</td></tr>
+    <tr><td class="paramname">error</td><td>In case of error, contains a description of the error. NULL if no error append. Must be an uninitialized variable or data loss may happen </td></tr>
+    <tr><td class="paramname">index</td><td>Pointer to the counter of nodes (id) </td></tr>
+    <tr><td class="paramname">indent</td><td>Number of tab to print</td></tr>
   </table>
   </dd>
 </dl>
@@ -909,7 +913,7 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
 <p>Reads a file from the current position and reads while characters are in the set. Stops on the last one. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">f</td><td>The file to be read </td></tr>
+    <tr><td class="paramname">fp</td><td>The file to be read </td></tr>
     <tr><td class="paramname">set</td><td>A nul terminated array of char that contains the set of characters </td></tr>
   </table>
   </dd>
@@ -944,7 +948,7 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
 <p>Reads a file from the current position and reads until it finds a character in the set. Stops on the last character not in the set. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">f</td><td>The file to be read </td></tr>
+    <tr><td class="paramname">fp</td><td>The file to be read </td></tr>
     <tr><td class="paramname">set</td><td>A nul terminated array of char that contains the set of characters to reach </td></tr>
   </table>
   </dd>

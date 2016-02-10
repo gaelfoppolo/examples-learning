@@ -30,7 +30,7 @@ typedef struct ObjectIndice {
 /**
 *	@brief Computes the number of combinations possible for our examples from an example
 *	@param exp Pointer to our array of exemple
-*	@param expIndice The example number (= indice)
+*	@param expIndice The example number
 *
 *	@return The number of combinations starting at expIndice example
 */

@@ -85,7 +85,7 @@ void genOutput(Solution* sol, Model* mdl);
 /**
 *	@brief Returns a string that contains the formatted output by concatening all the arguments
 *	@param fmt The format string (same used by the printf family)
-*	@param args The list of arguments to include in the output string
+*	@param ... The list of arguments to include in the output string
 *
 *	@return A newly allocated string that contains the arguments given to the function formated
 */
@@ -107,7 +107,7 @@ unsigned int getOutputImportance();
 *	@param level The importance level of the message (flags, can use L[0-7] and add the flag LERROR if you want to write in the error stream
 *			LERROR alone is aquivalent to L0 | LERROR
 *	@param fmt The message to be printed
-*	@param args The arguments needed by the fmt argument
+*	@param ... The arguments needed by the fmt argument
 */
 void output(unsigned int level, const char* fmt, ...);
 

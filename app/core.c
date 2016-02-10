@@ -1,17 +1,17 @@
 /**
  *
- * @gaelfoppolo FOPPOLO Gaël
- * @Ebatsin 	PHILIP Bastien
+ *	@author Bastien Philip (ebatsin)
+ *	@author Gaël Foppolo (gaelfoppolo)
  *
  * @brief The core
  */
 
 #include "core.h"
 
-int nbCombi(Examples* exp, int step) {
+int nbCombi(Examples* exp, int expIndice) {
 	// init with 1, neutral of multiplication
 	int nbCombi = 1;
-	for (int i = step; i < vectSize(exp->examples); ++i) {
+	for (int i = expIndice; i < vectSize(exp->examples); ++i) {
 		nbCombi *= vectSize(vectAt(exp->examples, i).objects);
 	}
 	return nbCombi;
