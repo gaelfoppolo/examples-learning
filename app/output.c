@@ -61,7 +61,7 @@ void genOutput(Solution* sol, Model* mdl) {
                         break;
                     // attribute is a tree
                     case TYPE_TREE:
-                        if (oa.tree != 0) {
+                        if (oa.tree != vectAt(mdl->ma, j).mt.tree.id) {
                             strPushStr(&toDisplay, cPrint("%s" SDEFAULT, getTreeStr(oa.tree, mdl, j)));
                         } else {
                             attributeDisplayed = 0;

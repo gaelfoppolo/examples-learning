@@ -1,0 +1,13 @@
+include ressources/geometric-shape.cfg
+
+E1
+	x1:shape(circle), size(4), color(yellow), on(x2)
+	x2:shape(square), size(5), color(red), behind(x3)
+	x3:shape(triangle), size(10), color(blue)
+E2
+	x4:shape(ellipsoid), size(6), color(red), on(x5)
+	x5:shape(trapeze), size(2), color(red), behind(x6)
+	x6:shape(scalene), size(11), color(violet)
+E3
+	x7:shape(circle), size(8), color(yellow), on(x8)
+	x8:shape(rectangle), size(2), color(red), behind(x7)
