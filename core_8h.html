@@ -92,8 +92,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Data Structures</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">core.h File Reference</div>  </div>
@@ -107,22 +105,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &quot;<a class="el" href="model_8h_source.html">../types/model.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="examples_8h_source.html">../types/examples.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="solution_8h_source.html">../types/solution.h</a>&quot;</code><br />
+<code>#include &quot;../types/object-index.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="output_8h_source.html">output.h</a>&quot;</code><br />
 </div>
 <p><a href="core_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_object_indice.html">ObjectIndice</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores a list of indexes When combining multiple objects, the identifier of each of them can be stored in this structure.  <a href="struct_object_indice.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a72856984b9d8c323727331ea074a9f88"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a72856984b9d8c323727331ea074a9f88"></a>
-typedef struct <a class="el" href="struct_object_indice.html">ObjectIndice</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ObjectIndice</b></td></tr>
-<tr class="separator:a72856984b9d8c323727331ea074a9f88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:af615752b7035f0ebe2f5a79d1791ce79"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core_8h.html#af615752b7035f0ebe2f5a79d1791ce79">nbCombi</a> (<a class="el" href="struct_examples.html">Examples</a> *exp, int expIndice)</td></tr>
@@ -143,9 +130,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a6b4fd5c6dd489997dfab9f47f4f2c1f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core_8h.html#a6b4fd5c6dd489997dfab9f47f4f2c1f7">genAllRelations</a> (<a class="el" href="struct_solution.html">Solution</a> *s, <a class="el" href="struct_examples.html">Examples</a> *e, <a class="el" href="struct_model.html">Model</a> *m)</td></tr>
 <tr class="memdesc:a6b4fd5c6dd489997dfab9f47f4f2c1f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find all the common relation between the objects.  <a href="#a6b4fd5c6dd489997dfab9f47f4f2c1f7">More...</a><br /></td></tr>
 <tr class="separator:a6b4fd5c6dd489997dfab9f47f4f2c1f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16581b2817217574c3d3c3b873f3b775"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core_8h.html#a16581b2817217574c3d3c3b873f3b775">getIndex</a> (<a class="el" href="struct_examples.html">Examples</a> *exp, <a class="el" href="struct_object_indice.html">ObjectIndice</a> *oi)</td></tr>
-<tr class="memdesc:a16581b2817217574c3d3c3b873f3b775"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the index of the combinaisons of object in the array.  <a href="#a16581b2817217574c3d3c3b873f3b775">More...</a><br /></td></tr>
-<tr class="separator:a16581b2817217574c3d3c3b873f3b775"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36237ddc5c0a93547ab28b51407edd4b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core_8h.html#a36237ddc5c0a93547ab28b51407edd4b">getIndex</a> (<a class="el" href="struct_examples.html">Examples</a> *exp, <a class="el" href="struct_object_index.html">ObjectIndex</a> *oi)</td></tr>
+<tr class="memdesc:a36237ddc5c0a93547ab28b51407edd4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the index of the combinaisons of object in the array.  <a href="#a36237ddc5c0a93547ab28b51407edd4b">More...</a><br /></td></tr>
+<tr class="separator:a36237ddc5c0a93547ab28b51407edd4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab65c8e6e00506c31cde2e12b554a642b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core_8h.html#ab65c8e6e00506c31cde2e12b554a642b">compareOutObjects</a> (<a class="el" href="struct_model.html">Model</a> *mdl, <a class="el" href="struct_out_object.html">OutObject</a> *oo1, <a class="el" href="struct_out_object.html">OutObject</a> *oo2)</td></tr>
 <tr class="memdesc:ab65c8e6e00506c31cde2e12b554a642b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare two OutObjects.  <a href="#ab65c8e6e00506c31cde2e12b554a642b">More...</a><br /></td></tr>
 <tr class="separator:ab65c8e6e00506c31cde2e12b554a642b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -357,7 +344,7 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a16581b2817217574c3d3c3b873f3b775"></a>
+<a class="anchor" id="a36237ddc5c0a93547ab28b51407edd4b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -370,7 +357,7 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="struct_object_indice.html">ObjectIndice</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_object_index.html">ObjectIndex</a> *&#160;</td>
           <td class="paramname"><em>oi</em>&#160;</td>
         </tr>
         <tr>
