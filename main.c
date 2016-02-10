@@ -114,7 +114,9 @@ int main(int argc, char **argv) {
 		Solution* s = genAllCombi(m, e);
 		genAllRelations(s, e, m);
 
-		genGeneralisation(m, s);
+		if(!flagNoGeneralization) {
+			genGeneralisation(m, s);
+		}
 
 		output(L1, SBDEFAULT "Solutions:\n\n");
 		
