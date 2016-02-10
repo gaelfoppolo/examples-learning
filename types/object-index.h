@@ -18,7 +18,7 @@
 */
 typedef struct ObjectIndex {
 	/** @brief The indexes of the combined objects */
-	Vector(int) indices;
+	Vector(int) indexes;
 } ObjectIndex;
 
 #endif // _OBJECT_INDEX_H_

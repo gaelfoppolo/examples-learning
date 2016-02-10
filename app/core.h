@@ -73,7 +73,7 @@ void genAllRelations(Solution* s, Examples* e, Model* m);
 /**
 *	@brief Get the index of the combinaisons of object in the array
 *	@param exp Pointer to the examples
-*	@param oi Pointer to the objects's indices
+*	@param oi Pointer to the objects's indexes
 * 
 *	@return An integer
 */

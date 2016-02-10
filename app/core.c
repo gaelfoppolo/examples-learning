@@ -130,49 +130,49 @@ Solution* genAllCombi(Model* mdl, Examples* exp) {
 	return T;
 }
 
-static void __genAllRelations_rec(Solution* s, Examples* e, Model* m, ObjectIndex* indices, unsigned int currentIndex) {
+static void __genAllRelations_rec(Solution* s, Examples* e, Model* m, ObjectIndex* indexes, unsigned int currentIndex) {
 	int allRel;
-	ObjectIndex relIndices;
+	ObjectIndex relindexes;
 	// end of the examples
 	if(currentIndex == vectSize(e->examples)) {
 		// loop through all the relations
 		for(unsigned int i = 0; i < vectSize(m->rel); ++i) {
-			vectInit(relIndices.indices);
+			vectInit(relindexes.indexes);
 			allRel = 1;
-			for(unsigned int j = 0; j < vectSize(indices->indices); ++j) {
+			for(unsigned int j = 0; j < vectSize(indexes->indexes); ++j) {
 				// check whether the current object has a relation defined for the ith relation
-				if(vectAt(vectAt(vectAt(e->examples, j).objects, vectAt(indices->indices, j)).relations, i).type != TYPE_RELATION) {
+				if(vectAt(vectAt(vectAt(e->examples, j).objects, vectAt(indexes->indexes, j)).relations, i).type != TYPE_RELATION) {
 					allRel = 0;
 					break;
 				}
 				else {
-					vectPush(int, relIndices.indices, vectAt(vectAt(vectAt(e->examples, j).objects, vectAt(indices->indices, j)).relations, i).value);
+					vectPush(int, relindexes.indexes, vectAt(vectAt(vectAt(e->examples, j).objects, vectAt(indexes->indexes, j)).relations, i).value);
 				}
 			}
 
 			if(allRel) { // every objects have the relation
 				// get the combination of the objects linked and assign it to the relation of the current combination
-				vectAt(vectAt(s->outobjects, getIndex(e, indices)).relations, i) = &vectAt(s->outobjects, getIndex(e, &relIndices));
+				vectAt(vectAt(s->outobjects, getIndex(e, indexes)).relations, i) = &vectAt(s->outobjects, getIndex(e, &relindexes));
 			}
-			vectFree(relIndices.indices);
+			vectFree(relindexes.indexes);
 		}
 		return;
 	}
 
 	for(unsigned int i = 0; i < vectSize(vectAt(e->examples, currentIndex).objects); ++i) {
-		vectPush(int, indices->indices, i);
-		__genAllRelations_rec(s, e, m, indices, currentIndex + 1);
-		vectRemoveLast(indices->indices);
+		vectPush(int, indexes->indexes, i);
+		__genAllRelations_rec(s, e, m, indexes, currentIndex + 1);
+		vectRemoveLast(indexes->indexes);
 	}
 }
 
 void genAllRelations(Solution* s, Examples* e, Model* m) {
 	ObjectIndex stack;
-	vectInit(stack.indices);
+	vectInit(stack.indexes);
 
 	__genAllRelations_rec(s, e, m, &stack, 0);
 
-	vectFree(stack.indices);
+	vectFree(stack.indexes);
 }
 
 int getIndex(Examples* exp, ObjectIndex* oi) {
@@ -182,9 +182,9 @@ int getIndex(Examples* exp, ObjectIndex* oi) {
 		for (int j = i+1; j <= vectSize(exp->examples)-1; ++j) {
 			inside *= vectSize(vectAt(exp->examples, j).objects);
 		}
-		index += vectAt(oi->indices, i)*inside;
+		index += vectAt(oi->indexes, i)*inside;
 	}
-	return index+vectAt(oi->indices, i);
+	return index+vectAt(oi->indexes, i);
 }
 
 int compareOutObjects(Model* mdl, OutObject* oo1, OutObject* oo2) {
