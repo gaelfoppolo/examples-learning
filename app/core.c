@@ -222,17 +222,14 @@ int compareOutObjects(Model* mdl, OutObject* oo1, OutObject* oo2) {
 void genGeneralisation(Model* mdl, Solution* s) {
 	// for each OutObjects
 	for (int i = 0; i < vectSize(s->outobjects)-1; ++i) {
-		// if the OutObject is still usefull
-		if ((&vectAt(s->outobjects, i))->specificity != 0) {
-			// compare it to all next OutObjects
-			for (int j = i+1; j < vectSize(s->outobjects); ++j) {
-				// but only if the OutObject to compare to is usefull
-				// and the two OutObjects have exactly the same relations
-				if ((&vectAt(s->outobjects, j))->specificity != 0 && haveSameRelations(&vectAt(s->outobjects, i), &vectAt(s->outobjects, j))) {
-					// will change specificity of the second OutObject
-					(&vectAt(s->outobjects, j))->specificity = compareOutObjects(mdl, &vectAt(s->outobjects, i), &vectAt(s->outobjects, j));
-				}	
-			}
+		// compare it to all next OutObjects
+		for (int j = i+1; j < vectSize(s->outobjects) && ((&vectAt(s->outobjects, i))->specificity != 0); ++j) {
+			// but only if the OutObjects to compare are usefull
+			// and the two OutObjects have exactly the same relations
+			if (((&vectAt(s->outobjects, j))->specificity != 0) && haveSameRelations(&vectAt(s->outobjects, i), &vectAt(s->outobjects, j))) {
+				// will change specificity of the second OutObject
+				(&vectAt(s->outobjects, i))->specificity = compareOutObjects(mdl, &vectAt(s->outobjects, i), &vectAt(s->outobjects, j));
+			}	
 		}	
 	}
 }

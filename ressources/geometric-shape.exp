@@ -13,7 +13,7 @@ E1
 E2
 	x9:shape(ellipsoid), size(6), color(red), on(x10)
 	x10:shape(trapeze), size(12), color(red), on(x11)
-	x11:shape(equilateral-triangle), size(4), color(violet)
+	x11:shape(equilateral-triangle), size(4), color(violet), next-to(x9)
 	x12:shape(rectangle), size(2), color(black), behind(x11)
 !E2
 	x13:shape(trapeze), size(4), color(blue)
