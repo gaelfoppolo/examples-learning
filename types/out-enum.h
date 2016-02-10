@@ -34,4 +34,14 @@ void initOutEnum(OutEnum* oenu);
 */
 void freeOutEnum(OutEnum* oenu, int freeItself);
 
+/**
+ * 	@brief Compare two OutEnum
+ *
+ * 	@param oenu1 First OutEnum
+ * 	@param oenu2 Second OutEnum
+ 
+ *	@return  0 = same or bigger, 1 = smaller or different
+ */
+int compareOutEnum(OutEnum oenu1, OutEnum oenu2);
+
 #endif // _OUTPUTENUM_H_

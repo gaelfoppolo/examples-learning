@@ -90,18 +90,21 @@ int getIndex(Examples* exp, ObjectIndice* oi);
 
 /**
 *	@brief Compare two OutObjects
+*	
+*	@param mdl Pointer to Model
 *	@param oo1 Pointer to the first OutObject (reference)
 *	@param oo2 Pointer to the second OutObject
 * 
-*	@return An integer: -1 = oo2 less specific than oo1, 0 = same, 1 = oo2 more specific than oo1 or different values
+*	@return An integer: 0 = same or oo2 less specific than oo1, 1 = oo2 more specific than oo1 or different values
 */
-int compareOutObjects(OutObject* oo1, OutObject* oo2);
+int compareOutObjects(Model *mdl, OutObject* oo1, OutObject* oo2);
 
 /**
 *	@brief Generalisation of our solution(s)
 *
+*	@param mdl Pointer to the Model
 *	@param s Pointer to the Solution
 */
-void genGeneralisation(Solution* s);
+void genGeneralisation(Model *mdl, Solution* s);
 
 #endif // _CORE_H_

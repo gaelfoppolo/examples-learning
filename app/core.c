@@ -186,8 +186,9 @@ int getIndex(Examples* exp, ObjectIndice* oi) {
 	return index+vectAt(oi->indices, i);
 }
 
-int compareOutObjects(OutObject* oo1, OutObject* oo2) {
+int compareOutObjects(Model* mdl, OutObject* oo1, OutObject* oo2) {
 	OutAttribute oa1, oa2;
+	ObjectIndice rel1, rel2;
 
 	int tmp = 0;
 
@@ -197,72 +198,59 @@ int compareOutObjects(OutObject* oo1, OutObject* oo2) {
 		oa1 = vectAt(oo1->attributes, i);
 		oa2 = vectAt(oo2->attributes, i);
 
-		// still don't know how to value each attribute
-		// a simple addition should work but need to run some tests
-		
-		// don't forget to test if specificity == 0
-
 		switch(oa1.type) {
-			// tests will probably not be in that order
-			// and probably delegate to interval.h, enum.h and tree.h
+			
 			case TYPE_INT:
-				// are interval bounds the same? -> 0
-				tmp += ((oa1.inter.min == oa2.inter.min) && (oa1.inter.max == oa2.inter.max)) ? 0 : 1;
-				// is the interval (max-min) the same or smaller? -> 1
-				// is the interval bigger? -1
+				tmp += compareInterval(oa1.inter, oa2.inter);
 				break;
 			case TYPE_ENUM:
-				if (vectSize(oa1.oenu.oenu) == vectSize(oa2.oenu.oenu)) {
-					for (int i = 0; i < vectSize(oa1.oenu.oenu); ++i){
-						tmp += (vectAt(oa1.oenu.oenu, i) == vectAt(oa2.oenu.oenu, i)) ? 0 : 1;
-					}
-				} else {
-					tmp += 1;
-				}				
-				// is the size the same? then:
-					// all values the same? -> 0
-					// at least one different? -> 1
-				// is the size smaller? -> 1
-				// is the size bigger? -> -1
+				tmp += compareOutEnum(oa1.oenu, oa2.oenu);
 				break;
 			case TYPE_TREE:
-				tmp += ((oa1.tree) == (oa2.tree)) ? 0 : 1;
-				// is the depth bigger? -> 1
-				// is the depth smaller? -> -1
-				// is the depth the same? then:
-					// same id? -> 0
-					// different id? -> 1
+				tmp += compareNode(&vectAt(mdl->ma, i).mt.tree, oa1.tree, oa2.tree);
 				break;
 		}		
 	}
 
-	// don't forget relations
-	for (int i = 0; i < vectSize(oo1->relations); ++i){
-		// count relations not null for the oo1 and oo2
+	// count relations not null for the oo1 and oo2
 		// is the same? then:
 			// all relations not null are the same? -> 0
 			// at least one relation is different? -> 1
 		// so count is different, then:
 			// count of oo2 bigger? -> 1
-			// count of oo2 smaller? -> -1
+			// count of oo2 smaller? -> 0
+	
+	vectInit(rel1.indices);
+	vectInit(rel2.indices);
+	for (int i = 0; i < vectSize(oo1->relations); ++i){
+		if(vectAt(oo1->relations, i) != 0) vectPush(int, rel1.indices, i);
+		if(vectAt(oo2->relations, i) != 0) vectPush(int, rel2.indices, i);
+	}
+
+	if (vectSize(rel1.indices) == vectSize(rel2.indices)) {
+		for (int i = 0; i < vectSize(rel1.indices); ++i) {
+			tmp += (vectAt(oo2->relations, i) == vectAt(oo2->relations, i)) ? 0 : 1;
+		}
+	} else {
+		tmp += (vectSize(rel1.indices) < vectSize(rel2.indices)) ? 1 : 0;
 	}
 
 	// here we can have:
-		// x <= -1: so return -1
 		// x = 0: so return 0
 		// x => 1: so return 1
-
-	// and return the result: -1 (bad), 0 (same) or 1 (best or different)
-	return tmp;
+	
+	return (tmp == 0) ? 0 : 1;
 }
 
-void genGeneralisation(Solution* s) {
+void genGeneralisation(Model* mdl, Solution* s) {
 	for (int i = 0; i < vectSize(s->outobjects)-1; ++i) {
-		for (int j = i+1; j < vectSize(s->outobjects); ++j) {
-			if ((&vectAt(s->outobjects, j))->specificity != 0) {
-				// (!a) ?: b; equal (a)? b: nothing;
-				(&vectAt(s->outobjects, j))->specificity = (compareOutObjects(&vectAt(s->outobjects, i), &vectAt(s->outobjects, j)) > 0) ?: 0;
-			}	
-		}
+		if ((&vectAt(s->outobjects, i))->specificity != 0) {
+			for (int j = i+1; j < vectSize(s->outobjects); ++j) {
+				if ((&vectAt(s->outobjects, j))->specificity != 0) {
+					// (!a) ?: b; equal (a)? b: nothing;
+					(&vectAt(s->outobjects, j))->specificity = (compareOutObjects(mdl, &vectAt(s->outobjects, i), &vectAt(s->outobjects, j)) != 0) ?: 0;
+				}	
+			}
+		}	
 	}
 }

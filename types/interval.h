@@ -30,4 +30,14 @@ typedef struct Interval {
  */
 void addToInterval(Interval* inter, int x);
 
+/**
+ * 	@brief Compare two interval
+ *
+ * 	@param int1 First interval
+ * 	@param int2 Second interval
+ * 	
+ * @return 0 = same bounds or bigger, 1 = smaller or different
+ */
+int compareInterval(Interval int1, Interval int2);
+
 #endif // _INTERVAL_H_

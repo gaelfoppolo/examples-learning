@@ -153,6 +153,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a69fb3a3292bd8c145020d0fe58af26ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tree_8h.html#a69fb3a3292bd8c145020d0fe58af26ba">freeTree</a> (<a class="el" href="struct_tree.html">Tree</a> *t)</td></tr>
 <tr class="memdesc:a69fb3a3292bd8c145020d0fe58af26ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the tree.  <a href="#a69fb3a3292bd8c145020d0fe58af26ba">More...</a><br /></td></tr>
 <tr class="separator:a69fb3a3292bd8c145020d0fe58af26ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7597d1ed9efbedf10ef238623c334169"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tree_8h.html#a7597d1ed9efbedf10ef238623c334169">compareNode</a> (<a class="el" href="struct_tree.html">Tree</a> *t, int node1, int node2)</td></tr>
+<tr class="memdesc:a7597d1ed9efbedf10ef238623c334169"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare two node.  <a href="#a7597d1ed9efbedf10ef238623c334169">More...</a><br /></td></tr>
+<tr class="separator:a7597d1ed9efbedf10ef238623c334169"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>File containing the definition of the trees. </p>
@@ -196,6 +199,49 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
 
 </div>
 </div>
+<a class="anchor" id="a7597d1ed9efbedf10ef238623c334169"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int compareNode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_tree.html">Tree</a> *&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>node1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>node2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compare two node. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>Pointer to <a class="el" href="struct_tree.html" title="Defines the trees. ">Tree</a> </td></tr>
+    <tr><td class="paramname">node1</td><td>First node </td></tr>
+    <tr><td class="paramname">node2</td><td>Second node</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>0 = same, same or smaller depth, 1 = bigger </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a23371a58349a9b88e641b1cfbf8ea88a"></a>
 <div class="memitem">
 <div class="memproto">
@@ -230,7 +276,9 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A new leaf</dd></dl>
 <p>Create a new leaf.</p>
-<p>FOPPOLO Gaël  PHILIP Bastien </p>
+<dl class="section author"><dt>Author</dt><dd>Bastien Philip (ebatsin) </dd>
+<dd>
+Gaël Foppolo (gaelfoppolo) </dd></dl>
 
 </div>
 </div>

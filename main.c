@@ -68,7 +68,7 @@ int main(int argc, char const *argv[]) {
 		Solution* s = genAllCombi(m, e);
 		genAllRelations(s, e, m);
 
-		genGeneralisation(s);
+		genGeneralisation(m, s);
 
 		output(L1, SBDEFAULT "Solutions:\n\n");
 		
