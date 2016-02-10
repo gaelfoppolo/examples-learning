@@ -78,7 +78,7 @@ void genOutput(Solution* sol, Model* mdl) {
             for (int j = 0; j < vectSize(oo.relations); ++j) {
             	ooo = vectAt(oo.relations, j);
             	if (ooo != NULL) {
-            		if (j+1 < vectSize(oo.relations)) output(L0, ", ");
+            		if (j < vectSize(oo.relations)) output(L0, ", ");
             		output(L0, SBGREEN "%s " SDEFAULT, vectAt(mdl->rel, j));
                     output(L0, "(" SBPURPLE "%s" SDEFAULT") ", ooo->name);
             	}
