@@ -14,6 +14,7 @@ void initOutObject(OutObject* oo) {
 }
 
 void freeOutObject(OutObject* oo, int freeItself) {
+	if(oo->name) free(oo->name);
 	
 	for(unsigned int i = 0; i < vectSize(oo->attributes); ++i) {
 		freeOutAttribute(&vectAt(oo->attributes, i), 0);

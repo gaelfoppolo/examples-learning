@@ -17,7 +17,7 @@
 *   @brief Contains all the possible solutions
 */
 typedef struct Solution {
-	/** @brief An array of out objects, each one representing a solution */
+	/** @brief An array of OutObject, each one representing a solution */
     Vector(OutObject) outobjects;
 } Solution;
 

@@ -69,6 +69,7 @@ Solution* initAllCombi(Model* mdl, Examples* exp) {
 			o = &vectAt(lastExample.objects, i);
 			oo = initOutObjectWithObject(mdl, o);
 			oo->specificity = 1;
+			oo->name = cPrint("S%d", vectSize(T->outobjects)+1);
 			vectPush(OutObject, T->outobjects, *oo);
 			free(oo);
 		}
@@ -248,7 +249,7 @@ void genGeneralisation(Model* mdl, Solution* s) {
 			for (int j = i+1; j < vectSize(s->outobjects); ++j) {
 				if ((&vectAt(s->outobjects, j))->specificity != 0) {
 					// (!a) ?: b; equal (a)? b: nothing;
-					(&vectAt(s->outobjects, j))->specificity = (compareOutObjects(mdl, &vectAt(s->outobjects, i), &vectAt(s->outobjects, j)) != 0) ?: 0;
+					(&vectAt(s->outobjects, j))->specificity = compareOutObjects(mdl, &vectAt(s->outobjects, i), &vectAt(s->outobjects, j));
 				}	
 			}
 		}	
