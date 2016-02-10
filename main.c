@@ -64,7 +64,7 @@ int main(int argc, char **argv) {
 		filename = argv[optind];
 	}
 	else if(!flagHelp) {
-		output(LERROR, "An example file must be past as an argument. Re run with --help for more informations.\n");
+		output(LERROR, "An example file must be passed as an argument. Re run with --help for more informations.\n");
 		return 1;
 	}
 	else {
