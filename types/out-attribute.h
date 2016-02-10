@@ -26,7 +26,6 @@ typedef struct OutAttribute {
 	/** @brief The type contained by this attribute */
     attrType type;
     /**
-    *	@union
     *	@brief As model types can be of 3 different types, each is defined, the good one is selected via the type field
     */
 	union {
