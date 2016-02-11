@@ -46,7 +46,7 @@ void genOutput(Solution* sol, Model* mdl) {
                 attributeDisplayed = 1;
 
                 strPushStr(&toDisplay, cPrint(SBGREEN "%s" SDEFAULT, ma.name));         
-                strPushStr(&toDisplay, cPrint(" (" SBCYAN));                  
+                strPushStr(&toDisplay, cPrint("(" SBCYAN));                  
 
                 switch (ma.mt.type) {
                     // attribute is an interval
