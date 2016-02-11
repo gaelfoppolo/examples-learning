@@ -92,14 +92,25 @@
 *	@param vect The vector to increase the size
 *	@param sizeToIncrease The size to increase
 */
-#define vectFill(type, vect, sizeToIncrease) do {																		\
-												if(sizeToIncrease+(vect).size <= (vect).capacity) {									\
+#define vectResize(type, vect, sizeToIncrease) do {																					\
+												if(((sizeToIncrease)+(vect).size) < (vect).capacity) {								\
 													(vect).size += sizeToIncrease;													\
 												} else {																			\
-													(vect).data = (type*)realloc((vect).data, sizeof(type) * sizeToIncrease);		\
-													(vect).size += sizeToIncrease;													\
-													(vect).capacity += sizeToIncrease;												\
-												}																				\
+													(vect).data = (type*)realloc((vect).data, sizeof(type) * (sizeToIncrease));		\
+													(vect).size += (sizeToIncrease);												\
+													(vect).capacity += (sizeToIncrease);											\
+												}																					\
 											} while(0)																				\
+
+/**
+*	@brief Init the size of a vector to a prefined size
+*	@param type The type of the element (must be the same type as the other elements of the array)
+*	@param vect The vector to init the size
+*	@param sizeToInit The size to init with
+*/
+#define vectFill(type, vect, sizeToInit) do {																		\
+										(vect).size = (vect).capacity = (sizeToInit);								\
+										(vect).data = (type*)malloc(sizeof(type) * (sizeToInit));					\
+									} while(0)																		\
 
 #endif // _VECTOR_H_
