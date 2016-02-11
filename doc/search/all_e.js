@@ -3,7 +3,6 @@ var searchData=
   ['setoutputimportance',['setOutputImportance',['../output_8h.html#a73c28c349ccd0a061a690dd7d6fb686a',1,'output.c']]],
   ['solution',['Solution',['../struct_solution.html',1,'']]],
   ['solution_2eh',['solution.h',['../solution_8h.html',1,'']]],
-  ['specificity',['specificity',['../struct_out_object.html#a0905deacdc107117a650b165cacc1252',1,'OutObject']]],
   ['str',['str',['../struct_enum_type.html#ab50d783982593ef993ea0b68f7ad8b80',1,'EnumType::str()'],['../struct_string.html#ab50d783982593ef993ea0b68f7ad8b80',1,'String::str()'],['../struct_tree.html#ab50d783982593ef993ea0b68f7ad8b80',1,'Tree::str()']]],
   ['strduplicate',['strDuplicate',['../string-type_8h.html#ae28db08bad9d3c4511ab5241534a89c0',1,'string-type.c']]],
   ['string',['String',['../struct_string.html',1,'']]],

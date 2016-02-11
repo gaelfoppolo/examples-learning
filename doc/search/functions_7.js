@@ -9,6 +9,10 @@ var searchData=
   ['initoutobject',['initOutObject',['../out-object_8h.html#a3f36943d8c7117b607f94e2c85dd41ec',1,'out-object.c']]],
   ['initoutobjectwithobject',['initOutObjectWithObject',['../core_8h.html#a1ba94f71f2cfb59230e4fd6cef8aa855',1,'core.c']]],
   ['initsolution',['initSolution',['../solution_8h.html#a079f5d37b0750dcb4df89503c136d445',1,'solution.c']]],
+  ['isintervalincludeinanother',['isIntervalIncludeInAnother',['../interval_8h.html#ad3bf7fcbf0faedb51e2f4a9f9d2338ff',1,'interval.c']]],
   ['isleaf',['isLeaf',['../tree_8h.html#a13511abcf3d362ccaf18d3a8288e9a9c',1,'tree.c']]],
+  ['isoutenumincludeinanother',['isOutEnumIncludeInAnother',['../out-enum_8h.html#a002294417088154c4a7308729507e367',1,'out-enum.c']]],
+  ['isoutobjectincludeinanother',['isOutObjectIncludeInAnother',['../core_8h.html#a3da4e590b8af46295808a6d1913cead0',1,'core.c']]],
+  ['istreeincludeinanother',['isTreeIncludeInAnother',['../tree_8h.html#aed4cdf57876742bde219808b5c6c52ab',1,'tree.c']]],
   ['isvalidattrchar',['isValidAttrChar',['../parsers_8h.html#a5b1ce78200962639956078ce45c6b2e3',1,'parsers.c']]]
 ];

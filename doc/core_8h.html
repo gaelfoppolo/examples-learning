@@ -133,9 +133,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a36237ddc5c0a93547ab28b51407edd4b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core_8h.html#a36237ddc5c0a93547ab28b51407edd4b">getIndex</a> (<a class="el" href="struct_examples.html">Examples</a> *exp, <a class="el" href="struct_object_index.html">ObjectIndex</a> *oi)</td></tr>
 <tr class="memdesc:a36237ddc5c0a93547ab28b51407edd4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the index of the combinaisons of object in the array.  <a href="#a36237ddc5c0a93547ab28b51407edd4b">More...</a><br /></td></tr>
 <tr class="separator:a36237ddc5c0a93547ab28b51407edd4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab65c8e6e00506c31cde2e12b554a642b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core_8h.html#ab65c8e6e00506c31cde2e12b554a642b">compareOutObjects</a> (<a class="el" href="struct_model.html">Model</a> *mdl, <a class="el" href="struct_out_object.html">OutObject</a> *oo1, <a class="el" href="struct_out_object.html">OutObject</a> *oo2)</td></tr>
-<tr class="memdesc:ab65c8e6e00506c31cde2e12b554a642b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare two OutObjects.  <a href="#ab65c8e6e00506c31cde2e12b554a642b">More...</a><br /></td></tr>
-<tr class="separator:ab65c8e6e00506c31cde2e12b554a642b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3da4e590b8af46295808a6d1913cead0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core_8h.html#a3da4e590b8af46295808a6d1913cead0">isOutObjectIncludeInAnother</a> (<a class="el" href="struct_model.html">Model</a> *mdl, <a class="el" href="struct_out_object.html">OutObject</a> *oo1, <a class="el" href="struct_out_object.html">OutObject</a> *oo2)</td></tr>
+<tr class="memdesc:a3da4e590b8af46295808a6d1913cead0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is oo1 include in oo2?  <a href="#a3da4e590b8af46295808a6d1913cead0">More...</a><br /></td></tr>
+<tr class="separator:a3da4e590b8af46295808a6d1913cead0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee07517bfdd45b5f9bed27a2d2653010"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="core_8h.html#aee07517bfdd45b5f9bed27a2d2653010">genGeneralisation</a> (<a class="el" href="struct_model.html">Model</a> *mdl, <a class="el" href="struct_solution.html">Solution</a> *s)</td></tr>
 <tr class="memdesc:aee07517bfdd45b5f9bed27a2d2653010"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generalisation of our solution(s)  <a href="#aee07517bfdd45b5f9bed27a2d2653010">More...</a><br /></td></tr>
 <tr class="separator:aee07517bfdd45b5f9bed27a2d2653010"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -185,49 +185,6 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<a class="anchor" id="ab65c8e6e00506c31cde2e12b554a642b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int compareOutObjects </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_model.html">Model</a> *&#160;</td>
-          <td class="paramname"><em>mdl</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="struct_out_object.html">OutObject</a> *&#160;</td>
-          <td class="paramname"><em>oo1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="struct_out_object.html">OutObject</a> *&#160;</td>
-          <td class="paramname"><em>oo2</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Compare two OutObjects. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">mdl</td><td>Pointer to <a class="el" href="struct_model.html" title="Contains the attributes and relations definitions found in the model file. ">Model</a> </td></tr>
-    <tr><td class="paramname">oo1</td><td>Pointer to the first <a class="el" href="struct_out_object.html" title="Contains all the attributes and relations that compose an outObject. ">OutObject</a> (reference) </td></tr>
-    <tr><td class="paramname">oo2</td><td>Pointer to the second <a class="el" href="struct_out_object.html" title="Contains all the attributes and relations that compose an outObject. ">OutObject</a></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>An integer: 0 = same or oo2 less specific than oo1, 1 = oo2 more specific than oo1 or different values </dd></dl>
 
 </div>
 </div>
@@ -449,6 +406,49 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to <a class="el" href="struct_out_object.html" title="Contains all the attributes and relations that compose an outObject. ">OutObject</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3da4e590b8af46295808a6d1913cead0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int isOutObjectIncludeInAnother </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_model.html">Model</a> *&#160;</td>
+          <td class="paramname"><em>mdl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_out_object.html">OutObject</a> *&#160;</td>
+          <td class="paramname"><em>oo1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_out_object.html">OutObject</a> *&#160;</td>
+          <td class="paramname"><em>oo2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Is oo1 include in oo2? </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mdl</td><td>Pointer to <a class="el" href="struct_model.html" title="Contains the attributes and relations definitions found in the model file. ">Model</a> </td></tr>
+    <tr><td class="paramname">oo1</td><td>Pointer to the first <a class="el" href="struct_out_object.html" title="Contains all the attributes and relations that compose an outObject. ">OutObject</a> </td></tr>
+    <tr><td class="paramname">oo2</td><td>Pointer to the second <a class="el" href="struct_out_object.html" title="Contains all the attributes and relations that compose an outObject. ">OutObject</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if oo1 include in oo2, 0 else </dd></dl>
 
 </div>
 </div>
