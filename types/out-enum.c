@@ -17,24 +17,22 @@ void freeOutEnum(OutEnum* oenu, int freeItself) {
 	if (freeItself) free(oenu);
 }
 
-int compareOutEnum(OutEnum oenu1, OutEnum oenu2) {
-	
-	// is the size the same or oenu2 smaller? then:
-		// all values of oenu2 are inside oenu1? -> 0
-		// at least one different? -> 1
-	// is the size oenu2 bigger? -> 1
+int isOutEnumIncludeInAnother(OutEnum oenu1, OutEnum oenu2) {
 
-	int tmp = 0, index;
+	int isOutEnumInclude = 1, index;
 
-	if (vectSize(oenu1.oenu) <= vectSize(oenu2.oenu)) {
-		for (int i = 0; i < vectSize(oenu2.oenu); ++i) {
-			// check if each oenu2.oenu is inside oenu1.oenu
-			vectIndexOf(oenu1.oenu, vectAt(oenu2.oenu, i), index);
-			if (index == -1) tmp += 1;
+	// if oenu2 is bigger or equal size as oenu1
+	if (vectSize(oenu2.oenu) >= vectSize(oenu1.oenu)) {
+		// for each value of oenu1
+		// check if each oenu1 value is inside oenu2
+		for (int i = 0; i < vectSize(oenu1.oenu) && isOutEnumInclude; ++i) {
+			vectIndexOf(oenu2.oenu, vectAt(oenu1.oenu, i), index);
+			if (index == -1) isOutEnumInclude = 0;
 		}
+	// else smaller
 	} else {
-		tmp = 1;
+		isOutEnumInclude = 0;
 	}
 
-	return (tmp == 0) ? 0 : 1;
+	return isOutEnumInclude;
 }

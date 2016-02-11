@@ -35,13 +35,13 @@ void initOutEnum(OutEnum* oenu);
 void freeOutEnum(OutEnum* oenu, int freeItself);
 
 /**
- * 	@brief Compare two OutEnum
+ * 	@brief Is oenu1 include in oenu2?
  *
  * 	@param oenu1 First OutEnum
  * 	@param oenu2 Second OutEnum
  
- *	@return  0 = same or bigger, 1 = smaller or different
+ *	@return 1, oenu1 is include in oenu2, else 0
  */
-int compareOutEnum(OutEnum oenu1, OutEnum oenu2);
+int isOutEnumIncludeInAnother(OutEnum oenu1, OutEnum oenu2);
 
 #endif // _OUTPUTENUM_H_
