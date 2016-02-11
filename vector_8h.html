@@ -130,6 +130,9 @@ Macros</h2></td></tr>
 <tr class="memitem:a2fff8491036e581fcc8ed7a3d8ebe63b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8h.html#a2fff8491036e581fcc8ed7a3d8ebe63b">vectRemoveLast</a>(vect)</td></tr>
 <tr class="memdesc:a2fff8491036e581fcc8ed7a3d8ebe63b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the last element in the vector.  <a href="#a2fff8491036e581fcc8ed7a3d8ebe63b">More...</a><br /></td></tr>
 <tr class="separator:a2fff8491036e581fcc8ed7a3d8ebe63b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc13c0f3ed6f47f8e740d1d32ad273de"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8h.html#acc13c0f3ed6f47f8e740d1d32ad273de">vectFill</a>(type,  vect,  sizeToIncrease)</td></tr>
+<tr class="memdesc:acc13c0f3ed6f47f8e740d1d32ad273de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increase a vector of size.  <a href="#acc13c0f3ed6f47f8e740d1d32ad273de">More...</a><br /></td></tr>
+<tr class="separator:acc13c0f3ed6f47f8e740d1d32ad273de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>File containing the definition of the vectors (dynamic &amp; generic arrays) </p>
@@ -170,6 +173,48 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The element (directly. You can use this as a left value) </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="acc13c0f3ed6f47f8e740d1d32ad273de"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define vectFill</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">type, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">vect, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">sizeToIncrease&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                        \</div><div class="line">                                                if(sizeToIncrease+(vect).size &lt;= (vect).capacity) {                                 \</div><div class="line">                                                    (vect).size += sizeToIncrease;                                                  \</div><div class="line">                                                } <span class="keywordflow">else</span> {                                                                            \</div><div class="line">                                                    (vect).data = (type*)realloc((vect).data, <span class="keyword">sizeof</span>(type) * sizeToIncrease);       \</div><div class="line">                                                    (vect).size += sizeToIncrease;                                                  \</div><div class="line">                                                    (vect).capacity += sizeToIncrease;                                              \</div><div class="line">                                                }                                                                               \</div><div class="line">                                            } <span class="keywordflow">while</span>(0)                                                                              \</div></div><!-- fragment -->
+<p>Increase a vector of size. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The type of the element (must be the same type as the other elements of the array) </td></tr>
+    <tr><td class="paramname">vect</td><td>The vector to increase the size </td></tr>
+    <tr><td class="paramname">sizeToIncrease</td><td>The size to increase </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -226,8 +271,8 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                                \</div><div class="line">                                        out = -1;                                                                       \</div><div class="line">                                        for(<span class="keywordtype">int</span> _i = 0; _i &lt; <a class="code" href="vector_8h.html#ac9fc62fc80355d939be92301e072513f">vectSize</a>(vect); ++_i) {                                        \</div><div class="line">                                            if(<a class="code" href="vector_8h.html#a4a16cbfbc9cfa82d1bf84c1dfc88cb45">vectAt</a>(vect, _i) == value) {                                             \</div><div class="line">                                                out = _i;                                                               \</div><div class="line">                                                break;                                                                  \</div><div class="line">                                            }                                                                           \</div><div class="line">                                        }                                                                               \</div><div class="line">                                    } <span class="keywordflow">while</span>(0)</div><div class="ttc" id="vector_8h_html_a4a16cbfbc9cfa82d1bf84c1dfc88cb45"><div class="ttname"><a href="vector_8h.html#a4a16cbfbc9cfa82d1bf84c1dfc88cb45">vectAt</a></div><div class="ttdeci">#define vectAt(vect, index)</div><div class="ttdoc">Returns the element at a certain index of the array. </div><div class="ttdef"><b>Definition:</b> vector.h:38</div></div>
-<div class="ttc" id="vector_8h_html_ac9fc62fc80355d939be92301e072513f"><div class="ttname"><a href="vector_8h.html#ac9fc62fc80355d939be92301e072513f">vectSize</a></div><div class="ttdeci">#define vectSize(vect)</div><div class="ttdoc">Return the size of the array. </div><div class="ttdef"><b>Definition:</b> vector.h:45</div></div>
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                                \</div><div class="line">                                        out = -1;                                                                       \</div><div class="line">                                        for(<span class="keywordtype">int</span> _i = 0; _i &lt; <a class="code" href="vector_8h.html#ac9fc62fc80355d939be92301e072513f">vectSize</a>(vect); ++_i) {                                    \</div><div class="line">                                            if(<a class="code" href="vector_8h.html#a4a16cbfbc9cfa82d1bf84c1dfc88cb45">vectAt</a>(vect, _i) == value) {                                             \</div><div class="line">                                                out = _i;                                                               \</div><div class="line">                                                break;                                                                  \</div><div class="line">                                            }                                                                           \</div><div class="line">                                        }                                                                               \</div><div class="line">                                    } <span class="keywordflow">while</span>(0)</div><div class="ttc" id="vector_8h_html_a4a16cbfbc9cfa82d1bf84c1dfc88cb45"><div class="ttname"><a href="vector_8h.html#a4a16cbfbc9cfa82d1bf84c1dfc88cb45">vectAt</a></div><div class="ttdeci">#define vectAt(vect, index)</div><div class="ttdoc">Returns the element at a certain index of the array. </div><div class="ttdef"><b>Definition:</b> vector.h:40</div></div>
+<div class="ttc" id="vector_8h_html_ac9fc62fc80355d939be92301e072513f"><div class="ttname"><a href="vector_8h.html#ac9fc62fc80355d939be92301e072513f">vectSize</a></div><div class="ttdeci">#define vectSize(vect)</div><div class="ttdoc">Return the size of the array. </div><div class="ttdef"><b>Definition:</b> vector.h:47</div></div>
 </div><!-- fragment -->
 <p>Search for an element in the vector. Returns its index if found. </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -283,6 +328,8 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">t</td><td>The type of the items to store in the vector </td></tr>
+    <tr><td class="paramname">size</td><td>The actual size of the vector </td></tr>
+    <tr><td class="paramname">capacity</td><td>The size allocated in the memory </td></tr>
   </table>
   </dd>
 </dl>
