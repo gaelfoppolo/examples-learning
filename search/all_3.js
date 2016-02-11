@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['enablecolors',['enableColors',['../output_8h.html#ae0613fc27bce3afbe66e8b3d5fccdf66',1,'output.c']]],
   ['enu',['enu',['../struct_model_type.html#a02f518c698d2fa7e1d47ea75ea1ea350',1,'ModelType']]],
   ['enum',['Enum',['../struct_enum.html',1,'']]],
   ['enum_2eh',['enum.h',['../enum_8h.html',1,'']]],
