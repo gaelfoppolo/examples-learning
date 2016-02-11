@@ -18,8 +18,8 @@
 typedef struct OutObject {
 	/** @brief Name of the out object */
 	char* name;
-	/** @brief Level of specificity of the OutputObject: 0 (duplicate or less specific) and 1 (specific) */
-	unsigned char specificity;
+	/** @brief Pointer to the out object that generalize this out object */
+	struct OutObject* generalizeBy;
 	/** 
 	*	@brief Array of the attributes of the out object.
 	*	Each attribute must be at the same index as its definition in the Model

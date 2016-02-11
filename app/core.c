@@ -44,7 +44,7 @@ OutObject* initOutObjectWithObject(Model* mdl, Object* o) {
 		
 	}
 	for (int j = 0; j < vectSize(mdl->rel); ++j) {
-			vectPush(OutObject*, oo->relations, (OutObject*)NULL);
+		vectPush(OutObject*, oo->relations, (OutObject*)NULL);
 	}
 
 	free(oa);
@@ -68,7 +68,7 @@ Solution* initAllCombi(Model* mdl, Examples* exp) {
 			// get the adress of the i object in the last exemple
 			o = &vectAt(lastExample.objects, i);
 			oo = initOutObjectWithObject(mdl, o);
-			oo->specificity = 1;
+			oo->generalizeBy = (OutObject*)NULL;
 			oo->name = cPrint("S%0*d", (int)log10(allCombi) + 1, vectSize(T->outobjects)+1);
 			vectPush(OutObject, T->outobjects, *oo);
 			free(oo);
@@ -187,10 +187,10 @@ int getIndex(Examples* exp, ObjectIndex* oi) {
 	return index+vectAt(oi->indexes, i);
 }
 
-int compareOutObjects(Model* mdl, OutObject* oo1, OutObject* oo2) {
+int isOutObjectIncludeInAnother(Model* mdl, OutObject* oo1, OutObject* oo2) {
 	OutAttribute oa1, oa2;
 
-	int tmp = 0;
+	int countAttributesInclude = 0;
 
 	// for all attributes
 	for(int i = 0; i < vectSize(oo1->attributes); ++i) {
@@ -198,37 +198,48 @@ int compareOutObjects(Model* mdl, OutObject* oo1, OutObject* oo2) {
 		oa1 = vectAt(oo1->attributes, i);
 		oa2 = vectAt(oo2->attributes, i);
 
+		// test if each attributes is include
 		switch(oa1.type) {
 			
 			case TYPE_INT:
-				tmp += compareInterval(oa1.inter, oa2.inter);
+				countAttributesInclude += isIntervalIncludeInAnother(oa1.inter, oa2.inter);
 				break;
 			case TYPE_ENUM:
-				tmp += compareOutEnum(oa1.oenu, oa2.oenu);
+				countAttributesInclude += isOutEnumIncludeInAnother(oa1.oenu, oa2.oenu);
 				break;
 			case TYPE_TREE:
-				tmp += compareNode(&vectAt(mdl->ma, i).mt.tree, oa1.tree, oa2.tree);
+				countAttributesInclude += isTreeIncludeInAnother(&vectAt(mdl->ma, i).mt.tree, oa1.tree, oa2.tree);
 				break;
 		}		
 	}
-
-	// here we can have:
-		// x = 0: so return 0
-		// x => 1: so return 1
 	
-	return (tmp == 0) ? 0 : 1;
+	// if all are include sum is equal to number of attributes
+	return (countAttributesInclude == vectSize(oo1->attributes));
 }
 
 void genGeneralisation(Model* mdl, Solution* s) {
+	int isInclude;
+
 	// for each OutObjects
 	for (int i = 0; i < vectSize(s->outobjects)-1; ++i) {
-		// compare it to all next OutObjects
-		for (int j = i+1; j < vectSize(s->outobjects) && ((&vectAt(s->outobjects, i))->specificity != 0); ++j) {
-			// but only if the OutObjects to compare are usefull
+		
+		// for each OO(j)
+		// and only if OO(i) is not already include in another OO
+		for (int j = 0; j < vectSize(s->outobjects) && (&vectAt(s->outobjects, i))->generalizeBy == NULL; ++j) {
+			
+			// OO(i) and OO(j) not the same
 			// and the two OutObjects have exactly the same relations
-			if (((&vectAt(s->outobjects, j))->specificity != 0) && haveSameRelations(&vectAt(s->outobjects, i), &vectAt(s->outobjects, j))) {
-				// will change specificity of the second OutObject
-				(&vectAt(s->outobjects, i))->specificity = compareOutObjects(mdl, &vectAt(s->outobjects, i), &vectAt(s->outobjects, j));
+			if (i != j && haveSameRelations(&vectAt(s->outobjects, i), &vectAt(s->outobjects, j))) {
+				
+				// test inclusion of OO(i) in OO(j)
+				isInclude = isOutObjectIncludeInAnother(mdl, &vectAt(s->outobjects, j), &vectAt(s->outobjects, i));
+				
+				// if OO(i) include in OO(j) 
+				if (isInclude) {
+
+					// then OO(i) point to OO(j)
+					(&vectAt(s->outobjects, i))->generalizeBy = &vectAt(s->outobjects, j);
+				}		
 			}	
 		}	
 	}

@@ -80,15 +80,15 @@ void genAllRelations(Solution* s, Examples* e, Model* m);
 int getIndex(Examples* exp, ObjectIndex* oi);
 
 /**
-*	@brief Compare two OutObjects
+*	@brief Is oo1 include in oo2?
 *	
 *	@param mdl Pointer to Model
-*	@param oo1 Pointer to the first OutObject (reference)
+*	@param oo1 Pointer to the first OutObject
 *	@param oo2 Pointer to the second OutObject
 * 
-*	@return An integer: 0 = same or oo2 less specific than oo1, 1 = oo2 more specific than oo1 or different values
+*	@return 1 if oo1 include in oo2, 0 else
 */
-int compareOutObjects(Model *mdl, OutObject* oo1, OutObject* oo2);
+int isOutObjectIncludeInAnother(Model *mdl, OutObject* oo1, OutObject* oo2);
 
 /**
 *	@brief Generalisation of our solution(s)
