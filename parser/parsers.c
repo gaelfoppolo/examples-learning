@@ -78,7 +78,7 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
 	int type;
 
 	if(fp == NULL) {
-		output(LERROR, SBRED "The file %s does not exist.\n" SDEFAULT, pathname);
+		output(LERROR, "%sThe file %s does not exist.%s\n", SBRED, pathname, SDEFAULT);
 		if(e) {
 			free(e);
 		}
@@ -103,7 +103,7 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
 			if(!parseExample(fp, &error, &vectAt(e->examples, vectSize(e->examples) - 1), model)) {
 				vectRemoveLast(e->examples);
 				if(error) {
-					output(LERROR, "\n" SBRED "Error " SDEFAULT " : %s\n", error);
+					output(LERROR, "\n%sError %s : %s\n", SBRED, SDEFAULT, error);
 					free(error);
 					// The example isn't freed in the case of an error
 					return NULL;
@@ -115,7 +115,7 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
 			if(!parseExample(fp, &error, &vectAt(e->counterExamples, vectSize(e->counterExamples) - 1), model)) {
 				vectRemoveLast(e->counterExamples);
 				if(error) {
-					output(LERROR, "\n" SBRED "Error " SDEFAULT " : %s\n", error);
+					output(LERROR, "\n%sError %s : %s\n", SBRED, SDEFAULT, error);
 					free(error);
 					// The example isn't freed in the case of an error
 					return NULL;
@@ -138,14 +138,14 @@ unsigned int getNextExample(FILE* fp) {
 	while(!feof(fp) && (c = fgetc(fp))) {
 		if((c = fgetc(fp)) == '!') {
 			// counter-example
-			output(L2, "New " SBPURPLE "counter-example" SDEFAULT " found.\n");
+			output(L2, "New %scounter-example%s found.\n", SBPURPLE, SDEFAULT);
 
 			readTil(fp, "\n");
 			fseek(fp, -1, SEEK_CUR);
 			return PARSED_COUNTEREXAMPLE;
 		}
 		else if(!feof(fp) && c != ' ' && c != '\t' && c != '\n') {
-			output(L2, "New " SBPURPLE "example" SDEFAULT " found.\n");
+			output(L2, "New %sexample%s found.\n", SBPURPLE, SDEFAULT);
 			readTil(fp, "\n");
 			fseek(fp, -1, SEEK_CUR);
 			return PARSED_EXAMPLE;
@@ -206,7 +206,7 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 		vectAt(ex->objects, id).id = id; // set the id of the object
 		vectAt(ex->objects, id).name = name; // set the name of the object
 
-		output(L2, "Object's name: " SBGREEN "%s" SDEFAULT "", name);
+		output(L2, "Object's name: %s%s%s", SBGREEN, name, SDEFAULT);
 
 		fgetc(fp); //reads the ':' char after the object's name
 		for(unsigned int i = 0; i < vectSize(m->ma); ++i) { // fill the array with as much element that we have possible attributes
@@ -242,7 +242,7 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 
 	// if the example is emtpy, print a warning, return 0 but raise no error
 	if(vectSize(ex->objects) == 0) {
-		output(LERROR | L1, SBYELLOW "Warning : empty example found (to remove this warning, delete the empty example)\n" SDEFAULT);
+		output(LERROR | L1, "%sWarning : empty example found (to remove this warning, delete the empty example)%s\n", SBYELLOW, SDEFAULT);
 		return 0;
 	}
 
@@ -267,12 +267,12 @@ int parseExampleObject(FILE* fp, char** error, Object* o, Model* m, struct Strin
 		if(position == -1) { // if not in the attributes, may be a relation or an error
 			position = getRelationPosition(name, m); // get the relation position in the model
 			if(position == -1) {
-				*error = cPrint(SBRED "The attribute " SWHITE "%s" SBRED " is not defined." SDEFAULT, name);
+				*error = cPrint("%sThe attribute %s%s%s is not defined.%s", SBRED, SWHITE, name, SBRED, SDEFAULT);
 				return 0;
 			}
 			output(L4, "\n"); // if the attributes values are printed, we add a line break
 			// the current attribute is a relation
-			output(L3, "\t" SBCYAN "%s (relation)" SDEFAULT, name);
+			output(L3, "\t%s%s (relation)%s", SBCYAN, name, SDEFAULT);
 			type = TYPE_RELATION; // the type of the attribute to read
 
 			fgetc(fp); // reads the '('
@@ -282,7 +282,7 @@ int parseExampleObject(FILE* fp, char** error, Object* o, Model* m, struct Strin
 		}
 		else {
 			output(L4, "\n"); // if the attributes values are printed, we add a line break
-			output(L3, "\t" SBCYAN "%s" SDEFAULT, name);
+			output(L3, "\t%s%s%s", SBCYAN, name, SDEFAULT);
 			type = vectAt(m->ma, position).mt.type;
 
 			fgetc(fp); // reads the '('
@@ -356,29 +356,29 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 				free(str.str);
 				return;
 			}
-			output(L4, ": %s " SYELLOW "(ID = %d)" SDEFAULT, str.str, attr->value);
+			output(L4, ": %s %s(ID = %d)%s", str.str, SYELLOW, attr->value, SDEFAULT);
 			free(str.str);
 			break;
 		case TYPE_ENUM:
 			tmp = getEnumId(str.str, m, position);
 			if(tmp < 0) { // the value does not exist
-				*error = cPrint("Expected an enum value but found '" SPURPLE "%s" SDEFAULT "' instead", str.str);
+				*error = cPrint("Expected an enum value but found '%s%s%s' instead", SPURPLE, str.str, SDEFAULT);
 				free(str.str);
 				return;
 			}
 			attr->value = tmp;
-			output(L4, ": %s " SYELLOW "(ID = %d)" SDEFAULT, str.str, attr->value);
+			output(L4, ": %s %s(ID = %d)%s", str.str, SYELLOW, attr->value, SDEFAULT);
 			free(str.str);
 			break;
 		case TYPE_TREE:
 			tmp = getTreeId(str.str, m, position);
 			if(tmp < 0) { // the value does not exist
-				*error = cPrint("Expected a tree value but found '" SPURPLE "%s" SDEFAULT "' instead", str.str);
+				*error = cPrint("Expected a tree value but found '%s%s%s' instead", SPURPLE, str.str, SDEFAULT);
 				free(str.str);
 				return;
 			}
 			attr->value = tmp;
-			output(L4, ": %s " SYELLOW "(ID = %d)" SDEFAULT, str.str, attr->value);
+			output(L4, ": %s %s(ID = %d)%s", str.str, SYELLOW, attr->value, SDEFAULT);
 			free(str.str);
 			break;
 		case TYPE_RELATION:
@@ -397,7 +397,7 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 				attr->value = vectSize(seenObjects->seen);
 				vectPush(char*, seenObjects->seen, str.str);
 			}
-			output(L4, ": %s " SYELLOW "(ID = %d)" SDEFAULT, str.str, attr->value);
+			output(L4, ": %s %s(ID = %d)%s", str.str, SYELLOW, attr->value, SDEFAULT);
 			if(tmp > -1) {
 				free(str.str);
 			}
@@ -416,16 +416,16 @@ Model* loadConfigFile(char const* pathname) {
 	vectInit(m->rel);
 
 	if(fp == NULL) {
-		output(LERROR, SBRED "The file %s does not exist.\n" SDEFAULT, pathname);
+		output(LERROR, "%sThe file %s does not exist.\n%s", SBRED, pathname, SDEFAULT);
 		return NULL;
 	}
 
 	while(parseConfigLine(fp, &error, m)); // a line is a whole attributeName : attributeValue set (multiline in case of a tree)
 
-	output(L2, "\n" SBDEFAULT "The model has %d attribute%s and %d relation%s" SDEFAULT ".\n", vectSize(m->ma), vectSize(m->ma) > 1 ? "s": "", vectSize(m->rel), vectSize(m->rel) > 1 ? "s": "");
+	output(L2, "\n%sThe model has %d attribute%s and %d relation%s%s.\n", SBDEFAULT, vectSize(m->ma), vectSize(m->ma) > 1 ? "s": "", vectSize(m->rel), vectSize(m->rel) > 1 ? "s": "", SDEFAULT);
 
 	if(error) {
-		output(LERROR, SBRED "Error: %s\n" SDEFAULT, error);
+		output(LERROR, "%sError: %s\n%s", SBRED, error, SDEFAULT);
 	}
 
 	fclose(fp);
@@ -438,6 +438,7 @@ int parseConfigLine(FILE* fp, char** error, Model* out) {
 	char c;
 	ModelAttribute current;
 	int isRelation = 0;
+	char* tmp;
 
 	current.name = parseAttrName(fp, error);
 
@@ -447,17 +448,19 @@ int parseConfigLine(FILE* fp, char** error, Model* out) {
 
 	if(strcmp(current.name, "relation") == 0) { // check for keyword relation (case sensitive)
 		isRelation = 1;
-		output(L3, SBPURPLE "\nRelations" SDEFAULT " found: ");
+		output(L3, "%s\nRelations%s found: ", SBPURPLE, SDEFAULT);
 	}
 	else {
-		output(L3, "\nNew attribute found: " SBPURPLE "%s" SDEFAULT "\nType: ", current.name);
+		output(L3, "\nNew attribute found: %s%s%s\nType: ", SBPURPLE, current.name, SDEFAULT);
 	}
 
 
 	// reads spaces til the separator (':')
 	readFileSpaces(fp, "\t ");
 	if((c = fgetc(fp)) != ':') {
-		String err = strInit(strDuplicate(SBRED "Unexpected character '" SDEFAULT));
+		tmp = cPrint("%sUnexpected character '%s", SBRED, SDEFAULT);
+		String err = strInit(strDuplicate(tmp));
+		free(tmp);
 		strPush(&err, c);
 		strPushStr(&err, "'.");
 		*error = err.str;
@@ -545,11 +548,11 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 		}
 		current->inter = *it;
 		free(it);
-		output(L3, SBGREEN "Interval" SDEFAULT "\nRange: " SBCYAN "[%d ; %d]\n" SDEFAULT, current->inter.min, current->inter.max);
+		output(L3, "%sInterval%s\nRange: %s[%d ; %d]\n", SDEFAULT, SBGREEN, SDEFAULT, SBCYAN, current->inter.min, current->inter.max);
 	}
 	else if(c == '(') { // only trees starts with '('
 		// reads tree
-		output(L3, SBGREEN "Tree\n" SDEFAULT);
+		output(L3, "%sTree%s\n", SBGREEN, SDEFAULT);
 		current->type = TYPE_TREE;
 		fseek(fp, -1, SEEK_CUR);
 		int index = 0;
@@ -572,10 +575,10 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 		}
 		current->enu = *e;
 		free(e);
-		output(L3, SBGREEN "Enum" SDEFAULT "\n");
+		output(L3, "%sEnum%s\n", SBGREEN, SDEFAULT);
 		output(L4, "Values: ");
 		for(int i = 0; i < vectSize(current->enu.enu); ++i) { // only pretty print. Does nothing
-			output(L4, SBCYAN "%s" SBYELLOW " (ID = %d)" SDEFAULT, vectAt(current->enu.enu, i).str, vectAt(current->enu.enu, i).id);
+			output(L4, "%s%s%s (ID = %d)%s", SBCYAN, vectAt(current->enu.enu, i).str, SBYELLOW, vectAt(current->enu.enu, i).id, SDEFAULT);
 			if (i+1 < vectSize(current->enu.enu)) {
 				output(L4, "\n\t");
 			} 
@@ -733,13 +736,13 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 	t->str = parseAttrName(fp, error); // trees values respect the same syntax as attributes name, can use the same function to parse them
 
 	if(t->str == NULL) {
-		output(LERROR, SBRED "Tree root value invalid." SDEFAULT);
+		output(LERROR, "%sTree root value invalid.%s", SBRED, SDEFAULT);
 		freeTree(t);
 		free(t);
 		return NULL;
 	}
 	printIndent(L4, indent);
-	output(L4, SBCYAN "%s" SBYELLOW " (ID = %d)\n" SDEFAULT, t->str, t->id);
+	output(L4, "%s%s%s (ID = %d)%s\n", SBCYAN, t->str, SBYELLOW, t->id, SDEFAULT);
 
 	readFileSpaces(fp, "\t\n ");
 	if((c = fgetc(fp)) != ')' && c != ',') {

@@ -21,40 +21,40 @@
 *	@brief Color values in Unix and MacOS terminals
 */
 //@{
-#define SDEFAULT	"\e[0m"
-#define SBDEFAULT	"\e[1m"
-#define SBLACK		"\e[0;30m"
-#define SRED		"\e[0;31m"
-#define SGREEN		"\e[0;32m"
-#define SYELLOW		"\e[0;33m"
-#define SBLUE		"\e[0;34m"
-#define SPURPLE		"\e[0;35m"
-#define SCYAN		"\e[0;36m"
-#define SWHITE		"\e[0;37m"
-#define SBBLACK		"\e[1;30m"
-#define SBRED		"\e[1;31m"
-#define SBGREEN		"\e[1;32m"
-#define SBYELLOW	"\e[1;33m"
-#define SBBLUE		"\e[1;34m"
-#define SBPURPLE	"\e[1;35m"
-#define SBCYAN		"\e[1;36m"
-#define SBWHITE		"\e[1;37m"
-#define SUBLACK		"\e[4;30m"
-#define SURED		"\e[4;31m"
-#define SUGREEN		"\e[4;32m"
-#define SUYELLOW	"\e[4;33m"
-#define SUBLUE		"\e[4;34m"
-#define SUPURPLE	"\e[4;35m"
-#define SUCYAN		"\e[4;36m"
-#define SUWHITE		"\e[4;37m"
-#define SBUBLACK	"\e[1;4;30m"
-#define SBURED		"\e[1;4;31m"
-#define SBUGREEN	"\e[1;4;32m"
-#define SBUYELLOW	"\e[1;4;33m"
-#define SBUBLUE		"\e[1;4;34m"
-#define SBUPURPLE	"\e[1;4;35m"
-#define SBUCYAN		"\e[1;4;36m"
-#define SBUWHITE	"\e[1;4;37m"
+char* SDEFAULT;
+char* SBDEFAULT;
+char* SBLACK;
+char* SRED;
+char* SGREEN;
+char* SYELLOW;
+char* SBLUE;
+char* SPURPLE;
+char* SCYAN;
+char* SWHITE;
+char* SBBLACK;
+char* SBRED;
+char* SBGREEN;
+char* SBYELLOW;
+char* SBBLUE;
+char* SBPURPLE;
+char* SBCYAN;
+char* SBWHITE;
+char* SUBLACK;
+char* SURED;
+char* SUGREEN;
+char* SUYELLOW;
+char* SUBLUE;
+char* SUPURPLE;
+char* SUCYAN;
+char* SUWHITE;
+char* SBUBLACK;
+char* SBURED;
+char* SBUGREEN;
+char* SBUYELLOW;
+char* SBUBLUE;
+char* SBUPURPLE;
+char* SBUCYAN;
+char* SBUWHITE;
 //@}
 
 /** @brief Flag for the output function. Represents an error */
@@ -118,5 +118,11 @@ void output(unsigned int level, const char* fmt, ...);
 *	@return The level extracted
 */
 unsigned int extractVerbosityFromArg(const char* verbosity);
+
+/**
+*	@brief Enables or not the colors in the output
+*	@param enable Boolean. If @a enable = 0, the colors are disabled, colors are activated for any other values
+*/
+void enableColors(unsigned int enable);
 
 #endif // _OUTPUT_H_

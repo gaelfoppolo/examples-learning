@@ -9,6 +9,7 @@
 //#include <unistd.h>
 
 #include <getopt.h>
+ #include <unistd.h>
 
 #include "parser/parsers.h"
 #include "app/core.h"
@@ -16,7 +17,7 @@
 
 #define PROG_NAME "learning"
 
- static int flagHelp = 0, flagNoCounterExample = 0, flagNoGeneralization = 0, flagExpandRelation = 0, flagVerbose = 0;
+ static int flagHelp = 0, flagNoCounterExample = 0, flagNoGeneralization = 0, flagExpandRelation = 0, flagVerbose = 0, flagNoColor = 0;
 
 int main(int argc, char **argv) {
 	int flag;
@@ -29,6 +30,7 @@ int main(int argc, char **argv) {
 			{"no-counter-examples", no_argument, &flagNoCounterExample, 1},
 			{"no-generalization", no_argument, &flagNoGeneralization, 1},
 			{"expand-relations", no_argument, &flagExpandRelation, 1},
+			{"no-color", no_argument, &flagNoColor, 1},
 			{0, 0, 0, 0}
 		};
 		/* getopt_long stores the option index here. */
@@ -75,12 +77,18 @@ int main(int argc, char **argv) {
 		output(L0, "--expand-relations      On solution objects that contains relations, print the object linked instead of writing its name\n");
 		output(L0, "--no-generalization     Skip the generalization step of the solutions generation.\n");
 		output(L0, "--no-counter-examples   Prevent the use of counter-exemples to reduce the solutions.\n");
+		output(L0, "--no-color              Disable the colored output.\n");
 		output(L0, "-v                      Set the verbosity level. 4 levels are available (up to -vvvv)\n");
 
 		return 0;
 	}
 
 	setOutputImportance(flagVerbose);
+
+	// if the user ask for no color or the output streams (wether stdout or stderr) aren't terminals, remove colors
+	if(flagNoColor || !isatty(fileno(stdout)) || !isatty(fileno(stderr))) {
+		enableColors(0);
+	}
 
 	size_t includePosition;
 	char* c = getIncludeFile(filename, &includePosition);
@@ -89,7 +97,7 @@ int main(int argc, char **argv) {
 		output(LERROR, "The loading of the configuration file failed. The configuration must be linked in the example file (example file loaded : %s).\n", filename);
 	}
 	else {
-		output(L1, SBDEFAULT "Loading configuation file : %s" SDEFAULT "\n", c);
+		output(L1, "%sLoading configuation file : %s%s\n", SBDEFAULT, c, SDEFAULT);
 		Model* m = loadConfigFile(c);
 
 		if(m == NULL) {
@@ -98,7 +106,7 @@ int main(int argc, char **argv) {
 			return 1;
 		}
 
-		output(L1, SBDEFAULT "Loading examples file: %s" SDEFAULT "\n", filename);
+		output(L1, "%sLoading examples file: %s%s\n", SBDEFAULT, filename, SDEFAULT);
 
 		Examples* e = loadExampleFile(filename, m, includePosition);
 
@@ -109,7 +117,7 @@ int main(int argc, char **argv) {
 			return 1;
 		}
 
-		output(L1, SBDEFAULT "Generating solutions...\n");
+		output(L1, "%sGenerating solutions...%s\n", SBDEFAULT, SDEFAULT);
 
 		Solution* s = genAllCombi(m, e);
 		genAllRelations(s, e, m);
@@ -118,7 +126,7 @@ int main(int argc, char **argv) {
 			genGeneralisation(m, s);
 		}
 
-		output(L1, SBDEFAULT "Solutions:\n\n");
+		output(L1, "%sSolutions:%s\n\n", SBDEFAULT, SDEFAULT);
 		
 		genOutput(s, m);
 
@@ -142,7 +150,6 @@ int main(int argc, char **argv) {
 		freeExamples(e);
 		freeSolution(s);
 	}
-
 
 	return 0;
 }
