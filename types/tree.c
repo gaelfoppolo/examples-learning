@@ -140,23 +140,20 @@ void freeTree(Tree* t) {
 	vectFree(t->children);
 }
 
-int compareNode(Tree* t, int node1, int node2) {
+int isTreeIncludeInAnother(Tree* t, int node1, int node2) {
 
-	// same id? -> 0
-	// so different id? then:
-		// is the depth the same or smaller? -> 0
-		// is the depth bigger? -> 1
-
-	int depth1, depth2, tmp;
-	
+	int depth1, depth2, isTreeIncludeOrEqual;
+	// same id? -> 1
 	if(node1 == node2) {
-		tmp = 0;
+		isTreeIncludeOrEqual = 1;
+	// so different id? then:
+		// is the depth the same or smaller? -> 1
+		// is the depth bigger? -> 0
 	} else {
 		depth1 = depth(t, node1);
 		depth2 = depth(t, node2);
-		tmp = (depth1 >= depth2) ? 0 : 1;
+		isTreeIncludeOrEqual = (depth1 < depth2) ? 0 : 1;
 	}
 
-	return tmp;			
-
+	return isTreeIncludeOrEqual;			
 }

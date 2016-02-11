@@ -107,14 +107,14 @@ Tree* LCA(Tree* root, int id1, int id2);
 void freeTree(Tree* t);
 
 /**
- *	@brief Compare two node
+ *	@brief Is node1 include in node2?
  *
  *	@param t Pointer to Tree
  *	@param node1 First node
  * 	@param node2 Second node
  * 
- *	@return 0 = same, same or smaller depth, 1 = bigger
+ *	@return 1: node1 include in node2, else 0
  */
-int compareNode(Tree* t, int node1, int node2);
+int isTreeIncludeInAnother(Tree* t, int node1, int node2);
 
 #endif // _TREE_H_
