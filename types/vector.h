@@ -66,9 +66,9 @@
 */
 #define vectIndexOf(vect, value, out) do {																				\
 										out = -1;																		\
-										for(int i = 0; i < vectSize(vect); ++i) {										\
-											if(vectAt(vect, i) == value) {												\
-												out = i;																\
+										for(int _i = 0; _i < vectSize(vect); ++_i) {										\
+											if(vectAt(vect, _i) == value) {												\
+												out = _i;																\
 												break;																	\
 											}																			\
 										}																				\
