@@ -17,12 +17,12 @@ void addToInterval(Interval* inter, int x) {
 	}
 }
 
-int compareInterval(Interval int1, Interval int2) {
+int isIntervalIncludeInAnother(Interval int1, Interval int2) {
 
-	// are interval bounds the same? -> 0
-	// is the interval int2 smaller? -> 0
-	// else: 1
+	// are interval bounds the same? -> 1
+	// is the interval int1 smaller? -> 1
+	// else: 0
 
-	return (int1.min <= int2.min && int1.max >= int2.max) ? 0 : 1;
+	return (int1.min >= int2.min && int1.max <= int2.max);
 	
 }
