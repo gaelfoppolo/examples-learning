@@ -126,9 +126,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a5236ea757d0e93f3a0925de1a77c8362"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="out-enum_8h.html#a5236ea757d0e93f3a0925de1a77c8362">freeOutEnum</a> (<a class="el" href="struct_out_enum.html">OutEnum</a> *oenu, int freeItself)</td></tr>
 <tr class="memdesc:a5236ea757d0e93f3a0925de1a77c8362"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the <a class="el" href="struct_out_enum.html" title="Contains multiple enumeration items When combining multiple Object, each enumeration item is to be st...">OutEnum</a> previously initialized by initEnum.  <a href="#a5236ea757d0e93f3a0925de1a77c8362">More...</a><br /></td></tr>
 <tr class="separator:a5236ea757d0e93f3a0925de1a77c8362"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59b003888234b0a31cc29c7b0078462f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="out-enum_8h.html#a59b003888234b0a31cc29c7b0078462f">compareOutEnum</a> (<a class="el" href="struct_out_enum.html">OutEnum</a> oenu1, <a class="el" href="struct_out_enum.html">OutEnum</a> oenu2)</td></tr>
-<tr class="memdesc:a59b003888234b0a31cc29c7b0078462f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare two <a class="el" href="struct_out_enum.html" title="Contains multiple enumeration items When combining multiple Object, each enumeration item is to be st...">OutEnum</a>.  <a href="#a59b003888234b0a31cc29c7b0078462f">More...</a><br /></td></tr>
-<tr class="separator:a59b003888234b0a31cc29c7b0078462f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a002294417088154c4a7308729507e367"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="out-enum_8h.html#a002294417088154c4a7308729507e367">isOutEnumIncludeInAnother</a> (<a class="el" href="struct_out_enum.html">OutEnum</a> oenu1, <a class="el" href="struct_out_enum.html">OutEnum</a> oenu2)</td></tr>
+<tr class="memdesc:a002294417088154c4a7308729507e367"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is oenu1 include in oenu2?  <a href="#a002294417088154c4a7308729507e367">More...</a><br /></td></tr>
+<tr class="separator:a002294417088154c4a7308729507e367"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>File containing the definition of the enumeration extracts. </p>
@@ -136,42 +136,6 @@ Functions</h2></td></tr>
 <dd>
 Gaël Foppolo (gaelfoppolo) </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a59b003888234b0a31cc29c7b0078462f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int compareOutEnum </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_out_enum.html">OutEnum</a>&#160;</td>
-          <td class="paramname"><em>oenu1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="struct_out_enum.html">OutEnum</a>&#160;</td>
-          <td class="paramname"><em>oenu2</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Compare two <a class="el" href="struct_out_enum.html" title="Contains multiple enumeration items When combining multiple Object, each enumeration item is to be st...">OutEnum</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">oenu1</td><td>First <a class="el" href="struct_out_enum.html" title="Contains multiple enumeration items When combining multiple Object, each enumeration item is to be st...">OutEnum</a> </td></tr>
-    <tr><td class="paramname">oenu2</td><td>Second <a class="el" href="struct_out_enum.html" title="Contains multiple enumeration items When combining multiple Object, each enumeration item is to be st...">OutEnum</a></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>0 = same or bigger, 1 = smaller or different </dd></dl>
-
-</div>
-</div>
 <a class="anchor" id="a5236ea757d0e93f3a0925de1a77c8362"></a>
 <div class="memitem">
 <div class="memproto">
@@ -232,6 +196,42 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Bastien Philip (ebatsin) </dd>
 <dd>
 Gaël Foppolo (gaelfoppolo) </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a002294417088154c4a7308729507e367"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int isOutEnumIncludeInAnother </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_out_enum.html">OutEnum</a>&#160;</td>
+          <td class="paramname"><em>oenu1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_out_enum.html">OutEnum</a>&#160;</td>
+          <td class="paramname"><em>oenu2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Is oenu1 include in oenu2? </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">oenu1</td><td>First <a class="el" href="struct_out_enum.html" title="Contains multiple enumeration items When combining multiple Object, each enumeration item is to be st...">OutEnum</a> </td></tr>
+    <tr><td class="paramname">oenu2</td><td>Second <a class="el" href="struct_out_enum.html" title="Contains multiple enumeration items When combining multiple Object, each enumeration item is to be st...">OutEnum</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1, oenu1 is include in oenu2, else 0 </dd></dl>
 
 </div>
 </div>
