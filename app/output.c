@@ -19,6 +19,7 @@ void genOutput(Solution* sol, Model* mdl) {
     OutAttribute oa;
     int attributeDisplayed = 0;
     String toDisplay;
+    char* tmp;
 
     for(int i = 0; i < vectSize(sol->outobjects); ++i) {
         
@@ -41,18 +42,24 @@ void genOutput(Solution* sol, Model* mdl) {
 
                 // add attribute name
                 
-                if (j != 0 && attributeDisplayed) strPushStr(&toDisplay, cPrint(", "));
+                if (j != 0 && attributeDisplayed) {
+                    strPushStr(&toDisplay, ", ");
+                }
 
                 attributeDisplayed = 1;
 
-                strPushStr(&toDisplay, cPrint(SBGREEN "%s" SDEFAULT, ma.name));         
-                strPushStr(&toDisplay, cPrint("(" SBCYAN));                  
+                tmp = cPrint(SBGREEN "%s" SDEFAULT, ma.name);
+                strPushStr(&toDisplay, tmp);     
+                free(tmp);    
+                strPushStr(&toDisplay, "(" SBCYAN);                  
 
                 switch (ma.mt.type) {
                     // attribute is an interval
                     case TYPE_INT:
                         if (oa.inter.max-oa.inter.min != vectAt(mdl->ma, j).mt.inter.max-vectAt(mdl->ma, j).mt.inter.min) {
-                            strPushStr(&toDisplay, cPrint("%d ; %d" SDEFAULT, oa.inter.min, oa.inter.max));
+                            tmp = cPrint("%d ; %d" SDEFAULT, oa.inter.min, oa.inter.max);
+                            strPushStr(&toDisplay, tmp);
+                            free(tmp);
                         } else {
                             attributeDisplayed = 0;
                         }    
@@ -61,8 +68,10 @@ void genOutput(Solution* sol, Model* mdl) {
                     case TYPE_ENUM:
                         if (vectSize(oa.oenu.oenu) != vectSize(vectAt(mdl->ma, j).mt.enu.enu)) {
                             for (int k = 0; k < vectSize(oa.oenu.oenu); ++k) {
-                                strPushStr(&toDisplay, cPrint("%s" SDEFAULT, getEnumStr(vectAt(oa.oenu.oenu, k), mdl, j)));
-                                if (k+1 < vectSize(oa.oenu.oenu)) strPushStr(&toDisplay, cPrint(", " SBCYAN)); //output(L0, ", " SBCYAN);
+                                tmp = cPrint("%s" SDEFAULT, getEnumStr(vectAt(oa.oenu.oenu, k), mdl, j));
+                                strPushStr(&toDisplay, tmp);
+                                free(tmp);
+                                if (k+1 < vectSize(oa.oenu.oenu)) strPushStr(&toDisplay, ", " SBCYAN); //output(L0, ", " SBCYAN);
                             }
                         } else {
                             attributeDisplayed = 0;                            
@@ -71,16 +80,20 @@ void genOutput(Solution* sol, Model* mdl) {
                     // attribute is a tree
                     case TYPE_TREE:
                         if (oa.tree != vectAt(mdl->ma, j).mt.tree.id) {
-                            strPushStr(&toDisplay, cPrint("%s" SDEFAULT, getTreeStr(oa.tree, mdl, j)));
+                            tmp = cPrint("%s" SDEFAULT, getTreeStr(oa.tree, mdl, j));
+                            strPushStr(&toDisplay, tmp);
+                            free(tmp);
                         } else {
                             attributeDisplayed = 0;
                         }    
                         break;
                 }
                 if (attributeDisplayed) {
-                    strPushStr(&toDisplay, cPrint(")"));
+                    strPushStr(&toDisplay, ")");
                     output(L0, "%s", toDisplay.str);
-                }  
+                }
+
+                free(toDisplay.str);
             }
             
             // display relations
