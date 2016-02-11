@@ -130,6 +130,14 @@ int main(int argc, char **argv) {
 		
 		genOutput(s, m);
 
+		ObjectIndex oi;
+		vectInit(oi.indexes);
+		printf("vectsize %d\n", vectSize(oi.indexes));
+		vectFill(int, oi.indexes, 10);
+		printf("vectsize %d\n", vectSize(oi.indexes));
+		vectAt(oi.indexes, 3) = 4;
+		printf("print ok ? %d\n", vectAt(oi.indexes, 3));
+
 		// printf("Height of the tree: %d\n", height(&vectAt(m->ma, 2).mt.tree));
 
 		// int id = 9;

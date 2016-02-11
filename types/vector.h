@@ -14,6 +14,8 @@
 /**
 *	@brief define a dynamic array
 *	@param t The type of the items to store in the vector
+*	@param size The actual size of the vector
+*	@param capacity The size allocated in the memory
 */
 #define Vector(t) struct {int size, capacity; t *data; }
 
@@ -66,7 +68,7 @@
 */
 #define vectIndexOf(vect, value, out) do {																				\
 										out = -1;																		\
-										for(int _i = 0; _i < vectSize(vect); ++_i) {										\
+										for(int _i = 0; _i < vectSize(vect); ++_i) {									\
 											if(vectAt(vect, _i) == value) {												\
 												out = _i;																\
 												break;																	\
@@ -83,5 +85,21 @@
 										--(vect).size;																	\
 									}																					\
 								} while(0)
+
+/**
+*	@brief Increase a vector of size
+*	@param type The type of the element (must be the same type as the other elements of the array)
+*	@param vect The vector to increase the size
+*	@param sizeToIncrease The size to increase
+*/
+#define vectFill(type, vect, sizeToIncrease) do {																		\
+												if(sizeToIncrease+(vect).size <= (vect).capacity) {									\
+													(vect).size += sizeToIncrease;													\
+												} else {																			\
+													(vect).data = (type*)realloc((vect).data, sizeof(type) * sizeToIncrease);		\
+													(vect).size += sizeToIncrease;													\
+													(vect).capacity += sizeToIncrease;												\
+												}																				\
+											} while(0)																				\
 
 #endif // _VECTOR_H_
