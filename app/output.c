@@ -47,7 +47,6 @@ char* SBUWHITE     =   "\e[1;4;37m";
 static unsigned int __output_importance_level = 0;
 
 void genOutput(Solution* sol, Model* mdl) {
-	// out final string to display
 
 	ModelAttribute ma;
 	OutObject oo, *ooo;
@@ -61,7 +60,8 @@ void genOutput(Solution* sol, Model* mdl) {
 		// get current OutObject
 		oo = vectAt(sol->outobjects, i);
 
-		if(oo.specificity != 0) {
+		// OO is final (the most accurate)
+		if(oo.generalizeBy == NULL) {
 
 			// add name
 			output(L0, "%s%s: %s", SBPURPLE, oo.name, SDEFAULT);
@@ -139,6 +139,9 @@ void genOutput(Solution* sol, Model* mdl) {
 			for (int j = 0; j < vectSize(oo.relations); ++j) {
 				ooo = vectAt(oo.relations, j);
 				if (ooo != NULL) {
+					while(ooo->generalizeBy != NULL) {
+					    ooo = ooo->generalizeBy;
+					}
 					if (j < vectSize(oo.relations)) output(L0, ", ");
 					output(L0, "%s%s%s", SBGREEN, vectAt(mdl->rel, j), SDEFAULT);
 					output(L0, "(%s%s%s) ", SBPURPLE, ooo->name, SDEFAULT);
