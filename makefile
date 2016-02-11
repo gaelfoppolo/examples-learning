@@ -13,6 +13,7 @@
 # Declaration of variables
 CC = clang
 CC_FLAGS = -Wall -O2
+CC_LIBS = -lm
 RM = rm -rf
 DOXYGEN = doxygen doc/doxygen.cfg
 
@@ -24,7 +25,7 @@ OBJECTS = $(SOURCES:.c=.o)
 
 # Main target
 $(OUT): $(OBJECTS)
-	$(CC) $(OBJECTS) -o $(OUT) -lm
+	$(CC) $(OBJECTS) -o $(OUT) $(CC_LIBS)
 	$(DOXYGEN)
 
 # To obtain object files
