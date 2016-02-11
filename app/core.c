@@ -69,7 +69,7 @@ Solution* initAllCombi(Model* mdl, Examples* exp) {
 			o = &vectAt(lastExample.objects, i);
 			oo = initOutObjectWithObject(mdl, o);
 			oo->specificity = 1;
-			oo->name = cPrint("S%0*d", (int)log(allCombi), vectSize(T->outobjects)+1);
+			oo->name = cPrint("S%0*d", (int)log10(allCombi) + 1, vectSize(T->outobjects)+1);
 			vectPush(OutObject, T->outobjects, *oo);
 			free(oo);
 		}
