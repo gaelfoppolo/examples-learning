@@ -24,7 +24,7 @@ OBJECTS = $(SOURCES:.c=.o)
 
 # Main target
 $(OUT): $(OBJECTS)
-	$(CC) $(OBJECTS) -o $(OUT)
+	$(CC) $(OBJECTS) -o $(OUT) -lm
 	$(DOXYGEN)
 
 # To obtain object files
