@@ -130,29 +130,6 @@ int main(int argc, char **argv) {
 		
 		genOutput(s, m);
 
-		ObjectIndex oi;
-		vectInit(oi.indexes);
-		printf("vectsize %d\n", vectSize(oi.indexes));
-		vectFill(int, oi.indexes, 10);
-		printf("vectsize %d\n", vectSize(oi.indexes));
-		vectAt(oi.indexes, 3) = 4;
-		printf("print ok ? %d\n", vectAt(oi.indexes, 3));
-
-		// printf("Height of the tree: %d\n", height(&vectAt(m->ma, 2).mt.tree));
-
-		// int id = 9;
-
-		// printf("Depth of %s: %d\n", getTreeStr(id, m, 2), depth(&vectAt(m->ma, 2).mt.tree, id));
-
-		// int maxSpe = 1; 
-		
-		// for (int i = 0; i < vectSize(s->outobjects); ++i) {
-		// 	printf("Specificity oo n°%d = %d\n", i, vectAt(s->outobjects, i).specificity);
-		// 	maxSpe = max(maxSpe, vectAt(s->outobjects, i).specificity);
-		// }
-
-		// printf("Best specificity = %d\n", maxSpe);
-
 		free(c);
 		freeModel(m);
 		freeExamples(e);

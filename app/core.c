@@ -55,22 +55,23 @@ OutObject* initOutObjectWithObject(Model* mdl, Object* o) {
 Solution* initAllCombi(Model* mdl, Examples* exp) {
 	int allCombi = nbCombi(exp, 0);
 	Solution* T = (Solution*)malloc(sizeof(Solution));
-	initSolution(T);
+	vectFill(OutObject, T->outobjects, allCombi);
 	Example lastExample = vectAt(exp->examples, vectSize(exp->examples)-1);
 	int sizeLastExample = vectSize(lastExample.objects);
 	
 	Object* o;
 	OutObject* oo;
 
-	while(vectSize(T->outobjects) < allCombi) {
+	for (int i = 0; i < (vectSize(T->outobjects)/sizeLastExample); ++i) {
 
-		for (int i = 0; i < sizeLastExample; ++i) {
-			// get the adress of the i object in the last exemple
-			o = &vectAt(lastExample.objects, i);
+		for (int j = 0; j < sizeLastExample; ++j) {
+			// get the adress of the j object in the last exemple
+			o = &vectAt(lastExample.objects, j);
 			oo = initOutObjectWithObject(mdl, o);
 			oo->generalizeBy = (OutObject*)NULL;
-			oo->name = cPrint("S%0*d", (int)log10(allCombi) + 1, vectSize(T->outobjects)+1);
-			vectPush(OutObject, T->outobjects, *oo);
+			oo->name = cPrint("S%0*d", (int)log10(allCombi) + 1, sizeLastExample*i+j +1);
+			
+			vectAt(T->outobjects, sizeLastExample*i+j) = *oo;
 			free(oo);
 		}
 	}
