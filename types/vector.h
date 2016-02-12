@@ -14,8 +14,8 @@
 /**
 *	@brief define a dynamic array
 *	@param t The type of the items to store in the vector
-*	@param size The actual size of the vector
-*	@param capacity The size allocated in the memory
+*	size The actual size of the vector,
+*	capacity The size allocated in the memory
 */
 #define Vector(t) struct {int size, capacity; t *data; }
 

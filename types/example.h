@@ -13,7 +13,6 @@
 #include "object.h"
 
 /**
-*	@struct Example
 *   @brief All the objects composing an example (or a counter-example)
 *
 *	An example contains all the objects linked as part of this example. It can store either

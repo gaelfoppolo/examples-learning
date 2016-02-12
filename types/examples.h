@@ -12,7 +12,6 @@
 #include "example.h"
 
 /**
-*	@struct Examples
 *   @brief Structure that contains the examples and counter-examples of the parsed example file
 *
 *	Each example and counter-example found in the example file is stored in this structure.

@@ -10,7 +10,6 @@
 #define _INTERVAL_H_
 
 /**
-*	@struct Interval
 *   @brief Structure that contains a signed integer interval.
 *
 *	An Interval represents the interval between a lower and an upper bound

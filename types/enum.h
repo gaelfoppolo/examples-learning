@@ -12,7 +12,6 @@
 #include "vector.h"
 
 /**
-*	@struct EnumType
 *   @brief Structure that contains an item of the enumeration
 *
 *	Enumerations are arrays of EnumType, each of which contain an item of the enumeration,
@@ -26,7 +25,6 @@ typedef struct EnumType {
 } EnumType;
 
 /**
-*	@struct Enum
 *   @brief Structure that defines the enumeration type
 */
 typedef struct Enum {

@@ -12,7 +12,6 @@
 #include "vector.h"
 
 /**
-*	@struct OutEnum
 *   @brief Contains multiple enumeration items
 *	When combining multiple Object, each enumeration item is to be stored, this structure does that
 */

@@ -12,7 +12,6 @@
 #include "out-attribute.h"
 
 /**
-*	@struct OutObject
 *	@brief Contains all the attributes and relations that compose an outObject
 */
 typedef struct OutObject {
@@ -20,7 +19,7 @@ typedef struct OutObject {
 	char* name;
 	/** @brief Pointer to the out object that generalize this out object */
 	struct OutObject* generalizeBy;
-	// @brief If the OutObject has been disabled during the counter-example step */
+	/** @brief If the OutObject has been disabled during the counter-example step */
 	unsigned char disabled;
 	/** 
 	*	@brief Array of the attributes of the out object.

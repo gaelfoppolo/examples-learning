@@ -12,7 +12,6 @@
 #include <stdlib.h>
 
 /**
-*	@struct String
 *   @brief Dynamic string handler
 *
 *	Allows to work on string an perform additions to the string without having to care about

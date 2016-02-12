@@ -19,7 +19,6 @@
 #define max(a,b) ((a) > (b) ? (a) : (b))
 
 /**
-*	@struct Tree
 *	@brief Defines the trees
 */
 typedef struct Tree {

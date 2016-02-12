@@ -14,7 +14,6 @@
 #include "model-type.h"
 
 /**
-*	@struct ModelAttribute
 *	@brief Contains the definition of an attribute and its type
 *
 *	Each attribute can be of 4 types (signed integer, enumeration item, tree node or leaf, relation)

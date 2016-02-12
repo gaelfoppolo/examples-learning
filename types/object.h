@@ -13,7 +13,6 @@
 #include "attribute.h"
 
 /**
-*	@struct Object
 *   @brief Contains all the attributes and relations that compose an object
 */
 typedef struct Object {

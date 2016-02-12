@@ -15,7 +15,6 @@
 #include "vector.h"
 
 /**
-*	@struct Model
 *   @brief Contains the attributes and relations definitions found in the model file
 */
 typedef struct Model {

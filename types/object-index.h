@@ -12,7 +12,6 @@
 #include "vector.h"
 
 /**
-*	@struct ObjectIndex
 *   @brief Stores a list of indexes
 *	When combining multiple objects, the identifier of each of them can be stored in this structure
 */

@@ -15,7 +15,6 @@
 #include "tree.h"
 
 /**
-*	@struct ModelType
 *   @brief Structure that contains the definition of the type
 */
 typedef struct ModelType {

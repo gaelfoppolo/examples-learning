@@ -13,7 +13,6 @@
 #include "out-object.h"
 
 /**
-*	@struct Solution
 *   @brief Contains all the possible solutions
 */
 typedef struct Solution {

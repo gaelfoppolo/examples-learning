@@ -12,7 +12,6 @@
 #include "attribute-types.h"
 
 /**
-*	@struct Attribute
 *	@brief Represents an attribute and the value it holds
 *	
 *	This structure holds an attribute of an object. Attributes can hold values of different types
