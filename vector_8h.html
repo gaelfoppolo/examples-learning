@@ -130,9 +130,12 @@ Macros</h2></td></tr>
 <tr class="memitem:a2fff8491036e581fcc8ed7a3d8ebe63b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8h.html#a2fff8491036e581fcc8ed7a3d8ebe63b">vectRemoveLast</a>(vect)</td></tr>
 <tr class="memdesc:a2fff8491036e581fcc8ed7a3d8ebe63b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove the last element in the vector.  <a href="#a2fff8491036e581fcc8ed7a3d8ebe63b">More...</a><br /></td></tr>
 <tr class="separator:a2fff8491036e581fcc8ed7a3d8ebe63b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc13c0f3ed6f47f8e740d1d32ad273de"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8h.html#acc13c0f3ed6f47f8e740d1d32ad273de">vectFill</a>(type,  vect,  sizeToIncrease)</td></tr>
-<tr class="memdesc:acc13c0f3ed6f47f8e740d1d32ad273de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increase a vector of size.  <a href="#acc13c0f3ed6f47f8e740d1d32ad273de">More...</a><br /></td></tr>
-<tr class="separator:acc13c0f3ed6f47f8e740d1d32ad273de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6822696dd0256e6e974574d9969e2861"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8h.html#a6822696dd0256e6e974574d9969e2861">vectResize</a>(type,  vect,  sizeToIncrease)</td></tr>
+<tr class="memdesc:a6822696dd0256e6e974574d9969e2861"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increase a vector of size.  <a href="#a6822696dd0256e6e974574d9969e2861">More...</a><br /></td></tr>
+<tr class="separator:a6822696dd0256e6e974574d9969e2861"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcf162e557538ece5f2a247a5bb04d31"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vector_8h.html#abcf162e557538ece5f2a247a5bb04d31">vectFill</a>(type,  vect,  sizeToInit)</td></tr>
+<tr class="memdesc:abcf162e557538ece5f2a247a5bb04d31"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init the size of a vector to a prefined size.  <a href="#abcf162e557538ece5f2a247a5bb04d31">More...</a><br /></td></tr>
+<tr class="separator:abcf162e557538ece5f2a247a5bb04d31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>File containing the definition of the vectors (dynamic &amp; generic arrays) </p>
@@ -176,7 +179,7 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="acc13c0f3ed6f47f8e740d1d32ad273de"></a>
+<a class="anchor" id="abcf162e557538ece5f2a247a5bb04d31"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -196,7 +199,7 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">sizeToIncrease&#160;</td>
+          <td class="paramname">sizeToInit&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -205,13 +208,13 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                        \</div><div class="line">                                                if(sizeToIncrease+(vect).size &lt;= (vect).capacity) {                                 \</div><div class="line">                                                    (vect).size += sizeToIncrease;                                                  \</div><div class="line">                                                } <span class="keywordflow">else</span> {                                                                            \</div><div class="line">                                                    (vect).data = (type*)realloc((vect).data, <span class="keyword">sizeof</span>(type) * sizeToIncrease);       \</div><div class="line">                                                    (vect).size += sizeToIncrease;                                                  \</div><div class="line">                                                    (vect).capacity += sizeToIncrease;                                              \</div><div class="line">                                                }                                                                               \</div><div class="line">                                            } <span class="keywordflow">while</span>(0)                                                                              \</div></div><!-- fragment -->
-<p>Increase a vector of size. </p>
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                        \</div><div class="line">                                        (vect).size = (vect).capacity = (sizeToInit);                               \</div><div class="line">                                        (vect).data = (type*)malloc(<span class="keyword">sizeof</span>(type) * (sizeToInit));                   \</div><div class="line">                                    } <span class="keywordflow">while</span>(0)                                                                      \</div></div><!-- fragment -->
+<p>Init the size of a vector to a prefined size. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">type</td><td>The type of the element (must be the same type as the other elements of the array) </td></tr>
-    <tr><td class="paramname">vect</td><td>The vector to increase the size </td></tr>
-    <tr><td class="paramname">sizeToIncrease</td><td>The size to increase </td></tr>
+    <tr><td class="paramname">vect</td><td>The vector to init the size </td></tr>
+    <tr><td class="paramname">sizeToInit</td><td>The size to init with </td></tr>
   </table>
   </dd>
 </dl>
@@ -396,6 +399,48 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">vect</td><td>The vector to which remove the last element </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a6822696dd0256e6e974574d9969e2861"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define vectResize</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">type, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">vect, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">sizeToIncrease&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keywordflow">do</span> {                                                                                    \</div><div class="line">                                                if(((sizeToIncrease)+(vect).size) &lt; (vect).capacity) {                              \</div><div class="line">                                                    (vect).size += sizeToIncrease;                                                  \</div><div class="line">                                                } <span class="keywordflow">else</span> {                                                                            \</div><div class="line">                                                    (vect).data = (type*)realloc((vect).data, <span class="keyword">sizeof</span>(type) * (sizeToIncrease));     \</div><div class="line">                                                    (vect).size += (sizeToIncrease);                                                \</div><div class="line">                                                    (vect).capacity += (sizeToIncrease);                                            \</div><div class="line">                                                }                                                                                   \</div><div class="line">                                            } <span class="keywordflow">while</span>(0)                                                                              \</div></div><!-- fragment -->
+<p>Increase a vector of size. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>The type of the element (must be the same type as the other elements of the array) </td></tr>
+    <tr><td class="paramname">vect</td><td>The vector to increase the size </td></tr>
+    <tr><td class="paramname">sizeToIncrease</td><td>The size to increase </td></tr>
   </table>
   </dd>
 </dl>
