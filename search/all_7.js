@@ -11,7 +11,7 @@ var searchData=
   ['initoutobjectwithobject',['initOutObjectWithObject',['../core_8h.html#a1ba94f71f2cfb59230e4fd6cef8aa855',1,'core.c']]],
   ['initsolution',['initSolution',['../solution_8h.html#a079f5d37b0750dcb4df89503c136d445',1,'solution.c']]],
   ['inter',['inter',['../struct_model_type.html#ad06263baef5945b27d0454c1f4c0610c',1,'ModelType::inter()'],['../struct_out_attribute.html#ad06263baef5945b27d0454c1f4c0610c',1,'OutAttribute::inter()']]],
-  ['interval',['Interval',['../struct_interval.html',1,'']]],
+  ['interval',['Interval',['../struct_interval.html',1,'Interval'],['../interval_8h.html#ad581781adf44f4a9db073013c8aa1d33',1,'Interval():&#160;interval.h']]],
   ['interval_2eh',['interval.h',['../interval_8h.html',1,'']]],
   ['isintervalincludeinanother',['isIntervalIncludeInAnother',['../interval_8h.html#ad3bf7fcbf0faedb51e2f4a9f9d2338ff',1,'interval.c']]],
   ['isleaf',['isLeaf',['../tree_8h.html#a13511abcf3d362ccaf18d3a8288e9a9c',1,'tree.c']]],
