@@ -108,12 +108,13 @@ void freeTree(Tree* t);
 
 /**
  *	@brief Is node1 include in node2?
- *
  *	@param t Pointer to Tree
  *	@param node1 First node
  * 	@param node2 Second node
  * 
  *	@return 1: node1 include in node2, else 0
+ *
+ *	@todo change the name and the description of this function. Don't do what the description says !
  */
 int isTreeIncludeInAnother(Tree* t, int node1, int node2);
 

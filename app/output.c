@@ -61,7 +61,7 @@ void genOutput(Solution* sol, Model* mdl) {
 		oo = vectAt(sol->outobjects, i);
 
 		// OO is final (the most accurate)
-		if(oo.generalizeBy == NULL) {
+		if(oo.generalizeBy == NULL && !oo.disabled) {
 
 			// add name
 			output(L0, "%s%s: %s", SBPURPLE, oo.name, SDEFAULT);

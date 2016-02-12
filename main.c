@@ -126,6 +126,10 @@ int main(int argc, char **argv) {
 			genGeneralisation(m, s);
 		}
 
+		if(!flagNoCounterExample) {
+			genCounterExamples(m, e, s);
+		}
+
 		output(L1, "%sSolutions:%s\n\n", SBDEFAULT, SDEFAULT);
 		
 		genOutput(s, m);

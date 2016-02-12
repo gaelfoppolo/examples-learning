@@ -20,6 +20,8 @@ typedef struct OutObject {
 	char* name;
 	/** @brief Pointer to the out object that generalize this out object */
 	struct OutObject* generalizeBy;
+	// @brief If the OutObject has been disabled during the counter-example step */
+	unsigned char disabled;
 	/** 
 	*	@brief Array of the attributes of the out object.
 	*	Each attribute must be at the same index as its definition in the Model

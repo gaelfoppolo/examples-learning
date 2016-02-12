@@ -69,6 +69,7 @@ Solution* initAllCombi(Model* mdl, Examples* exp) {
 			o = &vectAt(lastExample.objects, j);
 			oo = initOutObjectWithObject(mdl, o);
 			oo->generalizeBy = (OutObject*)NULL;
+			oo->disabled = 0;
 			oo->name = cPrint("S%0*d", (int)log10(allCombi) + 1, sizeLastExample*i+j +1);
 			
 			vectAt(T->outobjects, sizeLastExample*i+j) = *oo;
@@ -244,4 +245,54 @@ void genGeneralisation(Model* mdl, Solution* s) {
 			}	
 		}	
 	}
+}
+
+
+void genCounterExamples(Model* m, Examples* e, Solution* s) {
+	for(unsigned int oo = 0; oo < vectSize(s->outobjects); ++oo) {
+		// check wether the object is important or have been generalized
+		if(vectAt(s->outobjects, oo).generalizeBy != NULL) {
+			continue;
+		}
+		// go through all the counter-examples defined
+		for(unsigned int i = 0; i < vectSize(e->counterExamples); ++i) {
+			// go through all the objects of the current counter-example
+			for(unsigned int j = 0; j < vectSize(vectAt(e->counterExamples, i).objects); ++j) {
+				if(isObjectInOutObject(m, &vectAt(s->outobjects, oo), &vectAt(vectAt(e->counterExamples, i).objects, j))) {
+					vectAt(s->outobjects, oo).disabled = 1;
+				}
+			}
+		}
+	}
+}
+
+int isObjectInOutObject(Model* m, OutObject* oo, Object* o) {
+	int inside;
+	Tree* t;
+	for(unsigned int i = 0; i < vectSize(o->attributes); ++i) {
+		switch(vectAt(o->attributes, i).type) {
+			case TYPE_INT:
+				// if the value of the object is out of the bounds of the interval in the OutObject, the object is not in
+				if(vectAt(o->attributes, i).value < vectAt(oo->attributes, i).inter.min || vectAt(o->attributes, i).value > vectAt(oo->attributes, i).inter.max) {
+					return 0;
+				}
+				break;
+			case TYPE_ENUM:
+				// if the current enumeration item is not in the list of enumeration items of the OutObject
+				vectIndexOf(vectAt(oo->attributes, i).oenu.oenu, vectAt(o->attributes, i).value, inside);
+				if(inside < 0) {
+					return 0;
+				}
+				break;
+			case TYPE_TREE:
+				// if the current node is not a child of the node of the OutObject
+				t = LCA(&vectAt(m->ma, i).mt.tree, vectAt(oo->attributes, i).tree, vectAt(o->attributes, i).value);
+				if(!t || t->id != vectAt(oo->attributes, i).tree) {
+					return 0;
+				}
+				break;
+		}
+	}
+
+	return 1;
 }

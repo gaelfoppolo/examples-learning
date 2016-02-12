@@ -2,6 +2,7 @@ var searchData=
 [
   ['genallcombi',['genAllCombi',['../core_8h.html#aa641061974fa139e923cec85be3de0e6',1,'core.c']]],
   ['genallrelations',['genAllRelations',['../core_8h.html#a6b4fd5c6dd489997dfab9f47f4f2c1f7',1,'core.c']]],
+  ['gencounterexamples',['genCounterExamples',['../core_8h.html#a493a0ea7ab15eb7173d55ea67cba90a4',1,'core.c']]],
   ['gengeneralisation',['genGeneralisation',['../core_8h.html#aee07517bfdd45b5f9bed27a2d2653010',1,'core.c']]],
   ['genoutput',['genOutput',['../output_8h.html#a427d5958a1aae2fa9b0564cfdd253bfb',1,'output.c']]],
   ['getattributeposition',['getAttributePosition',['../parsers_8h.html#acbb17ae374bfa9efbd8091a982c313f0',1,'parsers.c']]],

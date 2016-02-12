@@ -92,10 +92,27 @@ int isOutObjectIncludeInAnother(Model *mdl, OutObject* oo1, OutObject* oo2);
 
 /**
 *	@brief Generalisation of our solution(s)
-*
 *	@param mdl Pointer to the Model
 *	@param s Pointer to the Solution
 */
 void genGeneralisation(Model *mdl, Solution* s);
+
+/**
+*	@brief Add counter-examples to the solutions
+*	@param m Pointer to the Model
+*	@param e Pointer to the examples
+*	@param s Pointer to the solution
+*/
+void genCounterExamples(Model* m, Examples* e, Solution* s);
+
+/**
+*	@brief Check wether an OutObject matches an object or not
+*	@param m The model
+*	@param oo The OutObject that you want to know if it matches the Object
+*	@param o The object
+*
+*	@return Returns 1 if the OutObject matches. 0 otherwise
+*/
+int isObjectInOutObject(Model* m, OutObject* oo, Object* o);
 
 #endif // _CORE_H_
