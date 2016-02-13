@@ -1,0 +1,18 @@
+<map id="parseExampleObject" name="parseExampleObject">
+<area shape="rect" id="node2" href="$output_8h.html#a0cf9973e582fb23d19b39e36bae893eb" title="Gets the max level of the messages to output (0 : only critical messages, the higher the value..." alt="" coords="545,230,692,256"/>
+<area shape="rect" id="node3" href="$output_8h.html#ac655e1b05f956db56da490a2c3b7beb1" title="Print the message in the standard output only if its importance is high enough to be printed..." alt="" coords="411,477,470,502"/>
+<area shape="rect" id="node4" href="$parsers_8h.html#a15665e9aae62362f0948994136b44f8b" title="Tries to parse the attribute name at the current position in the file (spaces &amp; tabs are ommited) ..." alt="" coords="211,181,322,206"/>
+<area shape="rect" id="node7" href="$parsers_8h.html#a521906155e2c1df4118a98297d69bb2e" title="Reads a file from the current position and reads while characters are in the set. Stops on the last o..." alt="" coords="383,33,497,58"/>
+<area shape="rect" id="node11" href="$parsers_8h.html#acbb17ae374bfa9efbd8091a982c313f0" title="Returns the position at which can be found an attribute (by name) " alt="" coords="198,326,335,352"/>
+<area shape="rect" id="node12" href="$parsers_8h.html#ac201146b4e2a65edf1d8ddc97fcb5f78" title="Returns the position at which can be found a relation (by name) " alt="" coords="199,376,335,401"/>
+<area shape="rect" id="node13" href="$output_8h.html#a18edfce01cb4fee0416850fd6a0fab97" title="Returns a string that contains the formatted output by concatening all the arguments. " alt="" coords="413,428,468,453"/>
+<area shape="rect" id="node14" href="$parsers_8h.html#ae2f6a660e8fc746879c84057a2a27e43" title="Parse the attribute&#39;s value and populate the Attribute object accordingly. " alt="" coords="213,277,321,302"/>
+<area shape="rect" id="node17" href="$parsers_8h.html#a961b4c03ca09188c780c9bae74f311d4" title="Reads a file from the current position and reads until it finds a character in the set..." alt="" coords="236,528,298,553"/>
+<area shape="rect" id="node5" href="$string-type_8h.html#ab9893f2c904ee5ff139589712c1284d1" title="Transforms a char* to a string. The char* MUST be a nul terminated array allocated with malloc..." alt="" coords="413,280,467,305"/>
+<area shape="rect" id="node6" href="$string-type_8h.html#ae28db08bad9d3c4511ab5241534a89c0" title="Create a perfect copy of the string given. Used when a malloc created string is needed. " alt="" coords="395,181,486,206"/>
+<area shape="rect" id="node8" href="$parsers_8h.html#a5b1ce78200962639956078ce45c6b2e3" title="Check whether the character is allowed in an attribute name or not. " alt="" coords="386,82,495,108"/>
+<area shape="rect" id="node9" href="$string-type_8h.html#ae3068dd8c60d7a42a93f0351ef8f09e1" title="Adds a character at the end of the string. " alt="" coords="407,230,474,256"/>
+<area shape="rect" id="node10" href="$string-type_8h.html#a6c362d400c8b2016bc08876470e2d00d" title="Returns the current string length. " alt="" coords="402,132,479,157"/>
+<area shape="rect" id="node15" href="$model_8h.html#ae6000e5ddc7edc9303eddc0cf9d66bd8" title="Returns the identifier of the enumeration item whose name is given as a parameter. " alt="" coords="397,378,483,404"/>
+<area shape="rect" id="node16" href="$model_8h.html#a4dfefd190ae88df81aef993e600e0b35" title="Returns the identifier of the tree node or tree leaf whose name is given as a parameter. " alt="" coords="401,329,479,354"/>
+</map>

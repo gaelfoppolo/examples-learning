@@ -250,7 +250,7 @@ void genGeneralisation(Model* mdl, Solution* s) {
 
 void genCounterExamples(Model* m, Examples* e, Solution* s) {
 	for(unsigned int oo = 0; oo < vectSize(s->outobjects); ++oo) {
-		// check wether the object is important or have been generalized
+		// check whether the object is important or have been generalized
 		if(vectAt(s->outobjects, oo).generalizeBy != NULL) {
 			continue;
 		}

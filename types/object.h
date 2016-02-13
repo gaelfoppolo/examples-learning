@@ -41,7 +41,7 @@ void initObject(Object* obj);
 /**
 *	@brief Free the object previously initialized by initObject
 *	@param obj A pointer to the object to free
-*	@param freeItself Boolean to know wether the Object is to be freed or not
+*	@param freeItself Boolean to know whether the Object is to be freed or not
 */
 void freeObject(Object* obj, int freeItself);
 

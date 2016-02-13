@@ -42,7 +42,7 @@ void initOutObject(OutObject* oo);
 /**
 *	@brief Free the outobject previously initialized by initOutObject
 *	@param oo A pointer to the outobject to free
-*	@param freeItself Boolean to know wether the OutObject is to be freed or not
+*	@param freeItself Boolean to know whether the OutObject is to be freed or not
 */
 void freeOutObject(OutObject* oo, int freeItself);
 

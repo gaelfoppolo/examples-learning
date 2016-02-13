@@ -1,0 +1,6 @@
+<map id="getIncludeFile" name="getIncludeFile">
+<area shape="rect" id="node2" href="$string-type_8h.html#ab9893f2c904ee5ff139589712c1284d1" title="Transforms a char* to a string. The char* MUST be a nul terminated array allocated with malloc..." alt="" coords="177,5,231,31"/>
+<area shape="rect" id="node3" href="$string-type_8h.html#ae28db08bad9d3c4511ab5241534a89c0" title="Create a perfect copy of the string given. Used when a malloc created string is needed. " alt="" coords="158,55,249,80"/>
+<area shape="rect" id="node4" href="$string-type_8h.html#ae3068dd8c60d7a42a93f0351ef8f09e1" title="Adds a character at the end of the string. " alt="" coords="170,104,237,129"/>
+<area shape="rect" id="node5" href="$string-type_8h.html#a6c362d400c8b2016bc08876470e2d00d" title="Returns the current string length. " alt="" coords="165,153,242,179"/>
+</map>

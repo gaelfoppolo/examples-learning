@@ -180,7 +180,7 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent);
 /**
 *	@brief Check whether the character is allowed in an attribute name or not
 *	@param c The character to Check
-*	@param first Wether the character is the first to be read or not
+*	@param first whether the character is the first to be read or not
 *
 *	@return Returns 1 if the character is valid. 0 otherwise
 */

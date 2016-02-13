@@ -96,7 +96,7 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
 	// go past the include line
 	fseek(fp, startPos, SEEK_SET);
 
-	// find [counter-]example line definition and returns wether it's a counter-example or an exemple
+	// find [counter-]example line definition and returns whether it's a counter-example or an exemple
 	while((type = getNextExample(fp))) {
 		if(type == PARSED_EXAMPLE) {
 			vectPush(Example, e->examples, dflt); // add a default example to me modified by parseExample
@@ -172,7 +172,7 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 	vectInit(ex->objects);
 	vectInit(seenObjects.seen);
 
-	// the first fgetc reads the \n of the previous line. The second check wether we are at the begining of the declaration of an object or not
+	// the first fgetc reads the \n of the previous line. The second check whether we are at the begining of the declaration of an object or not
 	while((c = fgetc(fp)) != EOF && (c = fgetc(fp)) == '\t') {
 		readFileSpaces(fp, "\t ");
 
@@ -184,7 +184,7 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 			return 0;
 		}
 
-		// check wether the name has already been seen
+		// check whether the name has already been seen
 		id = -1;
 		for(unsigned int i = 0; i < vectSize(seenObjects.seen); ++i) {
 			if(strcmp(vectAt(seenObjects.seen, i), name) == 0) {
@@ -480,7 +480,7 @@ int parseConfigLine(FILE* fp, char** error, Model* out) {
 	current.mt = *mt;
 	free(mt);
 
-	// check wether it's a relation or a basic attribute
+	// check whether it's a relation or a basic attribute
 	if(isRelation) {
 		// convert the enum parsed to a relation
 		for(unsigned int i = 0; i < vectSize(current.mt.enu.enu); ++i) {

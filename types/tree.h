@@ -59,7 +59,7 @@ Tree* createNode(int id, char* str, Tree* child);
 Tree* addChild(Tree* node, Tree* child);
 
 /**
-*	@brief Check wether the tree is a leaf or not
+*	@brief Check whether the tree is a leaf or not
 *	@param t The tree to check
 *
 *	@return Returns 1 if the parameter is a leaf, 0 otherwise
@@ -87,7 +87,7 @@ int depth(Tree* root, int id);
 *	@brief Find the lowest common ancestor
 *	We traverse from root to leaf.
 *	When we find a node matching at least one value, we pass it to its parent.
-*	The parent tests wether a child contains the value or not.
+*	The parent tests whether a child contains the value or not.
 *	If yes, the parent is the LCA, otherwise, we pass its parent, up to root.
 *	What is passed is the lower node or NULL
 *

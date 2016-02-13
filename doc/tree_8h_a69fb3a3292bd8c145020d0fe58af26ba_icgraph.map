@@ -1,0 +1,9 @@
+<map id="freeTree" name="freeTree">
+<area shape="rect" id="node2" href="$parsers_8h.html#ab5b90eac71609ac27833b96da19fa57d" title="Tries to parse a tree. " alt="" coords="125,5,256,31"/>
+<area shape="rect" id="node6" href="$model-type_8h.html#ad4abcd53e26c93d68af7c0944d506fb9" title="Free the ModelType. " alt="" coords="135,55,245,80"/>
+<area shape="rect" id="node3" href="$parsers_8h.html#aa7a8052bc2ac6c4c70496e0b8f9ba458" title="Tries to parse the attribute&#39;s value definition at the current position in the file (may read more th..." alt="" coords="317,5,421,31"/>
+<area shape="rect" id="node4" href="$parsers_8h.html#a986cbbf2bc6509e1217346c2e1adaad2" title="Tries to parse the line as a config file attribute definition. If the line is empty, continues to read until it finds a line. " alt="" coords="482,5,601,31"/>
+<area shape="rect" id="node5" href="$parsers_8h.html#aba6c3205292b2157b07d26db9753f366" title="Loads the config file given anf the generate the Model object that represents its content..." alt="" coords="649,5,755,31"/>
+<area shape="rect" id="node7" href="$model-attribute_8h.html#aeccf8686b4feb95749f4f46f6c3c3720" title="Free the ModelAttribute. " alt="" coords="304,55,434,80"/>
+<area shape="rect" id="node8" href="$model_8h.html#a28c8e3e18d329667f62b078d56aecdc5" title="Free the Model struct created while parsing the config file. " alt="" coords="501,55,582,80"/>
+</map>

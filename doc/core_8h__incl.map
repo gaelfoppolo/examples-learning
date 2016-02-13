@@ -1,0 +1,21 @@
+<map id="app/core.h" name="app/core.h">
+<area shape="rect" id="node4" href="$model_8h.html" title="File containing the definition of the model parsed in the model file. " alt="" coords="697,152,812,177"/>
+<area shape="rect" id="node14" href="$examples_8h.html" title="File containing the definition of the examples (the all example file content) " alt="" coords="45,79,181,104"/>
+<area shape="rect" id="node18" href="$solution_8h.html" title="File containing the definition of the solution. " alt="" coords="400,152,525,177"/>
+<area shape="rect" id="node22" href="$object-index_8h.html" title="File containing the definition of the objects. " alt="" coords="112,225,263,251"/>
+<area shape="rect" id="node23" href="$output_8h.html" title="File containing the output functions and helpers. " alt="" coords="589,79,659,104"/>
+<area shape="rect" id="node6" href="$model-attribute_8h.html" title="File containing the definition of the attributes (as defined by the model file) " alt="" coords="698,225,819,251"/>
+<area shape="rect" id="node11" href="$vector_8h.html" title="File containing the definition of the vectors (dynamic &amp; generic arrays) " alt="" coords="427,445,495,471"/>
+<area shape="rect" id="node7" href="$model-type_8h.html" title="File containing the definition of an attribute&#39;s type. " alt="" coords="637,299,736,324"/>
+<area shape="rect" id="node8" href="$attribute-types_8h.html" title="File containing the attribute&#39;s types definition. " alt="" coords="276,372,393,397"/>
+<area shape="rect" id="node9" href="$interval_8h.html" title="File containing the definition of the interval type. " alt="" coords="579,372,655,397"/>
+<area shape="rect" id="node10" href="$enum_8h.html" title="File containing the definition of the enumerations that can be used as types for the attributes..." alt="" coords="679,372,745,397"/>
+<area shape="rect" id="node13" href="$tree_8h.html" title="File containing the definition of the trees. " alt="" coords="768,372,824,397"/>
+<area shape="rect" id="node15" href="$example_8h.html" title="File containing the definition of the examples. " alt="" coords="13,152,96,177"/>
+<area shape="rect" id="node16" href="$object_8h.html" title="File containing the definition of the objects. " alt="" coords="20,225,89,251"/>
+<area shape="rect" id="node17" href="$attribute_8h.html" title="File containing the definition of the attributes. " alt="" coords="70,299,151,324"/>
+<area shape="rect" id="node19" href="$out-object_8h.html" title="File containing the definition of the out&#45;objects. Generated when combining multiple objects..." alt="" coords="412,225,503,251"/>
+<area shape="rect" id="node20" href="$out-attribute_8h.html" title="File containing the definition of the out&#45;attributes. " alt="" coords="401,299,505,324"/>
+<area shape="rect" id="node21" href="$out-enum_8h.html" title="File containing the definition of the enumeration extracts. " alt="" coords="417,372,506,397"/>
+<area shape="rect" id="node25" href="$string-type_8h.html" title="File containing the definition of the String type and some tools to use it. " alt="" coords="618,445,760,471"/>
+</map>

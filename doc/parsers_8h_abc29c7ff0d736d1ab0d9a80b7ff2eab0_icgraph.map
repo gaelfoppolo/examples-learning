@@ -1,0 +1,5 @@
+<map id="parseAttrTypeInterval" name="parseAttrTypeInterval">
+<area shape="rect" id="node2" href="$parsers_8h.html#aa7a8052bc2ac6c4c70496e0b8f9ba458" title="Tries to parse the attribute&#39;s value definition at the current position in the file (may read more th..." alt="" coords="201,5,306,31"/>
+<area shape="rect" id="node3" href="$parsers_8h.html#a986cbbf2bc6509e1217346c2e1adaad2" title="Tries to parse the line as a config file attribute definition. If the line is empty, continues to read until it finds a line. " alt="" coords="354,5,472,31"/>
+<area shape="rect" id="node4" href="$parsers_8h.html#aba6c3205292b2157b07d26db9753f366" title="Loads the config file given anf the generate the Model object that represents its content..." alt="" coords="520,5,627,31"/>
+</map>

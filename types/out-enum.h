@@ -29,7 +29,7 @@ void initOutEnum(OutEnum* oenu);
 /**
 *	@brief Free the OutEnum previously initialized by initEnum
 *	@param oenu A pointer to the enum to free
-*	@param freeItself Boolean to know wether the OutEnum is to be freed or not
+*	@param freeItself Boolean to know whether the OutEnum is to be freed or not
 */
 void freeOutEnum(OutEnum* oenu, int freeItself);
 

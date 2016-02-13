@@ -1,0 +1,6 @@
+<map id="ModelAttribute" name="ModelAttribute">
+<area shape="rect" id="node2" href="$struct_model_type.html" title="Structure that contains the definition of the type. " alt="" coords="75,92,161,117"/>
+<area shape="rect" id="node3" href="$struct_interval.html" title="Structure that contains a signed integer interval. " alt="" coords="5,5,70,31"/>
+<area shape="rect" id="node4" href="$struct_tree.html" title="Defines the trees. " alt="" coords="94,5,142,31"/>
+<area shape="rect" id="node5" href="$struct_enum.html" title="Structure that defines the enumeration type. " alt="" coords="166,5,222,31"/>
+</map>

@@ -85,7 +85,7 @@ int main(int argc, char **argv) {
 
 	setOutputImportance(flagVerbose);
 
-	// if the user ask for no color or the output streams (wether stdout or stderr) aren't terminals, remove colors
+	// if the user ask for no color or the output streams (whether stdout or stderr) aren't terminals, remove colors
 	if(flagNoColor || !isatty(fileno(stdout)) || !isatty(fileno(stderr))) {
 		enableColors(0);
 	}

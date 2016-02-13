@@ -1,0 +1,18 @@
+<map id="parseAttrType" name="parseAttrType">
+<area shape="rect" id="node2" href="$parsers_8h.html#a521906155e2c1df4118a98297d69bb2e" title="Reads a file from the current position and reads while characters are in the set. Stops on the last o..." alt="" coords="541,47,655,73"/>
+<area shape="rect" id="node3" href="$parsers_8h.html#abc29c7ff0d736d1ab0d9a80b7ff2eab0" title="Tries to parse an interval. " alt="" coords="345,98,493,123"/>
+<area shape="rect" id="node6" href="$output_8h.html#ac655e1b05f956db56da490a2c3b7beb1" title="Print the message in the standard output only if its importance is high enough to be printed..." alt="" coords="569,345,627,370"/>
+<area shape="rect" id="node8" href="$parsers_8h.html#ab5b90eac71609ac27833b96da19fa57d" title="Tries to parse a tree. " alt="" coords="162,326,293,351"/>
+<area shape="rect" id="node17" href="$parsers_8h.html#ab456bb242016ec949b25498e0a506fad" title="Tries to parse an enumeration. " alt="" coords="158,149,297,174"/>
+<area shape="rect" id="node4" href="$string-type_8h.html#ab9893f2c904ee5ff139589712c1284d1" title="Transforms a char* to a string. The char* MUST be a nul terminated array allocated with malloc..." alt="" coords="571,98,625,123"/>
+<area shape="rect" id="node5" href="$string-type_8h.html#ae28db08bad9d3c4511ab5241534a89c0" title="Create a perfect copy of the string given. Used when a malloc created string is needed. " alt="" coords="552,147,644,173"/>
+<area shape="rect" id="node7" href="$output_8h.html#a0cf9973e582fb23d19b39e36bae893eb" title="Gets the max level of the messages to output (0 : only critical messages, the higher the value..." alt="" coords="703,345,849,370"/>
+<area shape="rect" id="node9" href="$tree_8h.html#a23371a58349a9b88e641b1cfbf8ea88a" title="Create a new leaf. " alt="" coords="377,401,461,426"/>
+<area shape="rect" id="node10" href="$tree_8h.html#a69fb3a3292bd8c145020d0fe58af26ba" title="Free the tree. " alt="" coords="383,450,454,475"/>
+<area shape="rect" id="node11" href="$parsers_8h.html#a15665e9aae62362f0948994136b44f8b" title="Tries to parse the attribute name at the current position in the file (spaces &amp; tabs are ommited) ..." alt="" coords="363,199,474,225"/>
+<area shape="rect" id="node15" href="$parsers_8h.html#aa13acbba3c52feffbd12fcae8cdf3c9e" title="Display tabs(s) " alt="" coords="377,351,461,377"/>
+<area shape="rect" id="node16" href="$tree_8h.html#a20cf113144a4d78318cae514493540c2" title="Add a child to a node. " alt="" coords="382,499,456,525"/>
+<area shape="rect" id="node12" href="$parsers_8h.html#a5b1ce78200962639956078ce45c6b2e3" title="Check whether the character is allowed in an attribute name or not. " alt="" coords="543,197,653,222"/>
+<area shape="rect" id="node13" href="$string-type_8h.html#ae3068dd8c60d7a42a93f0351ef8f09e1" title="Adds a character at the end of the string. " alt="" coords="565,246,631,271"/>
+<area shape="rect" id="node14" href="$string-type_8h.html#a6c362d400c8b2016bc08876470e2d00d" title="Returns the current string length. " alt="" coords="559,295,636,321"/>
+</map>

@@ -40,7 +40,7 @@ typedef struct OutAttribute {
 /**
 *	@brief Free the OutAttribute
 *	@param oa A pointer to the OutAttribute to free
-*	@param freeItself Boolean to know wether the OutAttribute is to be freed or not
+*	@param freeItself Boolean to know whether the OutAttribute is to be freed or not
 */
 void freeOutAttribute(OutAttribute* oa, int freeItself);
 

@@ -35,14 +35,14 @@ typedef struct Enum {
 /**
 *	@brief Free the EnumType
 *	@param enuty A pointer to the EnumType to be freed
-*	@param freeItself Boolean to know wether the EnumType is to be freed or not
+*	@param freeItself Boolean to know whether the EnumType is to be freed or not
 */
 void freeEnumType(EnumType* enuty, int freeItself);
 
 /**
 *	@brief Free the Enum
 *	@param enu A pointer to the Enum to be freed
-*	@param freeItself Boolean to know wether the Enum is to be freed or not
+*	@param freeItself Boolean to know whether the Enum is to be freed or not
 */
 void freeEnum(Enum* enu, int freeItself);
 

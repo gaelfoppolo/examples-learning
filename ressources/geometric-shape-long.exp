@@ -16,4 +16,4 @@ E3
 	x16:shape(polygone), size(20), color(red)
 	x17:shape(square), size(4), color(blue), next-to(x15)
 !E1
-	x1:size(2), color(orange), shape(rectangle)
+	x1:size(4), color(red), shape(rectangle)

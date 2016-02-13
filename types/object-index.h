@@ -1,5 +1,5 @@
 /**
- *	@file object.h
+ *	@file object-index.h
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *

@@ -32,7 +32,7 @@ void initExample(Example* exp);
 /**
 *	@brief Free the example object
 *	@param exp A pointer to the example to be freed
-*	@param freeItself Boolean to know wether the Example is to be freed or not
+*	@param freeItself Boolean to know whether the Example is to be freed or not
 */
 void freeExample(Example* exp, int freeItself);
 

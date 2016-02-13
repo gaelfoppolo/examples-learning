@@ -106,7 +106,7 @@ void genGeneralisation(Model *mdl, Solution* s);
 void genCounterExamples(Model* m, Examples* e, Solution* s);
 
 /**
-*	@brief Check wether an OutObject matches an object or not
+*	@brief Check whether an OutObject matches an object or not
 *	@param m The model
 *	@param oo The OutObject that you want to know if it matches the Object
 *	@param o The object

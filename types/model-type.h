@@ -36,7 +36,7 @@ typedef struct ModelType {
 /**
 *	@brief Free the ModelType
 *	@param mt A pointer to the ModelType to be freed
-*	@param freeItself Boolean to know wether the ModelType is to be freed or not
+*	@param freeItself Boolean to know whether the ModelType is to be freed or not
 */
 void freeModelType(ModelType* mt, int freeItself);
 

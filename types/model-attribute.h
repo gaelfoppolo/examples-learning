@@ -30,7 +30,7 @@ typedef struct ModelAttribute {
 /**
 *	@brief Free the ModelAttribute
 *	@param ma A pointer to the ModelAttribute to be freed
-*	@param freeItself Boolean to know wether the ModelAttribute is to be freed or not
+*	@param freeItself Boolean to know whether the ModelAttribute is to be freed or not
 */
 void freeModelAttribute(ModelAttribute* ma, int freeItself);
 

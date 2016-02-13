@@ -1,0 +1,5 @@
+<map id="getNextExample" name="getNextExample">
+<area shape="rect" id="node2" href="$parsers_8h.html#a961b4c03ca09188c780c9bae74f311d4" title="Reads a file from the current position and reads until it finds a character in the set..." alt="" coords="172,5,234,31"/>
+<area shape="rect" id="node3" href="$output_8h.html#ac655e1b05f956db56da490a2c3b7beb1" title="Print the message in the standard output only if its importance is high enough to be printed..." alt="" coords="174,55,232,80"/>
+<area shape="rect" id="node4" href="$output_8h.html#a0cf9973e582fb23d19b39e36bae893eb" title="Gets the max level of the messages to output (0 : only critical messages, the higher the value..." alt="" coords="282,55,429,80"/>
+</map>
