@@ -78,9 +78,17 @@ char* SBUWHITE;
 *	@brief Returns a string that contains the representation of the object in a readable presentation
 *	@param sol Pointer to the object grouping the common traits of the other objects int the examples
 *	@param mdl Pointer to the model object containing structure of the model
-*	@return A string representing the object in a readable way. Need to be freed by the user
+*	@param recur Boolean to presize wheter relations must be printed recursively or just their name (0 : no recursion, 1: recursion)
 */
-void genOutput(Solution* sol, Model* mdl);
+void genOutput(Solution* sol, Model* mdl, int recur);
+
+/**
+*	@brief Print an object
+*	@param oo The object to print
+*	@param m The model
+*	@param recur -1 if no recursion is allowed (juste print name of object linked by relation), or the number of indentations
+*/
+void genObjectOutput(OutObject* oo, Model* m, int recur);
 
 /**
 *	@brief Returns a string that contains the formatted output by concatening all the arguments
@@ -124,5 +132,14 @@ unsigned int extractVerbosityFromArg(const char* verbosity);
 *	@param enable Boolean. If @a enable = 0, the colors are disabled, colors are activated for any other values
 */
 void enableColors(unsigned int enable);
+
+/*
+*	@brief Print a fixed number of time a character
+*	@param level The importance level of the message (flags, can use L[0-7] and add the flag LERROR if you want to write in the error stream
+*			LERROR alone is aquivalent to L0 | LERROR
+*	@param c The character to print
+*	@param n The number of time to print the character
+*/
+void printNChar(unsigned int level, char c, unsigned int n);
 
 #endif // _OUTPUT_H_

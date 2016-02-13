@@ -46,114 +46,114 @@ char* SBUWHITE     =   "\e[1;4;37m";
 // Indicate the max importance of the messages to show to the user (0 : show only critical messages, 1, 2, 3, ... less and less critical messages)
 static unsigned int __output_importance_level = 0;
 
-void genOutput(Solution* sol, Model* mdl) {
-
-	ModelAttribute ma;
-	OutObject *oo, *ooo;
-	OutAttribute oa;
-	int attributeDisplayed = 0;
-	String toDisplay;
-	char* tmp;
-
+void genOutput(Solution* sol, Model* mdl, int recur) {
+	// print each object in the solution
 	for(int i = 0; i < vectSize(sol->outobjects); ++i) {
-		
-		// get current OutObject
-		oo = &vectAt(sol->outobjects, i);
+		genObjectOutput(&vectAt(sol->outobjects, i), mdl, recur ? 0 : -1);
+	}
+	output(L0, "\n");
+}
 
-		// check all the relations of this OutObject. If one is disabled, the object is disabled
-		if(haveDisabledRelations(oo)) {
-			continue;
-		}
+void genObjectOutput(OutObject* oo, Model* m, int recur) {
+	ModelAttribute* ma;
+	OutObject* ooo;
+	OutAttribute* oa;
 
-		// OO is final (the most accurate)
-		if(oo->generalizeBy == NULL) {
+	// check whether the object has been disabled or not and if is not too general
+	if(haveDisabledRelations(oo) || oo->generalizeBy != NULL) {
+		return;
+	}
 
-			// add name
-			output(L0, "%s%s: %s", SBPURPLE, oo->name, SDEFAULT);
+	if(recur < 1) {
+		output(L0, "\n");
+	}
 
-			// display attribute name & value
-			for (int j = 0; j < vectSize(oo->attributes); ++j) {
+	if(recur > -1) {
+		printNChar(L0, '\t', recur);
+	}
+	// print the name
+	output(L0, "%s%s: %s", SBPURPLE, oo->name, SDEFAULT);
 
-				toDisplay = strInit(cPrint(""));
+	// print attributes
+	for(unsigned int i = 0; i < vectSize(oo->attributes); ++i) {
+		// the model of the attribute
+		ma = &vectAt(m->ma, i);
+		// the attribute itself
+		oa = &vectAt(oo->attributes, i);
 
-				// get current model attribute data
-				ma = vectAt(mdl->ma, j);
-				oa = vectAt(oo->attributes, j);
-
-				// add attribute name
-				
-				if (j != 0 && attributeDisplayed) {
-					strPushStr(&toDisplay, ", ");
-				}
-
-				attributeDisplayed = 1;
-
-				tmp = cPrint("%s%s%s", SBGREEN, ma.name, SDEFAULT);
-				strPushStr(&toDisplay, tmp);	 
-				free(tmp);
-				tmp = cPrint("(%s", SBCYAN);
-				strPushStr(&toDisplay, tmp);
-				free(tmp);				  
-
-				switch (ma.mt.type) {
-					// attribute is an interval
-					case TYPE_INT:
-						if (oa.inter.max-oa.inter.min != vectAt(mdl->ma, j).mt.inter.max-vectAt(mdl->ma, j).mt.inter.min) {
-							tmp = cPrint("%d ; %d%s", oa.inter.min, oa.inter.max, SDEFAULT);
-							strPushStr(&toDisplay, tmp);
-							free(tmp);
-						} else {
-							attributeDisplayed = 0;
-						}	
-						break;
-					// attribute is an enum
-					case TYPE_ENUM:
-						if (vectSize(oa.oenu.oenu) != vectSize(vectAt(mdl->ma, j).mt.enu.enu)) {
-							for (int k = 0; k < vectSize(oa.oenu.oenu); ++k) {
-								tmp = cPrint("%s%s", getEnumStr(vectAt(oa.oenu.oenu, k), mdl, j), SDEFAULT);
-								strPushStr(&toDisplay, tmp);
-								free(tmp);
-								tmp = cPrint(", %s", SBCYAN);
-								if (k+1 < vectSize(oa.oenu.oenu)) strPushStr(&toDisplay, tmp); //output(L0, ", " SBCYAN);
-								free(tmp);
-							}
-						} else {
-							attributeDisplayed = 0;							
-						}	
-						break;
-					// attribute is a tree
-					case TYPE_TREE:
-						if (oa.tree != vectAt(mdl->ma, j).mt.tree.id) {
-							tmp = cPrint("%s%s", getTreeStr(oa.tree, mdl, j), SDEFAULT);
-							strPushStr(&toDisplay, tmp);
-							free(tmp);
-						} else {
-							attributeDisplayed = 0;
-						}	
-						break;
-				}
-				if (attributeDisplayed) {
-					strPushStr(&toDisplay, ")");
-					output(L0, "%s", toDisplay.str);
-				}
-
-				free(toDisplay.str);
-			}
-			
-			// display relations
-			for (int j = 0; j < vectSize(oo->relations); ++j) {
-				ooo = vectAt(oo->relations, j);
-				if (ooo != NULL) {
-					while(ooo->generalizeBy != NULL) {
-					    ooo = ooo->generalizeBy;
+		// check the type of the attribute to print
+		switch(ma->mt.type) {
+			case TYPE_INT:
+				// check if the attribute needs to be printed
+				if(oa->inter.max != vectAt(m->ma, i).mt.inter.max 
+					&& oa->inter.min != vectAt(m->ma, i).mt.inter.min) {
+					// print the separator
+					if(i != 0) {
+						output(L0, ", ");
 					}
-					if (j < vectSize(oo->relations)) output(L0, ", ");
-					output(L0, "%s%s%s", SBGREEN, vectAt(mdl->rel, j), SDEFAULT);
-					output(L0, "(%s%s%s) ", SBPURPLE, ooo->name, SDEFAULT);
+					// print : attrName(min;max)
+					output(L0, "%s%s%s(%s%d;%d%s)", SBGREEN, ma->name, SDEFAULT, SBCYAN, oa->inter.min, oa->inter.max, SDEFAULT);
 				}
+				break;
+			case TYPE_ENUM:
+				// check if the attribute needs to be printed
+				if(vectSize(oa->oenu.oenu) != vectSize(vectAt(m->ma, i).mt.enu.enu)) {
+					// print the separator
+					if(i != 0) {
+						output(L0, ", ");
+					}
+					// print attrName(item1, item2, item3, ...)
+					output(L0, "%s%s%s(%s", SBGREEN, ma->name, SDEFAULT, SBCYAN);
+					for(unsigned int j = 0; j < vectSize(oa->oenu.oenu); ++j) {
+						output(L0, "%s%s", getEnumStr(vectAt(oa->oenu.oenu, j), m, i), SDEFAULT);
+						// print the ',' only if not last item
+						if(j+1 < vectSize(oa->oenu.oenu)) {
+							output(L0, ", %s", SBCYAN);
+						}
+					}
+					output(L0, ")");
+				}
+				break;
+			case TYPE_TREE:
+				// check if the attribute needs to be printed
+				if(oa->tree != vectAt(m->ma, i).mt.tree.id) {
+					// print the separator
+					if(i != 0) {
+						output(L0, ", ");
+					}
+					// print attrName(item1, item2, item3, ...)
+					output(L0, "%s%s%s(%s%s)", SBGREEN, ma->name, SDEFAULT, getTreeStr(oa->tree, m, i), SDEFAULT);
+				}
+		}
+	}
+
+	//print relations
+	for(unsigned int i = 0; i < vectSize(oo->relations); ++i) {
+		ooo = vectAt(oo->relations, i);
+		// if the relation is defined for this object
+		if(ooo != NULL) {
+			// retrieve the most specific solution
+			while(ooo->generalizeBy != NULL) {
+				ooo = ooo->generalizeBy;
 			}
-			output(L0, "\n");
-		}	
+			// inline print
+			if(recur < 0) {
+				if(i < vectSize(oo->relations)) {
+					output(L0, ", ");
+				}
+				output(L0, "%s%s%s", SBGREEN, vectAt(m->rel, i), SDEFAULT);
+				output(L0, "(%s%s%s)", SBPURPLE, ooo->name, SDEFAULT);
+			}
+			else {
+				// print the relation name
+				output(L0, "\n");
+				printNChar(L0, '\t', recur+1);
+				// print the relation name
+				output(L0, "%s%s%s:\n", SBGREEN, vectAt(m->rel, i), SDEFAULT);
+				// print the object linked
+				genObjectOutput(ooo, m, recur + 1);
+			}
+		}
 	}
 }
 
@@ -278,5 +278,11 @@ void enableColors(unsigned int enable) {
 		SBUPURPLE    =   "";
 		SBUCYAN      =   "";
 		SBUWHITE     =   "";
+	}
+}
+
+void printNChar(unsigned int level, char c, unsigned int n) {
+	while(n--) {
+		output(level, "%c", c);
 	}
 }

@@ -129,7 +129,7 @@ int main(int argc, char **argv) {
 
 		output(L1, "%sSolutions:%s\n\n", SBDEFAULT, SDEFAULT);
 		
-		genOutput(s, m);
+		genOutput(s, m, flagExpandRelation);
 
 		free(c);
 		freeModel(m);
