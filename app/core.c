@@ -210,7 +210,7 @@ int isOutObjectIncludeInAnother(Model* mdl, OutObject* oo1, OutObject* oo2) {
 				countAttributesInclude += isOutEnumIncludeInAnother(oa1.oenu, oa2.oenu);
 				break;
 			case TYPE_TREE:
-				countAttributesInclude += isTreeIncludeInAnother(&vectAt(mdl->ma, i).mt.tree, oa1.tree, oa2.tree);
+				countAttributesInclude += isNodeDepthSameOrSmaller(&vectAt(mdl->ma, i).mt.tree, oa1.tree, oa2.tree);
 				break;
 		}		
 	}
@@ -219,7 +219,7 @@ int isOutObjectIncludeInAnother(Model* mdl, OutObject* oo1, OutObject* oo2) {
 	return (countAttributesInclude == vectSize(oo1->attributes));
 }
 
-void genGeneralisation(Model* mdl, Solution* s) {
+void gengeneralization(Model* mdl, Solution* s) {
 	int isInclude;
 
 	// for each OutObjects

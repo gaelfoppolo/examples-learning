@@ -3,7 +3,7 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- *	@brief File containing the definition of the enumeration extracts
+ *	@brief Containins the definition of the OutEnum
  */
 
 #ifndef _OUTPUTENUM_H_
@@ -21,8 +21,8 @@ typedef struct OutEnum {
 } OutEnum;
 
 /**
-*	@brief Init the output enum
-*	@param oenu A pointer to the enum to init
+*	@brief Initilialize the OutputEnum
+*	@param oenu A pointer to the OutputEnum to init
 */
 void initOutEnum(OutEnum* oenu);
 
@@ -39,7 +39,7 @@ void freeOutEnum(OutEnum* oenu, int freeItself);
  * 	@param oenu1 First OutEnum
  * 	@param oenu2 Second OutEnum
  
- *	@return 1, oenu1 is include in oenu2, else 0
+ *	@return 1, if oenu1 is include in oenu2, 0 otherwise
  */
 int isOutEnumIncludeInAnother(OutEnum oenu1, OutEnum oenu2);
 

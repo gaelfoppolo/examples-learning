@@ -91,11 +91,11 @@ int getIndex(Examples* exp, ObjectIndex* oi);
 int isOutObjectIncludeInAnother(Model *mdl, OutObject* oo1, OutObject* oo2);
 
 /**
-*	@brief Generalisation of our solution(s)
+*	@brief generalization of our solution(s)
 *	@param mdl Pointer to the Model
 *	@param s Pointer to the Solution
 */
-void genGeneralisation(Model *mdl, Solution* s);
+void gengeneralization(Model *mdl, Solution* s);
 
 /**
 *	@brief Add counter-examples to the solutions

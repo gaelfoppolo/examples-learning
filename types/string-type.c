@@ -3,7 +3,6 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @brief String implementation type - Implementation
  */
 
 #include "string-type.h"

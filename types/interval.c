@@ -3,7 +3,6 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @brief Structure of our interval - Implementation
  */
 
 #include "interval.h"

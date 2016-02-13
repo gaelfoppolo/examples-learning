@@ -3,7 +3,7 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- *	@brief File containing the definition of the objects
+ *	@brief Contains the definition of the ObjectIndex
  */
 
 #ifndef _OBJECT_INDEX_H_
@@ -13,7 +13,7 @@
 
 /**
 *   @brief Stores a list of indexes
-*	When combining multiple objects, the identifier of each of them can be stored in this structure
+*	When combining multiple Object, the identifier of each of them (rank in the Example) can be stored in this structure
 */
 typedef struct ObjectIndex {
 	/** @brief The indexes of the combined objects */

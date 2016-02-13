@@ -3,10 +3,19 @@
  *	@author Gaël Foppolo (gaelfoppolo)
  *	@author Bastien Philip (ebatsin)
  *
- * @brief Structure of our N-ary tree - Implementation
  */
 
 #include "tree.h"
+
+/**
+*	@brief NOT FOR USE - Used by depth - Recursively go down into the tree with the current depth
+*	@param t The tree (node) to search into
+*	@param id The ID of the node
+*	@param dpth The current depth of t
+*
+*	@return Returns the depth of the node matching the id
+*/
+static int depth_rec(Tree* t, int id, int dpth);
 
 Tree* createLeaf(int id, char* str) {
 	Tree* t;
@@ -50,7 +59,6 @@ Tree* getTreeFromID(Tree* root, int id) {
 }
 
 int height(Tree* t) {
-    
     if(isLeaf(t)){
 		return 0;
 	}
@@ -62,16 +70,6 @@ int height(Tree* t) {
 		return heightTree+1;
 	}
 }
-
-/**
-*	@brief NOT FOR USE - Used by depth - Recursively go down into the tree with the current depth
-*	@param t The tree (node) to search into
-*	@param id The id of the node
-*	@param dpth The current depth of t
-*
-*	@return Returns the depth of the node matching the id
-*/
-static int depth_rec(Tree* t, int id, int dpth);
 
 int depth(Tree* root, int id) {
 	// launch the search with a depth of 0
@@ -140,7 +138,7 @@ void freeTree(Tree* t) {
 	vectFree(t->children);
 }
 
-int isTreeIncludeInAnother(Tree* t, int node1, int node2) {
+int isNodeDepthSameOrSmaller(Tree* t, int node1, int node2) {
 
 	int depth1, depth2, isTreeIncludeOrEqual;
 	// same id? -> 1

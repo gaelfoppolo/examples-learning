@@ -1,6 +1,6 @@
 <map id="types/out&#45;attribute.h" name="types/out&#45;attribute.h">
-<area shape="rect" id="node2" href="$out-object_8h.html" title="File containing the definition of the out&#45;objects. Generated when combining multiple objects..." alt="" coords="27,79,153,104"/>
-<area shape="rect" id="node3" href="$solution_8h.html" title="File containing the definition of the solution. " alt="" coords="33,152,147,177"/>
+<area shape="rect" id="node2" href="$out-object_8h.html" title="Contains the definition of the OutObject. " alt="" coords="27,79,153,104"/>
+<area shape="rect" id="node3" href="$solution_8h.html" title="Contains the definition of the Solution. " alt="" coords="33,152,147,177"/>
 <area shape="rect" id="node4" href="$core_8h.html" title="File containing the core that generates the solutions. " alt="" coords="5,299,90,324"/>
 <area shape="rect" id="node5" href="$output_8h.html" title="File containing the output functions and helpers. " alt="" coords="85,225,181,251"/>
 <area shape="rect" id="node6" href="$parsers_8h.html" title="File containing the example and model file parser. " alt="" coords="114,299,232,324"/>

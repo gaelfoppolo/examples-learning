@@ -1,7 +1,7 @@
 <map id="types/out&#45;enum.h" name="types/out&#45;enum.h">
-<area shape="rect" id="node2" href="$out-attribute_8h.html" title="File containing the definition of the out&#45;attributes. " alt="" coords="21,79,160,104"/>
-<area shape="rect" id="node3" href="$out-object_8h.html" title="File containing the definition of the out&#45;objects. Generated when combining multiple objects..." alt="" coords="27,152,153,177"/>
-<area shape="rect" id="node4" href="$solution_8h.html" title="File containing the definition of the solution. " alt="" coords="33,225,147,251"/>
+<area shape="rect" id="node2" href="$out-attribute_8h.html" title="Contains the definition of the OutAttribute. " alt="" coords="21,79,160,104"/>
+<area shape="rect" id="node3" href="$out-object_8h.html" title="Contains the definition of the OutObject. " alt="" coords="27,152,153,177"/>
+<area shape="rect" id="node4" href="$solution_8h.html" title="Contains the definition of the Solution. " alt="" coords="33,225,147,251"/>
 <area shape="rect" id="node5" href="$core_8h.html" title="File containing the core that generates the solutions. " alt="" coords="5,372,90,397"/>
 <area shape="rect" id="node6" href="$output_8h.html" title="File containing the output functions and helpers. " alt="" coords="85,299,181,324"/>
 <area shape="rect" id="node7" href="$parsers_8h.html" title="File containing the example and model file parser. " alt="" coords="114,372,232,397"/>

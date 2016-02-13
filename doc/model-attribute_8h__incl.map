@@ -1,8 +1,8 @@
 <map id="types/model&#45;attribute.h" name="types/model&#45;attribute.h">
-<area shape="rect" id="node3" href="$model-type_8h.html" title="File containing the definition of an attribute&#39;s type. " alt="" coords="181,79,280,104"/>
-<area shape="rect" id="node4" href="$attribute-types_8h.html" title="File containing the attribute&#39;s types definition. " alt="" coords="5,152,122,177"/>
-<area shape="rect" id="node5" href="$interval_8h.html" title="File containing the definition of the interval type. " alt="" coords="146,152,222,177"/>
-<area shape="rect" id="node6" href="$enum_8h.html" title="File containing the definition of the enumerations that can be used as types for the attributes..." alt="" coords="246,152,311,177"/>
-<area shape="rect" id="node9" href="$tree_8h.html" title="File containing the definition of the trees. " alt="" coords="335,152,390,177"/>
-<area shape="rect" id="node7" href="$vector_8h.html" title="File containing the definition of the vectors (dynamic &amp; generic arrays) " alt="" coords="244,225,312,251"/>
+<area shape="rect" id="node2" href="$model-type_8h.html" title="Contains the definition of an ModelType. " alt="" coords="181,79,280,104"/>
+<area shape="rect" id="node3" href="$attribute-types_8h.html" title="Contains the attribute&#39;s types definition In our model we have five attribute types: interval of inte..." alt="" coords="5,152,122,177"/>
+<area shape="rect" id="node4" href="$interval_8h.html" title="Contains the definition of the Interval. " alt="" coords="146,152,222,177"/>
+<area shape="rect" id="node5" href="$enum_8h.html" title="Contains the definition of the Enum and EnumType. " alt="" coords="246,152,311,177"/>
+<area shape="rect" id="node8" href="$tree_8h.html" title="Contains the definition of our n&#45;ary Tree. " alt="" coords="335,152,390,177"/>
+<area shape="rect" id="node6" href="$vector_8h.html" title="Contains the definition of the vectors (dynamic &amp; generic arrays) " alt="" coords="244,225,312,251"/>
 </map>

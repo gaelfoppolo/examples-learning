@@ -3,7 +3,8 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- *	@brief File containing the attribute's types definition
+ *	@brief Contains the attribute's types definition
+ *	In our model we have five attribute types: interval of integer, enumeration, n-ary tree, relation and no relation
  */
 
 #ifndef _ATTRIBUTE_TYPES_H_

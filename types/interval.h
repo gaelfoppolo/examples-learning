@@ -3,7 +3,7 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- *	@brief File containing the definition of the interval type
+ *	@brief Contains the definition of the Interval
  */
 
 #ifndef _INTERVAL_H_
@@ -35,7 +35,7 @@ void addToInterval(Interval* inter, int x);
  * 	@param int1 First interval
  * 	@param int2 Second interval
  * 	
- * @return 1, int1 include in int2, else 0
+ * @return 1 if int1 is include in int2, 0 otherwise
  */
 int isIntervalIncludeInAnother(Interval int1, Interval int2);
 

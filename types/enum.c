@@ -3,7 +3,6 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @brief Structure of our enum - Implementation
  */
 
 #include "enum.h"
@@ -17,7 +16,8 @@ void freeEnumType(EnumType* enuty, int freeItself) {
 void freeEnum(Enum* enu, int freeItself) {
     if (!enu) return;
     
-    for(int i = 0; i < vectSize(enu->enu); ++i) {
+    // free each EnumType of the Enum
+    for(unsigned int i = 0; i < vectSize(enu->enu); ++i) {
 		freeEnumType(&vectAt(enu->enu, i), 0);
     }
     vectFree(enu->enu);

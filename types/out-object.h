@@ -3,7 +3,7 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- *	@brief File containing the definition of the out-objects. Generated when combining multiple objects
+ *	@brief Contains the definition of the OutObject
  */
 
 #ifndef _OUTOBJECT_H_
@@ -12,7 +12,7 @@
 #include "out-attribute.h"
 
 /**
-*	@brief Contains all the attributes and relations that compose an outObject
+*	@brief Contains all the attributes and relations that compose an OutObject
 */
 typedef struct OutObject {
 	/** @brief Name of the out object */
@@ -40,8 +40,8 @@ typedef struct OutObject {
 void initOutObject(OutObject* oo);
 
 /**
-*	@brief Free the outobject previously initialized by initOutObject
-*	@param oo A pointer to the outobject to free
+*	@brief Free the OutObject previously initialized by initOutObject
+*	@param oo A pointer to the OutObject to free
 *	@param freeItself Boolean to know whether the OutObject is to be freed or not
 */
 void freeOutObject(OutObject* oo, int freeItself);

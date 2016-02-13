@@ -3,7 +3,6 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @brief Structure of our output enumeration - Implementation
  */
 
 #include "out-enum.h"
@@ -21,7 +20,7 @@ int isOutEnumIncludeInAnother(OutEnum oenu1, OutEnum oenu2) {
 
 	int isOutEnumInclude = 1, index;
 
-	// if oenu2 is bigger or equal size as oenu1
+	// if oenu2 have bigger or equal size that oenu1
 	if (vectSize(oenu2.oenu) >= vectSize(oenu1.oenu)) {
 		// for each value of oenu1
 		// check if each oenu1 value is inside oenu2

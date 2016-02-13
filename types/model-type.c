@@ -3,7 +3,6 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @brief Structure of our model type - Implementation
  */
 
 #include "model-type.h"
@@ -11,6 +10,7 @@
 void freeModelType(ModelType* mt, int freeItself) {
     if (!mt) return;
     
+    // free recursively the union depend on type
     switch(mt->type) {
 		case TYPE_INT: break;
 		case TYPE_ENUM:

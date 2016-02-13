@@ -3,13 +3,14 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- *	@brief File containing the definition of the trees
+ *	@brief Contains the definition of our n-ary Tree
  */
 
 #ifndef _TREE_H_
 #define _TREE_H_
 
 #include <stdio.h>
+
 #include "vector.h"
 
 /**
@@ -19,21 +20,21 @@
 #define max(a,b) ((a) > (b) ? (a) : (b))
 
 /**
-*	@brief Defines the trees
+*	@brief Defines the n-ary tree
 */
 typedef struct Tree {
 	/** @brief The unique identifier of this node or leaf */
  	int id;
  	/** @brief The name of this node or leaf */
 	char* str;
-	/** @brief all the children of this node (or nothing if a leaf) */
+	/** @brief All the children of this node (nothing means leaf) */
 	Vector(struct Tree) children;
 } Tree;
 
 /**
 *	@brief Create a new leaf
 *	@param id The value to store in the leaf
-*	@param str String that represents the real name of what is stored
+*	@param str %String that represents the real name of what is stored
 *
 *	@return A new leaf
 */
@@ -62,7 +63,7 @@ Tree* addChild(Tree* node, Tree* child);
 *	@brief Check whether the tree is a leaf or not
 *	@param t The tree to check
 *
-*	@return Returns 1 if the parameter is a leaf, 0 otherwise
+*	@return 1, if the parameter is a leaf, 0 otherwise
 */
 int isLeaf(Tree* t);
 
@@ -106,15 +107,13 @@ Tree* LCA(Tree* root, int id1, int id2);
 void freeTree(Tree* t);
 
 /**
- *	@brief Is node1 include in node2?
+ *	@brief Is node1 have same or smaller depth that node2?
  *	@param t Pointer to Tree
  *	@param node1 First node
  * 	@param node2 Second node
  * 
- *	@return 1: node1 include in node2, else 0
- *
- *	@todo change the name and the description of this function. Don't do what the description says !
+ *	@return 1, if node1 have same or smaller depth, 0 otherwise
  */
-int isTreeIncludeInAnother(Tree* t, int node1, int node2);
+int isNodeDepthSameOrSmaller(Tree* t, int node1, int node2);
 
 #endif // _TREE_H_

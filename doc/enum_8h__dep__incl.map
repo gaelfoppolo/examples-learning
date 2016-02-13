@@ -1,7 +1,7 @@
 <map id="types/enum.h" name="types/enum.h">
-<area shape="rect" id="node2" href="$model-type_8h.html" title="File containing the definition of an attribute&#39;s type. " alt="" coords="55,79,189,104"/>
-<area shape="rect" id="node3" href="$model-attribute_8h.html" title="File containing the definition of the attributes (as defined by the model file) " alt="" coords="44,152,201,177"/>
-<area shape="rect" id="node4" href="$model_8h.html" title="File containing the definition of the model parsed in the model file. " alt="" coords="70,225,174,251"/>
+<area shape="rect" id="node2" href="$model-type_8h.html" title="Contains the definition of an ModelType. " alt="" coords="55,79,189,104"/>
+<area shape="rect" id="node3" href="$model-attribute_8h.html" title="Contains the definition of the ModelAttribute. " alt="" coords="44,152,201,177"/>
+<area shape="rect" id="node4" href="$model_8h.html" title="Contains the definition of the Model parsed in the model file. " alt="" coords="70,225,174,251"/>
 <area shape="rect" id="node5" href="$core_8h.html" title="File containing the core that generates the solutions. " alt="" coords="5,372,90,397"/>
 <area shape="rect" id="node6" href="$output_8h.html" title="File containing the output functions and helpers. " alt="" coords="74,299,170,324"/>
 <area shape="rect" id="node7" href="$parsers_8h.html" title="File containing the example and model file parser. " alt="" coords="136,372,255,397"/>

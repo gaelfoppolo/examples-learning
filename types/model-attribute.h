@@ -3,27 +3,25 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- *	@brief File containing the definition of the attributes (as defined by the model file)
+ *	@brief Contains the definition of the ModelAttribute 
  */
 
 #ifndef _MODEL_ATTRIB_H_
 #define _MODEL_ATTRIB_H_
-
-#include <string.h>
 
 #include "model-type.h"
 
 /**
 *	@brief Contains the definition of an attribute and its type
 *
-*	Each attribute can be of 4 types (signed integer, enumeration item, tree node or leaf, relation)
-*	This structure contains the link between an attribute, its name and the type it holds (and 
+*	Each attribute can be of 4 types (integer interval, enumeration item, tree node or leaf and relation)
+*	This structure contains the link between an attribute's name and the type it holds (and 
 *	the boundaries of this type (bounds of the interval, possible values of the enumerations, etc...))
 */
 typedef struct ModelAttribute {
 	/** @brief The definition of the value this attribute can hold */
 	ModelType mt;
-	/** @brief The name of this attribute, as found in the model file */
+	/** @brief The name of this attribute, as found in the Model */
 	char* name;
 } ModelAttribute;
 

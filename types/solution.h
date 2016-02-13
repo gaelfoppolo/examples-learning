@@ -3,7 +3,7 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- *	@brief File containing the definition of the solution
+ *	@brief Contains the definition of the Solution
  */
 
 #ifndef _SOLUTION_H_
@@ -21,14 +21,14 @@ typedef struct Solution {
 } Solution;
 
 /**
-*	@brief Init the solution
-*	@param sol A pointer to the solution to init
+*	@brief Initilialize the Solution
+*	@param sol A pointer to the Solution to init
 */
 void initSolution(Solution* sol);
 
 /**
-*	@brief Free the solution previously initialized by initSolution
-*	@param sol A pointer to the solution to free
+*	@brief Free the Solution previously initialized by initSolution
+*	@param sol A pointer to the Solution to be freed
 */
 void freeSolution(Solution* sol);
 

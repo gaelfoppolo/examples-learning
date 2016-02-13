@@ -3,7 +3,7 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- *	@brief File containing the definition of an attribute's type
+ *	@brief Contains the definition of an ModelType
  */
 
 #ifndef _MODELTYPE_H_
@@ -15,7 +15,7 @@
 #include "tree.h"
 
 /**
-*   @brief Structure that contains the definition of the type
+*   @brief Structure that contains the type and the values of the attribute depending on type
 */
 typedef struct ModelType {
 	/** @brief The type contained */

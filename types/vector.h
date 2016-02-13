@@ -3,7 +3,7 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- *	@brief File containing the definition of the vectors (dynamic & generic arrays)
+ *	@brief Contains the definition of the vectors (dynamic & generic arrays)
  */
 
 #ifndef _VECTOR_H_
@@ -12,7 +12,7 @@
 #include <stdlib.h>
 
 /**
-*	@brief define a dynamic array
+*	@brief Define a dynamic and generic array
 *	@param t The type of the items to store in the vector
 *	size The actual size of the vector,
 *	capacity The size allocated in the memory
@@ -27,7 +27,7 @@
 
 /**
 *	@brief Free the vector
-*	@param vect The vector to be initialized
+*	@param vect The vector to be freed
 */
 #define vectFree(vect) free((vect).data)
 
@@ -35,7 +35,7 @@
 *	@brief Returns the element at a certain index of the array
 *	@param vect The vector of which to access the element
 *	@param index The index of the element (between 0 and vector size - 1)
-*	@return The element (directly. You can use this as a left value)
+*	@return The element. You can use this as a left value.
 */
 #define vectAt(vect, index) ((vect).data[(index)])
 

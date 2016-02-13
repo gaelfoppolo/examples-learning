@@ -3,7 +3,7 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- *	@brief File containing the definition of the String type and some tools to use it
+ *	@brief Contains the definition of the String
  */
 
 #ifndef _STRING_TYPE_H_

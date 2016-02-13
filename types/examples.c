@@ -3,7 +3,6 @@
  *	@author Bastien Philip (ebatsin)
  *  @author Gaël Foppolo (gaelfoppolo)
  *
- * @brief Functions used by the examples
  */
 
 #include "examples.h"
@@ -16,11 +15,11 @@ void initExamples(Examples* exps) {
 void freeExamples(Examples* exps) {
     if(!exps) return;
 
-    //first free the examples
+    //first free the all examples
     for(int i = 0; i < vectSize(exps->examples); ++i) {
 		freeExample(&vectAt(exps->examples, i), 0);
     }
-    //then free the counter-examples
+    //then free all counter-examples
     for(int i = 0; i < vectSize(exps->counterExamples); ++i) {
 		freeExample(&vectAt(exps->counterExamples, i), 0);
     }

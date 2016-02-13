@@ -3,7 +3,7 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- *	@brief File containing the definition of the attributes
+ *	@brief Contains the definition of the Attribute
  */
 
 #ifndef _ATTRIBUTE_H_

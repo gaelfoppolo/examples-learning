@@ -45,7 +45,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -101,21 +100,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>File containing the definition of the attributes (as defined by the model file)  
+<p>Contains the definition of the <a class="el" href="struct_model_attribute.html" title="Contains the definition of an attribute and its type. ">ModelAttribute</a>.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;string.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="model-type_8h_source.html">model-type.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="model-type_8h_source.html">model-type.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for model-attribute.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="model-attribute_8h__incl.png" border="0" usemap="#types_2model-attribute_8h" alt=""/></div>
 <map name="types_2model-attribute_8h" id="types_2model-attribute_8h">
-<area shape="rect" id="node3" href="model-type_8h.html" title="File containing the definition of an attribute&#39;s type. " alt="" coords="181,79,280,104"/>
-<area shape="rect" id="node4" href="attribute-types_8h.html" title="File containing the attribute&#39;s types definition. " alt="" coords="5,152,122,177"/>
-<area shape="rect" id="node5" href="interval_8h.html" title="File containing the definition of the interval type. " alt="" coords="146,152,222,177"/>
-<area shape="rect" id="node6" href="enum_8h.html" title="File containing the definition of the enumerations that can be used as types for the attributes..." alt="" coords="246,152,311,177"/>
-<area shape="rect" id="node9" href="tree_8h.html" title="File containing the definition of the trees. " alt="" coords="335,152,390,177"/>
-<area shape="rect" id="node7" href="vector_8h.html" title="File containing the definition of the vectors (dynamic &amp; generic arrays) " alt="" coords="244,225,312,251"/>
+<area shape="rect" id="node2" href="model-type_8h.html" title="Contains the definition of an ModelType. " alt="" coords="181,79,280,104"/>
+<area shape="rect" id="node3" href="attribute-types_8h.html" title="Contains the attribute&#39;s types definition In our model we have five attribute types: interval of inte..." alt="" coords="5,152,122,177"/>
+<area shape="rect" id="node4" href="interval_8h.html" title="Contains the definition of the Interval. " alt="" coords="146,152,222,177"/>
+<area shape="rect" id="node5" href="enum_8h.html" title="Contains the definition of the Enum and EnumType. " alt="" coords="246,152,311,177"/>
+<area shape="rect" id="node8" href="tree_8h.html" title="Contains the definition of our n&#45;ary Tree. " alt="" coords="335,152,390,177"/>
+<area shape="rect" id="node6" href="vector_8h.html" title="Contains the definition of the vectors (dynamic &amp; generic arrays) " alt="" coords="244,225,312,251"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -123,7 +121,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="model-attribute_8h__dep__incl.png" border="0" usemap="#types_2model-attribute_8hdep" alt=""/></div>
 <map name="types_2model-attribute_8hdep" id="types_2model-attribute_8hdep">
-<area shape="rect" id="node2" href="model_8h.html" title="File containing the definition of the model parsed in the model file. " alt="" coords="70,79,174,104"/>
+<area shape="rect" id="node2" href="model_8h.html" title="Contains the definition of the Model parsed in the model file. " alt="" coords="70,79,174,104"/>
 <area shape="rect" id="node3" href="core_8h.html" title="File containing the core that generates the solutions. " alt="" coords="5,225,90,251"/>
 <area shape="rect" id="node4" href="output_8h.html" title="File containing the output functions and helpers. " alt="" coords="74,152,170,177"/>
 <area shape="rect" id="node5" href="parsers_8h.html" title="File containing the example and model file parser. " alt="" coords="136,225,255,251"/>
@@ -151,7 +149,7 @@ Functions</h2></td></tr>
 <tr class="separator:aeccf8686b4feb95749f4f46f6c3c3720"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>File containing the definition of the attributes (as defined by the model file) </p>
+<div class="textblock"><p>Contains the definition of the <a class="el" href="struct_model_attribute.html" title="Contains the definition of an attribute and its type. ">ModelAttribute</a>. </p>
 <dl class="section author"><dt>Author</dt><dd>Bastien Philip (ebatsin) </dd>
 <dd>
 Gaël Foppolo (gaelfoppolo) </dd></dl>
@@ -167,7 +165,7 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
 </div><div class="memdoc">
 
 <p>Contains the definition of an attribute and its type. </p>
-<p>Each attribute can be of 4 types (signed integer, enumeration item, tree node or leaf, relation) This structure contains the link between an attribute, its name and the type it holds (and the boundaries of this type (bounds of the interval, possible values of the enumerations, etc...)) </p>
+<p>Each attribute can be of 4 types (integer interval, enumeration item, tree node or leaf and relation) This structure contains the link between an attribute's name and the type it holds (and the boundaries of this type (bounds of the interval, possible values of the enumerations, etc...)) </p>
 
 </div>
 </div>
@@ -204,7 +202,6 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
   </table>
   </dd>
 </dl>
-<p>Free the <a class="el" href="struct_model_attribute.html" title="Contains the definition of an attribute and its type. ">ModelAttribute</a>.</p>
 <dl class="section author"><dt>Author</dt><dd>Bastien Philip (ebatsin) </dd>
 <dd>
 Gaël Foppolo (gaelfoppolo) </dd></dl>
@@ -227,7 +224,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="model-attribute_8h_aeccf8686b4feb95749f4f46f6c3c3720_icgraph.png" border="0" usemap="#model-attribute_8h_aeccf8686b4feb95749f4f46f6c3c3720_icgraph" alt=""/></div>
 <map name="model-attribute_8h_aeccf8686b4feb95749f4f46f6c3c3720_icgraph" id="model-attribute_8h_aeccf8686b4feb95749f4f46f6c3c3720_icgraph">
-<area shape="rect" id="node2" href="model_8h.html#a28c8e3e18d329667f62b078d56aecdc5" title="Free the Model struct created while parsing the config file. " alt="" coords="184,5,264,31"/>
+<area shape="rect" id="node2" href="model_8h.html#a28c8e3e18d329667f62b078d56aecdc5" title="Free the Model structure (created while parsing the config file) " alt="" coords="184,5,264,31"/>
 </map>
 </div>
 </p>

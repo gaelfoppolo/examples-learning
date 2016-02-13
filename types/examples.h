@@ -3,7 +3,7 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- *	@brief File containing the definition of the examples (the all example file content)
+ *	@brief Contains the definition of the Examples
  */
 
 #ifndef _EXAMPLES_H_
@@ -25,7 +25,7 @@ typedef struct Examples {
 } Examples;
 
 /**
-*	@brief Init the Examples structure
+*	@brief Initialize the Examples structure
 *	@param exps A pointer to the Examples structure to be initialized
 */
 void initExamples(Examples* exps);

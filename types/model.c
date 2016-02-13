@@ -3,10 +3,27 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @brief Structure of our model - Implementation
  */
 
 #include "model.h"
+
+/**
+*	@brief NOT FOR USE - Used by getTreeStr - Recursively search in the tree to find the str that match the id.
+*	@param id The enum id to which the str is wanted
+*	@param t The root of the tree in which to search
+*
+*	@return Returns the str if found, NULL otherwise
+*/
+static char* __getTreeStr_rec(int id, Tree* t);
+
+/**
+*	@brief NOT FOR USE - Used by getTreeId - Recursively search in the tree to find the id that match the value's name.
+*	@param str The enum value to which the id is wanted
+*	@param t The root of the tree in which to search
+*
+*	@return Returns the id if found, -1 otherwise
+*/
+static int __getTreeId_rec(const char* str, Tree* t);
 
 void initModel(Model* mdl) {
 	vectInit(mdl->ma);
@@ -41,13 +58,6 @@ int getEnumId(const char* str, Model* mdl, unsigned int index) {
 	return -1;
 }
 
-/**
-*	@brief NOT FOR USE - Used by getTreeId - Recursively search in the tree to find the id that match the value's name.
-*	@param str The enum value to which the id is wanted
-*	@param t The root of the tree in which to search
-*
-*	@return Returns the id if found, -1 otherwise
-*/
 static int __getTreeId_rec(const char* str, Tree* t) {
 	if(t) {
 		if(strcmp(str, t->str) == 0) {
@@ -64,15 +74,6 @@ static int __getTreeId_rec(const char* str, Tree* t) {
 
 	return -1;
 }
-
-/**
-*	@brief NOT FOR USE - Used by getTreeStr - Recursively search in the tree to find the str that match the id.
-*	@param id The enum id to which the str is wanted
-*	@param t The root of the tree in which to search
-*
-*	@return Returns the str if found, NULL otherwise
-*/
-static char* __getTreeStr_rec(int id, Tree* t);
 
 int getTreeId(const char* str, Model* mdl, unsigned int index) {
 	return __getTreeId_rec(str, &vectAt(mdl->ma, index).mt.tree);

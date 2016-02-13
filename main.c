@@ -3,13 +3,10 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @brief Main
  */
 
-//#include <unistd.h>
-
 #include <getopt.h>
- #include <unistd.h>
+#include <unistd.h>
 
 #include "parser/parsers.h"
 #include "app/core.h"
@@ -123,7 +120,7 @@ int main(int argc, char **argv) {
 		genAllRelations(s, e, m);
 
 		if(!flagNoGeneralization) {
-			genGeneralisation(m, s);
+			gengeneralization(m, s);
 		}
 
 		if(!flagNoCounterExample) {
