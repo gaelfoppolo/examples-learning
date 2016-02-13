@@ -1,9 +1,9 @@
 <map id="types/model.h" name="types/model.h">
-<area shape="rect" id="node3" href="$model-attribute_8h.html" title="File containing the definition of the attributes (as defined by the model file) " alt="" coords="211,79,332,104"/>
-<area shape="rect" id="node8" href="$vector_8h.html" title="File containing the definition of the vectors (dynamic &amp; generic arrays) " alt="" coords="362,299,430,324"/>
-<area shape="rect" id="node4" href="$model-type_8h.html" title="File containing the definition of an attribute&#39;s type. " alt="" coords="225,152,323,177"/>
-<area shape="rect" id="node5" href="$attribute-types_8h.html" title="File containing the attribute&#39;s types definition. " alt="" coords="96,225,213,251"/>
-<area shape="rect" id="node6" href="$interval_8h.html" title="File containing the definition of the interval type. " alt="" coords="237,225,312,251"/>
-<area shape="rect" id="node7" href="$enum_8h.html" title="File containing the definition of the enumerations that can be used as types for the attributes..." alt="" coords="5,225,71,251"/>
-<area shape="rect" id="node10" href="$tree_8h.html" title="File containing the definition of the trees. " alt="" coords="336,225,391,251"/>
+<area shape="rect" id="node3" href="$model-attribute_8h.html" title="Contains the definition of the ModelAttribute. " alt="" coords="239,79,360,104"/>
+<area shape="rect" id="node8" href="$vector_8h.html" title="Contains the definition of the vectors (dynamic &amp; generic arrays) " alt="" coords="327,299,395,324"/>
+<area shape="rect" id="node4" href="$model-type_8h.html" title="Contains the definition of an ModelType. " alt="" coords="217,152,316,177"/>
+<area shape="rect" id="node5" href="$attribute-types_8h.html" title="Contains the attribute&#39;s types definition In our model we have five attribute types: interval of inte..." alt="" coords="88,225,205,251"/>
+<area shape="rect" id="node6" href="$interval_8h.html" title="Contains the definition of the Interval. " alt="" coords="229,225,304,251"/>
+<area shape="rect" id="node7" href="$enum_8h.html" title="Contains the definition of the Enum and EnumType. " alt="" coords="328,225,394,251"/>
+<area shape="rect" id="node10" href="$tree_8h.html" title="Contains the definition of our n&#45;ary Tree. " alt="" coords="8,225,63,251"/>
 </map>

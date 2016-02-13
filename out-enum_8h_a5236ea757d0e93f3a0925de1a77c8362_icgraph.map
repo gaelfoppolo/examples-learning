@@ -1,5 +1,5 @@
 <map id="freeOutEnum" name="freeOutEnum">
 <area shape="rect" id="node2" href="$out-attribute_8h.html#ae161fe222cc49ec48a76f7f77cf257ae" title="Free the OutAttribute. " alt="" coords="154,5,269,31"/>
-<area shape="rect" id="node3" href="$out-object_8h.html#a736b35159ce4fdcaca51d4c177bcf365" title="Free the outobject previously initialized by initOutObject. " alt="" coords="317,5,422,31"/>
-<area shape="rect" id="node4" href="$solution_8h.html#aad83f5210589d49565d05a63e8f05d34" title="Free the solution previously initialized by initSolution. " alt="" coords="470,5,562,31"/>
+<area shape="rect" id="node3" href="$out-object_8h.html#a736b35159ce4fdcaca51d4c177bcf365" title="Free the OutObject previously initialized by initOutObject. " alt="" coords="317,5,422,31"/>
+<area shape="rect" id="node4" href="$solution_8h.html#aad83f5210589d49565d05a63e8f05d34" title="Free the Solution previously initialized by initSolution. " alt="" coords="470,5,562,31"/>
 </map>

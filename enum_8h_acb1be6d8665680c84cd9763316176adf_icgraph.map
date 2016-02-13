@@ -1,5 +1,5 @@
 <map id="freeEnum" name="freeEnum">
 <area shape="rect" id="node2" href="$model-type_8h.html#ad4abcd53e26c93d68af7c0944d506fb9" title="Free the ModelType. " alt="" coords="132,5,242,31"/>
 <area shape="rect" id="node3" href="$model-attribute_8h.html#aeccf8686b4feb95749f4f46f6c3c3720" title="Free the ModelAttribute. " alt="" coords="290,5,420,31"/>
-<area shape="rect" id="node4" href="$model_8h.html#a28c8e3e18d329667f62b078d56aecdc5" title="Free the Model struct created while parsing the config file. " alt="" coords="468,5,549,31"/>
+<area shape="rect" id="node4" href="$model_8h.html#a28c8e3e18d329667f62b078d56aecdc5" title="Free the Model structure (created while parsing the config file) " alt="" coords="468,5,549,31"/>
 </map>

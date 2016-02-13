@@ -45,7 +45,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -102,7 +101,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>File containing the definition of the trees.  
+<p>Contains the definition of our n-ary <a class="el" href="struct_tree.html" title="Defines the n-ary tree. ">Tree</a>.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="vector_8h_source.html">vector.h</a>&quot;</code><br />
@@ -111,7 +110,7 @@ Include dependency graph for tree.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="tree_8h__incl.png" border="0" usemap="#types_2tree_8h" alt=""/></div>
 <map name="types_2tree_8h" id="types_2tree_8h">
-<area shape="rect" id="node3" href="vector_8h.html" title="File containing the definition of the vectors (dynamic &amp; generic arrays) " alt="" coords="90,79,158,104"/>
+<area shape="rect" id="node3" href="vector_8h.html" title="Contains the definition of the vectors (dynamic &amp; generic arrays) " alt="" coords="90,79,158,104"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -119,9 +118,9 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="tree_8h__dep__incl.png" border="0" usemap="#types_2tree_8hdep" alt=""/></div>
 <map name="types_2tree_8hdep" id="types_2tree_8hdep">
-<area shape="rect" id="node2" href="model-type_8h.html" title="File containing the definition of an attribute&#39;s type. " alt="" coords="55,79,189,104"/>
-<area shape="rect" id="node3" href="model-attribute_8h.html" title="File containing the definition of the attributes (as defined by the model file) " alt="" coords="44,152,201,177"/>
-<area shape="rect" id="node4" href="model_8h.html" title="File containing the definition of the model parsed in the model file. " alt="" coords="70,225,174,251"/>
+<area shape="rect" id="node2" href="model-type_8h.html" title="Contains the definition of an ModelType. " alt="" coords="55,79,189,104"/>
+<area shape="rect" id="node3" href="model-attribute_8h.html" title="Contains the definition of the ModelAttribute. " alt="" coords="44,152,201,177"/>
+<area shape="rect" id="node4" href="model_8h.html" title="Contains the definition of the Model parsed in the model file. " alt="" coords="70,225,174,251"/>
 <area shape="rect" id="node5" href="core_8h.html" title="File containing the core that generates the solutions. " alt="" coords="5,372,90,397"/>
 <area shape="rect" id="node6" href="output_8h.html" title="File containing the output functions and helpers. " alt="" coords="74,299,170,324"/>
 <area shape="rect" id="node7" href="parsers_8h.html" title="File containing the example and model file parser. " alt="" coords="136,372,255,397"/>
@@ -133,7 +132,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_tree.html">Tree</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the trees.  <a href="struct_tree.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the n-ary tree.  <a href="struct_tree.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -147,7 +146,7 @@ Macros</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:a3f28c654bbd2757691fc74e8cb9822c4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3f28c654bbd2757691fc74e8cb9822c4"></a>
 typedef struct <a class="el" href="struct_tree.html">Tree</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tree_8h.html#a3f28c654bbd2757691fc74e8cb9822c4">Tree</a></td></tr>
-<tr class="memdesc:a3f28c654bbd2757691fc74e8cb9822c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the trees. <br /></td></tr>
+<tr class="memdesc:a3f28c654bbd2757691fc74e8cb9822c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the n-ary tree. <br /></td></tr>
 <tr class="separator:a3f28c654bbd2757691fc74e8cb9822c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -176,12 +175,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a69fb3a3292bd8c145020d0fe58af26ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tree_8h.html#a69fb3a3292bd8c145020d0fe58af26ba">freeTree</a> (<a class="el" href="struct_tree.html">Tree</a> *t)</td></tr>
 <tr class="memdesc:a69fb3a3292bd8c145020d0fe58af26ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the tree.  <a href="#a69fb3a3292bd8c145020d0fe58af26ba">More...</a><br /></td></tr>
 <tr class="separator:a69fb3a3292bd8c145020d0fe58af26ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aed4cdf57876742bde219808b5c6c52ab"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tree_8h.html#aed4cdf57876742bde219808b5c6c52ab">isTreeIncludeInAnother</a> (<a class="el" href="struct_tree.html">Tree</a> *t, int node1, int node2)</td></tr>
-<tr class="memdesc:aed4cdf57876742bde219808b5c6c52ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is node1 include in node2?  <a href="#aed4cdf57876742bde219808b5c6c52ab">More...</a><br /></td></tr>
-<tr class="separator:aed4cdf57876742bde219808b5c6c52ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2df5c91fbfd0e35e44c9ff47e81b743a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="tree_8h.html#a2df5c91fbfd0e35e44c9ff47e81b743a">isNodeDepthSameOrSmaller</a> (<a class="el" href="struct_tree.html">Tree</a> *t, int node1, int node2)</td></tr>
+<tr class="memdesc:a2df5c91fbfd0e35e44c9ff47e81b743a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Is node1 have same or smaller depth that node2?  <a href="#a2df5c91fbfd0e35e44c9ff47e81b743a">More...</a><br /></td></tr>
+<tr class="separator:a2df5c91fbfd0e35e44c9ff47e81b743a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>File containing the definition of the trees. </p>
+<div class="textblock"><p>Contains the definition of our n-ary <a class="el" href="struct_tree.html" title="Defines the n-ary tree. ">Tree</a>. </p>
 <dl class="section author"><dt>Author</dt><dd>Bastien Philip (ebatsin) </dd>
 <dd>
 Gaël Foppolo (gaelfoppolo) </dd></dl>
@@ -263,15 +262,11 @@ Here is the caller graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">id</td><td>The value to store in the leaf </td></tr>
-    <tr><td class="paramname">str</td><td><a class="el" href="struct_string.html" title="Dynamic string handler. ">String</a> that represents the real name of what is stored</td></tr>
+    <tr><td class="paramname">str</td><td>String that represents the real name of what is stored</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A new leaf</dd></dl>
-<p>Create a new leaf.</p>
-<dl class="section author"><dt>Author</dt><dd>Gaël Foppolo (gaelfoppolo) </dd>
-<dd>
-Bastien Philip (ebatsin) </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A new leaf </dd></dl>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -370,9 +365,9 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="tree_8h_a8e8d3bc70508ca9f8e5fef6b67487e26_icgraph.png" border="0" usemap="#tree_8h_a8e8d3bc70508ca9f8e5fef6b67487e26_icgraph" alt=""/></div>
 <map name="tree_8h_a8e8d3bc70508ca9f8e5fef6b67487e26_icgraph" id="tree_8h_a8e8d3bc70508ca9f8e5fef6b67487e26_icgraph">
-<area shape="rect" id="node2" href="tree_8h.html#aed4cdf57876742bde219808b5c6c52ab" title="Is node1 include in node2? " alt="" coords="108,5,267,31"/>
-<area shape="rect" id="node3" href="core_8h.html#a3da4e590b8af46295808a6d1913cead0" title="Is oo1 include in oo2? " alt="" coords="315,5,507,31"/>
-<area shape="rect" id="node4" href="core_8h.html#aee07517bfdd45b5f9bed27a2d2653010" title="Generalisation of our solution(s) " alt="" coords="555,5,684,31"/>
+<area shape="rect" id="node2" href="tree_8h.html#a2df5c91fbfd0e35e44c9ff47e81b743a" title="Is node1 have same or smaller depth that node2? " alt="" coords="108,5,301,31"/>
+<area shape="rect" id="node3" href="core_8h.html#a3da4e590b8af46295808a6d1913cead0" title="Is oo1 include in oo2? " alt="" coords="349,5,541,31"/>
+<area shape="rect" id="node4" href="core_8h.html#a81fac814f234c2adcf67afdaa85f4d99" title="generalization of our solution(s) " alt="" coords="589,5,716,31"/>
 </map>
 </div>
 </p>
@@ -412,7 +407,7 @@ Here is the caller graph for this function:</div>
 <area shape="rect" id="node4" href="parsers_8h.html#a986cbbf2bc6509e1217346c2e1adaad2" title="Tries to parse the line as a config file attribute definition. If the line is empty, continues to read until it finds a line. " alt="" coords="482,5,601,31"/>
 <area shape="rect" id="node5" href="parsers_8h.html#aba6c3205292b2157b07d26db9753f366" title="Loads the config file given anf the generate the Model object that represents its content..." alt="" coords="649,5,755,31"/>
 <area shape="rect" id="node7" href="model-attribute_8h.html#aeccf8686b4feb95749f4f46f6c3c3720" title="Free the ModelAttribute. " alt="" coords="304,55,434,80"/>
-<area shape="rect" id="node8" href="model_8h.html#a28c8e3e18d329667f62b078d56aecdc5" title="Free the Model struct created while parsing the config file. " alt="" coords="501,55,582,80"/>
+<area shape="rect" id="node8" href="model_8h.html#a28c8e3e18d329667f62b078d56aecdc5" title="Free the Model structure (created while parsing the config file) " alt="" coords="501,55,582,80"/>
 </map>
 </div>
 </p>
@@ -475,7 +470,7 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns 1 if the parameter is a leaf, 0 otherwise </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>1, if the parameter is a leaf, 0 otherwise </dd></dl>
 
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -489,12 +484,12 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a class="anchor" id="aed4cdf57876742bde219808b5c6c52ab"></a>
+<a class="anchor" id="a2df5c91fbfd0e35e44c9ff47e81b743a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int isTreeIncludeInAnother </td>
+          <td class="memname">int isNodeDepthSameOrSmaller </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_tree.html">Tree</a> *&#160;</td>
           <td class="paramname"><em>t</em>, </td>
@@ -519,24 +514,23 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Is node1 include in node2? </p>
+<p>Is node1 have same or smaller depth that node2? </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">t</td><td>Pointer to <a class="el" href="struct_tree.html" title="Defines the trees. ">Tree</a> </td></tr>
+    <tr><td class="paramname">t</td><td>Pointer to <a class="el" href="struct_tree.html" title="Defines the n-ary tree. ">Tree</a> </td></tr>
     <tr><td class="paramname">node1</td><td>First node </td></tr>
     <tr><td class="paramname">node2</td><td>Second node</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>1: node1 include in node2, else 0</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>change the name and the description of this function. Don't do what the description says ! </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>1, if node1 have same or smaller depth, 0 otherwise </dd></dl>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="tree_8h_aed4cdf57876742bde219808b5c6c52ab_cgraph.png" border="0" usemap="#tree_8h_aed4cdf57876742bde219808b5c6c52ab_cgraph" alt=""/></div>
-<map name="tree_8h_aed4cdf57876742bde219808b5c6c52ab_cgraph" id="tree_8h_aed4cdf57876742bde219808b5c6c52ab_cgraph">
-<area shape="rect" id="node2" href="tree_8h.html#a8e8d3bc70508ca9f8e5fef6b67487e26" title="Get the depth of a node in the tree. " alt="" coords="212,5,267,31"/>
+<div class="center"><img src="tree_8h_a2df5c91fbfd0e35e44c9ff47e81b743a_cgraph.png" border="0" usemap="#tree_8h_a2df5c91fbfd0e35e44c9ff47e81b743a_cgraph" alt=""/></div>
+<map name="tree_8h_a2df5c91fbfd0e35e44c9ff47e81b743a_cgraph" id="tree_8h_a2df5c91fbfd0e35e44c9ff47e81b743a_cgraph">
+<area shape="rect" id="node2" href="tree_8h.html#a8e8d3bc70508ca9f8e5fef6b67487e26" title="Get the depth of a node in the tree. " alt="" coords="247,5,301,31"/>
 </map>
 </div>
 </p>
@@ -544,10 +538,10 @@ Here is the call graph for this function:</div>
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="tree_8h_aed4cdf57876742bde219808b5c6c52ab_icgraph.png" border="0" usemap="#tree_8h_aed4cdf57876742bde219808b5c6c52ab_icgraph" alt=""/></div>
-<map name="tree_8h_aed4cdf57876742bde219808b5c6c52ab_icgraph" id="tree_8h_aed4cdf57876742bde219808b5c6c52ab_icgraph">
-<area shape="rect" id="node2" href="core_8h.html#a3da4e590b8af46295808a6d1913cead0" title="Is oo1 include in oo2? " alt="" coords="212,5,404,31"/>
-<area shape="rect" id="node3" href="core_8h.html#aee07517bfdd45b5f9bed27a2d2653010" title="Generalisation of our solution(s) " alt="" coords="452,5,581,31"/>
+<div class="center"><img src="tree_8h_a2df5c91fbfd0e35e44c9ff47e81b743a_icgraph.png" border="0" usemap="#tree_8h_a2df5c91fbfd0e35e44c9ff47e81b743a_icgraph" alt=""/></div>
+<map name="tree_8h_a2df5c91fbfd0e35e44c9ff47e81b743a_icgraph" id="tree_8h_a2df5c91fbfd0e35e44c9ff47e81b743a_icgraph">
+<area shape="rect" id="node2" href="core_8h.html#a3da4e590b8af46295808a6d1913cead0" title="Is oo1 include in oo2? " alt="" coords="247,5,438,31"/>
+<area shape="rect" id="node3" href="core_8h.html#a81fac814f234c2adcf67afdaa85f4d99" title="generalization of our solution(s) " alt="" coords="486,5,613,31"/>
 </map>
 </div>
 </p>

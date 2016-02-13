@@ -1,4 +1,4 @@
 <map id="freeOutAttribute" name="freeOutAttribute">
-<area shape="rect" id="node2" href="$out-object_8h.html#a736b35159ce4fdcaca51d4c177bcf365" title="Free the outobject previously initialized by initOutObject. " alt="" coords="169,5,273,31"/>
-<area shape="rect" id="node3" href="$solution_8h.html#aad83f5210589d49565d05a63e8f05d34" title="Free the solution previously initialized by initSolution. " alt="" coords="321,5,414,31"/>
+<area shape="rect" id="node2" href="$out-object_8h.html#a736b35159ce4fdcaca51d4c177bcf365" title="Free the OutObject previously initialized by initOutObject. " alt="" coords="169,5,273,31"/>
+<area shape="rect" id="node3" href="$solution_8h.html#aad83f5210589d49565d05a63e8f05d34" title="Free the Solution previously initialized by initSolution. " alt="" coords="321,5,414,31"/>
 </map>

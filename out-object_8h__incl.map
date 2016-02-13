@@ -1,7 +1,7 @@
 <map id="types/out&#45;object.h" name="types/out&#45;object.h">
-<area shape="rect" id="node2" href="$out-attribute_8h.html" title="File containing the definition of the out&#45;attributes. " alt="" coords="132,79,236,104"/>
-<area shape="rect" id="node3" href="$attribute-types_8h.html" title="File containing the attribute&#39;s types definition. " alt="" coords="5,152,122,177"/>
-<area shape="rect" id="node4" href="$interval_8h.html" title="File containing the definition of the interval type. " alt="" coords="146,152,222,177"/>
-<area shape="rect" id="node5" href="$out-enum_8h.html" title="File containing the definition of the enumeration extracts. " alt="" coords="246,152,335,177"/>
-<area shape="rect" id="node6" href="$vector_8h.html" title="File containing the definition of the vectors (dynamic &amp; generic arrays) " alt="" coords="256,225,324,251"/>
+<area shape="rect" id="node2" href="$out-attribute_8h.html" title="Contains the definition of the OutAttribute. " alt="" coords="132,79,236,104"/>
+<area shape="rect" id="node3" href="$attribute-types_8h.html" title="Contains the attribute&#39;s types definition In our model we have five attribute types: interval of inte..." alt="" coords="5,152,122,177"/>
+<area shape="rect" id="node4" href="$interval_8h.html" title="Contains the definition of the Interval. " alt="" coords="146,152,222,177"/>
+<area shape="rect" id="node5" href="$out-enum_8h.html" title="Containins the definition of the OutEnum. " alt="" coords="246,152,335,177"/>
+<area shape="rect" id="node6" href="$vector_8h.html" title="Contains the definition of the vectors (dynamic &amp; generic arrays) " alt="" coords="256,225,324,251"/>
 </map>

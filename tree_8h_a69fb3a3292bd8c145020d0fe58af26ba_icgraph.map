@@ -5,5 +5,5 @@
 <area shape="rect" id="node4" href="$parsers_8h.html#a986cbbf2bc6509e1217346c2e1adaad2" title="Tries to parse the line as a config file attribute definition. If the line is empty, continues to read until it finds a line. " alt="" coords="482,5,601,31"/>
 <area shape="rect" id="node5" href="$parsers_8h.html#aba6c3205292b2157b07d26db9753f366" title="Loads the config file given anf the generate the Model object that represents its content..." alt="" coords="649,5,755,31"/>
 <area shape="rect" id="node7" href="$model-attribute_8h.html#aeccf8686b4feb95749f4f46f6c3c3720" title="Free the ModelAttribute. " alt="" coords="304,55,434,80"/>
-<area shape="rect" id="node8" href="$model_8h.html#a28c8e3e18d329667f62b078d56aecdc5" title="Free the Model struct created while parsing the config file. " alt="" coords="501,55,582,80"/>
+<area shape="rect" id="node8" href="$model_8h.html#a28c8e3e18d329667f62b078d56aecdc5" title="Free the Model structure (created while parsing the config file) " alt="" coords="501,55,582,80"/>
 </map>

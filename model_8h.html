@@ -45,7 +45,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -101,7 +100,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>File containing the definition of the model parsed in the model file.  
+<p>Contains the definition of the <a class="el" href="struct_model.html" title="Contains the attributes and relations definitions found in the model file. ">Model</a> parsed in the model file.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;string.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="model-attribute_8h_source.html">model-attribute.h</a>&quot;</code><br />
@@ -111,13 +110,13 @@ Include dependency graph for model.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="model_8h__incl.png" border="0" usemap="#types_2model_8h" alt=""/></div>
 <map name="types_2model_8h" id="types_2model_8h">
-<area shape="rect" id="node3" href="model-attribute_8h.html" title="File containing the definition of the attributes (as defined by the model file) " alt="" coords="211,79,332,104"/>
-<area shape="rect" id="node8" href="vector_8h.html" title="File containing the definition of the vectors (dynamic &amp; generic arrays) " alt="" coords="362,299,430,324"/>
-<area shape="rect" id="node4" href="model-type_8h.html" title="File containing the definition of an attribute&#39;s type. " alt="" coords="225,152,323,177"/>
-<area shape="rect" id="node5" href="attribute-types_8h.html" title="File containing the attribute&#39;s types definition. " alt="" coords="96,225,213,251"/>
-<area shape="rect" id="node6" href="interval_8h.html" title="File containing the definition of the interval type. " alt="" coords="237,225,312,251"/>
-<area shape="rect" id="node7" href="enum_8h.html" title="File containing the definition of the enumerations that can be used as types for the attributes..." alt="" coords="5,225,71,251"/>
-<area shape="rect" id="node10" href="tree_8h.html" title="File containing the definition of the trees. " alt="" coords="336,225,391,251"/>
+<area shape="rect" id="node3" href="model-attribute_8h.html" title="Contains the definition of the ModelAttribute. " alt="" coords="239,79,360,104"/>
+<area shape="rect" id="node8" href="vector_8h.html" title="Contains the definition of the vectors (dynamic &amp; generic arrays) " alt="" coords="327,299,395,324"/>
+<area shape="rect" id="node4" href="model-type_8h.html" title="Contains the definition of an ModelType. " alt="" coords="217,152,316,177"/>
+<area shape="rect" id="node5" href="attribute-types_8h.html" title="Contains the attribute&#39;s types definition In our model we have five attribute types: interval of inte..." alt="" coords="88,225,205,251"/>
+<area shape="rect" id="node6" href="interval_8h.html" title="Contains the definition of the Interval. " alt="" coords="229,225,304,251"/>
+<area shape="rect" id="node7" href="enum_8h.html" title="Contains the definition of the Enum and EnumType. " alt="" coords="328,225,394,251"/>
+<area shape="rect" id="node10" href="tree_8h.html" title="Contains the definition of our n&#45;ary Tree. " alt="" coords="8,225,63,251"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -149,10 +148,10 @@ typedef struct <a class="el" href="struct_model.html">Model</a>&#160;</td><td cl
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a52aa847aa4b7f097bd20a50fe7c1fda0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="model_8h.html#a52aa847aa4b7f097bd20a50fe7c1fda0">initModel</a> (<a class="el" href="struct_model.html">Model</a> *mdl)</td></tr>
-<tr class="memdesc:a52aa847aa4b7f097bd20a50fe7c1fda0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init the model.  <a href="#a52aa847aa4b7f097bd20a50fe7c1fda0">More...</a><br /></td></tr>
+<tr class="memdesc:a52aa847aa4b7f097bd20a50fe7c1fda0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the <a class="el" href="struct_model.html" title="Contains the attributes and relations definitions found in the model file. ">Model</a>.  <a href="#a52aa847aa4b7f097bd20a50fe7c1fda0">More...</a><br /></td></tr>
 <tr class="separator:a52aa847aa4b7f097bd20a50fe7c1fda0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28c8e3e18d329667f62b078d56aecdc5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="model_8h.html#a28c8e3e18d329667f62b078d56aecdc5">freeModel</a> (<a class="el" href="struct_model.html">Model</a> *mdl)</td></tr>
-<tr class="memdesc:a28c8e3e18d329667f62b078d56aecdc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the <a class="el" href="struct_model.html" title="Contains the attributes and relations definitions found in the model file. ">Model</a> struct created while parsing the config file.  <a href="#a28c8e3e18d329667f62b078d56aecdc5">More...</a><br /></td></tr>
+<tr class="memdesc:a28c8e3e18d329667f62b078d56aecdc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the <a class="el" href="struct_model.html" title="Contains the attributes and relations definitions found in the model file. ">Model</a> structure (created while parsing the config file)  <a href="#a28c8e3e18d329667f62b078d56aecdc5">More...</a><br /></td></tr>
 <tr class="separator:a28c8e3e18d329667f62b078d56aecdc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6000e5ddc7edc9303eddc0cf9d66bd8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="model_8h.html#ae6000e5ddc7edc9303eddc0cf9d66bd8">getEnumId</a> (const char *str, <a class="el" href="struct_model.html">Model</a> *mdl, unsigned int index)</td></tr>
 <tr class="memdesc:ae6000e5ddc7edc9303eddc0cf9d66bd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the identifier of the enumeration item whose name is given as a parameter.  <a href="#ae6000e5ddc7edc9303eddc0cf9d66bd8">More...</a><br /></td></tr>
@@ -168,7 +167,7 @@ Functions</h2></td></tr>
 <tr class="separator:ad719724c67e1a12807c683e766e9acc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>File containing the definition of the model parsed in the model file. </p>
+<div class="textblock"><p>Contains the definition of the <a class="el" href="struct_model.html" title="Contains the attributes and relations definitions found in the model file. ">Model</a> parsed in the model file. </p>
 <dl class="section author"><dt>Author</dt><dd>Bastien Philip (ebatsin) </dd>
 <dd>
 Gaël Foppolo (gaelfoppolo) </dd></dl>
@@ -187,10 +186,10 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Free the <a class="el" href="struct_model.html" title="Contains the attributes and relations definitions found in the model file. ">Model</a> struct created while parsing the config file. </p>
+<p>Free the <a class="el" href="struct_model.html" title="Contains the attributes and relations definitions found in the model file. ">Model</a> structure (created while parsing the config file) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">mdl</td><td>The <a class="el" href="struct_model.html" title="Contains the attributes and relations definitions found in the model file. ">Model</a> struct to free </td></tr>
+    <tr><td class="paramname">mdl</td><td>A pointer to the <a class="el" href="struct_model.html" title="Contains the attributes and relations definitions found in the model file. ">Model</a> to be freed </td></tr>
   </table>
   </dd>
 </dl>
@@ -245,8 +244,8 @@ Here is the call graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">str</td><td>The enumeration item's name of which the identifier is needed </td></tr>
-    <tr><td class="paramname">mdl</td><td>The model </td></tr>
-    <tr><td class="paramname">index</td><td>The index of the attribute in the model</td></tr>
+    <tr><td class="paramname">mdl</td><td>The <a class="el" href="struct_model.html" title="Contains the attributes and relations definitions found in the model file. ">Model</a> </td></tr>
+    <tr><td class="paramname">index</td><td>The index of the <a class="el" href="struct_model_attribute.html" title="Contains the definition of an attribute and its type. ">ModelAttribute</a> in the <a class="el" href="struct_model.html" title="Contains the attributes and relations definitions found in the model file. ">Model</a></td></tr>
   </table>
   </dd>
 </dl>
@@ -301,8 +300,8 @@ Here is the caller graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">id</td><td>The enumeration item's identifier of which the name is needed </td></tr>
-    <tr><td class="paramname">mdl</td><td>The model </td></tr>
-    <tr><td class="paramname">index</td><td>The index of the attribute in the model</td></tr>
+    <tr><td class="paramname">mdl</td><td>The <a class="el" href="struct_model.html" title="Contains the attributes and relations definitions found in the model file. ">Model</a> </td></tr>
+    <tr><td class="paramname">index</td><td>The index of the <a class="el" href="struct_model_attribute.html" title="Contains the definition of an attribute and its type. ">ModelAttribute</a> in the model</td></tr>
   </table>
   </dd>
 </dl>
@@ -354,8 +353,8 @@ Here is the caller graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">str</td><td>The node or leaf name of which the identifier is needed </td></tr>
-    <tr><td class="paramname">mdl</td><td>The model </td></tr>
-    <tr><td class="paramname">index</td><td>The index of the attribute in the model</td></tr>
+    <tr><td class="paramname">mdl</td><td>The <a class="el" href="struct_model.html" title="Contains the attributes and relations definitions found in the model file. ">Model</a> </td></tr>
+    <tr><td class="paramname">index</td><td>The index of the <a class="el" href="struct_model_attribute.html" title="Contains the definition of an attribute and its type. ">ModelAttribute</a> in the <a class="el" href="struct_model.html" title="Contains the attributes and relations definitions found in the model file. ">Model</a></td></tr>
   </table>
   </dd>
 </dl>
@@ -410,8 +409,8 @@ Here is the caller graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">id</td><td>The node or leaf identifier of which the name is needed </td></tr>
-    <tr><td class="paramname">mdl</td><td>The model </td></tr>
-    <tr><td class="paramname">index</td><td>The index of the attribute in the model</td></tr>
+    <tr><td class="paramname">mdl</td><td>The <a class="el" href="struct_model.html" title="Contains the attributes and relations definitions found in the model file. ">Model</a> </td></tr>
+    <tr><td class="paramname">index</td><td>The index of the <a class="el" href="struct_model_attribute.html" title="Contains the definition of an attribute and its type. ">ModelAttribute</a> in the model</td></tr>
   </table>
   </dd>
 </dl>
@@ -443,17 +442,13 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Init the model. </p>
+<p>Initialize the <a class="el" href="struct_model.html" title="Contains the attributes and relations definitions found in the model file. ">Model</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">mdl</td><td>A pointer to the model to init</td></tr>
+    <tr><td class="paramname">mdl</td><td>A pointer to the <a class="el" href="struct_model.html" title="Contains the attributes and relations definitions found in the model file. ">Model</a> to init </td></tr>
   </table>
   </dd>
 </dl>
-<p>Init the model.</p>
-<dl class="section author"><dt>Author</dt><dd>Bastien Philip (ebatsin) </dd>
-<dd>
-Gaël Foppolo (gaelfoppolo) </dd></dl>
 
 </div>
 </div>

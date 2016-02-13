@@ -1,11 +1,11 @@
 <map id="types/interval.h" name="types/interval.h">
-<area shape="rect" id="node2" href="$model-type_8h.html" title="File containing the definition of an attribute&#39;s type. " alt="" coords="44,79,178,104"/>
-<area shape="rect" id="node8" href="$out-attribute_8h.html" title="File containing the definition of the out&#45;attributes. " alt="" coords="204,79,343,104"/>
-<area shape="rect" id="node3" href="$model-attribute_8h.html" title="File containing the definition of the attributes (as defined by the model file) " alt="" coords="31,152,188,177"/>
-<area shape="rect" id="node4" href="$model_8h.html" title="File containing the definition of the model parsed in the model file. " alt="" coords="58,225,162,251"/>
+<area shape="rect" id="node2" href="$model-type_8h.html" title="Contains the definition of an ModelType. " alt="" coords="44,79,178,104"/>
+<area shape="rect" id="node8" href="$out-attribute_8h.html" title="Contains the definition of the OutAttribute. " alt="" coords="204,79,343,104"/>
+<area shape="rect" id="node3" href="$model-attribute_8h.html" title="Contains the definition of the ModelAttribute. " alt="" coords="31,152,188,177"/>
+<area shape="rect" id="node4" href="$model_8h.html" title="Contains the definition of the Model parsed in the model file. " alt="" coords="58,225,162,251"/>
 <area shape="rect" id="node5" href="$core_8h.html" title="File containing the core that generates the solutions. " alt="" coords="153,372,237,397"/>
 <area shape="rect" id="node6" href="$output_8h.html" title="File containing the output functions and helpers. " alt="" coords="147,299,243,324"/>
 <area shape="rect" id="node7" href="$parsers_8h.html" title="File containing the example and model file parser. " alt="" coords="5,372,124,397"/>
-<area shape="rect" id="node9" href="$out-object_8h.html" title="File containing the definition of the out&#45;objects. Generated when combining multiple objects..." alt="" coords="212,152,338,177"/>
-<area shape="rect" id="node10" href="$solution_8h.html" title="File containing the definition of the solution. " alt="" coords="218,225,332,251"/>
+<area shape="rect" id="node9" href="$out-object_8h.html" title="Contains the definition of the OutObject. " alt="" coords="212,152,338,177"/>
+<area shape="rect" id="node10" href="$solution_8h.html" title="Contains the definition of the Solution. " alt="" coords="218,225,332,251"/>
 </map>
