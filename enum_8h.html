@@ -104,6 +104,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>File containing the definition of the enumerations that can be used as types for the attributes.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="vector_8h_source.html">vector.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for enum.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="enum_8h__incl.png" border="0" usemap="#types_2enum_8h" alt=""/></div>
+<map name="types_2enum_8h" id="types_2enum_8h">
+<area shape="rect" id="node2" href="vector_8h.html" title="File containing the definition of the vectors (dynamic &amp; generic arrays) " alt="" coords="22,79,90,104"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="enum_8h__dep__incl.png" border="0" usemap="#types_2enum_8hdep" alt=""/></div>
+<map name="types_2enum_8hdep" id="types_2enum_8hdep">
+<area shape="rect" id="node2" href="model-type_8h.html" title="File containing the definition of an attribute&#39;s type. " alt="" coords="55,79,189,104"/>
+<area shape="rect" id="node3" href="model-attribute_8h.html" title="File containing the definition of the attributes (as defined by the model file) " alt="" coords="44,152,201,177"/>
+<area shape="rect" id="node4" href="model_8h.html" title="File containing the definition of the model parsed in the model file. " alt="" coords="70,225,174,251"/>
+<area shape="rect" id="node5" href="core_8h.html" title="File containing the core that generates the solutions. " alt="" coords="5,372,90,397"/>
+<area shape="rect" id="node6" href="output_8h.html" title="File containing the output functions and helpers. " alt="" coords="74,299,170,324"/>
+<area shape="rect" id="node7" href="parsers_8h.html" title="File containing the example and model file parser. " alt="" coords="136,372,255,397"/>
+</map>
+</div>
 </div>
 <p><a href="enum_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -185,10 +206,32 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">enu</td><td>A pointer to the <a class="el" href="struct_enum.html" title="Structure that defines the enumeration type. ">Enum</a> to be freed </td></tr>
-    <tr><td class="paramname">freeItself</td><td>Boolean to know wether the <a class="el" href="struct_enum.html" title="Structure that defines the enumeration type. ">Enum</a> is to be freed or not </td></tr>
+    <tr><td class="paramname">freeItself</td><td>Boolean to know whether the <a class="el" href="struct_enum.html" title="Structure that defines the enumeration type. ">Enum</a> is to be freed or not </td></tr>
   </table>
   </dd>
 </dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="enum_8h_acb1be6d8665680c84cd9763316176adf_cgraph.png" border="0" usemap="#enum_8h_acb1be6d8665680c84cd9763316176adf_cgraph" alt=""/></div>
+<map name="enum_8h_acb1be6d8665680c84cd9763316176adf_cgraph" id="enum_8h_acb1be6d8665680c84cd9763316176adf_cgraph">
+<area shape="rect" id="node2" href="enum_8h.html#a16bc353f8d1f8f92dda83e1cf9108404" title="Free the EnumType. " alt="" coords="132,5,241,31"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="enum_8h_acb1be6d8665680c84cd9763316176adf_icgraph.png" border="0" usemap="#enum_8h_acb1be6d8665680c84cd9763316176adf_icgraph" alt=""/></div>
+<map name="enum_8h_acb1be6d8665680c84cd9763316176adf_icgraph" id="enum_8h_acb1be6d8665680c84cd9763316176adf_icgraph">
+<area shape="rect" id="node2" href="model-type_8h.html#ad4abcd53e26c93d68af7c0944d506fb9" title="Free the ModelType. " alt="" coords="132,5,242,31"/>
+<area shape="rect" id="node3" href="model-attribute_8h.html#aeccf8686b4feb95749f4f46f6c3c3720" title="Free the ModelAttribute. " alt="" coords="290,5,420,31"/>
+<area shape="rect" id="node4" href="model_8h.html#a28c8e3e18d329667f62b078d56aecdc5" title="Free the Model struct created while parsing the config file. " alt="" coords="468,5,549,31"/>
+</map>
+</div>
+</p>
 
 </div>
 </div>
@@ -220,7 +263,7 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">enuty</td><td>A pointer to the <a class="el" href="struct_enum_type.html" title="Structure that contains an item of the enumeration. ">EnumType</a> to be freed </td></tr>
-    <tr><td class="paramname">freeItself</td><td>Boolean to know wether the <a class="el" href="struct_enum_type.html" title="Structure that contains an item of the enumeration. ">EnumType</a> is to be freed or not</td></tr>
+    <tr><td class="paramname">freeItself</td><td>Boolean to know whether the <a class="el" href="struct_enum_type.html" title="Structure that contains an item of the enumeration. ">EnumType</a> is to be freed or not</td></tr>
   </table>
   </dd>
 </dl>
@@ -228,6 +271,19 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Bastien Philip (ebatsin) </dd>
 <dd>
 Gaël Foppolo (gaelfoppolo) </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="enum_8h_a16bc353f8d1f8f92dda83e1cf9108404_icgraph.png" border="0" usemap="#enum_8h_a16bc353f8d1f8f92dda83e1cf9108404_icgraph" alt=""/></div>
+<map name="enum_8h_a16bc353f8d1f8f92dda83e1cf9108404_icgraph" id="enum_8h_a16bc353f8d1f8f92dda83e1cf9108404_icgraph">
+<area shape="rect" id="node2" href="enum_8h.html#acb1be6d8665680c84cd9763316176adf" title="Free the Enum. " alt="" coords="161,5,241,31"/>
+<area shape="rect" id="node3" href="model-type_8h.html#ad4abcd53e26c93d68af7c0944d506fb9" title="Free the ModelType. " alt="" coords="289,5,398,31"/>
+<area shape="rect" id="node4" href="model-attribute_8h.html#aeccf8686b4feb95749f4f46f6c3c3720" title="Free the ModelAttribute. " alt="" coords="446,5,576,31"/>
+<area shape="rect" id="node5" href="model_8h.html#a28c8e3e18d329667f62b078d56aecdc5" title="Free the Model struct created while parsing the config file. " alt="" coords="624,5,705,31"/>
+</map>
+</div>
+</p>
 
 </div>
 </div>

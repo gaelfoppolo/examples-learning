@@ -104,6 +104,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>File containing the definition of the out-objects. Generated when combining multiple objects.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="out-attribute_8h_source.html">out-attribute.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for out-object.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="out-object_8h__incl.png" border="0" usemap="#types_2out-object_8h" alt=""/></div>
+<map name="types_2out-object_8h" id="types_2out-object_8h">
+<area shape="rect" id="node2" href="out-attribute_8h.html" title="File containing the definition of the out&#45;attributes. " alt="" coords="132,79,236,104"/>
+<area shape="rect" id="node3" href="attribute-types_8h.html" title="File containing the attribute&#39;s types definition. " alt="" coords="5,152,122,177"/>
+<area shape="rect" id="node4" href="interval_8h.html" title="File containing the definition of the interval type. " alt="" coords="146,152,222,177"/>
+<area shape="rect" id="node5" href="out-enum_8h.html" title="File containing the definition of the enumeration extracts. " alt="" coords="246,152,335,177"/>
+<area shape="rect" id="node6" href="vector_8h.html" title="File containing the definition of the vectors (dynamic &amp; generic arrays) " alt="" coords="256,225,324,251"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="out-object_8h__dep__incl.png" border="0" usemap="#types_2out-object_8hdep" alt=""/></div>
+<map name="types_2out-object_8hdep" id="types_2out-object_8hdep">
+<area shape="rect" id="node2" href="solution_8h.html" title="File containing the definition of the solution. " alt="" coords="33,79,147,104"/>
+<area shape="rect" id="node3" href="core_8h.html" title="File containing the core that generates the solutions. " alt="" coords="5,225,90,251"/>
+<area shape="rect" id="node4" href="output_8h.html" title="File containing the output functions and helpers. " alt="" coords="85,152,181,177"/>
+<area shape="rect" id="node5" href="parsers_8h.html" title="File containing the example and model file parser. " alt="" coords="114,225,232,251"/>
+</map>
+</div>
 </div>
 <p><a href="out-object_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -166,10 +189,31 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">oo</td><td>A pointer to the outobject to free </td></tr>
-    <tr><td class="paramname">freeItself</td><td>Boolean to know wether the <a class="el" href="struct_out_object.html" title="Contains all the attributes and relations that compose an outObject. ">OutObject</a> is to be freed or not </td></tr>
+    <tr><td class="paramname">freeItself</td><td>Boolean to know whether the <a class="el" href="struct_out_object.html" title="Contains all the attributes and relations that compose an outObject. ">OutObject</a> is to be freed or not </td></tr>
   </table>
   </dd>
 </dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="out-object_8h_a736b35159ce4fdcaca51d4c177bcf365_cgraph.png" border="0" usemap="#out-object_8h_a736b35159ce4fdcaca51d4c177bcf365_cgraph" alt=""/></div>
+<map name="out-object_8h_a736b35159ce4fdcaca51d4c177bcf365_cgraph" id="out-object_8h_a736b35159ce4fdcaca51d4c177bcf365_cgraph">
+<area shape="rect" id="node2" href="out-attribute_8h.html#ae161fe222cc49ec48a76f7f77cf257ae" title="Free the OutAttribute. " alt="" coords="158,5,273,31"/>
+<area shape="rect" id="node3" href="out-enum_8h.html#a5236ea757d0e93f3a0925de1a77c8362" title="Free the OutEnum previously initialized by initEnum. " alt="" coords="321,5,422,31"/>
+</map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="out-object_8h_a736b35159ce4fdcaca51d4c177bcf365_icgraph.png" border="0" usemap="#out-object_8h_a736b35159ce4fdcaca51d4c177bcf365_icgraph" alt=""/></div>
+<map name="out-object_8h_a736b35159ce4fdcaca51d4c177bcf365_icgraph" id="out-object_8h_a736b35159ce4fdcaca51d4c177bcf365_icgraph">
+<area shape="rect" id="node2" href="solution_8h.html#aad83f5210589d49565d05a63e8f05d34" title="Free the solution previously initialized by initSolution. " alt="" coords="158,5,250,31"/>
+</map>
+</div>
+</p>
 
 </div>
 </div>
@@ -207,6 +251,16 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>1 if the same, 0 else </dd></dl>
 
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="out-object_8h_a0747df77aa62226ca6a3a1d89ad9e5e1_icgraph.png" border="0" usemap="#out-object_8h_a0747df77aa62226ca6a3a1d89ad9e5e1_icgraph" alt=""/></div>
+<map name="out-object_8h_a0747df77aa62226ca6a3a1d89ad9e5e1_icgraph" id="out-object_8h_a0747df77aa62226ca6a3a1d89ad9e5e1_icgraph">
+<area shape="rect" id="node2" href="core_8h.html#aee07517bfdd45b5f9bed27a2d2653010" title="Generalisation of our solution(s) " alt="" coords="194,5,324,31"/>
+</map>
+</div>
+</p>
+
 </div>
 </div>
 <a class="anchor" id="a3f36943d8c7117b607f94e2c85dd41ec"></a>
@@ -234,6 +288,18 @@ Gaël Foppolo (gaelfoppolo) </dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Bastien Philip (ebatsin) </dd>
 <dd>
 Gaël Foppolo (gaelfoppolo) </dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="out-object_8h_a3f36943d8c7117b607f94e2c85dd41ec_icgraph.png" border="0" usemap="#out-object_8h_a3f36943d8c7117b607f94e2c85dd41ec_icgraph" alt=""/></div>
+<map name="out-object_8h_a3f36943d8c7117b607f94e2c85dd41ec_icgraph" id="out-object_8h_a3f36943d8c7117b607f94e2c85dd41ec_icgraph">
+<area shape="rect" id="node2" href="core_8h.html#a1ba94f71f2cfb59230e4fd6cef8aa855" title="Generate a filled OutObject based on an object values. " alt="" coords="152,5,315,31"/>
+<area shape="rect" id="node3" href="core_8h.html#af729f7ae41cb67a574cd44660e6e34d6" title="Init all combinaisons with last example objects. " alt="" coords="363,5,455,31"/>
+<area shape="rect" id="node4" href="core_8h.html#aa641061974fa139e923cec85be3de0e6" title="Generate all the combinations for our examples. " alt="" coords="503,5,600,31"/>
+</map>
+</div>
+</p>
 
 </div>
 </div>

@@ -1,0 +1,4 @@
+<map id="freeOutObject" name="freeOutObject">
+<area shape="rect" id="node2" href="$out-attribute_8h.html#ae161fe222cc49ec48a76f7f77cf257ae" title="Free the OutAttribute. " alt="" coords="158,5,273,31"/>
+<area shape="rect" id="node3" href="$out-enum_8h.html#a5236ea757d0e93f3a0925de1a77c8362" title="Free the OutEnum previously initialized by initEnum. " alt="" coords="321,5,422,31"/>
+</map>

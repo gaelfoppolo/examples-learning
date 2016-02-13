@@ -1,0 +1,11 @@
+<map id="isValidAttrChar" name="isValidAttrChar">
+<area shape="rect" id="node2" href="$parsers_8h.html#a15665e9aae62362f0948994136b44f8b" title="Tries to parse the attribute name at the current position in the file (spaces &amp; tabs are ommited) ..." alt="" coords="163,84,274,109"/>
+<area shape="rect" id="node3" href="$parsers_8h.html#aad08054ce5747601c351fa6965bb42c5" title="Parse an example or a counterexample. " alt="" coords="515,8,621,33"/>
+<area shape="rect" id="node5" href="$parsers_8h.html#a53ddbc56bfe6f0320f04e39432ccb776" title="Parse an object (only its properties. The name must already be known) " alt="" coords="322,33,467,59"/>
+<area shape="rect" id="node6" href="$parsers_8h.html#a986cbbf2bc6509e1217346c2e1adaad2" title="Tries to parse the line as a config file attribute definition. If the line is empty, continues to read until it finds a line. " alt="" coords="670,109,788,135"/>
+<area shape="rect" id="node8" href="$parsers_8h.html#ab456bb242016ec949b25498e0a506fad" title="Tries to parse an enumeration. " alt="" coords="325,135,464,160"/>
+<area shape="rect" id="node10" href="$parsers_8h.html#ab5b90eac71609ac27833b96da19fa57d" title="Tries to parse a tree. " alt="" coords="329,184,460,209"/>
+<area shape="rect" id="node4" href="$parsers_8h.html#aca92bb4f3796c5f7f336f681a06611d2" title="Loads the example file given and generate the Example object that represents its content. " alt="" coords="669,8,789,33"/>
+<area shape="rect" id="node7" href="$parsers_8h.html#aba6c3205292b2157b07d26db9753f366" title="Loads the config file given anf the generate the Model object that represents its content..." alt="" coords="837,109,944,135"/>
+<area shape="rect" id="node9" href="$parsers_8h.html#aa7a8052bc2ac6c4c70496e0b8f9ba458" title="Tries to parse the attribute&#39;s value definition at the current position in the file (may read more th..." alt="" coords="516,135,620,160"/>
+</map>

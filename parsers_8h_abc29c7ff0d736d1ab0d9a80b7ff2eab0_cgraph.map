@@ -1,0 +1,5 @@
+<map id="parseAttrTypeInterval" name="parseAttrTypeInterval">
+<area shape="rect" id="node2" href="$parsers_8h.html#a521906155e2c1df4118a98297d69bb2e" title="Reads a file from the current position and reads while characters are in the set. Stops on the last o..." alt="" coords="201,5,315,31"/>
+<area shape="rect" id="node3" href="$string-type_8h.html#ab9893f2c904ee5ff139589712c1284d1" title="Transforms a char* to a string. The char* MUST be a nul terminated array allocated with malloc..." alt="" coords="231,55,285,80"/>
+<area shape="rect" id="node4" href="$string-type_8h.html#ae28db08bad9d3c4511ab5241534a89c0" title="Create a perfect copy of the string given. Used when a malloc created string is needed. " alt="" coords="213,104,304,129"/>
+</map>
