@@ -269,6 +269,16 @@ void genCounterExamples(Model* m, Examples* e, Solution* s) {
 int isObjectInOutObject(Model* m, OutObject* oo, Object* o) {
 	int inside;
 	Tree* t;
+
+	// check if the same relations are declared
+	for(unsigned int i = 0; i < vectSize(o->relations); ++i) {
+		if((vectAt(o->relations, i).type == TYPE_RELATION && vectAt(oo->relations, i) == NULL) ||
+			(vectAt(o->relations, i).type == TYPE_NORELATION && vectAt(oo->relations, i))) {
+			return 0;
+		}
+	}
+
+	// check if the attributes are the same
 	for(unsigned int i = 0; i < vectSize(o->attributes); ++i) {
 		switch(vectAt(o->attributes, i).type) {
 			case TYPE_INT:
