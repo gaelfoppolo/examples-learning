@@ -1,5 +1,4 @@
 <map id="strPushStr" name="strPushStr">
-<area shape="rect" id="node2" href="$output_8h.html#a427d5958a1aae2fa9b0564cfdd253bfb" title="Returns a string that contains the representation of the object in a readable presentation. " alt="" coords="154,5,238,31"/>
-<area shape="rect" id="node3" href="$parsers_8h.html#a986cbbf2bc6509e1217346c2e1adaad2" title="Tries to parse the line as a config file attribute definition. If the line is empty, continues to read until it finds a line. " alt="" coords="137,55,255,80"/>
-<area shape="rect" id="node4" href="$parsers_8h.html#aba6c3205292b2157b07d26db9753f366" title="Loads the config file given anf the generate the Model object that represents its content..." alt="" coords="303,55,410,80"/>
+<area shape="rect" id="node2" href="$parsers_8h.html#a986cbbf2bc6509e1217346c2e1adaad2" title="Tries to parse the line as a config file attribute definition. If the line is empty, continues to read until it finds a line. " alt="" coords="137,5,253,32"/>
+<area shape="rect" id="node3" href="$parsers_8h.html#aba6c3205292b2157b07d26db9753f366" title="Loads the config file given anf the generate the Model object that represents its content..." alt="" coords="301,5,407,32"/>
 </map>
