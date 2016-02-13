@@ -55,4 +55,13 @@ void freeOutObject(OutObject* oo, int freeItself);
 */
 int haveSameRelations(OutObject* oo1, OutObject* oo2);
 
+
+/**
+*	@brief Check if one of the relations of @a oo is disabled, recursively
+*	@param oo The OutObject to check
+*
+*	@return Returns 1 if a relation is disabled, 0 otherwise
+*/
+int haveDisabledRelations(OutObject* oo);
+
 #endif // _OUTOBJECT_H_

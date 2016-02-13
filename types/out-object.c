@@ -40,3 +40,19 @@ int haveSameRelations(OutObject* oo1, OutObject* oo2) {
 
 	return (tmp == vectSize(oo1->relations)) ? 1 : 0;
 }
+
+int haveDisabledRelations(OutObject* oo) {
+	if(oo->disabled) {
+		return 1;
+	}
+	for(unsigned int i = 0; i < vectSize(oo->relations); ++i) {
+		if(vectAt(oo->relations, i)) {
+			if(haveDisabledRelations(vectAt(oo->relations, i))) {
+				oo->disabled = 1;
+				return 1;
+			}
+		}
+	}
+
+	return 0;
+}

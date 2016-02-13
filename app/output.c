@@ -49,7 +49,7 @@ static unsigned int __output_importance_level = 0;
 void genOutput(Solution* sol, Model* mdl) {
 
 	ModelAttribute ma;
-	OutObject oo, *ooo;
+	OutObject *oo, *ooo;
 	OutAttribute oa;
 	int attributeDisplayed = 0;
 	String toDisplay;
@@ -58,22 +58,27 @@ void genOutput(Solution* sol, Model* mdl) {
 	for(int i = 0; i < vectSize(sol->outobjects); ++i) {
 		
 		// get current OutObject
-		oo = vectAt(sol->outobjects, i);
+		oo = &vectAt(sol->outobjects, i);
+
+		// check all the relations of this OutObject. If one is disabled, the object is disabled
+		if(haveDisabledRelations(oo)) {
+			continue;
+		}
 
 		// OO is final (the most accurate)
-		if(oo.generalizeBy == NULL && !oo.disabled) {
+		if(oo->generalizeBy == NULL) {
 
 			// add name
-			output(L0, "%s%s: %s", SBPURPLE, oo.name, SDEFAULT);
+			output(L0, "%s%s: %s", SBPURPLE, oo->name, SDEFAULT);
 
 			// display attribute name & value
-			for (int j = 0; j < vectSize(oo.attributes); ++j) {
+			for (int j = 0; j < vectSize(oo->attributes); ++j) {
 
 				toDisplay = strInit(cPrint(""));
 
 				// get current model attribute data
 				ma = vectAt(mdl->ma, j);
-				oa = vectAt(oo.attributes, j);
+				oa = vectAt(oo->attributes, j);
 
 				// add attribute name
 				
@@ -136,13 +141,13 @@ void genOutput(Solution* sol, Model* mdl) {
 			}
 			
 			// display relations
-			for (int j = 0; j < vectSize(oo.relations); ++j) {
-				ooo = vectAt(oo.relations, j);
+			for (int j = 0; j < vectSize(oo->relations); ++j) {
+				ooo = vectAt(oo->relations, j);
 				if (ooo != NULL) {
 					while(ooo->generalizeBy != NULL) {
 					    ooo = ooo->generalizeBy;
 					}
-					if (j < vectSize(oo.relations)) output(L0, ", ");
+					if (j < vectSize(oo->relations)) output(L0, ", ");
 					output(L0, "%s%s%s", SBGREEN, vectAt(mdl->rel, j), SDEFAULT);
 					output(L0, "(%s%s%s) ", SBPURPLE, ooo->name, SDEFAULT);
 				}
