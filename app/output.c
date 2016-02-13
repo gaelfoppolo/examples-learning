@@ -106,7 +106,7 @@ void genOutput(Solution* sol, Model* mdl) {
 							attributeDisplayed = 0;
 						}	
 						break;
-					// attribute is a list
+					// attribute is an enum
 					case TYPE_ENUM:
 						if (vectSize(oa.oenu.oenu) != vectSize(vectAt(mdl->ma, j).mt.enu.enu)) {
 							for (int k = 0; k < vectSize(oa.oenu.oenu); ++k) {
