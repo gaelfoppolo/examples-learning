@@ -131,16 +131,31 @@ Solution* genAllCombi(Model* mdl, Examples* exp) {
 
 	// begin from next to last example to first one
 	for (int step = nbExamples-2; step >= 0; --step) {
+		
+		// step is the example index in the list of examples
+		// get the example at this step
 		e = &vectAt(exp->examples, step);
+		
+		// get the number of combinations to do at this step
+		// but because with start from the last examples
+		// we need to do this number of combinations x times
+		// else we fill only the begining of the array
 		fact = nbCombi(exp, step+1);
+
+		// get the number of combinations to do at next step (= previous example)
 		factNext = nbCombi(exp, step);
 
-		for (int i = 0; i < nbAllCombi/factNext; ++i) {			
+		// this loop is the x times mention above
+		for (int i = 0; i < nbAllCombi/factNext; ++i) {	
+
+			// then normal loop to combine Object and OutObject
 			// for all the object of that example
 			for (int j = 0; j < vectSize(e->objects); ++j) {
-				for (int k = 0; k < fact; ++k) {					
+
+				// and here our fact, calculate above
+				for (int k = 0; k < fact; ++k) {
+
 					// combi the OutObject with the current Object
-					// i*factNext+j*fact+k is our continuous bijection (homomorphism)
 					combiOutObjectObject(mdl, &vectAt(T->outobjects, i*factNext+j*fact+k), &vectAt(e->objects, j));
 				}
 			}			
@@ -195,6 +210,9 @@ void genAllRelations(Solution* s, Examples* e, Model* m) {
 }
 
 int getIndex(Examples* exp, ObjectIndex* oi) {
+
+	// translation of the formula, see function definition
+
 	int index = 0, inside, i;
 	for (i = 0; i <= vectSize(exp->examples)-2; ++i) {
 		inside = 1;

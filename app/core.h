@@ -71,7 +71,13 @@ Solution* genAllCombi(Model* mdl, Examples* exp);
 void genAllRelations(Solution* s, Examples* e, Model* m);
 
 /**
-*	@brief Get the index of the combinations of object in the array
+*	@brief Get the index in the array where the combinations of objects are stored<br/><br/>
+*	\f$n\f$: number of example-1<br/>
+*	\f$X_i\f$: index of the object in the example i<br/>
+*	\f$O_j\f$: number of objects in the example j<br/>
+*	And our continuous bijection (homomorphism) formula:<br/>
+*	\f$(\sum\limits_{i=0}^{n-1} (X_i*\prod\limits_{j=i+1}^{n} O_j))+X_n\f$
+*	
 *	@param exp Pointer to the examples
 *	@param oi Pointer to the objects's indexes
 * 
