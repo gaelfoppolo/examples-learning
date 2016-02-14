@@ -101,7 +101,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>File containing the output functions and helpers.  
+<p>Contains the output functions, helpers and functions to create and display human readable strings.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdarg.h&gt;</code><br />
@@ -180,7 +180,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:a80600ef2b7f1bd284a0c65a9fbff0e03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string that contains the representation of the object in a readable presentation.  <a href="#a80600ef2b7f1bd284a0c65a9fbff0e03">More...</a><br /></td></tr>
 <tr class="separator:a80600ef2b7f1bd284a0c65a9fbff0e03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2cf4b0c0da26fe5bf10f136a2b44fddd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="output_8h.html#a2cf4b0c0da26fe5bf10f136a2b44fddd">genObjectOutput</a> (<a class="el" href="struct_out_object.html">OutObject</a> *oo, <a class="el" href="struct_model.html">Model</a> *m, int recur)</td></tr>
-<tr class="memdesc:a2cf4b0c0da26fe5bf10f136a2b44fddd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print an object.  <a href="#a2cf4b0c0da26fe5bf10f136a2b44fddd">More...</a><br /></td></tr>
+<tr class="memdesc:a2cf4b0c0da26fe5bf10f136a2b44fddd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print an <a class="el" href="struct_out_object.html" title="Contains all the attributes and relations that compose an OutObject. ">OutObject</a>.  <a href="#a2cf4b0c0da26fe5bf10f136a2b44fddd">More...</a><br /></td></tr>
 <tr class="separator:a2cf4b0c0da26fe5bf10f136a2b44fddd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18edfce01cb4fee0416850fd6a0fab97"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="output_8h.html#a18edfce01cb4fee0416850fd6a0fab97">cPrint</a> (const char *fmt,...)</td></tr>
 <tr class="memdesc:a18edfce01cb4fee0416850fd6a0fab97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string that contains the formatted output by concatening all the arguments.  <a href="#a18edfce01cb4fee0416850fd6a0fab97">More...</a><br /></td></tr>
@@ -314,7 +314,7 @@ char *&#160;</td><td class="memItemRight" valign="bottom"><b>SBUWHITE</b></td></
 <tr class="separator:af949c8ae3ce637400fd6dc7944cfb2f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>File containing the output functions and helpers. </p>
+<div class="textblock"><p>Contains the output functions, helpers and functions to create and display human readable strings. </p>
 <dl class="section author"><dt>Author</dt><dd>Bastien Philip (ebatsin) </dd>
 <dd>
 Gaël Foppolo (gaelfoppolo) </dd></dl>
@@ -451,12 +451,12 @@ Here is the caller graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Print an object. </p>
+<p>Print an <a class="el" href="struct_out_object.html" title="Contains all the attributes and relations that compose an OutObject. ">OutObject</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">oo</td><td>The object to print </td></tr>
+    <tr><td class="paramname">oo</td><td>The <a class="el" href="struct_out_object.html" title="Contains all the attributes and relations that compose an OutObject. ">OutObject</a> to print </td></tr>
     <tr><td class="paramname">m</td><td>The model </td></tr>
-    <tr><td class="paramname">recur</td><td>-1 if no recursion is allowed (juste print name of object linked by relation), or the number of indentations </td></tr>
+    <tr><td class="paramname">recur</td><td>-1 if no recursion is allowed (juste print name of <a class="el" href="struct_out_object.html" title="Contains all the attributes and relations that compose an OutObject. ">OutObject</a> linked by relation), or the number of indentations </td></tr>
   </table>
   </dd>
 </dl>
@@ -533,7 +533,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="output_8h_a80600ef2b7f1bd284a0c65a9fbff0e03_cgraph.png" border="0" usemap="#output_8h_a80600ef2b7f1bd284a0c65a9fbff0e03_cgraph" alt=""/></div>
 <map name="output_8h_a80600ef2b7f1bd284a0c65a9fbff0e03_cgraph" id="output_8h_a80600ef2b7f1bd284a0c65a9fbff0e03_cgraph">
-<area shape="rect" id="node2" href="output_8h.html#a2cf4b0c0da26fe5bf10f136a2b44fddd" title="Print an object. " alt="" coords="137,105,259,131"/>
+<area shape="rect" id="node2" href="output_8h.html#a2cf4b0c0da26fe5bf10f136a2b44fddd" title="Print an OutObject. " alt="" coords="137,105,259,131"/>
 <area shape="rect" id="node3" href="out-object_8h.html#aec19bb5bbbad25ad1d797ff333beee6f" title="Check if one of the relations of oo is disabled, recursively. " alt="" coords="307,5,465,31"/>
 <area shape="rect" id="node4" href="output_8h.html#ae13cdd205d516745122d42bfcf582e0b" title="Print a fixed number of time a character. " alt="" coords="343,55,429,80"/>
 <area shape="rect" id="node5" href="output_8h.html#ac655e1b05f956db56da490a2c3b7beb1" title="Print the message in the standard output only if its importance is high enough to be printed..." alt="" coords="513,80,571,105"/>
@@ -601,7 +601,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="output_8h_ac655e1b05f956db56da490a2c3b7beb1_icgraph.png" border="0" usemap="#output_8h_ac655e1b05f956db56da490a2c3b7beb1_icgraph" alt=""/></div>
 <map name="output_8h_ac655e1b05f956db56da490a2c3b7beb1_icgraph" id="output_8h_ac655e1b05f956db56da490a2c3b7beb1_icgraph">
-<area shape="rect" id="node2" href="output_8h.html#a2cf4b0c0da26fe5bf10f136a2b44fddd" title="Print an object. " alt="" coords="290,20,413,46"/>
+<area shape="rect" id="node2" href="output_8h.html#a2cf4b0c0da26fe5bf10f136a2b44fddd" title="Print an OutObject. " alt="" coords="290,20,413,46"/>
 <area shape="rect" id="node4" href="output_8h.html#ae13cdd205d516745122d42bfcf582e0b" title="Print a fixed number of time a character. " alt="" coords="128,46,214,71"/>
 <area shape="rect" id="node5" href="parsers_8h.html#ab5b90eac71609ac27833b96da19fa57d" title="Tries to parse a tree. " alt="" coords="286,96,417,122"/>
 <area shape="rect" id="node6" href="parsers_8h.html#aa7a8052bc2ac6c4c70496e0b8f9ba458" title="Tries to parse the attribute&#39;s value definition at the current position in the file (may read more th..." alt="" coords="473,147,577,172"/>
@@ -675,7 +675,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="output_8h_ae13cdd205d516745122d42bfcf582e0b_icgraph.png" border="0" usemap="#output_8h_ae13cdd205d516745122d42bfcf582e0b_icgraph" alt=""/></div>
 <map name="output_8h_ae13cdd205d516745122d42bfcf582e0b_icgraph" id="output_8h_ae13cdd205d516745122d42bfcf582e0b_icgraph">
-<area shape="rect" id="node2" href="output_8h.html#a2cf4b0c0da26fe5bf10f136a2b44fddd" title="Print an object. " alt="" coords="144,5,266,31"/>
+<area shape="rect" id="node2" href="output_8h.html#a2cf4b0c0da26fe5bf10f136a2b44fddd" title="Print an OutObject. " alt="" coords="144,5,266,31"/>
 <area shape="rect" id="node4" href="parsers_8h.html#ab5b90eac71609ac27833b96da19fa57d" title="Tries to parse a tree. " alt="" coords="139,55,270,80"/>
 <area shape="rect" id="node3" href="output_8h.html#a80600ef2b7f1bd284a0c65a9fbff0e03" title="Returns a string that contains the representation of the object in a readable presentation. " alt="" coords="329,5,412,31"/>
 <area shape="rect" id="node5" href="parsers_8h.html#aa7a8052bc2ac6c4c70496e0b8f9ba458" title="Tries to parse the attribute&#39;s value definition at the current position in the file (may read more th..." alt="" coords="318,55,423,80"/>

@@ -1,5 +1,5 @@
 <map id="output" name="output">
-<area shape="rect" id="node2" href="$output_8h.html#a2cf4b0c0da26fe5bf10f136a2b44fddd" title="Print an object. " alt="" coords="290,20,413,46"/>
+<area shape="rect" id="node2" href="$output_8h.html#a2cf4b0c0da26fe5bf10f136a2b44fddd" title="Print an OutObject. " alt="" coords="290,20,413,46"/>
 <area shape="rect" id="node4" href="$output_8h.html#ae13cdd205d516745122d42bfcf582e0b" title="Print a fixed number of time a character. " alt="" coords="128,46,214,71"/>
 <area shape="rect" id="node5" href="$parsers_8h.html#ab5b90eac71609ac27833b96da19fa57d" title="Tries to parse a tree. " alt="" coords="286,96,417,122"/>
 <area shape="rect" id="node6" href="$parsers_8h.html#aa7a8052bc2ac6c4c70496e0b8f9ba458" title="Tries to parse the attribute&#39;s value definition at the current position in the file (may read more th..." alt="" coords="473,147,577,172"/>

@@ -5,7 +5,7 @@
 <area shape="rect" id="node3" href="$model-attribute_8h.html" title="Contains the definition of the ModelAttribute. " alt="" coords="143,152,300,177"/>
 <area shape="rect" id="node4" href="$model_8h.html" title="Contains the definition of the Model parsed in the model file. " alt="" coords="168,225,272,251"/>
 <area shape="rect" id="node5" href="$core_8h.html" title="File containing the core that generates the solutions. " alt="" coords="256,372,341,397"/>
-<area shape="rect" id="node6" href="$output_8h.html" title="File containing the output functions and helpers. " alt="" coords="256,299,352,324"/>
+<area shape="rect" id="node6" href="$output_8h.html" title="Contains the output functions, helpers and functions to create and display human readable strings..." alt="" coords="256,299,352,324"/>
 <area shape="rect" id="node7" href="$parsers_8h.html" title="Contains the example and model file parser. " alt="" coords="109,372,227,397"/>
 <area shape="rect" id="node9" href="$object_8h.html" title="Contains the definition of the Object. " alt="" coords="15,152,118,177"/>
 <area shape="rect" id="node10" href="$example_8h.html" title="Containins the definition of the Example. " alt="" coords="9,225,127,251"/>

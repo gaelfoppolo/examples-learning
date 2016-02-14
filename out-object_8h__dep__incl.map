@@ -1,6 +1,6 @@
 <map id="types/out&#45;object.h" name="types/out&#45;object.h">
 <area shape="rect" id="node2" href="$solution_8h.html" title="Contains the definition of the Solution. " alt="" coords="33,79,147,104"/>
 <area shape="rect" id="node3" href="$core_8h.html" title="File containing the core that generates the solutions. " alt="" coords="5,225,90,251"/>
-<area shape="rect" id="node4" href="$output_8h.html" title="File containing the output functions and helpers. " alt="" coords="85,152,181,177"/>
+<area shape="rect" id="node4" href="$output_8h.html" title="Contains the output functions, helpers and functions to create and display human readable strings..." alt="" coords="85,152,181,177"/>
 <area shape="rect" id="node5" href="$parsers_8h.html" title="Contains the example and model file parser. " alt="" coords="114,225,232,251"/>
 </map>
