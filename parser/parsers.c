@@ -49,7 +49,7 @@ char* getIncludeFile(char const* pathname, size_t * pos) {
 		}
 	}
 
-	// reads until pathname
+	// reads until pathname (format : include pathname)
 	while((c = fgetc(fp)) != EOF && (c == ' ' || c == '\t' || c == '\n'));
 
 	// stores pathname
@@ -89,6 +89,7 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
 		return NULL;
 	}
 
+	// inits the fields of the Examples
 	vectInit(e->examples);
 	vectInit(e->counterExamples);
 
@@ -100,6 +101,7 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
 		if(type == PARSED_EXAMPLE) {
 			vectPush(Example, e->examples, dflt); // add a default example to me modified by parseExample
 			if(!parseExample(fp, &error, &vectAt(e->examples, vectSize(e->examples) - 1), model)) {
+				// error in the last parsing, we remove the object added
 				vectRemoveLast(e->examples);
 				if(error) {
 					output(LERROR, "\n%sError %s : %s\n", SBRED, SDEFAULT, error);
@@ -109,7 +111,7 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
 				}
 			}
 		}
-		else {
+		else { // PARSED_COUNTEREXAMPLE
 			vectPush(Example, e->counterExamples, dflt);
 			if(!parseExample(fp, &error, &vectAt(e->counterExamples, vectSize(e->counterExamples) - 1), model)) {
 				vectRemoveLast(e->counterExamples);
@@ -130,13 +132,14 @@ Examples* loadExampleFile(char const* pathname, Model* model, size_t startPos) {
 
 unsigned int getNextExample(FILE* fp) {
 	char c;
-	readTil(fp, "\n");
+
+	readTil(fp, "\n"); // reads all the line break
 
 	output(L2, "\n");
 
 	while(!feof(fp) && (c = fgetc(fp))) {
+		// check the first character of the line, if (!), it's a counter-example
 		if((c = fgetc(fp)) == '!') {
-			// counter-example
 			output(L2, "New %scounter-example%s found.\n", SBPURPLE, SDEFAULT);
 
 			readTil(fp, "\n");
@@ -160,8 +163,18 @@ int parseExample(FILE* fp, char** error, Example* ex, Model* m) {
 	Attribute dfltAttr;
 	char* name;
 	char c;
-	struct StringVector seenObjects; // contains the objects already seen
 	int id; // the id of the current object
+
+	/*
+	*	contains the name of the objects already seen
+	*	The relations link to an object (ex : on(x5), x5 being the name of an object)
+	*	So, each object has an ID, but a relation can be linked to an object not parsed yet
+	*	When the first occurence of an object either in a definition or in a relation is seen, it
+	*	is added to this array. When seen after, we can use the same ID, and so, store the
+	*	object in the right place in the example (its ID matching its index in the array, as
+	*	needed by the core)
+	*/
+	struct StringVector seenObjects;
 
 	*error = NULL;
 
@@ -349,7 +362,7 @@ void parseAttrValue(FILE* fp, char** error, Model* m, attrType type, Attribute* 
 	switch(type) {
 		case TYPE_INT:
 			attr->value = atoi(str.str); // in case of error, returns 0, no fail check
-			// bounds check (must be in between the in and max autorized by this interval type)
+			// bounds check (must be in between the min and max autorized by this interval type)
 			if(attr->value < vectAt(m->ma, position).mt.inter.min || attr->value > vectAt(m->ma, position).mt.inter.max) {
 				*error = cPrint("Integer value not in bounds (expected between %d and %d, found %d)", vectAt(m->ma, position).mt.inter.min, vectAt(m->ma, position).mt.inter.max, attr->value);
 				free(str.str);
@@ -419,7 +432,8 @@ Model* loadConfigFile(char const* pathname) {
 		return NULL;
 	}
 
-	while(parseConfigLine(fp, &error, m)); // a line is a whole attributeName : attributeValue set (multiline in case of a tree)
+	// a line is a whole 'attributeName : attributeValue' set (multiline in case of a tree)
+	while(parseConfigLine(fp, &error, m));
 
 	output(L2, "\n%sThe model has %d attribute%s and %d relation%s%s.\n", SBDEFAULT, vectSize(m->ma), vectSize(m->ma) > 1 ? "s": "", vectSize(m->rel), vectSize(m->rel) > 1 ? "s": "", SDEFAULT);
 
@@ -439,6 +453,7 @@ int parseConfigLine(FILE* fp, char** error, Model* out) {
 	int isRelation = 0;
 	char* tmp;
 
+	// a line is "attribute-name : value", we read the first part here
 	current.name = parseAttrName(fp, error);
 
 	if(!current.name) {
@@ -468,6 +483,7 @@ int parseConfigLine(FILE* fp, char** error, Model* out) {
 		return 0;
 	}
 
+	// read the second part of the line (the value)
 	ModelType* mt = parseAttrType(fp, error);
 
 	if(mt == NULL) {
@@ -480,6 +496,8 @@ int parseConfigLine(FILE* fp, char** error, Model* out) {
 	free(mt);
 
 	// check whether it's a relation or a basic attribute
+	// relations are parsed by the enum parsing function, to prevent duplication
+	// of code, but we need to convert it in a relation here
 	if(isRelation) {
 		// convert the enum parsed to a relation
 		for(unsigned int i = 0; i < vectSize(current.mt.enu.enu); ++i) {
@@ -589,6 +607,8 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 }
 
 // TODO : use fscanf to read integers
+// an interval looks like this : min - max
+// or %INT or %UINT
 Interval* parseAttrTypeInterval(FILE* fp, char** error) {
 	char c;
 	Interval* current = (Interval*)malloc(sizeof(Interval));
@@ -673,6 +693,7 @@ Interval* parseAttrTypeInterval(FILE* fp, char** error) {
 	return current;
 }
 
+// an enum look slike this : value1, value2, value3, ...
 Enum* parseAttrTypeEnum(FILE* fp, char** error) {
 	char c;
 	Enum* current = (Enum*)malloc(sizeof(Enum));
@@ -712,6 +733,7 @@ Enum* parseAttrTypeEnum(FILE* fp, char** error) {
 	return current;
 }
 
+// a tree looks liek this : (node-name[, (node-name[, (...)])])
 Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 	char c;
 	Tree* t = createLeaf((*index)++, NULL);
@@ -790,6 +812,7 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 	return t;
 }
 
+// valide chars are : "[a-zA-Z_]" if first char of the name and "[a-zA-Z_\-0-9]" if not first
 int isValidAttrChar(char c, unsigned int first) {
 	if((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '_') { // check if the character match [a-zA-Z_\-\d] (or [a-zA-Z_] if first character)
 		return 1;
@@ -797,6 +820,7 @@ int isValidAttrChar(char c, unsigned int first) {
 	return first ? 0 : ((c >= '0' && c <= '9') || c == '-');
 }
 
+// misleading name, reads any char of the set, not only spaces
 void readFileSpaces(FILE* fp, char const* set) {
 	char current;
 	unsigned int i, inSet;

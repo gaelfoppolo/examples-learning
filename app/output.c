@@ -118,7 +118,7 @@ void genObjectOutput(OutObject* oo, Model* m, int recur) {
 						output(L0, ", ");
 					}
 					// print attrName(item1, item2, item3, ...)
-					output(L0, "%s%s%s(%s%s)", SBGREEN, ma->name, SDEFAULT, getTreeStr(oa->tree, m, i), SDEFAULT);
+					output(L0, "%s%s%s(%s%s%s)", SBGREEN, ma->name, SDEFAULT, SBCYAN, getTreeStr(oa->tree, m, i), SDEFAULT);
 				}
 		}
 	}
