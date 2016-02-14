@@ -1,4 +1,8 @@
 <map id="printNChar" name="printNChar">
-<area shape="rect" id="node2" href="$output_8h.html#a2cf4b0c0da26fe5bf10f136a2b44fddd" title="Print an object. " alt="" coords="139,5,261,31"/>
-<area shape="rect" id="node3" href="$output_8h.html#a80600ef2b7f1bd284a0c65a9fbff0e03" title="Returns a string that contains the representation of the object in a readable presentation. " alt="" coords="309,5,393,31"/>
+<area shape="rect" id="node2" href="$output_8h.html#a2cf4b0c0da26fe5bf10f136a2b44fddd" title="Print an object. " alt="" coords="144,5,266,31"/>
+<area shape="rect" id="node4" href="$parsers_8h.html#ab5b90eac71609ac27833b96da19fa57d" title="Tries to parse a tree. " alt="" coords="139,55,270,80"/>
+<area shape="rect" id="node3" href="$output_8h.html#a80600ef2b7f1bd284a0c65a9fbff0e03" title="Returns a string that contains the representation of the object in a readable presentation. " alt="" coords="329,5,412,31"/>
+<area shape="rect" id="node5" href="$parsers_8h.html#aa7a8052bc2ac6c4c70496e0b8f9ba458" title="Tries to parse the attribute&#39;s value definition at the current position in the file (may read more th..." alt="" coords="318,55,423,80"/>
+<area shape="rect" id="node6" href="$parsers_8h.html#a986cbbf2bc6509e1217346c2e1adaad2" title="Tries to parse the line as a config file attribute definition. If the line is empty, continues to read until it finds a line. " alt="" coords="471,55,589,80"/>
+<area shape="rect" id="node7" href="$parsers_8h.html#aba6c3205292b2157b07d26db9753f366" title="Loads the config file given anf the generate the Model object that represents its content..." alt="" coords="637,55,744,80"/>
 </map>

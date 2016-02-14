@@ -1,13 +1,8 @@
-# Examples learning #
--------------
+## %Examples learning
+
 Abstract
 
-### Table of contents
-
-[TOC]
-
-## Project ##
--------------
+## Project
 
 explain + link subject + link doc
 
@@ -22,13 +17,13 @@ op=>operation: My Operation
 cond=>condition: Yes or No?
 ```
 
-## How to use ##
--------------
+## How to use
+
 abstract how it works
 show options available
 what is default process
 
-### How to populate inputs files ###
+### How to populate inputs files
 
 `namefile.txt`
 
@@ -39,10 +34,10 @@ what is default process
 var bar = 0;
 ```
  
-### How to run ###
+### How to run
 
 explain how to run with some examples of combinaisons of options
 
-## Slides ##
+## Slides
 
 link to slides

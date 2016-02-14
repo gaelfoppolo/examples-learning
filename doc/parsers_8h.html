@@ -7,9 +7,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
         <meta name="generator" content="Doxygen 1.8.11"/>
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <title>Example learning: parser/parsers.h File Reference</title>
-        <!--<link href="tabs.css" rel="stylesheet" type="text/css"/>-->
+        <link href="doxygen.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <link href="tweak.css" rel="stylesheet" type="text/css"/>
+        <title>Examples learning: parser/parsers.h File Reference</title>
+        <!-- <link href="tabs.css" rel="stylesheet" type="text/css"/> -->
         <script type="text/javascript" src="dynsections.js"></script>
         <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
@@ -17,17 +23,13 @@
 <script type="text/javascript">
   $(document).ready(function() { init_search(); });
 </script>
-        <link href="doxygen.css" rel="stylesheet" type="text/css" />
-        <link href="tweak.css" rel="stylesheet" type="text/css"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="doxy-boot.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-default" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand">Example learning </a>
+                    <a class="navbar-brand">Examples learning </a>
                 </div>
             </div>
         </nav>
@@ -100,7 +102,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>File containing the example and model file parser.  
+<p>Contains the example and model file parser.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
@@ -141,7 +143,7 @@ Include dependency graph for parsers.h:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_string_vector.html">StringVector</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores an array or C string.  <a href="struct_string_vector.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stores an array of C string.  <a href="struct_string_vector.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -211,12 +213,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a961b4c03ca09188c780c9bae74f311d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parsers_8h.html#a961b4c03ca09188c780c9bae74f311d4">readTil</a> (FILE *fp, char const *set)</td></tr>
 <tr class="memdesc:a961b4c03ca09188c780c9bae74f311d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads a file from the current position and reads until it finds a character in the set. Stops on the last character not in the set.  <a href="#a961b4c03ca09188c780c9bae74f311d4">More...</a><br /></td></tr>
 <tr class="separator:a961b4c03ca09188c780c9bae74f311d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa13acbba3c52feffbd12fcae8cdf3c9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parsers_8h.html#aa13acbba3c52feffbd12fcae8cdf3c9e">printIndent</a> (unsigned int flag, int indent)</td></tr>
-<tr class="memdesc:aa13acbba3c52feffbd12fcae8cdf3c9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display tabs(s)  <a href="#aa13acbba3c52feffbd12fcae8cdf3c9e">More...</a><br /></td></tr>
-<tr class="separator:aa13acbba3c52feffbd12fcae8cdf3c9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>File containing the example and model file parser. </p>
+<div class="textblock"><p>Contains the example and model file parser. </p>
 <dl class="section author"><dt>Author</dt><dd>Bastien Philip (ebatsin) </dd>
 <dd>
 Gaël Foppolo (gaelfoppolo) </dd></dl>
@@ -517,7 +516,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" id="node21" href="parsers_8h.html#ab456bb242016ec949b25498e0a506fad" title="Tries to parse an enumeration. " alt="" coords="479,573,618,598"/>
 <area shape="rect" id="node17" href="tree_8h.html#a23371a58349a9b88e641b1cfbf8ea88a" title="Create a new leaf. " alt="" coords="698,346,782,371"/>
 <area shape="rect" id="node18" href="tree_8h.html#a69fb3a3292bd8c145020d0fe58af26ba" title="Free the tree. " alt="" coords="704,395,776,421"/>
-<area shape="rect" id="node19" href="parsers_8h.html#aa13acbba3c52feffbd12fcae8cdf3c9e" title="Display tabs(s) " alt="" coords="698,145,782,170"/>
+<area shape="rect" id="node19" href="output_8h.html#ae13cdd205d516745122d42bfcf582e0b" title="Print a fixed number of time a character. " alt="" coords="697,145,783,170"/>
 <area shape="rect" id="node20" href="tree_8h.html#a20cf113144a4d78318cae514493540c2" title="Add a child to a node. " alt="" coords="703,297,777,322"/>
 </map>
 </div>
@@ -714,7 +713,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" id="node9" href="tree_8h.html#a23371a58349a9b88e641b1cfbf8ea88a" title="Create a new leaf. " alt="" coords="377,401,461,426"/>
 <area shape="rect" id="node10" href="tree_8h.html#a69fb3a3292bd8c145020d0fe58af26ba" title="Free the tree. " alt="" coords="383,450,454,475"/>
 <area shape="rect" id="node11" href="parsers_8h.html#a15665e9aae62362f0948994136b44f8b" title="Tries to parse the attribute name at the current position in the file (spaces &amp; tabs are ommited) ..." alt="" coords="363,199,474,225"/>
-<area shape="rect" id="node15" href="parsers_8h.html#aa13acbba3c52feffbd12fcae8cdf3c9e" title="Display tabs(s) " alt="" coords="377,351,461,377"/>
+<area shape="rect" id="node15" href="output_8h.html#ae13cdd205d516745122d42bfcf582e0b" title="Print a fixed number of time a character. " alt="" coords="376,351,462,377"/>
 <area shape="rect" id="node16" href="tree_8h.html#a20cf113144a4d78318cae514493540c2" title="Add a child to a node. " alt="" coords="382,499,456,525"/>
 <area shape="rect" id="node12" href="parsers_8h.html#a5b1ce78200962639956078ce45c6b2e3" title="Check whether the character is allowed in an attribute name or not. " alt="" coords="543,197,653,222"/>
 <area shape="rect" id="node13" href="string-type_8h.html#ae3068dd8c60d7a42a93f0351ef8f09e1" title="Adds a character at the end of the string. " alt="" coords="565,246,631,271"/>
@@ -918,7 +917,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" id="node4" href="output_8h.html#ac655e1b05f956db56da490a2c3b7beb1" title="Print the message in the standard output only if its importance is high enough to be printed..." alt="" coords="371,80,430,105"/>
 <area shape="rect" id="node6" href="tree_8h.html#a69fb3a3292bd8c145020d0fe58af26ba" title="Free the tree. " alt="" coords="204,156,276,181"/>
 <area shape="rect" id="node7" href="parsers_8h.html#a15665e9aae62362f0948994136b44f8b" title="Tries to parse the attribute name at the current position in the file (spaces &amp; tabs are ommited) ..." alt="" coords="185,257,296,283"/>
-<area shape="rect" id="node13" href="parsers_8h.html#aa13acbba3c52feffbd12fcae8cdf3c9e" title="Display tabs(s) " alt="" coords="198,55,282,80"/>
+<area shape="rect" id="node13" href="output_8h.html#ae13cdd205d516745122d42bfcf582e0b" title="Print a fixed number of time a character. " alt="" coords="197,55,283,80"/>
 <area shape="rect" id="node14" href="tree_8h.html#a20cf113144a4d78318cae514493540c2" title="Add a child to a node. " alt="" coords="203,307,277,332"/>
 <area shape="rect" id="node5" href="output_8h.html#a0cf9973e582fb23d19b39e36bae893eb" title="Gets the max level of the messages to output (0 : only critical messages, the higher the value..." alt="" coords="506,80,652,105"/>
 <area shape="rect" id="node8" href="string-type_8h.html#ab9893f2c904ee5ff139589712c1284d1" title="Transforms a char* to a string. The char* MUST be a nul terminated array allocated with malloc..." alt="" coords="374,307,428,332"/>
@@ -1107,7 +1106,7 @@ Here is the call graph for this function:</div>
 <area shape="rect" id="node20" href="parsers_8h.html#ab456bb242016ec949b25498e0a506fad" title="Tries to parse an enumeration. " alt="" coords="324,154,463,179"/>
 <area shape="rect" id="node16" href="tree_8h.html#a23371a58349a9b88e641b1cfbf8ea88a" title="Create a new leaf. " alt="" coords="543,657,627,682"/>
 <area shape="rect" id="node17" href="tree_8h.html#a69fb3a3292bd8c145020d0fe58af26ba" title="Free the tree. " alt="" coords="550,509,621,534"/>
-<area shape="rect" id="node18" href="parsers_8h.html#aa13acbba3c52feffbd12fcae8cdf3c9e" title="Display tabs(s) " alt="" coords="543,558,627,583"/>
+<area shape="rect" id="node18" href="output_8h.html#ae13cdd205d516745122d42bfcf582e0b" title="Print a fixed number of time a character. " alt="" coords="542,558,628,583"/>
 <area shape="rect" id="node19" href="tree_8h.html#a20cf113144a4d78318cae514493540c2" title="Add a child to a node. " alt="" coords="548,607,622,633"/>
 </map>
 </div>
@@ -1298,65 +1297,6 @@ Here is the caller graph for this function:</div>
 <map name="parsers_8h_a53ddbc56bfe6f0320f04e39432ccb776_icgraph" id="parsers_8h_a53ddbc56bfe6f0320f04e39432ccb776_icgraph">
 <area shape="rect" id="node2" href="parsers_8h.html#aad08054ce5747601c351fa6965bb42c5" title="Parse an example or a counterexample. " alt="" coords="198,5,305,31"/>
 <area shape="rect" id="node3" href="parsers_8h.html#aca92bb4f3796c5f7f336f681a06611d2" title="Loads the example file given and generate the Example object that represents its content. " alt="" coords="353,5,473,31"/>
-</map>
-</div>
-</p>
-
-</div>
-</div>
-<a class="anchor" id="aa13acbba3c52feffbd12fcae8cdf3c9e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void printIndent </td>
-          <td>(</td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>flag</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>indent</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Display tabs(s) </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">flag</td><td>The output flag to use (L1 to L7 and/or LERROR) </td></tr>
-    <tr><td class="paramname">indent</td><td>The number of tabs to display </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p><div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="parsers_8h_aa13acbba3c52feffbd12fcae8cdf3c9e_cgraph.png" border="0" usemap="#parsers_8h_aa13acbba3c52feffbd12fcae8cdf3c9e_cgraph" alt=""/></div>
-<map name="parsers_8h_aa13acbba3c52feffbd12fcae8cdf3c9e_cgraph" id="parsers_8h_aa13acbba3c52feffbd12fcae8cdf3c9e_cgraph">
-<area shape="rect" id="node2" href="output_8h.html#ac655e1b05f956db56da490a2c3b7beb1" title="Print the message in the standard output only if its importance is high enough to be printed..." alt="" coords="138,5,196,31"/>
-<area shape="rect" id="node3" href="output_8h.html#a0cf9973e582fb23d19b39e36bae893eb" title="Gets the max level of the messages to output (0 : only critical messages, the higher the value..." alt="" coords="244,5,391,31"/>
-</map>
-</div>
-</p>
-
-<p><div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="parsers_8h_aa13acbba3c52feffbd12fcae8cdf3c9e_icgraph.png" border="0" usemap="#parsers_8h_aa13acbba3c52feffbd12fcae8cdf3c9e_icgraph" alt=""/></div>
-<map name="parsers_8h_aa13acbba3c52feffbd12fcae8cdf3c9e_icgraph" id="parsers_8h_aa13acbba3c52feffbd12fcae8cdf3c9e_icgraph">
-<area shape="rect" id="node2" href="parsers_8h.html#ab5b90eac71609ac27833b96da19fa57d" title="Tries to parse a tree. " alt="" coords="138,5,269,31"/>
-<area shape="rect" id="node3" href="parsers_8h.html#aa7a8052bc2ac6c4c70496e0b8f9ba458" title="Tries to parse the attribute&#39;s value definition at the current position in the file (may read more th..." alt="" coords="317,5,421,31"/>
-<area shape="rect" id="node4" href="parsers_8h.html#a986cbbf2bc6509e1217346c2e1adaad2" title="Tries to parse the line as a config file attribute definition. If the line is empty, continues to read until it finds a line. " alt="" coords="469,5,588,31"/>
-<area shape="rect" id="node5" href="parsers_8h.html#aba6c3205292b2157b07d26db9753f366" title="Loads the config file given anf the generate the Model object that represents its content..." alt="" coords="636,5,742,31"/>
 </map>
 </div>
 </p>

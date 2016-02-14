@@ -4,5 +4,5 @@
 <area shape="rect" id="node4" href="$model_8h.html" title="Contains the definition of the Model parsed in the model file. " alt="" coords="70,225,174,251"/>
 <area shape="rect" id="node5" href="$core_8h.html" title="File containing the core that generates the solutions. " alt="" coords="5,372,90,397"/>
 <area shape="rect" id="node6" href="$output_8h.html" title="File containing the output functions and helpers. " alt="" coords="74,299,170,324"/>
-<area shape="rect" id="node7" href="$parsers_8h.html" title="File containing the example and model file parser. " alt="" coords="136,372,255,397"/>
+<area shape="rect" id="node7" href="$parsers_8h.html" title="Contains the example and model file parser. " alt="" coords="136,372,255,397"/>
 </map>

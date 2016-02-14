@@ -3,7 +3,7 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- *	@brief File containing the example and model file parser
+ *	@brief Contains the example and model file parser
  */
 
 #ifndef _PARSERS_H_
@@ -25,7 +25,7 @@
 #define PARSED_COUNTEREXAMPLE 2
 
 /**
-*	@brief Stores an array or C string
+*	@brief Stores an array of C string
 */
 struct StringVector {
 	/** @brief An array of strings */
@@ -199,13 +199,5 @@ void readFileSpaces(FILE* fp, char const* set);
 *	@param set A nul terminated array of char that contains the set of characters to reach
 */
 void readTil(FILE* fp, char const* set);
-
-/**
-*	@brief Display tabs(s)
-*	@param flag The output flag to use (L1 to L7 and/or LERROR)
-*	@param indent The number of tabs to display
-*/
-void printIndent(unsigned int flag, int indent);
-
 
 #endif // _PARSERS_H_

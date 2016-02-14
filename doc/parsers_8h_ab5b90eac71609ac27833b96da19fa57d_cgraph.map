@@ -4,7 +4,7 @@
 <area shape="rect" id="node4" href="$output_8h.html#ac655e1b05f956db56da490a2c3b7beb1" title="Print the message in the standard output only if its importance is high enough to be printed..." alt="" coords="371,80,430,105"/>
 <area shape="rect" id="node6" href="$tree_8h.html#a69fb3a3292bd8c145020d0fe58af26ba" title="Free the tree. " alt="" coords="204,156,276,181"/>
 <area shape="rect" id="node7" href="$parsers_8h.html#a15665e9aae62362f0948994136b44f8b" title="Tries to parse the attribute name at the current position in the file (spaces &amp; tabs are ommited) ..." alt="" coords="185,257,296,283"/>
-<area shape="rect" id="node13" href="$parsers_8h.html#aa13acbba3c52feffbd12fcae8cdf3c9e" title="Display tabs(s) " alt="" coords="198,55,282,80"/>
+<area shape="rect" id="node13" href="$output_8h.html#ae13cdd205d516745122d42bfcf582e0b" title="Print a fixed number of time a character. " alt="" coords="197,55,283,80"/>
 <area shape="rect" id="node14" href="$tree_8h.html#a20cf113144a4d78318cae514493540c2" title="Add a child to a node. " alt="" coords="203,307,277,332"/>
 <area shape="rect" id="node5" href="$output_8h.html#a0cf9973e582fb23d19b39e36bae893eb" title="Gets the max level of the messages to output (0 : only critical messages, the higher the value..." alt="" coords="506,80,652,105"/>
 <area shape="rect" id="node8" href="$string-type_8h.html#ab9893f2c904ee5ff139589712c1284d1" title="Transforms a char* to a string. The char* MUST be a nul terminated array allocated with malloc..." alt="" coords="374,307,428,332"/>

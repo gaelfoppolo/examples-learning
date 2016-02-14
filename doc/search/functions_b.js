@@ -9,6 +9,5 @@ var searchData=
   ['parseconfigline',['parseConfigLine',['../parsers_8h.html#a986cbbf2bc6509e1217346c2e1adaad2',1,'parsers.c']]],
   ['parseexample',['parseExample',['../parsers_8h.html#aad08054ce5747601c351fa6965bb42c5',1,'parsers.c']]],
   ['parseexampleobject',['parseExampleObject',['../parsers_8h.html#a53ddbc56bfe6f0320f04e39432ccb776',1,'parsers.c']]],
-  ['printindent',['printIndent',['../parsers_8h.html#aa13acbba3c52feffbd12fcae8cdf3c9e',1,'parsers.c']]],
   ['printnchar',['printNChar',['../output_8h.html#ae13cdd205d516745122d42bfcf582e0b',1,'output.c']]]
 ];

@@ -741,7 +741,7 @@ Tree* parseAttrTypeTree(FILE* fp, char** error, int* index, int indent) {
 		free(t);
 		return NULL;
 	}
-	printIndent(L4, indent);
+	printNChar(L4, '\t', indent);
 	output(L4, "%s%s%s (ID = %d)%s\n", SBCYAN, t->str, SBYELLOW, t->id, SDEFAULT);
 
 	readFileSpaces(fp, "\t\n ");
@@ -830,11 +830,5 @@ void readTil(FILE* fp, char const* set) {
 			}
 			++i;
 		}
-	}
-}
-
-void printIndent(unsigned int flag, int indent) {
-	for (int i = 0; i < indent; ++i) {
-		output(flag, "\t");
 	}
 }
