@@ -271,3 +271,9 @@ blockquote {
     margin: 0 24px 0 4px;
     padding: 0 12px 0 16px;
 }
+
+#MSearchBox {
+    margin-top: -12px;
+    right: 25px;
+    width: 170px;
+}
