@@ -84,21 +84,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div class="header">
   <div class="headertitle">
-<div class="title">Examples learning </div>  </div>
+<div class="title"><a class="el" href="struct_examples.html" title="Structure that contains the examples and counter-examples of the parsed example file. ">Examples</a> learning </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Abstract</p>
+<div class="textblock"><p>abstract - On le met pas ? Déja le sujet lui même est un bon résumé, pas trop besoin de faire plus court</p>
 <h2>Project</h2>
-<p>explain + link subject + link doc</p>
-<p>add class diagram here?</p>
-<p>just saw markdown can generate uml:</p>
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;st=&gt;start: Start</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;e=&gt;end</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;op=&gt;operation: My Operation</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;cond=&gt;condition: Yes or No?</div></div><!-- fragment --><h2>How to use</h2>
-<p>abstract how it works show options available what is default process</p>
+<p>This project aims to find similarities in a set of formatted data. It works using the concept of examples and objects, each example beeing composed of objects, each one beeing composed of characteristics (or attributes) and relations with other object in the same example. The program tries to find the similarities that carry the most information.</p>
+<p>This project is an enginnering school programming subject : <a href="https://github.com/gaelfoppolo/examples-learning/blob/step4/subject.pdf">Subject</a></p>
+<p><a href="http://gaelfoppolo.github.io/examples-learning/">Documentation</a></p>
+<h2>How to use</h2>
+<p>The programs use two different types of file to generate the solutions of a problem. The informations on the <em>model</em> (ie: the definition of the object's attributes, the possible relations, the bounds of the values, etc...) is defined in a file with the _.cfg_ extension. It follows this syntax : </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;attribute-name : attribute-value</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;relation : relation-name[, relation-name]</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;# each value can be of one of the three followinf types :</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;# integer, in interval, defined like this :</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;integer-attribute : &lt;min&gt; - &lt;max&gt;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;# an enumeration item, from an enumeration, defined like this :</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;enum-attribute : &lt;item&gt; [, &lt;item&gt;]</div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;# a tree node, from a tree, defined like this :</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;tree-attribute : (&lt;node-name&gt;, (&lt;child-name&gt;[, ...]), (&lt;child-name&gt;))</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;# a tree definition can be split on more than one line to allow a greater readability</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;# to define the possible relations between the objects, you must use the &#39;relation&#39; keyword</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;relation: relation-name[, relation-name]</div></div><!-- fragment --><p>The model defines the rules behind the examples, which are defined in a file with the _.exp_ extension. It follows this syntax : </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;include &lt;path-to-model-file&gt;</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;Example-name</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    object-name:attribute-name(attribute-value)[, attribute-name(attribute-value)][,relation-name(object-linked-name)]</div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    [...]</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;!Counter-example-name</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    # same syntax as of the examples</div></div><!-- fragment --><h2>Options and usage</h2>
+<p>The program only need the path to the example file as a parameter : </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;learning &lt;path-to-example-file&gt;</div></div><!-- fragment --><p>It accept some options :</p>
+<p>**&ndash;help | -h** Print some help on basic options</p>
+<p>**&ndash;expand-relations** When the solution have relations, print the whole object linked instead of its name</p>
+<p>**&ndash;no-generalization** Skip the generalization step (print all the solutions, even duplicates and non-important solutions)</p>
+<p>**&ndash;no-counter-examples** Skip the counter-examples handling. Prevent the suppression of solutions, even if they match the counter-examples in the example file</p>
+<p>**&ndash;no-color** Remove all colors from the output</p>
+<p>**-v** Verbosity level, you can use up to 4 -v to add informations</p>
 <h3>How to populate inputs files</h3>
-<p><code>namefile.txt</code></p>
+<p>Pas comprit ce que tu veux dire par "populate input files" <code>namefile.txt</code></p>
 <p><b>bold</b></p>
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;// Foo</div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;var bar = 0;</div></div><!-- fragment --><h3>How to run</h3>
-<p>explain how to run with some examples of combinaisons of options</p>
+<p>explain how to run with some examples of combinaisons of options Pas comprit non plus, déja expliqué dans usage nan ?</p>
 <h2>Slides</h2>
 <p>link to slides </p>
 </div></div><!-- contents -->
