@@ -1,14 +1,23 @@
-## Examples learning
+# Examples learning
 
-abstract - On le met pas ? Déja le sujet lui même est un bon résumé, pas trop besoin de faire plus court
+This project aims to find similarities in a set of formatted data and propose one or more characteristic(s) description(s) that carry the most information.
 
 ## Project
 
-This project aims to find similarities in a set of formatted data. It works using the concept of examples and objects, each example beeing composed of objects, each one beeing composed of characteristics (or attributes) and relations with other object in the same example. The program tries to find the similarities that carry the most information.
+The application is based on the concept of model, examples (and counter-examples), objects, attributes and relations:
 
-This project is an enginnering school programming subject : [Subject](https://github.com/gaelfoppolo/examples-learning/blob/step4/subject.pdf)
+ - A **model** is the definition of the formatted data on which we are working. This is where we define the attribute(s) and the relation(s) that can describe it. *(ie: a geometric shape, described by its shape, color, size)*
+ - An **object** is an instancation of the model *(ie: a square, red, 8)*
+ - An **example** (or counter-example) is a set of objects. Each example is independant of the other. All the example are our **examples**.
+ - An **attribute** describe an characteristic aspect of an object and can be of three type:
+	 - numerical, an integer interval *(ie: a size)*
+	 - discrete, an enumeration *(ie: a color)*
+	 - hierarchical, an tree *(ie: a shape)*
+ - A **relation** describe a connexion, a relation between two objects in the same example *(ie: next-to)*
 
-[Documentation](http://gaelfoppolo.github.io/examples-learning/)
+This project is part of an enginnering school programming project, here the original [subject](https://github.com/gaelfoppolo/examples-learning/blob/master/subject.pdf) (french).
+
+A [documentation](http://gaelfoppolo.github.io/examples-learning/) is also available, with graph to a better understanding of our process (see [Files](http://gaelfoppolo.github.io/examples-learning/files.html) tabs).
 
 ## How to use
 
