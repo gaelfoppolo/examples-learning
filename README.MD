@@ -49,6 +49,7 @@ learning <path-to-example-file>
 ```
 
 It accept some options :
+
 **--help | -h**
 Print some help on basic options
 
