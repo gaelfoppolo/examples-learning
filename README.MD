@@ -6,14 +6,14 @@ This project aims to find similarities in a set of formatted data and propose on
 
 The application is based on the concept of model, examples (and counter-examples), objects, attributes and relations:
 
- - A **model** is the definition of the formatted data on which we are working. This is where the attribute(s) and the relation(s) that describe it are defined. *(_ex_: a geometric shape, described by its shape, color and size)*
- - An **object** is an instantiation of the model *(_ex_: a _square_, _red_ of size _8_)*
+ - A **model** is the definition of the formatted data on which we are working. This is where the attribute(s) and the relation(s) that describe it are defined. *(ex: a geometric shape, described by its shape, color and size)*
+ - An **object** is an instantiation of the model *(ex: a square, red of size 8)*
  - An **example** (or counter-example) is a set of objects. Each example is independant of the other.
  - An **attribute** describes an aspect of an object and can be of three type:
-	 - numerical, an integer interval *(_ex_: a size)*
-	 - discrete, an enumeration *(_ex_: a color)*
-	 - hierarchical, a tree *(_ex_: a shape)*
- - A **relation** describes a directionnal connection between two objects in the same example *(_ex_: A is _next-to_ B)*
+	 - numerical, an integer interval *(ex: a size)*
+	 - discrete, an enumeration *(ex: a color)*
+	 - hierarchical, a tree *(ex: a shape)*
+ - A **relation** describes a directionnal connection between two objects in the same example *(ex: A is next-to B)*
 
 This project is part of an enginnering school programming project, here the original [subject](https://github.com/gaelfoppolo/examples-learning/blob/master/subject.pdf) (french).
 
