@@ -1,4 +1,4 @@
-# %Examples learning
+# Examples learning
 
 <img src="logo.png" width="250px">
 
