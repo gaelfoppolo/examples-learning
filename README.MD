@@ -10,14 +10,14 @@ This project aims to find similarities in a set of formatted data and propose on
 
 The application is based on the concept of model, examples (and counter-examples), objects, attributes and relations:
 
- - A **model** is the definition of the formatted data on which the program works. This is where the attribute(s) and the relation(s), that describe it, are defined. *(ex: a geometric shape, described by its shape, color and size)*
- - An **object** is an instantiation of the model *(ex: a square, red of size 8)*
+ - A **model** is the definition of the formatted data on which the program works. This is where the attribute(s) and the relation(s), that describe it, are defined. (*ex: a geometric shape, described by its shape, color and size*)
+ - An **object** is an instantiation of the model (*ex: a square, red of size 8*)
  - An **example** (or counter-example) is a set of objects. Each example is independant of the others.
  - An **attribute** describes an aspect of an object and can be of three type:
-	 - numerical, an integer interval *(ex: a size)*
-	 - discrete, an enumeration *(ex: a color)*
-	 - hierarchical, a tree *(ex: a shape)*
- - A **relation** describes a directionnal connection between two objects in the same example *(ex: A is next-to B)*
+	 - numerical, an integer interval (*ex: a size*)
+	 - discrete, an enumeration (*ex: a color*)
+	 - hierarchical, a tree (*ex: a shape*)
+ - A **relation** describes a directionnal connection between two objects in the same example (*ex: A is next-to B*)
 
 This project is part of an enginnering school programming project, here the original [subject](https://github.com/gaelfoppolo/examples-learning/blob/master/subject.pdf) (french).
 
@@ -29,7 +29,7 @@ The programs use two different types of file to generate the solutions of a prob
 
 ### Model
 
-The informations on the **model** (ie: the definition of the object's attributes, the possible relations, the bounds of the values, etc...) is defined in a file with the *.cfg* extension. It follows this syntax :
+The informations on the **model** (ie: the definition of the object's attributes, the possible relations, the bounds of the values, etc...) is defined in a file with the *cfg* extension. It follows this syntax :
 ```
 attribute-name : attribute-value
 relation : relation-name[, relation-name]
@@ -49,7 +49,7 @@ See [config-commented.cfg](https://github.com/gaelfoppolo/examples-learning/blob
 
 ## Examples
 
-The **model** defines the rules behind the **examples**, which are defined in a file with the *.exp* extension. It follows this syntax :
+The **model** defines the rules behind the **examples**, which are defined in a file with the *exp* extension. It follows this syntax :
 ```
 include <path-to-model-file>
 
