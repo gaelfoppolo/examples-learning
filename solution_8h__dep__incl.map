@@ -1,5 +1,5 @@
 <map id="types/solution.h" name="types/solution.h">
 <area shape="rect" id="node2" href="$core_8h.html" title="File containing the core that generates the solutions. " alt="" coords="5,152,90,177"/>
 <area shape="rect" id="node3" href="$output_8h.html" title="File containing the output functions and helpers. " alt="" coords="85,79,181,104"/>
-<area shape="rect" id="node4" href="$parsers_8h.html" title="File containing the example and model file parser. " alt="" coords="114,152,232,177"/>
+<area shape="rect" id="node4" href="$parsers_8h.html" title="Contains the example and model file parser. " alt="" coords="114,152,232,177"/>
 </map>

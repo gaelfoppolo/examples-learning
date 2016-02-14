@@ -3,5 +3,5 @@
 <area shape="rect" id="node3" href="$solution_8h.html" title="Contains the definition of the Solution. " alt="" coords="33,152,147,177"/>
 <area shape="rect" id="node4" href="$core_8h.html" title="File containing the core that generates the solutions. " alt="" coords="5,299,90,324"/>
 <area shape="rect" id="node5" href="$output_8h.html" title="File containing the output functions and helpers. " alt="" coords="85,225,181,251"/>
-<area shape="rect" id="node6" href="$parsers_8h.html" title="File containing the example and model file parser. " alt="" coords="114,299,232,324"/>
+<area shape="rect" id="node6" href="$parsers_8h.html" title="Contains the example and model file parser. " alt="" coords="114,299,232,324"/>
 </map>
