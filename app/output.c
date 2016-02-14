@@ -152,7 +152,7 @@ void genObjectOutput(OutObject* oo, Model* m, int recur) {
 			}
 		}
 	}
-	if(recur == 0 && nbOfRelation <= 1) {
+	if(recur <= 0 && nbOfRelation <= 1) {
 		output(L0, "\n");
 	}
 }
