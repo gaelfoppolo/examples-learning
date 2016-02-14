@@ -4,7 +4,6 @@ $( document ).ready(function() {
     $("div.title").addClass("h1");
 
     $('li > a[href="index.html"] > span').before("<i class='fa fa-cog'></i> ");
-    $('li > a[href="index.html"] > span').text("Example learning");
     $('li > a[href="modules.html"] > span').before("<i class='fa fa-square'></i> ");
     $('li > a[href="namespaces.html"] > span').before("<i class='fa fa-bars'></i> ");
     $('li > a[href="files.html"] > span').before("<i class='fa fa-file'></i> ");

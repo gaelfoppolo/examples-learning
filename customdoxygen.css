@@ -7,14 +7,13 @@ h1, .h1, h2, .h2, h3, .h3{
 }
 
 .adjust-right {
-margin-left: 30px !important;
-font-size: 1.15em !important;
+    margin-left: 30px !important;
+    font-size: 1.15em !important;
 }
 .navbar{
- border: 0px solid #222 !important;
- margin-bottom: 0px !important;
+    border: 0px solid #222 !important;
+    margin-bottom: 0px !important;
 }
-
 
 /* Sticky footer styles
 -------------------------------------------------- */
@@ -272,49 +271,3 @@ blockquote {
     margin: 0 24px 0 4px;
     padding: 0 12px 0 16px;
 }
-
-/* Google Custom Search Engine Tweaks  START */
-input.gsc-input,
-.gsc-input-box,
-.gsc-input-box-hover,
-.gsc-input-box-focus,
-.gsc-search-button {
-  box-sizing: content-box;
-  line-height: normal;
-}
-
-.gsc-table-result,
-.gsc-thumbnail-inside,
-.gsc-url-top {
-  padding-left: 0px !important;
-}
-
-.gsc-selected-option-container {
-  width: inherit !important;
-}
-
-.reset-box-sizing,
-.reset-box-sizing * {
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-}
-
-@media (min-width: 768px) {
-  .google-cse {
-    top: 50px;
-  }
-}
-@media (max-width: 767px) {
-  .google-cse {
-    top: 391px;
-  }
-}
-
-.google-cse {
-  width: 100%;
-  left: 0px;
-  z-index: 9999;
-  background-color: #222;
-}
-/* Google Custom Search Engine Tweaks  END */
