@@ -3,7 +3,6 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @brief The parser
  */
 
 #include "parsers.h"

@@ -3,7 +3,6 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- * @brief Convertion tools from structures to human readable strings
  */
 
 #include "output.h"
@@ -67,6 +66,7 @@ void genObjectOutput(OutObject* oo, Model* m, int recur) {
 	if(recur > -1) {
 		printNChar(L0, '\t', recur);
 	}
+	
 	// print the name
 	output(L0, "%s%s: %s", SBPURPLE, oo->name, SDEFAULT);
 

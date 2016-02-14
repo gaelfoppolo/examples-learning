@@ -1,5 +1,5 @@
 <map id="types/string&#45;type.h" name="types/string&#45;type.h">
-<area shape="rect" id="node2" href="$output_8h.html" title="File containing the output functions and helpers. " alt="" coords="40,79,135,104"/>
+<area shape="rect" id="node2" href="$output_8h.html" title="Contains the output functions, helpers and functions to create and display human readable strings..." alt="" coords="40,79,135,104"/>
 <area shape="rect" id="node4" href="$parsers_8h.html" title="Contains the example and model file parser. " alt="" coords="114,152,232,177"/>
 <area shape="rect" id="node3" href="$core_8h.html" title="File containing the core that generates the solutions. " alt="" coords="5,152,90,177"/>
 </map>

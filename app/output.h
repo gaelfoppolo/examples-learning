@@ -3,7 +3,9 @@
  *	@author Bastien Philip (ebatsin)
  *	@author Gaël Foppolo (gaelfoppolo)
  *
- *	@brief File containing the output functions and helpers
+ *	@brief Contains the output functions, helpers 
+ *	and functions to create and display human readable strings
+ *
  */
 
 #ifndef _OUTPUT_H_
@@ -83,10 +85,10 @@ char* SBUWHITE;
 void genOutput(Solution* sol, Model* mdl, int recur);
 
 /**
-*	@brief Print an object
-*	@param oo The object to print
+*	@brief Print an OutObject
+*	@param oo The OutObject to print
 *	@param m The model
-*	@param recur -1 if no recursion is allowed (juste print name of object linked by relation), or the number of indentations
+*	@param recur -1 if no recursion is allowed (juste print name of OutObject linked by relation), or the number of indentations
 */
 void genObjectOutput(OutObject* oo, Model* m, int recur);
 
