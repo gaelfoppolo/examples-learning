@@ -1,7 +1,8 @@
 <map id="genObjectOutput" name="genObjectOutput">
-<area shape="rect" id="node2" href="$out-object_8h.html#aec19bb5bbbad25ad1d797ff333beee6f" title="Check if one of the relations of oo is disabled, recursively. " alt="" coords="173,5,329,32"/>
-<area shape="rect" id="node3" href="$output_8h.html#ac655e1b05f956db56da490a2c3b7beb1" title="Print the message in the standard output only if its importance is high enough to be printed..." alt="" coords="222,56,281,83"/>
-<area shape="rect" id="node5" href="$model_8h.html#a8fb65a244ba33917f93bfd4083120a2e" title="Returns the name of the enumeration item whose identifier is given as a parameter. " alt="" coords="206,107,297,133"/>
-<area shape="rect" id="node6" href="$model_8h.html#ad719724c67e1a12807c683e766e9acc4" title="Returns the name of the tree node or tree leaf whose identifier is given as a parameter. " alt="" coords="210,157,293,184"/>
-<area shape="rect" id="node4" href="$output_8h.html#a0cf9973e582fb23d19b39e36bae893eb" title="Gets the max level of the messages to output (0 : only critical messages, the higher the value..." alt="" coords="377,56,521,83"/>
+<area shape="rect" id="node2" href="$out-object_8h.html#aec19bb5bbbad25ad1d797ff333beee6f" title="Check if one of the relations of oo is disabled, recursively. " alt="" coords="175,5,333,31"/>
+<area shape="rect" id="node3" href="$output_8h.html#ae13cdd205d516745122d42bfcf582e0b" title="Print a fixed number of time a character. " alt="" coords="211,55,297,80"/>
+<area shape="rect" id="node4" href="$output_8h.html#ac655e1b05f956db56da490a2c3b7beb1" title="Print the message in the standard output only if its importance is high enough to be printed..." alt="" coords="381,80,440,105"/>
+<area shape="rect" id="node6" href="$model_8h.html#a8fb65a244ba33917f93bfd4083120a2e" title="Returns the name of the enumeration item whose identifier is given as a parameter. " alt="" coords="208,156,300,181"/>
+<area shape="rect" id="node7" href="$model_8h.html#ad719724c67e1a12807c683e766e9acc4" title="Returns the name of the tree node or tree leaf whose identifier is given as a parameter. " alt="" coords="212,205,296,231"/>
+<area shape="rect" id="node5" href="$output_8h.html#a0cf9973e582fb23d19b39e36bae893eb" title="Gets the max level of the messages to output (0 : only critical messages, the higher the value..." alt="" coords="488,80,634,105"/>
 </map>
