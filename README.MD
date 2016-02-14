@@ -6,7 +6,7 @@ This project aims to find similarities in a set of formatted data and propose on
 
 The application is based on the concept of model, examples (and counter-examples), objects, attributes and relations:
 
- - A **model** is the definition of the formatted data on which we are working. This is where the attribute(s) and the relation(s) that describe it are defined. *(ex: a geometric shape, described by its shape, color and size)*
+ - A **model** is the definition of the formatted data on which the program works. This is where the attribute(s) and the relation(s) that describe it are defined. *(ex: a geometric shape, described by its shape, color and size)*
  - An **object** is an instantiation of the model *(ex: a square, red of size 8)*
  - An **example** (or counter-example) is a set of objects. Each example is independant of the other.
  - An **attribute** describes an aspect of an object and can be of three type:
