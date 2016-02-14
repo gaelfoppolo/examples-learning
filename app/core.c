@@ -140,6 +140,7 @@ Solution* genAllCombi(Model* mdl, Examples* exp) {
 			for (int j = 0; j < vectSize(e->objects); ++j) {
 				for (int k = 0; k < fact; ++k) {					
 					// combi the OutObject with the current Object
+					// i*factNext+j*fact+k is our continuous bijection (homomorphism)
 					combiOutObjectObject(mdl, &vectAt(T->outobjects, i*factNext+j*fact+k), &vectAt(e->objects, j));
 				}
 			}			
