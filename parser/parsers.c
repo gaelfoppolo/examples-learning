@@ -548,7 +548,7 @@ ModelType* parseAttrType(FILE* fp, char** error) {
 		}
 		current->inter = *it;
 		free(it);
-		output(L3, "%sInterval%s\nRange: %s[%d ; %d]\n", SBGREEN, SDEFAULT, SBCYAN, current->inter.min, current->inter.max);
+		output(L3, "%sInterval%s\nRange: %s[%d;%d]\n", SBGREEN, SDEFAULT, SBCYAN, current->inter.min, current->inter.max);
 	}
 	else if(c == '(') { // only trees starts with '('
 		// reads tree

@@ -133,7 +133,7 @@ unsigned int extractVerbosityFromArg(const char* verbosity);
 */
 void enableColors(unsigned int enable);
 
-/*
+/**
 *	@brief Print a fixed number of time a character
 *	@param level The importance level of the message (flags, can use L[0-7] and add the flag LERROR if you want to write in the error stream
 *			LERROR alone is aquivalent to L0 | LERROR

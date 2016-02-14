@@ -219,7 +219,7 @@ int isOutObjectIncludeInAnother(Model* mdl, OutObject* oo1, OutObject* oo2) {
 	return (countAttributesInclude == vectSize(oo1->attributes));
 }
 
-void gengeneralization(Model* mdl, Solution* s) {
+void genGeneralization(Model* mdl, Solution* s) {
 	int isInclude;
 
 	// for each OutObjects

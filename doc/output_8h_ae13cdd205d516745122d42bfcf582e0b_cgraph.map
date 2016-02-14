@@ -1,0 +1,4 @@
+<map id="printNChar" name="printNChar">
+<area shape="rect" id="node2" href="$output_8h.html#ac655e1b05f956db56da490a2c3b7beb1" title="Print the message in the standard output only if its importance is high enough to be printed..." alt="" coords="139,5,198,31"/>
+<area shape="rect" id="node3" href="$output_8h.html#a0cf9973e582fb23d19b39e36bae893eb" title="Gets the max level of the messages to output (0 : only critical messages, the higher the value..." alt="" coords="246,5,392,31"/>
+</map>

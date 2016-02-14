@@ -3,7 +3,7 @@ var searchData=
   ['genallcombi',['genAllCombi',['../core_8h.html#aa641061974fa139e923cec85be3de0e6',1,'core.c']]],
   ['genallrelations',['genAllRelations',['../core_8h.html#a6b4fd5c6dd489997dfab9f47f4f2c1f7',1,'core.c']]],
   ['gencounterexamples',['genCounterExamples',['../core_8h.html#a493a0ea7ab15eb7173d55ea67cba90a4',1,'core.c']]],
-  ['gengeneralization',['gengeneralization',['../core_8h.html#a81fac814f234c2adcf67afdaa85f4d99',1,'core.c']]],
+  ['gengeneralization',['genGeneralization',['../core_8h.html#a9562698827b7db08479ebff049eda009',1,'core.c']]],
   ['genobjectoutput',['genObjectOutput',['../output_8h.html#a2cf4b0c0da26fe5bf10f136a2b44fddd',1,'output.c']]],
   ['genoutput',['genOutput',['../output_8h.html#a80600ef2b7f1bd284a0c65a9fbff0e03',1,'output.c']]],
   ['getattributeposition',['getAttributePosition',['../parsers_8h.html#acbb17ae374bfa9efbd8091a982c313f0',1,'parsers.c']]],

@@ -51,21 +51,17 @@ void genOutput(Solution* sol, Model* mdl, int recur) {
 	for(int i = 0; i < vectSize(sol->outobjects); ++i) {
 		genObjectOutput(&vectAt(sol->outobjects, i), mdl, recur ? 0 : -1);
 	}
-	output(L0, "\n");
 }
 
 void genObjectOutput(OutObject* oo, Model* m, int recur) {
 	ModelAttribute* ma;
 	OutObject* ooo;
 	OutAttribute* oa;
+	int nbOfRelation = 0;
 
 	// check whether the object has been disabled or not and if is not too general
 	if(haveDisabledRelations(oo) || oo->generalizeBy != NULL) {
 		return;
-	}
-
-	if(recur < 1) {
-		output(L0, "\n");
 	}
 
 	if(recur > -1) {
@@ -131,7 +127,8 @@ void genObjectOutput(OutObject* oo, Model* m, int recur) {
 	for(unsigned int i = 0; i < vectSize(oo->relations); ++i) {
 		ooo = vectAt(oo->relations, i);
 		// if the relation is defined for this object
-		if(ooo != NULL) {
+		if(ooo != NULL) {			
+			nbOfRelation++;
 			// retrieve the most specific solution
 			while(ooo->generalizeBy != NULL) {
 				ooo = ooo->generalizeBy;
@@ -149,11 +146,14 @@ void genObjectOutput(OutObject* oo, Model* m, int recur) {
 				output(L0, "\n");
 				printNChar(L0, '\t', recur+1);
 				// print the relation name
-				output(L0, "%s%s%s:\n", SBGREEN, vectAt(m->rel, i), SDEFAULT);
+				output(L0, "%s%s%s:\n", SBYELLOW, vectAt(m->rel, i), SDEFAULT);
 				// print the object linked
 				genObjectOutput(ooo, m, recur + 1);
 			}
 		}
+	}
+	if(recur == 0 && nbOfRelation <= 1) {
+		output(L0, "\n");
 	}
 }
 

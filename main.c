@@ -114,20 +114,25 @@ int main(int argc, char **argv) {
 			return 1;
 		}
 
-		output(L1, "%sGenerating solutions...%s\n", SBDEFAULT, SDEFAULT);
+		output(L1, "%sGenerating all combinations...%s\n", SBDEFAULT, SDEFAULT);
 
 		Solution* s = genAllCombi(m, e);
+
+		output(L1, "%sAdding relations...%s\n", SBDEFAULT, SDEFAULT);
+
 		genAllRelations(s, e, m);
 
 		if(!flagNoGeneralization) {
-			gengeneralization(m, s);
+			output(L1, "%sGeneralization...%s\n", SBDEFAULT, SDEFAULT);
+			genGeneralization(m, s);
 		}
 
 		if(!flagNoCounterExample) {
+			output(L1, "%sChecking counter-examples...%s\n", SBDEFAULT, SDEFAULT);
 			genCounterExamples(m, e, s);
 		}
 
-		output(L1, "%sSolutions:%s\n\n", SBDEFAULT, SDEFAULT);
+		output(L1, "%sSolutions:%s\n", SBDEFAULT, SDEFAULT);
 		
 		genOutput(s, m, flagExpandRelation);
 

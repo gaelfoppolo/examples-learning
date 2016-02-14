@@ -37,7 +37,7 @@ int nbCombi(Examples* exp, int expIndice);
 OutObject* initOutObjectWithObject(Model* mdl, Object* o);
 
 /**
-*	@brief Init all combinaisons with last example objects
+*	@brief Init all combinations with last example objects
 *	@param mdl Pointer to the Model
 *	@param exp Pointer to the Examples
 * 
@@ -58,7 +58,7 @@ void combiOutObjectObject(Model* mdl, OutObject* oo, Object*o);
 *	@param mdl Pointer to the Model
 *	@param exp Pointer to our Examples to combine
 * 
-*	@return Pointer to Solution containing all our combinaisons
+*	@return Pointer to Solution containing all our combinations
 */
 Solution* genAllCombi(Model* mdl, Examples* exp);
 
@@ -71,7 +71,7 @@ Solution* genAllCombi(Model* mdl, Examples* exp);
 void genAllRelations(Solution* s, Examples* e, Model* m);
 
 /**
-*	@brief Get the index of the combinaisons of object in the array
+*	@brief Get the index of the combinations of object in the array
 *	@param exp Pointer to the examples
 *	@param oi Pointer to the objects's indexes
 * 
@@ -95,7 +95,7 @@ int isOutObjectIncludeInAnother(Model *mdl, OutObject* oo1, OutObject* oo2);
 *	@param mdl Pointer to the Model
 *	@param s Pointer to the Solution
 */
-void gengeneralization(Model *mdl, Solution* s);
+void genGeneralization(Model *mdl, Solution* s);
 
 /**
 *	@brief Add counter-examples to the solutions
