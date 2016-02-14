@@ -148,7 +148,7 @@ void genObjectOutput(OutObject* oo, Model* m, int recur) {
 				if(i < vectSize(oo->relations)) {
 					output(L0, ", ");
 				}
-				output(L0, "%s%s%s", SBGREEN, vectAt(m->rel, i), SDEFAULT);
+				output(L0, "%s%s%s", SBYELLOW, vectAt(m->rel, i), SDEFAULT);
 				output(L0, "(%s%s%s)", SBPURPLE, ooo->name, SDEFAULT);
 			}
 			else {
