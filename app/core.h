@@ -81,7 +81,6 @@ int getIndex(Examples* exp, ObjectIndex* oi);
 
 /**
 *	@brief Is oo1 include in oo2?
-*	
 *	@param mdl Pointer to Model
 *	@param oo1 Pointer to the first OutObject
 *	@param oo2 Pointer to the second OutObject
