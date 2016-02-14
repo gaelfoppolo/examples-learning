@@ -57,6 +57,7 @@ void genObjectOutput(OutObject* oo, Model* m, int recur) {
 	OutObject* ooo;
 	OutAttribute* oa;
 	int nbOfRelation = 0;
+	int printed = 0;
 
 	// check whether the object has been disabled or not and if is not too general
 	if(haveDisabledRelations(oo) || oo->generalizeBy != NULL) {
@@ -82,10 +83,13 @@ void genObjectOutput(OutObject* oo, Model* m, int recur) {
 			case TYPE_INT:
 				// check if the attribute needs to be printed
 				if(oa->inter.max != vectAt(m->ma, i).mt.inter.max 
-					&& oa->inter.min != vectAt(m->ma, i).mt.inter.min) {
+					|| oa->inter.min != vectAt(m->ma, i).mt.inter.min) {
 					// print the separator
-					if(i != 0) {
+					if(printed) {
 						output(L0, ", ");
+					}
+					else {
+						printed = 1;
 					}
 					// print : attrName(min;max)
 					output(L0, "%s%s%s(%s%d;%d%s)", SBGREEN, ma->name, SDEFAULT, SBCYAN, oa->inter.min, oa->inter.max, SDEFAULT);
@@ -95,8 +99,11 @@ void genObjectOutput(OutObject* oo, Model* m, int recur) {
 				// check if the attribute needs to be printed
 				if(vectSize(oa->oenu.oenu) != vectSize(vectAt(m->ma, i).mt.enu.enu)) {
 					// print the separator
-					if(i != 0) {
+					if(printed) {
 						output(L0, ", ");
+					}
+					else {
+						printed = 1;
 					}
 					// print attrName(item1, item2, item3, ...)
 					output(L0, "%s%s%s(%s", SBGREEN, ma->name, SDEFAULT, SBCYAN);
@@ -114,8 +121,11 @@ void genObjectOutput(OutObject* oo, Model* m, int recur) {
 				// check if the attribute needs to be printed
 				if(oa->tree != vectAt(m->ma, i).mt.tree.id) {
 					// print the separator
-					if(i != 0) {
+					if(printed) {
 						output(L0, ", ");
+					}
+					else {
+						printed = 1;
 					}
 					// print attrName(item1, item2, item3, ...)
 					output(L0, "%s%s%s(%s%s%s)", SBGREEN, ma->name, SDEFAULT, SBCYAN, getTreeStr(oa->tree, m, i), SDEFAULT);
