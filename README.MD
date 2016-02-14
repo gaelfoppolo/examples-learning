@@ -1,6 +1,6 @@
-# Examples learning
+# %Examples learning
 
-![logo](logo.png)
+<img src="logo.png" width="250px">
 
 This project aims to find similarities in a set of formatted data and propose one or more characteristic(s) description(s) that carry the most information.
 
@@ -47,7 +47,7 @@ relation: relation-name[, relation-name]
 ```
 See [config-commented.cfg](https://github.com/gaelfoppolo/examples-learning/blob/master/ressources/config-commented.cfg) for further explanations.
 
-## Examples
+### Examples
 
 The **model** defines the rules behind the **examples**, which are defined in a file with the *exp* extension. It follows this syntax :
 ```
