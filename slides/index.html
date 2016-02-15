@@ -4,10 +4,10 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>reveal.js – The HTML Presentation Framework</title>
+		<title>Examples learning</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="description" content="Examples learning - presentation">
+		<meta name="author" content="Foppolo Gaël, Philip Bastien">
 
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -15,7 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+		<link rel="stylesheet" href="css/theme/learning.css" id="theme">
 
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -41,11 +41,12 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Reveal.js</h1>
-					<h3>The HTML Presentation Framework</h3>
+					<h2>Examples learning</h2>
+					<img width="350" data-src="../../logo.png" alt="Logo">
 					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
+						<small>Foppolo Gaël & Philip Bastien - 22 février 2016</small>
 					</p>
+					<!-- ajout du nom du professeur encadrant également me semble une bonne idée -->
 				</section>
 
 				<section>
@@ -396,12 +397,31 @@ Reveal.addEventListener( 'customevent', function() {
 
 				// Optional reveal.js plugins
 				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true },
-					{ src: 'plugin/notes/notes.js', async: true }
+					{ 
+						src: 'lib/js/classList.js', condition: function() { 
+							return !document.body.classList; 
+						} 
+					},
+					{ 
+						src: 'plugin/markdown/marked.js', condition: function() { 
+							return !!document.querySelector( '[data-markdown]' ); 
+						} 
+					},
+					{ 
+						src: 'plugin/markdown/markdown.js', condition: function() { 
+						return !!document.querySelector( '[data-markdown]' ); 
+						} 
+					},
+					{ 
+						src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); 
+						} 
+					},
+					{ 
+						src: 'plugin/zoom-js/zoom.js', async: true 
+					},
+					{ 
+						src: 'plugin/notes/notes.js', async: true 
+					}
 				]
 			});
 
