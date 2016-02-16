@@ -15,7 +15,7 @@ body {
   background-color: #222; }
 
 .reveal {
-  font-family: "LatoWeb", Helvetica, sans-serif;
+  font-family: "LatoWebThin", Helvetica, sans-serif;
   font-size: 38px;
   font-weight: normal;
   color: #fff; }
@@ -41,11 +41,11 @@ body {
 .reveal h6 {
   margin: 0 0 20px 0;
   color: #fff;
-  font-family: "LatoWeb", Helvetica, sans-serif;
+  font-family: "LatoWebThin", Helvetica, sans-serif;
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: normal;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   text-shadow: none;
   word-wrap: break-word; }
 
@@ -63,6 +63,11 @@ body {
 
 .reveal h1 {
   text-shadow: none; }
+
+.reveal h1.demo {
+  font-family: "LatoWeb", Helvetica, sans-serif;
+  font-size: 3em;
+}
 
 /*********************************************
  * OTHER
