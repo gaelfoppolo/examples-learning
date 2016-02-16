@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Inter combi</title>
+	<style>
+		html {
+			background-color: hsl(0, 0%, 13%);
+			width: 100%;
+			height: 100%;
+		}
+
+		body {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			overflow: hidden;
+			margin: none;
+			align-items: center;
+		}
+
+		#cont {
+			width: 90%;
+			margin: auto;
+			text-align: center;
+		}
+
+		.wrapper {
+			position: absolute;;
+			left: 50%;
+			width: 600px;
+		}
+
+		.inter {
+			left: -50%;
+			height: 12px;
+			background-color: hsl(0, 0%, 60%);
+			position: relative;
+		}
+
+		.inter-fill {
+			position: absolute;
+			background-color: #68d7c6;
+			height: 12px;
+			width: 0;
+			left: 30px;
+			transition: ease all 0.4s;
+		}
+
+		.dash {
+			position: relative;
+			top: -20px;
+		}
+
+		.uni-dash {
+			background-color: hsl(0, 0%, 60%);
+			height: 17px;
+			width: 3px;
+			float: left;
+		}
+
+		.big {
+			height: 37px;
+			margin-top: -20px;
+			background-color: #68d7c6;
+		}
+
+		.selected {
+			background-color: #68d7c6;
+		}
+
+		#inter-2 {
+			transition: ease 0.4s;
+			transition-property: top, opacity;
+			margin-top: 50px;
+		}
+	</style>
+</head>
+<body>
+	<div id="cont">
+		<div class="wrapper">
+			<div class="inter" id="inter-1" style="top: -70px">
+				<div class="inter-fill"></div>
+				<div class="dash"></div>
+			</div>
+		</div>
+
+		<div class="wrapper">
+			<div class="inter" id="inter-2" style="top: 80px">
+				<div class="inter-fill"></div>
+				<div class="dash"></div>
+			</div>
+		</div>
+	</div>
+	<script>
+		function genDash(inter, n, value) {
+			++n;
+			var dash = inter.querySelector('.dash');
+			var interfill = inter.querySelector(".inter-fill");
+			inter.setAttribute("data-n", n);
+			inter.setAttribute("data-min", value);
+			inter.setAttribute('data-max', value);
+			var first = 1;
+			for(var i = 0; i < n; ++i) {
+				(function() {
+					var elem = document.createElement('div');
+					elem.className = "uni-dash";
+					dash.appendChild(elem);
+					if(!first) {
+						elem.style.marginLeft = (inter.offsetWidth - n*3)/(n-1) + 'px';
+					}
+					if(i == value) {
+						elem.classList.add('big');
+					}
+					dash.offsetWidth;
+					elem.style.transition = 'ease 0.4s all';
+					first = 0;
+				})();
+			}
+			interfill.style.width = 0;
+			interfill.style.left = (value+1)*(inter.offsetWidth - n*3)/(n-1) - 4 + 'px';
+			interfill.offsetWidth;
+			interfill.style.transition = 'ease 0.4s all';
+		}
+
+		function setInter(inter, min, max) {
+			var bigs = inter.querySelectorAll('.big, .selected');
+			var interfill = inter.querySelector(".inter-fill");
+			var n = inter.getAttribute("data-n");
+			inter.setAttribute('data-min', min);
+			inter.setAttribute('data-max', max);
+			for(var i = 0; i < bigs.length; ++i) {
+				bigs[i].classList.remove('big');
+				bigs[i].classList.remove('selected');
+			}
+			var all = inter.querySelectorAll('.uni-dash');
+			for(var i = min+1; i < max; ++i) {
+				all[i].classList.add('selected');
+			}
+			all[min].classList.add("big");
+			all[max].classList.add("big");
+			interfill.style.left = (min)*(inter.offsetWidth)/(n-1) + 'px';
+			interfill.style.width = (max-min)*(inter.offsetWidth)/(n-1) + 'px';
+		}
+
+		var inters = [5, 8, 12, 15, 2];
+		var index = 1;
+
+
+		var a = document.querySelector('#inter-1');
+		var b = document.querySelector('#inter-2');
+
+		genDash(a, 20, 5);
+		genDash(b, 20, 5);
+
+		// remove the default first bar
+		(function() {
+			var bigs = a.querySelectorAll('.big, .selected');
+			for(var i = 0; i < bigs.length; ++i) {
+				bigs[i].classList.remove('big');
+				bigs[i].classList.remove('selected');
+			}
+		})();
+
+		function next() {
+			b.style.top = "-125px";
+			b.style.opacity = "0";
+			setTimeout(function() {
+				setInter(a, Math.min(inters[index-1], parseInt(a.getAttribute('data-min'))), Math.max(inters[index-1], parseInt(a.getAttribute('data-max'))));
+			}, 200);
+
+			setTimeout(function() {
+				b.style.transition = 'none';
+				b.offsetWidth;
+				var current = inters[index++];
+				setInter(b, current, current);
+				b.style.top = '80px';
+				b.style.opacity = 1;
+				b.offsetWidth;
+				b.style.transition = 'ease 0.4s';
+			}, 400);
+
+		}
+
+
+		document.addEventListener('keyup', function(e) {
+			if(e.keyCode == '13') {
+				next();
+			}
+		});
+	</script>
+</body>
+</html>

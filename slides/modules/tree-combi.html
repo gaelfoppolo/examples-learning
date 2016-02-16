@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tree combi</title>
+	<style>
+		html {
+			background-color: hsl(0, 0%, 13%);
+			width: 100%;
+			height: 100%;
+		}
+
+		body {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			overflow: hidden;
+			margin: none;
+			align-items: center;
+		}
+
+		#cont {
+			width: 90%;
+			margin: auto;
+			text-align: center;
+		}
+		svg * {
+			transition: ease 0.4s all;
+		}
+	</style>
+</head>
+<body>
+	<div id="cont">
+		<svg viewBox="0 0 545 650" preserveAspectRatio="xMidYMid meet" height="400" width="545">
+			<line id="line-AB" x1="225" y1="70" x2="100" y2="240" stroke="hsl(0, 0%, 60%)" stroke-width="5" />
+			<line id="line-AC" x1="225" y1="70" x2="350" y2="240" stroke="hsl(0, 0%, 60%)" stroke-width="5" />
+			<line id="line-CD" x1="350" y1="240" x2="225" y2="410" stroke="hsl(0, 0%, 60%)" stroke-width="5" />
+			<line id="line-CE" x1="350" y1="240" x2="475" y2="410" stroke="hsl(0, 0%, 60%)" stroke-width="5" />
+			<line id="line-DF" x1="225" y1="410" x2="100" y2="580" stroke="hsl(0, 0%, 60%)" stroke-width="5" />
+			<line id="line-DG" x1="225" y1="410" x2="350" y2="580" stroke="hsl(0, 0%, 60%)" stroke-width="5" />
+
+			<circle id="circle-A" cx="225" cy="70" r="50" stroke="hsl(0, 0%, 60%)" stroke-width="5" fill="hsl(0, 0%, 13%)" />
+			<circle id="circle-B" cx="100" cy="240" r="50" stroke="hsl(0, 0%, 60%)" stroke-width="5" fill="hsl(0, 0%, 13%)" />
+			<circle id="circle-C" cx="350" cy="240" r="50" stroke="hsl(0, 0%, 60%)" stroke-width="5" fill="hsl(0, 0%, 13%)" />
+			<circle id="circle-D" cx="225" cy="410" r="50" stroke="hsl(0, 0%, 60%)" stroke-width="5" fill="hsl(0, 0%, 13%)" />
+			<circle id="circle-E" cx="474" cy="410" r="50" stroke="hsl(0, 0%, 60%)" stroke-width="5" fill="hsl(0, 0%, 13%)" />
+			<circle id="circle-F" cx="100" cy="580" r="50" stroke="hsl(0, 0%, 60%)" stroke-width="5" fill="hsl(0, 0%, 13%)" />
+			<circle id="circle-G" cx="350" cy="580" r="50" stroke="hsl(0, 0%, 60%)" stroke-width="5" fill="hsl(0, 0%, 13%)" />
+		</svg>
+	</div>
+	<script>
+		var tree = {
+			'A': document.getElementById("circle-A"),
+			'B': document.getElementById("circle-B"),
+			'C': document.getElementById("circle-C"),
+			'D': document.getElementById("circle-D"),
+			'E': document.getElementById("circle-E"),
+			'F': document.getElementById("circle-F"),
+			'G': document.getElementById("circle-G")
+		};
+		var lines = {
+			'AB': document.getElementById("line-AB"),
+			'AC': document.getElementById("line-AC"),
+			'CD': document.getElementById("line-CD"),
+			'CE': document.getElementById("line-CE"),
+			'DF': document.getElementById("line-DF"),
+			'DG': document.getElementById("line-DG")
+		};
+
+		var LCAs = [
+			['F', 'E', 'C', 'DF', 'CD', 'CE'],			
+			['G', 'B', 'A', 'AB', 'AC', 'CD', 'DG']
+		];
+
+		var LCAIndex = 0;
+
+		function refreshColor() {
+			for(var i in tree) {
+				tree[i].style.stroke = "hsl(0, 0%, 60%)";
+				tree[i].style.fill = "hsl(0, 0%, 13%)";
+			}
+			for(var i in lines) {
+				lines[i].style.stroke = "hsl(0, 0%, 60%)";
+			}
+		}
+
+		function nextLCA() {
+			refreshColor();
+			var current = LCAs[LCAIndex++];
+			tree[current[0]].style.stroke = "#68d7c6";
+			tree[current[1]].style.stroke = "#68d7c6";
+			tree[current[2]].style.stroke = "#68d7c6";
+			tree[current[2]].style.fill = "#68d7c6";
+			for(var i = 3; i < current.length; ++i) {
+				lines[current[i]].style.stroke = "#68d7c6";
+			}
+		}
+
+		document.addEventListener('keyup', function(e) {
+			if(e.keyCode == '13') {
+				nextLCA();
+			}
+		});
+
+	</script>
+</body>
+</html>
