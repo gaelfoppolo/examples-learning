@@ -91,14 +91,14 @@ int main(int argc, char **argv) {
 	char* c = getIncludeFile(filename, &includePosition);
 
 	if(c == NULL) {
-		output(LERROR, "The loading of the configuration file failed. The configuration must be linked in the example file (example file loaded : %s).\n", filename);
+		output(LERROR, "The loading of the configuration file failed. The configuration must be linked in the example file (example file loaded: %s).\n", filename);
 	}
 	else {
-		output(L1, "%sLoading configuation file : %s%s\n", SBDEFAULT, c, SDEFAULT);
+		output(L1, "%sLoading configuration file: %s%s\n", SBDEFAULT, c, SDEFAULT);
 		Model* m = loadConfigFile(c);
 
 		if(m == NULL) {
-			output(LERROR, "Configuration file parsing : failed\n");
+			output(LERROR, "Configuration file parsing: failed\n");
 			free(c);
 			return 1;
 		}
@@ -108,7 +108,7 @@ int main(int argc, char **argv) {
 		Examples* e = loadExampleFile(filename, m, includePosition);
 
 		if(e == NULL) {
-			output(LERROR, "Example file parsing : failed\n");
+			output(LERROR, "Example file parsing: failed\n");
 			free(c);
 			freeModel(m);
 			return 1;

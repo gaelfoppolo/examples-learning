@@ -29,16 +29,16 @@ The programs use two different types of file to generate the solutions of a prob
 
 ### Model
 
-The informations on the **model** (ie: the definition of the object's attributes, the possible relations, the bounds of the values, etc...) is defined in a file with the *cfg* extension. It follows this syntax :
+The information on the **model** (ie: the definition of the object's attributes, the possible relations, the bounds of the values, etc...) is defined in a file with the *cfg* extension. It follows this syntax:
 ```
 attribute-name : attribute-value
 relation : relation-name[, relation-name]
-# each value can be of one of the three followinf types :
-# integer, in interval, defined like this :
+# each value can be of one of the three following types:
+# integer, in interval, defined like this:
 integer-attribute : <min> - <max>
-# an enumeration item, from an enumeration, defined like this :
+# an enumeration item, from an enumeration, defined like this:
 enum-attribute : <item> [, <item>]
-# a tree node, from a tree, defined like this :
+# a tree node, from a tree, defined like this:
 tree-attribute : (<node-name>, (<child-name>[, ...]), (<child-name>))
 # a tree definition can be split on more than one line to allow a greater readability
 
@@ -49,7 +49,7 @@ See [config-commented.cfg](https://github.com/gaelfoppolo/examples-learning/blob
 
 ### Examples
 
-The **model** defines the rules behind the **examples**, which are defined in a file with the *exp* extension. It follows this syntax :
+The **model** defines the rules behind the **examples**, which are defined in a file with the *exp* extension. It follows this syntax:
 ```
 include <path-to-model-file>
 
@@ -63,12 +63,12 @@ See [examples-commented.exp](https://github.com/gaelfoppolo/examples-learning/bl
 
 ## Options and usage
 
-The program only need the path to the example file as a parameter :
+The program only need the path to the example file as a parameter:
 ```
 learning <path-to-example-file> [options]
 ```
 
-It accept some options :
+It accept some options:
 
 - ``--help`` or ``-h``
 Print some help on basic options
@@ -86,4 +86,4 @@ Skip the counter-examples handling. Prevent the suppression of solutions, even i
 Remove all colors from the output
 
 - ``-v``
-Verbosity level, you can use up to 4 `v` to add informations
+Verbosity level, you can use up to 4 `v` to add information
