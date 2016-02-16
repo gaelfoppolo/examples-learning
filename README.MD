@@ -61,12 +61,14 @@ Example-name
 ```
 See [examples-commented.exp](https://github.com/gaelfoppolo/examples-learning/blob/master/ressources/examples-commented.exp) for further explanations.
 
-## Options and usage
+## Usage and options
 
-The program only need the path to the example file as a parameter:
-```
-learning <path-to-example-file> [options]
-```
+Compile with ``make`` or ``make learning``.
+
+See [makefile](https://github.com/gaelfoppolo/examples-learning/blob/master/makefile) for further explanations.
+
+To run the program only need the path to the example file as a parameter:
+``learning <path-to-example-file> [options]``
 
 It accept some options:
 
