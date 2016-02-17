@@ -296,4 +296,18 @@ body {
     top: 2.5%;
     right: 2.5%;
     z-index: 100;
+}
+
+.domain {
+  fill-opacity: 0;
+}
+
+.area {
+    fill: #1db34f;
+    fill-opacity: 0.5;
+}
+
+.axis {
+    font-size: 20px;
+    fill:white;
 }    
