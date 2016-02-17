@@ -16,6 +16,7 @@
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/learning.css" id="theme">
+		<link rel="stylesheet" href="modules/css.css">
 
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -101,8 +102,8 @@
 						<h3>relations : réflexivité et transitivité non gérées</h3>
 						<h3>exemple intéractif</h3>
 					</section>
-					<section id="exemple" data-external="modules/inter-combi.html">
-					</section>
+					<section id="exemple" data-external="modules/inter-combi.html"></section>
+					<section id="exemple-enum" data-external="modules/enum-combi.html"></section>
 				</section>
 
 				<!-- étape 3 : généralisation -->
@@ -205,7 +206,9 @@
 		<script src="js/reveal.js"></script>
 
 		<!-- libs perso -->
+		<script src="modules/init.js"></script>
 		<script src="modules/inter-combi.js"></script>
+		<script src="modules/enum-combi.js"></script>
 
 		<script>
 
@@ -264,13 +267,18 @@
 			var inters, index, interA, interB;
 
 			Reveal.addEventListener('slidechanged', function( event ) {
+				// on désactive toutes les animations
+				disableAeListeners();
+
     			switch (event.currentSlide.id) {
     				case "exemple":
-    					interCombiGen();
-
+    					enableAeListener('inter');
+    					break;
+    				case "exemple-enum":
+    					enableAeListener('enum');
     					break;
     			}
-			} );
+			});
 
 		</script>
 

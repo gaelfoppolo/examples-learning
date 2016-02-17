@@ -1,0 +1,106 @@
+.animated-example {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	overflow: hidden;
+	margin: none;
+	align-items: center;
+}
+
+.animated-example > .ae-cont {
+	width: 100%;
+	margin: auto;
+	text-align: center;
+}
+
+.animated-example > .ae-cont > .ae-wrapper {
+	position: absolute;
+	/*left: 50%;*/
+	width: 100%;
+}
+
+/****************************************************
+*************** INTER - COMBI ***********************
+****************************************************/
+
+.animated-example > .ae-cont > .ae-wrapper > .ae-inter {
+	/*left: -50%;*/
+	height: 12px;
+	background-color: hsl(0, 0%, 60%);
+	position: relative;
+}
+.ae-inter-fill {
+	position: absolute;
+	background-color: #68d7c6;
+	height: 12px;
+	width: 0;
+	left: 30px;
+	transition: ease all 0.4s;
+}
+.ae-dash {
+	position: relative;
+	top: -20px;
+}
+.ae-uni-dash {
+	background-color: hsl(0, 0%, 60%);
+	height: 17px;
+	width: 3px;
+	float: left;
+}
+.ae-big {
+	height: 37px;
+	margin-top: -20px !important;
+	background-color: #68d7c6;
+}
+.ae-selected {
+	background-color: #68d7c6;
+}
+#ae-inter-2 {
+	transition: ease 0.4s;
+	transition-property: top, opacity;
+	margin-top: 50px;
+}
+
+
+/****************************************************
+*************** INTER - ENUM ************************
+****************************************************/
+
+
+
+#ae-words {
+	font-size: 4rem !important;
+	color: #68d7c6;
+	letter-spacing: 2px;
+	margin-bottom: 50px;
+}
+
+#ae-words:before {
+	content: "a";
+	color: transparent;
+	width: 1px;
+	overflow: hidden;
+	margin-left: -1px;
+	display: inline-block;
+}
+
+#ae-add {
+	font-size: 4rem !important;
+	letter-spacing: 2px;
+	color: hsl(0, 0%, 60%);
+	position: absolute;
+	left: 50%;
+}
+
+#ae-word-to-add {
+	transition: ease 0.4s;
+	transition-property: top, opacity;
+	position: relative;
+	top: 0;
+	left: -50%;
+}
+
+.ae-appear {
+	transition: ease all 0.4s;
+	display: inline;
+}

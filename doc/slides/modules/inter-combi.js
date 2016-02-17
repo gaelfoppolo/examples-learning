@@ -1,21 +1,16 @@
-var inters = [5, 8, 12, 15, 2];
-var index = 1;
-
-var interA, interB;
-
-var interCombiGen;
-var interInit = 0;
-
 (function() {
-	if(interInit) return;
-	interInit = 1;
+	if(aeListener['inter'] != null) return;
+	var inters = [5, 8, 12, 15, 2];
+	var index = 1;
+	var interA, interB;
+
 	function genDash(inter, n, value) {
 		if(inter.getAttribute("data-n") != undefined) {
 			return;
 		}
 		++n;
-		var dash = inter.querySelector('.dash');
-		var interfill = inter.querySelector(".inter-fill");
+		var dash = inter.querySelector('.ae-dash');
+		var interfill = inter.querySelector(".ae-inter-fill");
 		inter.setAttribute("data-n", n);
 		inter.setAttribute("data-min", value);
 		inter.setAttribute('data-max', value);
@@ -23,13 +18,13 @@ var interInit = 0;
 		for(var i = 0; i < n; ++i) {
 			(function() {
 				var elem = document.createElement('div');
-				elem.className = "uni-dash";
+				elem.className = "ae-uni-dash";
 				dash.appendChild(elem);
 				if(!first) {
 					elem.style.marginLeft = (inter.offsetWidth - n*3)/(n-1) + 'px';
 				}
 				if(i == value) {
-					elem.classList.add('big');
+					elem.classList.add('ae-big');
 				}
 				dash.offsetWidth;
 				elem.style.transition = 'ease 0.4s all';
@@ -43,31 +38,31 @@ var interInit = 0;
 	}
 
 	function setInter(inter, min, max) {
-		var bigs = inter.querySelectorAll('.big, .selected');
-		var interfill = inter.querySelector(".inter-fill");
+		var bigs = inter.querySelectorAll('.ae-big, .ae-selected');
+		var interfill = inter.querySelector(".ae-inter-fill");
 		var n = inter.getAttribute("data-n");
 		inter.setAttribute('data-min', min);
 		inter.setAttribute('data-max', max);
 		for(var i = 0; i < bigs.length; ++i) {
-			bigs[i].classList.remove('big');
-			bigs[i].classList.remove('selected');
+			bigs[i].classList.remove('ae-big');
+			bigs[i].classList.remove('ae-selected');
 		}
-		var all = inter.querySelectorAll('.uni-dash');
+		var all = inter.querySelectorAll('.ae-uni-dash');
 		for(var i = min+1; i < max; ++i) {
-			all[i].classList.add('selected');
+			all[i].classList.add('ae-selected');
 		}
-		all[min].classList.add("big");
-		all[max].classList.add("big");
+		all[min].classList.add("ae-big");
+		all[max].classList.add("ae-big");
 		interfill.style.left = (min)*(inter.offsetWidth)/(n-1) + 'px';
 		interfill.style.width = (max-min)*(inter.offsetWidth)/(n-1) + 'px';
 	}
 
 	// remove the default first bar
 	function removeFirst() {
-		var bigs = interA.querySelectorAll('.big, .selected');
+		var bigs = interA.querySelectorAll('.ae-big, .ae-selected');
 		for(var i = 0; i < bigs.length; ++i) {
-			bigs[i].classList.remove('big');
-			bigs[i].classList.remove('selected');
+			bigs[i].classList.remove('ae-big');
+			bigs[i].classList.remove('ae-selected');
 		}
 	}
 
@@ -91,16 +86,27 @@ var interInit = 0;
 	}
 
 	document.addEventListener('keyup', function(e) {
-		if(e.keyCode == '13') {
+		if(e.keyCode == '65' && aeListener['inter'].enabled == true) { // "a"
 			next();
 		}
 	});
 
-	interCombiGen = function() {
-		interA = document.querySelector('#inter-1');
-		interB = document.querySelector('#inter-2');
+	function interCombiGen() {
+		interA = document.querySelector('#ae-inter-1');
+		interB = document.querySelector('#ae-inter-2');
 		genDash(interA, 20, 5);
 		genDash(interB, 20, 5);
 		removeFirst();
 	}
+
+	aeListener['inter'] = {
+		'disable': function() {
+			aeListener['inter'].enabled = false;
+		},
+		'enable': function() {
+			aeListener['inter'].enabled = true;
+			interCombiGen();
+		},
+		'enabled': false
+	};
 })();
