@@ -26,7 +26,7 @@
 .animated-example > .ae-cont > .ae-wrapper > .ae-inter {
 	/*left: -50%;*/
 	height: 12px;
-	background-color: hsl(0, 0%, 60%);
+	background-color: hsl(0, 0%, 40%);
 	position: relative;
 }
 .ae-inter-fill {
@@ -42,7 +42,7 @@
 	top: -20px;
 }
 .ae-uni-dash {
-	background-color: hsl(0, 0%, 60%);
+	background-color: hsl(0, 0%, 40%);
 	height: 17px;
 	width: 3px;
 	float: left;
