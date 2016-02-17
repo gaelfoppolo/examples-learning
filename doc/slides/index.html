@@ -73,6 +73,9 @@
 					<section id="strategie">
 						<h3>Stratégie</h3>
 					</section>
+					<section id="exemple-inter" data-external="modules/inter-combi.html"></section>
+					<section id="exemple-enum" data-external="modules/enum-combi.html"></section>
+					<section id="exemple-tree" data-external="modules/tree-combi.html"></section>
 				</section>
 
 				<!-- étape 2 : plusieurs objets par exemple avec relations -->
@@ -102,8 +105,6 @@
 						<h3>relations : réflexivité et transitivité non gérées</h3>
 						<h3>exemple intéractif</h3>
 					</section>
-					<section id="exemple" data-external="modules/inter-combi.html"></section>
-					<section id="exemple-enum" data-external="modules/enum-combi.html"></section>
 				</section>
 
 				<!-- étape 3 : généralisation -->
@@ -209,6 +210,7 @@
 		<script src="modules/init.js"></script>
 		<script src="modules/inter-combi.js"></script>
 		<script src="modules/enum-combi.js"></script>
+		<script src="modules/tree-combi.js"></script>
 
 		<script>
 
@@ -271,11 +273,14 @@
 				disableAeListeners();
 
     			switch (event.currentSlide.id) {
-    				case "exemple":
+    				case "exemple-inter":
     					enableAeListener('inter');
     					break;
     				case "exemple-enum":
     					enableAeListener('enum');
+    					break;
+    				case "exemple-tree":
+    					enableAeListener('tree');
     					break;
     			}
 			});

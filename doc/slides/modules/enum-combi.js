@@ -6,7 +6,7 @@
 	var index = 1;
 
 	function addWord(word) {
-		document.querySelector('#ae-word-to-add').style.top = "-114px";
+		document.querySelector('#ae-word-to-add').style.top = "-145px";
 		document.querySelector('#ae-word-to-add').style.opacity = "0";
 		setTimeout(function() {
 			if(words.indexOf(wordsToAdd[index-1]) == -1) {
