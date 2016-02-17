@@ -336,7 +336,7 @@ body {
 }
 .big {
   height: 37px;
-  margin-top: -20px;
+  margin-top: -20px !important;
   background-color: #68d7c6;
 }
 .selected {
