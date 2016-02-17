@@ -42,7 +42,7 @@
 			margin: 0.1,
 
 			// Bounds for smallest/largest possible scale to apply to content
-			minScale: 0.2,
+			minScale: 0.7,
 			maxScale: 1.5,
 
 			// Display controls in the bottom right corner
