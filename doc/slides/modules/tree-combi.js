@@ -9,11 +9,11 @@
 
 	function refreshColor() {
 		for(var i in tree) {
-			tree[i].style.stroke = "hsl(0, 0%, 60%)";
+			tree[i].style.stroke = "hsl(0, 0%, 40%)";
 			tree[i].style.fill = "hsl(0, 0%, 13%)";
 		}
 		for(var i in lines) {
-			lines[i].style.stroke = "hsl(0, 0%, 60%)";
+			lines[i].style.stroke = "hsl(0, 0%, 40%)";
 		}
 	}
 
