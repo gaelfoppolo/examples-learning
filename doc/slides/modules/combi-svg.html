@@ -443,6 +443,12 @@
 			for(var i = 0; i < selector.length; ++i) {
 				var current = selector[i].querySelectorAll('span');
 				current[4].innerHTML = comment;
+				current[0].style.backgroundColor = 'hsl(0, 0%, 80%)';
+				(function(current) {
+					setTimeout(function() {
+						current[0].style.backgroundColor = 'transparent';
+					}, 400);
+				})(current);
 			}
 		}
 
