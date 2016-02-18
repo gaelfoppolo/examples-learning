@@ -54,10 +54,23 @@
 				<!-- introduction -->
 
 				<section id="intro">
-					<h2>Introduction</h2>
-					<section></section>
+					<h3>Introduction</h3>
 					<section id="sujet">
-						<h3>Présentation du sujet</h3>
+
+						<h6 class="fragment">
+							Caractériser un concept à partir d'exemples de ce concept	
+						</h6>
+
+						<br/>
+
+						<p class="fragment">
+							Trouver les traits caractéristiques communs dans un ensemble de données	
+						</p>
+
+						<p class="fragment">
+							Proposer une ou plusieurs descriptions caractéristiques, apportant le plus d'information possible	
+						</p>
+
 					</section>
 					<section id="objectifs">
 						<h3>Objectifs et applications</h3>
@@ -66,9 +79,9 @@
 
 				<!-- étape 1 : un objet par exemple -->
 
-				<section id="etape1">
+				<section>
 					<h3>Étape 1 - Un seul objet par exemple</h3>
-					<section></section>
+					<section id="etape1"></section>
 					<section id="solution">
 						<h3>Unique solution</h3>
 					</section>
@@ -82,9 +95,9 @@
 
 				<!-- étape 2 : plusieurs objets par exemple avec relations -->
 
-				<section id="etape2">
+				<section>
 					<h3>Étape 2 : plusieurs objets par exemple avec relations</h3>
-					<section></section>
+					<section id="etape2"></section>
 					<section id="combinaison">
 						<h3>Calcul du nombre de combinaisons possibles</h3>
 						<h5>= nb solutions + évoquer exponentiel sur nb d'exemples</h5>
@@ -111,9 +124,9 @@
 
 				<!-- étape 3 : généralisation -->
 
-				<section id="etape3">
+				<section>
 					<h3>Étape 3 : généralisation</h3>
-					<section></section>
+					<section id="etape3"></section>
 					<section id="strategie-generalisation">
 						<h3>Stratégie : inclusion à expliquer (+ règles)</h3>
 						<h5>énoncer complexité O(n^2)</h5>
@@ -125,9 +138,9 @@
 
 				<!-- étape 4 : contre-exemples -->
 
-				<section id="etape4">
+				<section>
 					<h3>Étape 4 : contre-exemples</h3>
-					<section></section>
+					<section id="etape4"></section>
 					<section id="strategie-c-exp">
 						<h3>Stratégie : explication</h3>
 					</section>
@@ -138,9 +151,9 @@
 
 				<!-- application -->
 
-				<section id="application">
+				<section>
 					<h3>Application : notre approche</h3>
-					<section></section>
+					<section id="application"></section>
 					<section id="genericite">
 						<h3>Généricité : pourquoi, comment, les tenants et les aboutissants</h3>
 						<h6>Décision de généraliser le plus possible ce sur quoi peut fonctionner le programme -> parser + architecture -> perte de sémantique, on ne vérifie pas la cohérence logique des données d'entrées</h6>
@@ -158,9 +171,9 @@
 
 				<!-- outils -->
 
-				<section id="outils">
-					<h2>Outils</h2>
-					<section></section>
+				<section>
+					<h3>Outils</h3>
+					<section id="outils"></section>
 					<section id="github">
 						<img data-src="img/github.png">
 						<h3>GitHub</h3>
@@ -187,9 +200,9 @@
 
 				<!-- conclusion -->
 
-				<section id="conclusion">
+				<section>
 					<h3>Conclusion</h3>
-					<section></section>
+					<section id="conclusion"></section>
 					<section id="recap">
 						<h3>ça marche + liens</h3>
 					</section>
@@ -234,6 +247,7 @@
 				progress: true,
 				history: true,
 				center: true,
+				slideNumber: true,
 
 				transition: 'slide', // none/fade/slide/convex/concave/zoom
 				
@@ -249,7 +263,7 @@
 
 			        // Add slide numbers to the titles in the slide list.
 			        // Use 'true' or format string (same as reveal.js slide numbers)
-			        numbers: false,
+			        numbers: true,
 
 			        // Hide slides from the menu that do not have a title.
 			        // Set to 'true' to only list slides with titles.
