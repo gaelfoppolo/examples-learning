@@ -306,3 +306,7 @@ body {
 .reveal *.sbs-title {
   font-size: 0.7em;
 }
+
+.reveal .slides > section > section {
+  margin-top: 1em;
+}
