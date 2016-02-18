@@ -310,3 +310,7 @@ body {
 .reveal .slides > section > section {
   margin-top: 1em;
 }
+
+.reveal table.options {
+  font-size: 0.70em;
+}
