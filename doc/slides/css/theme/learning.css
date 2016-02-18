@@ -146,10 +146,10 @@ body {
 .reveal pre {
   display: block;
   position: relative;
-  width: 90%;
+  /*width: 90%;*/
   margin: 20px auto;
   text-align: left;
-  font-size: 0.55em;
+  font-size: 0.25em;
   font-family: monospace;
   line-height: 1.2em;
   word-wrap: break-word;
@@ -296,4 +296,13 @@ body {
     top: 2.5%;
     right: 2.5%;
     z-index: 100;
+}
+
+.reveal *.side-by-side {
+  width: 49%;
+  display: inline-block;
+}
+
+.reveal *.sbs-title {
+  font-size: 0.7em;
 }
