@@ -65,32 +65,40 @@
 
 						<ol>
 							<li>Analyse des données</li>
-							<li>Détermination des traits caractéristiques communs</li>
+							<li>Détermination de traits caractéristiques communs</li>
 							<li>Construction d'un ou plusieurs modèle(s) (description caractéristique)</li>
 						</ol>
 
 					</section>
-					<section id="attributs">
-						<h6>Quatre type d'attributs pour décrire les données :</h6>
+					<section id="entree">
+
+						<h6>Un ensemble d'exemples, chaque exemple est composé d'un ou plusieurs objets</h6>
+						<br/>
+						<h6>Trois type d'attributs pour décrire les objets :</h6>
+
 						<ul>
 							<li><strong>numérique</strong> : intervalle d'entier</li>
 							<li><strong>discret</strong> : liste (ou énumération)</li>
 							<li><strong>hiérarchique</strong> : arbre</li>
-							<li><strong>relationnel</strong></li>
 						</ul>
+						<h6>Ainsi que des relations qui décrivent les &laquo; connexions &raquo;, binaires et unidirectionnelles, entre les objets d'un même exemple</h6>
 					</section>					
 				</section>
 
 				<!-- étape 1 : un objet par exemple -->
 
 				<section>
-					<h3>Étape 1 - Un seul objet par exemple</h3>
+					<h3>Étape 1 - Un objet par exemple</h3>
 					<section id="etape1"></section>
 					<section id="solution">
-						<h3>Unique solution</h3>
-					</section>
-					<section id="strategie">
-						<h3>Stratégie</h3>
+						<h6>Entrée : </h6>
+						<p>\(x\) exemples \(E\) avec un seul objet \(O\), composé de \(y\) attributs \(A\)</p>
+						<hr>
+						<h6>Stratégie : combinaison <strong>unique</strong> des objets</h6>
+						<p>\(\forall\) \(E_i\), combinaison de chaque \(A_j\) de l'objet \(O\)</p>
+						<hr>
+						<h6>Sortie : </h6>
+						<p>Une solution unique</p>
 					</section>
 					<section id="exemple-inter" data-external="modules/inter-combi.html"></section>
 					<section id="exemple-enum" data-external="modules/enum-combi.html"></section>
