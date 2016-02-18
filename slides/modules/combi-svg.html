@@ -295,6 +295,10 @@
 		</div>
 	</body>
 	<script>
+		// animation actions		
+		var actions = [];
+
+		// svg elements
 		var links = {
 			'0010': document.querySelector('#ae-link-00-10'),
 			'0011': document.querySelector('#ae-link-00-11'),
@@ -309,13 +313,11 @@
 			'1121': document.querySelector('#ae-link-11-21'),
 			'1122': document.querySelector('#ae-link-11-22')
 		};
-
 		var examples = {
 			0: document.querySelector('#ae-ex-0'),
 			1: document.querySelector('#ae-ex-1'),
 			2: document.querySelector('#ae-ex-2'),
 		};
-
 		var objects = {
 			'00': document.querySelector('#ae-obj-00'),
 			'01': document.querySelector('#ae-obj-01'),
@@ -327,32 +329,99 @@
 			'22': document.querySelector('#ae-obj-22'),
 		};
 
+		// model
+		var m = [
+			[ {
+					taille: 1,
+					forme: 'cercle',
+					couleur: 'jaune'
+				}, {
+					taille: 2,
+					forme: 'carré',
+					couleur: 'rouge'
+				}, {
+					taille: 5,
+					forme: 'triangle',
+					couleur: 'bleu'
+				}
+			], [ {
+					taille: 2,
+					forme: 'cercle',
+					couleur: 'jaune'
+				}, {
+					taille: 2,
+					forme: 'rectangle',
+					couleur: 'rouge'
+				}
+			], [ {
+					taille: 3,
+					forme: 'cercle',
+					couleur: 'rouge'
+				}, {
+					taille: 2,
+					forme: 'trapèze',
+					couleur: 'rouge'
+				}, {
+					taille: 4,
+					forme: 'carré',
+					couleur: 'vert'
+				}
+			]
+		];
+
+		// shape combination
+		var shapeCombi = {
+			'cercle': 'cercle',
+			'trapèze': 'trapèze',
+			'carré': 'carré',
+
+			'cercle-trapèze': 'quelconque',
+			'cercle-carré': 'quelconque',
+			'rectangle-cercle': 'quelconque',
+			'rectangle-trapèze': 'quadrilatère',
+			'rectangle-carré': 'rectangle',
+			'rectangle-quelconque': 'quelconque',
+			'rectangle-quadrilatère': 'quadrilatère',
+			'polygone-triangle': 'polygone',
+
+			'cercle-quelconque': 'quelconque',
+			'cercle-quadrilatère': 'quelconque',
+			'cercle-parallelogramme': 'quelconque',
+			'cercle-triangle': 'quelconque',
+			'carré-quelconque': 'quelconque',
+			'carré-quadrilatère': 'quadrilatère',
+			'carré-parallelogramme': 'parallelogramme',
+			'triangle-quelconque': 'quelconque',
+			'triangle-quadrilatère': 'polygone',
+			'triangle-parallelogramme': 'polygone',
+			'triangle-rectangle': 'polygone'
+		};
+
+		// all solutions
+		var solutions = {};
+
+		// svg modificators
 		function enableLink(ex1, obj1, ex2, obj2) {
 			links[''+ex1 + obj1 + ex2 + obj2].style.strokeOpacity = 1;
 		}
-
 		function disableLink(ex1, obj1, ex2, obj2) {
 			links[''+ex1 + obj1 + ex2 + obj2].style.strokeOpacity = 0;
 		}
-
 		function showExample(ex) {
 			examples[ex].style.strokeOpacity = 1;
 		}
-
 		function hideExample(ex) {
 			examples[ex].style.strokeOpacity = 0;
 		}
-
 		function showObject(ex, obj) {
 			objects[''+ex+obj].style.strokeOpacity = 1;
 		}
-
 		function hideObject(ex, obj) {
 			objects[''+ex+obj].style.strokeOpacity = 0;
 		}
 
-
-
+		// gen the right table (empty, with index and example indexes)
+		// gen the empty solutions array too
 		function genTable(ex) {
 			var table = document.querySelector('.ae-right');
 			var header = document.createElement('div');
@@ -373,9 +442,10 @@
 			table.appendChild(header);
 
 			var index = 0;
-			for(var i = 0; i < 3; ++i) {
-				for(var j = 0; j < 2; ++j) {
-					for(var k = 0; k < 3; ++k) {
+			for(var i = 0; i < ex[0].length; ++i) {
+				for(var j = 0; j < ex[1].length; ++j) {
+					for(var k = 0; k < ex[2].length; ++k) {
+						solutions[''+i+j+k] = {inter:{min:-1,max:-1}, color: [], shape: ''};
 						(function() {
 							var tr = document.createElement('div');
 							tr.classList.add('line');
@@ -396,7 +466,10 @@
 			}
 		}
 
-		function highlight(obj, columns, color) {
+		// can set a background color to any column of any line of the solution
+		// can set a value in the combinaison column if comment is used (must be a function returning a string)
+		// and taking as arguments a string representing a solution id (ex: '021')
+		function highlight(obj, columns, color, comment) {
 			var selector = '';
 			if(obj.index) {
 				selector += ' .ae-index-'+obj.index;
@@ -417,39 +490,24 @@
 				for(var j = 0; j < columns.length; ++j) {
 					current[columns[j]].style.backgroundColor = color;
 				}
+				if(comment) {
+					var tmp = comment(getIndexes(selector[i]));
+					if(tmp) {
+						current[m.length + 1].innerHTML = tmp;
+					}
+				}
 			}
 		}
 
+		function getIndexes(elem) {
+			return (/ae-combi-0-(\d)/).exec(elem.className)[1] + 
+				(/ae-combi-1-(\d)/).exec(elem.className)[1] +
+				(/ae-combi-2-(\d)/).exec(elem.className)[1];
+		}
+
+		// remove a highlight set with the highlight function
 		function unHighlight(obj, columns) {
 			highlight(obj, columns, 'transparent');
-		}
-
-		function setCom(obj, comment) {
-			var selector = '';
-			if(obj.index) {
-				selector += '.ae-index-'+obj.index;
-			}
-			if(obj.obj0) {
-				selector += '.ae-combi-0-'+obj.obj0;
-			}
-			if(obj.obj1) {
-				selector += '.ae-combi-1-'+obj.obj1;
-			}
-			if(obj.obj2) {
-				selector += '.ae-combi-2-'+obj.obj2;
-			}
-
-			selector = document.querySelectorAll(selector);
-			for(var i = 0; i < selector.length; ++i) {
-				var current = selector[i].querySelectorAll('span');
-				current[4].innerHTML = comment;
-				current[0].style.backgroundColor = 'hsl(0, 0%, 80%)';
-				(function(current) {
-					setTimeout(function() {
-						current[0].style.backgroundColor = 'transparent';
-					}, 400);
-				})(current);
-			}
 		}
 
 		/*
@@ -503,11 +561,13 @@
 				}
 			}
 			if(action.table) {
-				if(action.table.comment) {
-					setCom(action.table.obj, action.table.comment);
-				}
 				if(add) {
-					highlight(action.table.obj, action.table.columns, 'hsl(0, 0%, 30%)');
+					if(action.table.comment) {
+						highlight(action.table.obj, action.table.columns, 'hsl(0, 0%, 30%)', action.table.comment);
+					}
+					else {
+						highlight(action.table.obj, action.table.columns, 'hsl(0, 0%, 30%)');
+					}
 				}
 				else {
 					highlight(action.table.obj, action.table.columns);
@@ -515,71 +575,7 @@
 			}
 		}
 
-		var MODEL = [3, 2, 3];
-		var solLength = 18;
-		var m = [
-			[ {
-					taille: 1,
-					forme: 'cercle',
-					couleur: 'jaune'
-				}, {
-					taille: 2,
-					forme: 'carré',
-					couleur: 'rouge'
-				}, {
-					taille: 5,
-					forme: 'triangle',
-					couleur: 'bleu'
-				}
-			], [ {
-					taille: 2,
-					forme: 'cercle',
-					couleur: 'jaune'
-				}, {
-					taille: 2,
-					forme: 'rectangle',
-					couleur: 'rouge'
-				}
-			], [ {
-					taille: 3,
-					forme: 'cercle',
-					couleur: 'rouge'
-				}, {
-					taille: 2,
-					forme: 'trapèze',
-					couleur: 'rouge'
-				}, {
-					taille: 4,
-					forme: 'carré',
-					couleur: 'vert'
-				}
-			]
-		];
-
-		var shapeCombi = {
-			'cercle': 'cercle',
-			'trapèze': 'trapèze',
-			'carré': 'carré',
-
-			'cercle-trapèze': 'quelconque',
-			'cercle-carré': 'quelconque',
-			'rectangle-cercle': 'quelconque',
-			'rectangle-trapèze': 'quadrilatère',
-			'rectangle-carré': 'rectangle',
-
-			'cercle-quelconque': 'quelconque',
-			'cercle-quadrilatère': 'quelconque',
-			'cercle-parallelogramme': 'quelconque',
-			'cercle-triangle': 'quelconque',
-			'carré-quelconque': 'quelconque',
-			'carré-quadrilatère': 'quadrilatère',
-			'carré-parallelogramme': 'parallelogramme',
-			'triangle-quelconque': 'quelconque',
-			'triangle-quadrilatère': 'polygone',
-			'triangle-parallelogramme': 'polygone',
-			'triangle-rectangle': 'polygone'
-		};
-
+		// attributes combination functions
 		function fusionShape(shape, shape2) {
 			if(shape == '') return shape2;
 			for(var i in shapeCombi) {
@@ -587,6 +583,7 @@
 					return shapeCombi[i];
 				}
 			}
+			alert(shape + ' + ' + shape2 + " undefined");
 		}
 		function fusionInter(inter, value) {
 			if(inter.min == -1) return {min: value, max: value};
@@ -605,6 +602,7 @@
 			return colors;
 		}
 
+		// take a solution and output a string that describes it
 		function genPrint(sol) {
 			var ret = "<span>Forme : </span>" + sol.shape +
 				", <span>couleurs : </span>(" + sol.color + "), <span>taille : </span>[" +
@@ -612,63 +610,18 @@
 			return ret;
 		}
 
-		function refreshPrint(id, sol) {
-			return [
-					true, {
-						table: {
-							obj: {
-								obj0: id[0],
-								obj1: id[1],
-								obj2: id[2]
-							},
-							columns: [],
-							comment: genPrint(sol)
-						}
-					},
-					0];
+		// make the combination of an object and a solution
+		function combi(index, ex, obj) {
+			solutions[index].inter = fusionInter(solutions[index].inter, m[ex][obj].taille);
+			solutions[index].color = fusionColor(solutions[index].color, m[ex][obj].couleur);
+			solutions[index].shape = fusionShape(solutions[index].shape, m[ex][obj].forme);
 		}
 
-		function combi(ex, obj) {
-			var ret = {};
-			for(var i in solutions) {
-				if(i[ex] == ''+obj) {
-					solutions[i].inter = fusionInter(solutions[i].inter, m[ex][obj].taille);
-					solutions[i].color = fusionColor(solutions[i].color, m[ex][obj].couleur);
-					solutions[i].shape = fusionShape(solutions[i].shape, m[ex][obj].forme);
-					ret[i] = (refreshPrint(i, solutions[i]));
-				}
-			}
-			return ret;
-		}
+		// generate the right table and the solutions array
+		genTable(m);
 
-		genTable(MODEL);
 
-		var actions = [];
-
-		var solutions = {
-			'000': {inter:{min:-1,max:-1}, color: [], shape: ''},
-			'001': {inter:{min:-1,max:-1}, color: [], shape: ''},
-			'002': {inter:{min:-1,max:-1}, color: [], shape: ''},
-			'010': {inter:{min:-1,max:-1}, color: [], shape: ''},
-			'011': {inter:{min:-1,max:-1}, color: [], shape: ''},
-			'012': {inter:{min:-1,max:-1}, color: [], shape: ''},
-			'100': {inter:{min:-1,max:-1}, color: [], shape: ''},
-			'101': {inter:{min:-1,max:-1}, color: [], shape: ''},
-			'102': {inter:{min:-1,max:-1}, color: [], shape: ''},
-			'110': {inter:{min:-1,max:-1}, color: [], shape: ''},
-			'111': {inter:{min:-1,max:-1}, color: [], shape: ''},
-			'112': {inter:{min:-1,max:-1}, color: [], shape: ''},
-			'200': {inter:{min:-1,max:-1}, color: [], shape: ''},
-			'201': {inter:{min:-1,max:-1}, color: [], shape: ''},
-			'202': {inter:{min:-1,max:-1}, color: [], shape: ''},
-			'210': {inter:{min:-1,max:-1}, color: [], shape: ''},
-			'211': {inter:{min:-1,max:-1}, color: [], shape: ''},
-			'212': {inter:{min:-1,max:-1}, color: [], shape: ''}
-
-		};
-		var stack = [];
-
-		// Génération des combinaisons
+		// Génération des combinaisons et des animations
 		for(var i = 2; i >= 0; --i) {
 			actions.push([
 				true, {
@@ -678,26 +631,29 @@
 				},
 				200
 			]);
-			for(var j = 0; j < MODEL[i]; ++j) {
+			for(var j = 0; j < m[i].length; ++j) {
 				var c = "obj" + i;
 				var o = {};
 				o[c] = ''+j;
-				var a = combi(i, j);
-				actions.push([
-					true, {
-						svg: {
-							highlightObject: [[i, j]]
+
+				(function(i, j) {
+					actions.push([
+						true, {
+							svg: {
+								highlightObject: [[i, j]]
+							},
+							table: {
+								obj: o,
+								columns: [i+1],
+								comment: function(indexes) {
+									combi(indexes, i, j);
+									return genPrint(solutions[indexes]);
+								}
+							}
 						},
-						table: {
-							obj: o,
-							columns: [i+1],
-						}
-					},
-					200
-				]);
-				for(var k in a) {
-					actions.push(a[k]);
-				}
+						200
+					]);
+				})(i, j);
 				actions.push([
 					false, {
 						svg: {
@@ -717,22 +673,15 @@
 			]);
 		}
 
-		// traitement des actions
 		var actionsIndex = 0;
-		function callNext(time) {
-			setTimeout(function() {
+		document.addEventListener('keyup', function(e) {
+			if(e.keyCode == 65) {
 				if(actionsIndex == actions.length) {
 					return;
 				}
 				action(actions[actionsIndex][0], actions[actionsIndex][1]);
 				++actionsIndex;
-				if(actionsIndex == actions.length) {
-					return;
-				}
-				callNext(actions[actionsIndex][2]);
-			}, time);
-		}
-
-		callNext(0);
+			}
+		});
 	</script>
 </html>
