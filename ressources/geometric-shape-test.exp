@@ -4,10 +4,10 @@ E1
 	x1:shape(circle), size(1), color(yellow), on(x2)
 	x2:shape(square), size(2), color(red)
 	x3:shape(triangle), size(5), color(blue)
+E3
+	x7:shape(circle), size(2), color(yellow), on(x8)
+	x8:shape(rectangle), size(2), color(red)
 E2
 	x4:shape(circle), size(3), color(red), on(x5)
 	x5:shape(kite), size(2), color(red)
 	x6:shape(rectangle), size(4), color(violet)
-E3
-	x7:shape(circle), size(2), color(yellow), on(x8)
-	x8:shape(rectangle), size(2), color(red)
