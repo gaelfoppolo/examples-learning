@@ -31,7 +31,7 @@
 }
 .ae-inter-fill {
 	position: absolute;
-	background-color: #68d7c6;
+	background-color: #42affa;
 	height: 12px;
 	width: 0;
 	left: 30px;
@@ -50,10 +50,10 @@
 .ae-big {
 	height: 37px;
 	margin-top: -20px !important;
-	background-color: #68d7c6;
+	background-color: #42affa;
 }
 .ae-selected {
-	background-color: #68d7c6;
+	background-color: #42affa;
 }
 #ae-inter-2 {
 	transition: ease 0.4s;
@@ -67,7 +67,7 @@
 
 #ae-words {
 	font-size: 4rem !important;
-	color: #68d7c6;
+	color: #42affa;
 	letter-spacing: 2px;
 	margin-bottom: 50px;
 }

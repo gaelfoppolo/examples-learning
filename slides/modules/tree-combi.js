@@ -20,12 +20,12 @@
 	function nextLCA() {
 		refreshColor();
 		var current = LCAs[LCAIndex++];
-		tree[current[0]].style.stroke = "#68d7c6";
-		tree[current[1]].style.stroke = "#68d7c6";
-		tree[current[2]].style.stroke = "#68d7c6";
-		tree[current[2]].style.fill = "#68d7c6";
+		tree[current[0]].style.stroke = "#42affa";
+		tree[current[1]].style.stroke = "#42affa";
+		tree[current[2]].style.stroke = "#42affa";
+		tree[current[2]].style.fill = "#42affa";
 		for(var i = 3; i < current.length; ++i) {
-			lines[current[i]].style.stroke = "#68d7c6";
+			lines[current[i]].style.stroke = "#42affa";
 		}
 	}
 
