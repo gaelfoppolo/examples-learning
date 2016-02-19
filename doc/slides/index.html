@@ -209,28 +209,34 @@
 				<section class="blur" data-background="img/architecture.png" data-state="blur">
 					<h3>Notre application</h3>
 					<section id="application"></section>
-					<section id="genericite">
-						<h3>Généricité</h3>
-						<p>Décision dès le début de concevoir une application générique : fonctionne avec n'importe quel modèle et exemples.</p>
-						<p>Induit une perte sémantique : on ne vérifie pas la cohérence logique des données en entrée<br/>
-						<small>(ex: représentation physique possible)</small></p>
-					</section>
 					<section id="architecture">
-					<!-- data-background="img/architecture.png" data-state="blur" -->
-						<h5>Archicture générique</h5>
-						<p>
-							<ul>
-								<li>Un <strong>modèle</strong> définit les attributs et relations sur lequels l'application va travailler<br/>
-								<small>(ex : une forme géométrique, décrite par sa forme, sa couleur et sa taille)</small></li>
-								<li>Un <strong>objet</strong> est une instanciation du modèle<br/>
-								<small>(ex : un carré, rouge, de taille 8)</small></li>
-								<li>Un <strong>exemple</strong> (ou contre-exemple) est un ensemble d'objets. Chaque exemple est indépendant des autres exemples</li>
-							</ul>
-
- 					</p>
-					</section>
+						<h5>Architecture</h5>
+						<ul>
+							<li>Un <strong>modèle</strong> définit les attributs et relations sur lequels l'application va travailler<br/>
+							<small>(ex : une forme géométrique, décrite par sa forme, sa couleur et sa taille)</small></li>
+							<li>Un <strong>objet</strong> est une instanciation du modèle<br/>
+							<small>(ex : un carré, rouge, de taille 8)</small></li>
+							<li>Un <strong>exemple</strong> (ou contre-exemple) est un ensemble d'objets. Chaque exemple est indépendant des autres exemples</li>
+						</ul>
+						<p>-----> architecture générique : fonctionne avec n'importe quel modèle et exemples.</p>
+						<hr>
+						<p>Induit une perte sémantique : on ne vérifie pas la cohérence logique des données en entrée<br/>
+						<small>(ex : représentation physique possible)</small></p>
+					</section>					
 					<section id="parser">
-						<h3>parser + mdl + exp</h3>
+						<h5>Parser</h5>
+						<p>
+							Généricité permise grâce à un module en particuler : le <em>parser</em>
+						</p>
+						<hr>
+						<p>
+							Utilisation de fichiers texte <strong>modèle</strong> et <strong>exemples</strong>, écrit selon des règles de syntaxe strictes<br/>
+							<small>(ex : une tabulation pour marquer le début d'un nouvel objet dans le fichier des exemples)</small>
+						</p>
+						<hr>
+						<p>
+							Le <em>parser</em> repose sur ces règles de syntaxe et transforme les fichiers texte en &laquo; objets &raquo; utilisables par notre application
+						</p>
 					</section>
 					<section id="options" data-external="modules/options.html"></section>
 
@@ -270,20 +276,39 @@
 					<h3>Conclusion</h3>
 					<section id="conclusion"></section>
 					<section id="recap">
-						<h3>ça marche + liens</h3>
+						<h6>L'application est :</h6>
+						<ul>
+							<li>Opérationnelle</li>
+							<li>Générique</li>
+							<li>Modulable</li>
+							<li>Sans fuite de mémoire</li>
+							<li><a href="../index.html">Documentée (en anglais)</a></li>
+							<li>Open source</li>
+						</ul>
 					</section>
 					<section id="applications">
 						<h6>Applications généralisées</h6>
 						
 						<ul>
 							<li>Reconnaissance de caractères</li>
-							<li>diagnostic médical (symptômes, mesures, etc.)</li>
+							<li>Diagnostic médical (symptômes, mesures, etc.)</li>
 							<li>etc.</li>
 						</ul>
 						<p>Plus généralement : la reconnaissance de motifs (<em>pattern</em>)</p>
 					</section>
-					<section id="remerciements">
-						<h3>à twitter, stackoverflow et au café</h3>
+					<section id="auteurs">
+						<p class="side-by-side">
+						Gaël Foppolo<br/>
+						lien github<br/>
+						lien twitter<br/>
+						lien site web<br/>
+						</p>
+						<p class="side-by-side">
+						Bastien Philip<br/>
+						lien github<br/>
+						lien twitter<br/>
+						lien site web<br/>
+						</p>
 					</section>
 				</section>
 
