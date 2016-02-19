@@ -121,24 +121,19 @@
 				<!-- étape 2 : plusieurs objets par exemple avec relations -->
 
 				<section>
-					<h3>Étape 2 : plusieurs objets par exemple avec relations</h3>
+					<h3>Étape 2 : plusieurs objets par exemple, avec relations</h3>
 					<section id="etape2"></section>
-					<section id="combinaison">
-						<h3>Calcul du nombre de combinaisons possibles</h3>
-						<h5>= nb solutions + évoquer exponentiel sur nb d'exemples</h5>
-					</section>
-					<section id="stockage">
-						<h3>Tableau pour stocker tout ça</h3>
-					</section>
-					<section id="formule">
-						<p>\(n\) : nombre d'exemples-1<br/>
-						\(X_i\) : indice de l'objet dans l'exemple \(i\)<br/>
-						\(O_j\) : nombre d'objets dans l'exemple \(j\)<br/>
-						Application bijective continue (homéomorphisme) :</p>
+					<section id="formule-combinaison">
+						<h5>Calcul du nombre de combinaisons</h5>
+						<p>\(n\) : nombre d'exemples<br/>
+						\(E_i\) : nombre d'objets dans l'exemple \(i\)<br/>
 						<p>
 						\[
-							\left( \sum\limits_{i = 0}^{n-1} \left( X_i \times \prod\limits_{j=i+1}^{n} O_j \right) \right) +X_n
+							\prod\limits_{i=0}^{n} E_i
 						\]</p>
+						<hr>
+						<p>Exemple : 3 exemples de chacun 4 objets</p>
+						<p>\[ 4 \times 4 \times 4 = 64~combinaisons~possibles\]</p>
 					</section>
 					<section id="generation">
 						<h3>Génération combi + ajout relations</h3>
@@ -146,6 +141,21 @@
 						<h3>exemple intéractif</h3>
 					</section>					
 					<section id="etape2-generation" data-external="modules/generation.html"></section>
+					<section id="stockage">
+						<h5>Stockage des combinaisons</h5>
+						<p>Utilisation d'un tableau pour stocker les combinaisons</p>
+					</section>
+					<section id="formule-index">
+						<h5>Calcul de l'index de la combinaison dans le tableau</h5>
+						<p>\(n\) : nombre d'exemples <strong>- 1</strong><br/>
+						\(O_i\) : indice de l'objet dans l'exemple \(i\)<br/>
+						\(E_j\) : nombre d'objets dans l'exemple \(j\)<br/><br/>
+						Application bijective continue (homéomorphisme) :</p>
+						<p>
+						\[
+							\left( \sum\limits_{i = 0}^{n-1} \left( O_i \times \prod\limits_{j=i+1}^{n} E_j \right) \right) +O_n
+						\]</p>
+					</section>
 				</section>
 
 				<!-- étape 3 : généralisation -->
