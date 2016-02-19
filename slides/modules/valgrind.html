@@ -1,7 +1,7 @@
-<br/><h4>Valgrind</h4>
-<pre class="side-by-side">
-<code data-trim data-noescape>
-examples-learning ❯❯❯ valgrind --leak-check=full ./learning ressources/geometric-shape.exp
+<div>
+	<h4>Valgrind</h4>
+	<pre class="side-by-side">
+	<code>examples-learning ❯❯❯ valgrind --leak-check=full ./learning ressources/geometric-shape.exp
 ==28244== Memcheck, a memory error detector
 ==28244== Copyright (C) 2002-2015, and GNU GPL, by Julian Seward et al.
 ==28244== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
@@ -35,12 +35,10 @@ examples-learning ❯❯❯ valgrind --leak-check=full ./learning ressources/geo
 ==28244==         suppressed: 0 bytes in 0 blocks
 ==28244== 
 ==28244== For counts of detected and suppressed errors, rerun with: -v
-==28244== ERROR SUMMARY: 8 errors from 8 contexts (suppressed: 0 from 0)
-</code>
-</pre>
-<pre class="side-by-side">
-<code data-trim data-noescape>
-examples-learning ❯❯❯ valgrind ./learning --leak-check=full ressources/geometric-shape-test.exp
+==28244== ERROR SUMMARY: 8 errors from 8 contexts (suppressed: 0 from 0)</code>
+	</pre>
+	<pre class="side-by-side">
+	<code>examples-learning ❯❯❯ valgrind ./learning --leak-check=full ressources/geometric-shape-test.exp
 ==28712== Memcheck, a memory error detector
 ==28712== Copyright (C) 2002-2015, and GNU GPL, by Julian Seward et al.
 ==28712== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
@@ -53,8 +51,8 @@ examples-learning ❯❯❯ valgrind ./learning --leak-check=full ressources/geo
 ==28712== All heap blocks were freed -- no leaks are possible
 ==28712== 
 ==28712== For counts of detected and suppressed errors, rerun with: -v
-==28712== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
-</code>
-</pre>
-<h6 class="side-by-side sbs-title">Avec fuites</h6>
-<h6 class="side-by-side sbs-title">Sans fuite</h6>
+==28712== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)</code>
+	</pre>
+	<h6 class="side-by-side sbs-title">Avec fuites</h6>
+	<h6 class="side-by-side sbs-title">Sans fuite</h6>
+</div>
