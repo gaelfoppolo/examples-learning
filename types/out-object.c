@@ -10,6 +10,7 @@
 void initOutObject(OutObject* oo) {
 	vectInit(oo->attributes);
 	vectInit(oo->relations);
+	vectInit(oo->relationsBy);
 }
 
 void freeOutObject(OutObject* oo, int freeItself) {
@@ -20,6 +21,7 @@ void freeOutObject(OutObject* oo, int freeItself) {
 	}
 	vectFree(oo->attributes);
 	vectFree(oo->relations);
+	vectFree(oo->relationsBy);
 
 	if(freeItself) free(oo);
 }
@@ -38,6 +40,22 @@ int haveSameRelations(OutObject* oo1, OutObject* oo2) {
 	// else at least one different
 
 	return (tmp == vectSize(oo1->relations)) ? 1 : 0;
+}
+
+int haveSameRelationsBy(OutObject* oo1, OutObject* oo2) {
+
+	// both null or both not null
+	
+	int tmp = 0;
+
+	for (int i = 0; i < vectSize(oo1->relationsBy); ++i){
+		tmp += ((vectAt(oo1->relationsBy, i) != NULL && vectAt(oo2->relationsBy, i) != NULL) || (vectAt(oo1->relationsBy, i) == NULL && vectAt(oo2->relationsBy, i) == NULL));
+	}
+	
+	// if tmp = vectSize(oo1->relationsBy), all relationsBy the same
+	// else at least one different
+
+	return (tmp == vectSize(oo1->relationsBy)) ? 1 : 0;
 }
 
 int haveDisabledRelations(OutObject* oo) {

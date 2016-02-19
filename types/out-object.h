@@ -31,6 +31,11 @@ typedef struct OutObject {
 	*	Each relation must be at the same index as its definition in the Model
 	*/
 	Vector(struct OutObject*) relations;
+	/** 
+	*	@brief Array of the relationsBy of the out object.
+	*	Each relation must be at the same index as its definition in the Model
+	*/
+	Vector(struct OutObject*) relationsBy;
 } OutObject;
 
 /**
@@ -55,6 +60,14 @@ void freeOutObject(OutObject* oo, int freeItself);
 */
 int haveSameRelations(OutObject* oo1, OutObject* oo2);
 
+/**
+*	@brief Test if two OutObject have the same relationsBy
+*	@param oo1 A pointer to the first OutObject
+*	@param oo2 A pointer to the second OutObject
+*	
+*	@return 1 if the same, 0 else
+*/
+int haveSameRelationsBy(OutObject* oo1, OutObject* oo2);
 
 /**
 *	@brief Check if one of the relations of @a oo is disabled, recursively
