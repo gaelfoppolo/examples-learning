@@ -141,7 +141,8 @@
 						<h3>Génération combi + ajout relations</h3>
 						<h3>relations : réflexivité et transitivité non gérées</h3>
 						<h3>exemple intéractif</h3>
-					</section>
+					</section>					
+					<section id="etape2-generation" data-external="modules/generation.html"></section>
 				</section>
 
 				<!-- étape 3 : généralisation -->
@@ -266,6 +267,7 @@
 		<script src="modules/enum-combi.js"></script>
 		<script src="modules/tree-combi.js"></script>
 		<script src="modules/workflow.js"></script>
+		<script src="modules/generation.js"></script>
 
 		<script>
 
@@ -386,6 +388,8 @@
     				case "workflow":
     					enableAeListener('workflow');
     					break;
+    				case "etape2-generation":
+    					enableAeListener('generation');
     			}
 			});
 
