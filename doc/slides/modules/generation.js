@@ -309,34 +309,36 @@
 	function init() {
 		if(solutions['000'] !=  undefined) return;
 
+		genSVG(document.querySelector('#first-svg-example'), 'ae-gene', SVGconfig, SVGmodel, SVGrelations);
+
 		links = {
-			'0010': document.querySelector('#ae-link-00-10'),
-			'0011': document.querySelector('#ae-link-00-11'),
-			'0110': document.querySelector('#ae-link-01-10'),
-			'0111': document.querySelector('#ae-link-01-11'),
-			'0210': document.querySelector('#ae-link-02-10'),
-			'0211': document.querySelector('#ae-link-02-11'),
-			'1020': document.querySelector('#ae-link-10-20'),
-			'1021': document.querySelector('#ae-link-10-21'),
-			'1022': document.querySelector('#ae-link-10-22'),
-			'1120': document.querySelector('#ae-link-11-20'),
-			'1121': document.querySelector('#ae-link-11-21'),
-			'1122': document.querySelector('#ae-link-11-22')
+			'0010': document.querySelector('.ae-link-00-10'),
+			'0011': document.querySelector('.ae-link-00-11'),
+			'0110': document.querySelector('.ae-link-01-10'),
+			'0111': document.querySelector('.ae-link-01-11'),
+			'0210': document.querySelector('.ae-link-02-10'),
+			'0211': document.querySelector('.ae-link-02-11'),
+			'1020': document.querySelector('.ae-link-10-20'),
+			'1021': document.querySelector('.ae-link-10-21'),
+			'1022': document.querySelector('.ae-link-10-22'),
+			'1120': document.querySelector('.ae-link-11-20'),
+			'1121': document.querySelector('.ae-link-11-21'),
+			'1122': document.querySelector('.ae-link-11-22')
 		};
 		examples = {
-			'0': document.querySelector('#ae-ex-0'),
-			'1': document.querySelector('#ae-ex-1'),
-			'2': document.querySelector('#ae-ex-2'),
+			'0': document.querySelector('.ae-ex-0'),
+			'1': document.querySelector('.ae-ex-1'),
+			'2': document.querySelector('.ae-ex-2'),
 		};
 		objects = {
-			'00': document.querySelector('#ae-obj-00'),
-			'01': document.querySelector('#ae-obj-01'),
-			'02': document.querySelector('#ae-obj-02'),
-			'10': document.querySelector('#ae-obj-10'),
-			'11': document.querySelector('#ae-obj-11'),
-			'20': document.querySelector('#ae-obj-20'),
-			'21': document.querySelector('#ae-obj-21'),
-			'22': document.querySelector('#ae-obj-22'),
+			'00': document.querySelector('.ae-obj-00'),
+			'01': document.querySelector('.ae-obj-01'),
+			'02': document.querySelector('.ae-obj-02'),
+			'10': document.querySelector('.ae-obj-10'),
+			'11': document.querySelector('.ae-obj-11'),
+			'20': document.querySelector('.ae-obj-20'),
+			'21': document.querySelector('.ae-obj-21'),
+			'22': document.querySelector('.ae-obj-22'),
 		};
 
 		// generate the right table and the solutions array
