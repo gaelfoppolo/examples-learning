@@ -136,14 +136,21 @@
 						<p>\[ 4 \times 4 \times 4 = 64~combinaisons~possibles\]</p>
 					</section>
 					<section id="generation">
-						<h3>Génération combi + ajout relations</h3>
-						<h3>relations : réflexivité et transitivité non gérées</h3>
-						<h3>exemple intéractif</h3>
-					</section>					
-					<section id="etape2-generation" data-external="modules/generation.html"></section>
+						<h5>Calcul des combinaisons</h5>
+						<h6>Stratégie : combinaison en partant de la fin, &laquo; à l'envers &raquo;</h6>
+						<hr>
+						<ol>
+							<li>Initialisation avec les objets du dernier exemple</li>
+							<li>Combinaison des objets de l'exemple suivant (donc l'avant dernier) avec les solutions actuelles<br/>
+							<small>Même stratégie que l'étape 1 : inclusion des caractéristiques des objets</small>
+							</li>
+							<li>Réitération du 2. jusqu'au premier l'exemple</li>
+						</ol>
+					</section>
 					<section id="stockage">
 						<h5>Stockage des combinaisons</h5>
 						<p>Utilisation d'un tableau pour stocker les combinaisons</p>
+						<p>Accès direct à la combinaison souhaitée grâce au calcul de son index dans le tableau</p>
 					</section>
 					<section id="formule-index">
 						<h5>Calcul de l'index de la combinaison dans le tableau</h5>
@@ -155,6 +162,18 @@
 						\[
 							\left( \sum\limits_{i = 0}^{n-1} \left( O_i \times \prod\limits_{j=i+1}^{n} E_j \right) \right) +O_n
 						\]</p>
+					</section>					
+					<section id="etape2-generation" data-external="modules/generation.html"></section>
+					<section id="relations">
+						<h5>Ajout des relations</h5>
+						<p>Réflexivité et transitivité des relations ne sont pas gérées<br/>
+						<small>ex : <strong>x1 en relation avec x1</strong> n'est pas valide</small></p>
+						<h6>Stratégie</h6>
+						<p>Pour chaque combinaison, on vérifie que les objets la composant possèdent les mêmes relations : si tel est le cas, on ajoute les relations à la combinaison
+						</p>
+					</section>
+					<section id="etape2-relations">
+						<p>exemple intéractif</p>
 					</section>
 				</section>
 
