@@ -96,21 +96,24 @@
 						<hr>
 						<h6>Stratégie :</h6>
 						<p>Combinaison des objets : <strong>unique</strong></p>
-						<h6>À chaque nouvel objet, on modifie la solution actuelle afin qu'elle inclue les caractéristiques de tous les objets</h6>
+						<h6>À chaque nouvel objet traité, on modifie la solution actuelle afin qu'elle inclue les caractéristiques de tous les objets déjà traités</h6>
 						<hr>
 						<h6>Sortie : </h6>
 						<p>Une solution unique, la combinaison</p>
 					</section>
 					<section id="strategie-inter">
-						<p>Pour un attribut de type intervalle : modification d'une des bornes de l'intervalle</p>
+						<p>Attribut de type <code>intervalle</code> :</p>
+						<p>modification d'une des bornes de l'intervalle</p>
 					</section>
 					<section id="etape1-inter" data-external="modules/inter-combi.html"></section>
 					<section id="strategie-enum">
-						<p>Pour un attribut de type liste : ajout de la valeur si pas dans liste</p>
+						<p>Attribut de type <code>liste</code> : </p>
+						<p>ajout de la valeur dans la liste (sans doublons)</p>
 					</section>
 					<section id="etape1-enum" data-external="modules/enum-combi.html"></section>
 					<section id="strategie-tree">
-						<p>Pour un attribut de type arbre : calcul du plus petit ancêtre commun (LCA)</p>
+						<p>Attribut de type <code>arbre</code> :</p>
+						<p>calcul du plus petit ancêtre commun (<em>LCA</em>)</p>
 					</section>
 					<section id="etape1-tree" data-external="modules/tree-combi.html"></section>
 				</section>
