@@ -2,7 +2,7 @@
 	if(aeListener['enum'] != null) return;
 
 	var words = [];
-	var wordsToAdd = ["lundi", "vendredi", "lundi", "samedi", "mercredi", "vendredi"];
+	var wordsToAdd = ["lundi", "vendredi", "mercredi", "lundi", "samedi"];
 	var index = 1;
 
 	function addWord(word) {
