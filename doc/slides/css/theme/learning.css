@@ -314,3 +314,7 @@ body {
 .reveal table.options {
   font-size: 0.70em;
 }
+
+.reveal .ae-animated-example {
+  font-family: "LatoWeb";
+}
