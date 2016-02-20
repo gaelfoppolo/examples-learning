@@ -54,89 +54,25 @@
 
 				<section>
 					<h3>Étape 1 - Un objet par exemple</h3>
-					<section id="etape1"></section>
-					<section id="process">
-						<h6>Entrée : </h6>
-						<p>Ensemble d'exemples avec un seul objet, chaque objet composé des mêmes attributs</p>
-						<hr>
-						<h6>Stratégie :</h6>
-						<p>Combinaison des objets : <strong>unique</strong></p>
-						<h6>À chaque nouvel objet traité, on modifie la solution actuelle afin qu'elle inclue les caractéristiques de tous les objets déjà traités</h6>
-						<hr>
-						<h6>Sortie : </h6>
-						<p>Une solution unique, la combinaison</p>
-					</section>
-					<section id="strategie-inter">
-						<p>Attribut de type <code>intervalle</code> :</p>
-						<p>modification d'une des bornes de l'intervalle</p>
-					</section>
-					<section id="etape1-inter" data-external="modules/inter-combi.html"></section>
-					<section id="strategie-enum">
-						<p>Attribut de type <code>liste</code> : </p>
-						<p>ajout de la valeur dans la liste (sans doublons)</p>
-					</section>
-					<section id="etape1-enum" data-external="modules/enum-combi.html"></section>
-					<section id="strategie-tree">
-						<p>Attribut de type <code>arbre</code> :</p>
-						<p>calcul du plus petit ancêtre commun (<em>LCA</em>)</p>
-					</section>
-					<section id="etape1-tree" data-external="modules/tree-combi.html"></section>
+					<section id="process" data-external="modules/etape1/process.html"></section>
+					<section id="strategie-inter" data-external="modules/etape1/strategie-inter.html"></section>
+					<section id="etape1-inter" data-external="modules/etape1/inter-combi.html"></section>
+					<section id="strategie-enum" data-external="modules/etape1/strategie-enum.html"></section>
+					<section id="etape1-enum" data-external="modules/etape1/enum-combi.html"></section>
+					<section id="strategie-tree" data-external="modules/etape1/strategie-tree.html"></section>
+					<section id="etape1-tree" data-external="modules/etape1/tree-combi.html"></section>
 				</section>
 
 				<!-- étape 2 : plusieurs objets par exemple avec relations -->
 
 				<section>
 					<h3>Étape 2 : plusieurs objets par exemple, avec relations</h3>
-					<section id="etape2"></section>
-					<section id="formule-combinaison">
-						<h5>Calcul du nombre de combinaisons</h5>
-						<p>\(n\) : nombre d'exemples<br/>
-						\(E_i\) : nombre d'objets dans l'exemple \(i\)<br/>
-						<p>
-						\[
-							\prod\limits_{i=0}^{n} E_i
-						\]</p>
-						<hr>
-						<p>Exemple : 3 exemples de chacun 4 objets</p>
-						<p>\[ 4 \times 4 \times 4 = 64~combinaisons~possibles\]</p>
-					</section>
-					<section id="generation">
-						<h5>Calcul des combinaisons</h5>
-						<h6>Stratégie : combinaison en partant de la fin, &laquo; à l'envers &raquo;</h6>
-						<hr>
-						<ol>
-							<li>Initialisation avec les objets du dernier exemple</li>
-							<li>Combinaison des objets de l'exemple suivant (donc l'avant dernier) avec les solutions actuelles<br/>
-							<small>Même stratégie que l'étape 1 : inclusion des caractéristiques des objets</small>
-							</li>
-							<li>Réitération du 2. jusqu'au premier l'exemple</li>
-						</ol>
-					</section>
-					<section id="stockage">
-						<h5>Stockage des combinaisons</h5>
-						<p>Utilisation d'un tableau pour stocker les combinaisons</p>
-						<p>Accès direct à la combinaison souhaitée grâce au calcul de son indice dans le tableau</p>
-					</section>
-					<section id="formule-indice">
-						<h5>Calcul de l'indice de la combinaison dans le tableau</h5>
-						<p>\(n\) : nombre d'exemples <strong>- 1</strong><br/>
-						\(O_i\) : indice de l'objet dans l'exemple \(i\)<br/>
-						\(E_j\) : nombre d'objets dans l'exemple \(j\)<br/><br/>
-						Application bijective continue (homéomorphisme) :</p>
-						<p>
-						\[
-							\left( \sum\limits_{i = 0}^{n-1} \left( O_i \times \prod\limits_{j=i+1}^{n} E_j \right) \right) +O_n
-						\]</p>
-					</section>					
-					<section id="etape2-generation" data-external="modules/generation.html"></section>
-					<section id="relations">
-						<h5>Ajout des relations</h5>
-						<p>Réflexivité, transitivité et cycle des relations ne sont pas gérées<br/>
-						<small>ex : <strong>A en relation avec A</strong> n'est pas valide</small></p>
-						<h6>Stratégie</h6>
-						<p>Pour chaque combinaison, on vérifie que les objets la composant possèdent les mêmes relations : si tel est le cas, on ajoute les relations à la combinaison
-						</p>
-					</section>
+					<section id="formule-combinaison" data-external="modules/etape2/nb-combi.html"></section>
+					<section id="generation" data-external="modules/etape2/combinaisons.html"></section>
+					<section id="stockage" data-external="modules/etape2/stockage.html"></section>
+					<section id="formule-indice" data-external="modules/etape2/formule-indice.html"></section>					
+					<section id="etape2-generation" data-external="modules/etape2/generation.html"></section>
+					<section id="relations" data-external="modules/etape2/relations.html"></section>
 					<section id="etape2-relations">
 						<p>exemple intéractif</p>
 					</section>
@@ -299,12 +235,11 @@
 		<!-- libs perso -->
 		<script src="modules/init.js"></script>
 		<script src="modules/svg.js"></script>
-		<script src="modules/inter-combi.js"></script>
-		<script src="modules/enum-combi.js"></script>
-		<script src="modules/tree-combi.js"></script>
+		<script src="modules/etape1/inter-combi.js"></script>
+		<script src="modules/etape1/enum-combi.js"></script>
+		<script src="modules/etape1/tree-combi.js"></script>
+		<script src="modules/etape2/generation.js"></script>
 		<script src="modules/workflow.js"></script>
-		<script src="modules/generation.js"></script>
-
 		<script>
 
 			// Full list of configuration options available at:
