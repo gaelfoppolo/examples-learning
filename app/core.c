@@ -49,7 +49,6 @@ OutObject* initOutObjectWithObject(Model* mdl, Object* o) {
 	// each relation is set to NULL here, handled after
 	for (int j = 0; j < vectSize(mdl->rel); ++j) {
 		vectPush(OutObject*, oo->relations, (OutObject*)NULL);
-		vectPush(OutObject*, oo->relationsBy, (OutObject*)NULL);
 	}
 
 	free(oa);
@@ -188,7 +187,6 @@ static void __genAllRelations_rec(Solution* s, Examples* e, Model* m, ObjectInde
 			if(allRel) { // every objects have the relation
 				// get the combination of the objects linked and assign it to the relation of the current combination
 				vectAt(vectAt(s->outobjects, getIndex(e, indexes)).relations, i) = &vectAt(s->outobjects, getIndex(e, &relindexes));
-				vectAt(vectAt(s->outobjects, getIndex(e, &relindexes)).relationsBy, i) = &vectAt(s->outobjects, getIndex(e, indexes));
 			}
 			vectFree(relindexes.indexes);
 		}
@@ -267,15 +265,15 @@ void genGeneralization(Model* mdl, Solution* s) {
 		for (int j = 0; j < vectSize(s->outobjects) && (&vectAt(s->outobjects, i))->generalizeBy == NULL; ++j) {
 			// if OO(i) and OO(j) are not the same
 			// and the two OutObjects have exactly the same relations and relationsBy
-			if (i != j && haveSameRelations(&vectAt(s->outobjects, i), &vectAt(s->outobjects, j)) && haveSameRelationsBy(&vectAt(s->outobjects, i), &vectAt(s->outobjects, j))) {
-				// test inclusion of OO(i) in OO(j)
-				isInclude = isOutObjectIncludeInAnother(mdl, &vectAt(s->outobjects, i), &vectAt(s->outobjects, j));
+			if (i != j && haveSameRelations(&vectAt(s->outobjects, i), &vectAt(s->outobjects, j))) {
+				// test inclusion of OO(j) in OO(i)
+				isInclude = isOutObjectIncludeInAnother(mdl, &vectAt(s->outobjects, j), &vectAt(s->outobjects, i));
 				
-				// if OO(i) included in OO(j) 
+				// if OO(j) included in OO(i) 
 				if (isInclude) {
 					// then OO(i) points to OO(j)
 					(&vectAt(s->outobjects, i))->generalizeBy = &vectAt(s->outobjects, j);
-					printf("%s will be generalize in %s\n", (&vectAt(s->outobjects, i))->name, (&vectAt(s->outobjects, j))->name);
+					printf("%s points now to %s\n", (&vectAt(s->outobjects, i))->name, (&vectAt(s->outobjects, j))->name);
 				}		
 			}	
 		}	
