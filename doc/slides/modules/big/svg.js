@@ -285,7 +285,7 @@ var SVGconfig = {
 		},
 		'relations': {
 			size: 8,
-			color: 'hsl(0, 0%, 60%)'
+			color: 'white'
 		},
 		'example-id': {
 			size: 8,
@@ -306,7 +306,7 @@ var SVGconfig = {
 			size: 1
 		},
 		'relations': {
-			color: 'hsl(0, 0%, 40%)',
+			color: 'white',
 			size: 1
 		},
 		'separator': {
