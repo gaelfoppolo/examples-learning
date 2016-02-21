@@ -76,7 +76,6 @@
 		'enable': function() {
 			init();
 			aeListener['generation'].enabled = true;
-			console.log('initialisé');
 		},
 		'enabled': false
 	};
