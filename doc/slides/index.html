@@ -90,9 +90,7 @@
 						<h3>Stratégie : inclusion à expliquer (+ règles)</h3>
 						<h5>énoncer complexité O(n^2) \(O(n^2)\)</h5>
 					</section>
-					<section id="visualisation-generalisation" data-menu-title="Généralisation - exemple">
-						<h3>exemple intéractif pour visualiser les suppressions</h3>
-					</section>
+					<section id="etape3-generalisation" data-menu-title="Généralisation - exemple" data-external="modules/big/generalisation.html"></section>
 				</section>
 
 				<!-- étape 4 : contre-exemples -->
@@ -170,6 +168,7 @@
 		<script src="modules/etape1/tree-combi.js"></script>
 		<script src="modules/big/generation.js"></script>
 		<script src="modules/big/relation.js"></script>
+		<script src="modules/big/generalisation.js"></script>
 		<script src="modules/outils/workflow.js"></script>
 		<script>
 
@@ -295,6 +294,9 @@
     					break;
     				case "etape2-relations":
     					enableAeListener('relation');
+    					break;
+    				case "etape3-generalisation":
+    					enableAeListener('generalisation');
     					break;
     			}
 			});
