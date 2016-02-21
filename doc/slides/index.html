@@ -40,40 +40,43 @@
 		<div class="reveal">
 
 			<div class="slides">
-				<section data-external="modules/main/main.html"></section>
+				<section data-menu-title="Présentation" data-external="modules/main/main.html"></section>
 
 				<!-- introduction -->
 
-				<section id="intro">
+				<section>
 					<h3>Introduction</h3>
-					<section id="sujet" data-external="modules/intro/sujet.html"></section>
-					<section id="entree" data-external="modules/intro/entree.html"></section>
+					<section id="intro" data-menu-title="Introduction"></section>
+					<section id="sujet" data-menu-title="Sujet" data-external="modules/intro/sujet.html"></section>
+					<section id="entree" data-menu-title="Données" data-external="modules/intro/entree.html"></section>
 				</section>
 
 				<!-- étape 1 : un objet par exemple -->
 
 				<section>
 					<h3>Étape 1 - Un objet par exemple</h3>
-					<section id="process" data-external="modules/etape1/process.html"></section>
-					<section id="strategie-inter" data-external="modules/etape1/strategie-inter.html"></section>
-					<section id="etape1-inter" data-external="modules/etape1/inter-combi.html"></section>
-					<section id="strategie-enum" data-external="modules/etape1/strategie-enum.html"></section>
-					<section id="etape1-enum" data-external="modules/etape1/enum-combi.html"></section>
-					<section id="strategie-tree" data-external="modules/etape1/strategie-tree.html"></section>
-					<section id="etape1-tree" data-external="modules/etape1/tree-combi.html"></section>
+					<section id="etape1" data-menu-title="Étape 1"></section>
+					<section id="process" data-menu-title="Processus" data-external="modules/etape1/process.html"></section>
+					<section id="strategie-inter" data-menu-title="Intervalle" data-external="modules/etape1/strategie-inter.html"></section>
+					<section id="etape1-inter" data-menu-title="Intervalle - exemple" data-external="modules/etape1/inter-combi.html"></section>
+					<section id="strategie-enum" data-menu-title="Énumération" data-external="modules/etape1/strategie-enum.html"></section>
+					<section id="etape1-enum" data-menu-title="Énumération - exemple" data-external="modules/etape1/enum-combi.html"></section>
+					<section id="strategie-tree" data-menu-title="Arbre" data-external="modules/etape1/strategie-tree.html"></section>
+					<section id="etape1-tree" data-menu-title="Arbre - exemple" data-external="modules/etape1/tree-combi.html"></section>
 				</section>
 
 				<!-- étape 2 : plusieurs objets par exemple avec relations -->
 
 				<section>
 					<h3>Étape 2 : plusieurs objets par exemple, avec relations</h3>
-					<section id="formule-combinaison" data-external="modules/etape2/nb-combi.html"></section>
-					<section id="generation" data-external="modules/etape2/combinaisons.html"></section>
-					<section id="stockage" data-external="modules/etape2/stockage.html"></section>
-					<section id="formule-indice" data-external="modules/etape2/formule-indice.html"></section>					
-					<section id="etape2-generation" data-external="modules/etape2/generation.html"></section>
-					<section id="relations" data-external="modules/etape2/relations.html"></section>
-					<section id="etape2-relations">
+					<section id="etape2" data-menu-title="Étape 2"></section>
+					<section id="formule-combinaison" data-menu-title="Nombre de combinaisons" data-external="modules/etape2/nb-combi.html"></section>
+					<section id="generation" data-menu-title="Génération des combinaisons" data-external="modules/etape2/combinaisons.html"></section>
+					<section id="stockage" data-menu-title="Stockage des combinaisons" data-external="modules/etape2/stockage.html"></section>
+					<section id="formule-indice" data-menu-title="Calcul de l'indice dans le tableau" data-external="modules/etape2/formule-indice.html"></section>					
+					<section id="etape2-generation" data-menu-title="Génération - exemple" data-external="modules/etape2/generation.html"></section>
+					<section id="relations" data-menu-title="Relations" data-external="modules/etape2/relations.html"></section>
+					<section id="etape2-relations" data-menu-title="Relations - exemple" >
 						<p>exemple intéractif</p>
 					</section>
 				</section>
@@ -82,12 +85,12 @@
 
 				<section>
 					<h3>Étape 3 : généralisation</h3>
-					<section id="etape3"></section>
-					<section id="strategie-generalisation">
+					<section id="etape3" data-menu-title="Étape 1"></section>
+					<section id="strategie-generalisation" data-menu-title="todo">
 						<h3>Stratégie : inclusion à expliquer (+ règles)</h3>
 						<h5>énoncer complexité O(n^2) \(O(n^2)\)</h5>
 					</section>
-					<section id="visualisation-generalisation">
+					<section id="visualisation-generalisation" data-menu-title="Généralisation - exemple">
 						<h3>exemple intéractif pour visualiser les suppressions</h3>
 					</section>
 				</section>
@@ -96,53 +99,58 @@
 
 				<section>
 					<h3>Étape 4 : contre-exemples</h3>
-					<section id="processus-cexp" data-external="modules/etape4/process.html"></section>
-					<section id="inclusion" data-external="modules/etape4/inclusion.html"></section>
-					<section id="visualisation-cexp">
+					<section id="etape4" data-menu-title="Étape 4"></section>
+					<section id="processus-cexp" data-menu-title="Processus" data-external="modules/etape4/process.html"></section>
+					<section id="inclusion" data-menu-title="Inclusion - explication" data-external="modules/etape4/inclusion.html"></section>
+					<section id="visualisation-cexp" data-menu-title="Contre-exemple - exemple">
 						<h5>exemple intéractif pour visualiser les suppressions</h5>
 					</section>
 				</section>
 
 				<!-- application -->
 
-				<section id="application" class="blur" data-background="img/architecture.png" data-state="blur">
+				<section>
 					<h3>Notre application</h3>
-					<section id="architecture" data-external="modules/appli/archi.html"></section>
-					<section id="parser" data-external="modules/appli/parser.html"></section>
-					<section id="options" data-external="modules/appli/options.html"></section>
+					<section id="application" data-menu-title="Notre application"></section>
+					<section id="genericite" data-menu-title="Généricité" data-external="modules/appli/genericite.html"></section>
+					<section id="parser" data-menu-title="Parser" data-external="modules/appli/parser.html"></section>
+					<section id="archi" data-menu-title="Architecture" data-external="modules/appli/archi.html"></section>
+					<section id="options" data-menu-title="Options" data-external="modules/appli/options.html"></section>
 
 				</section>
 
 				<!-- outils -->
 
-				<section id="outils">
+				<section>
 					<h3>Outils</h3>
-					<section id="github" data-external="modules/outils/github.html"></section>
-					<section id="documentation" data-external="modules/outils/docu.html"></section>
-					<section id="slack" data-external="modules/outils/slack.html"></section>
-					<section id="trello" data-external="modules/outils/trello.html"></section>
-					<section id="workflow" data-external="modules/outils/workflow.html"></section>
-					<section id="valgrind" data-external="modules/outils/valgrind.html"></section>
+					<section id="outils" data-menu-title="Outils"></section>
+					<section id="github" data-menu-title="GitHub" data-external="modules/outils/github.html"></section>
+					<section id="documentation" data-menu-title="Documentation" data-external="modules/outils/docu.html"></section>
+					<section id="slack" data-menu-title="Slack" data-external="modules/outils/slack.html"></section>
+					<section id="trello" data-menu-title="Trello" data-external="modules/outils/trello.html"></section>
+					<section id="workflow" data-menu-title="Workflow" data-external="modules/outils/workflow.html"></section>
+					<section id="valgrind" data-menu-title="Valgrind" data-external="modules/outils/valgrind.html"></section>
 				</section>
 
 				<!-- conclusion -->
 
-				<section id="conclusion">
+				<section>
 					<h3>Conclusion</h3>
-					<section id="recap" data-external="modules/conclu/recap.html"></section>
-					<section id="applications" data-external="modules/conclu/appli.html"></section>
-					<section id="auteurs" data-external="modules/conclu/auteurs.html"></section>
+					<section id="conclusion" data-menu-title="Conclusion"></section>
+					<section id="synthese" data-menu-title="Synthèse" data-external="modules/conclu/recap.html"></section>
+					<section id="applications" data-menu-title="Applications" data-external="modules/conclu/appli.html"></section>
+					<section id="auteurs" data-menu-title="Auteurs" data-external="modules/conclu/auteurs.html"></section>
 				</section>
 
 				<!-- démo -->
 
-				<section id="demo" data-background="img/demo.gif">
+				<section id="demo" data-menu-title="Démonstration" data-background="img/demo.gif">
 					<h1 class="big">Démonstration</h1>
 				</section>
 
 				<!-- questions -->
 
-				<section id="questions">
+				<section id="questions" data-menu-title="Questions">
 					<h1 class="big">Questions ?</h1>
 				</section>
 

@@ -1,6 +1,6 @@
 <div>
 	<h4>Valgrind</h4>
-	<pre class="side-by-side fragment" data-fragment-index="0">
+	<pre class="side-by-side">
 	<code>examples-learning ❯❯❯ valgrind --leak-check=full ./learning ressources/geometric-shape.exp
 ==28244== Memcheck, a memory error detector
 ==28244== Copyright (C) 2002-2015, and GNU GPL, by Julian Seward et al.
@@ -37,7 +37,7 @@
 ==28244== For counts of detected and suppressed errors, rerun with: -v
 ==28244== ERROR SUMMARY: 8 errors from 8 contexts (suppressed: 0 from 0)</code>
 	</pre>
-	<pre class="side-by-side fragment" data-fragment-index="2">
+	<pre class="side-by-side">
 	<code>examples-learning ❯❯❯ valgrind ./learning --leak-check=full ressources/geometric-shape-test.exp
 ==28712== Memcheck, a memory error detector
 ==28712== Copyright (C) 2002-2015, and GNU GPL, by Julian Seward et al.
@@ -53,6 +53,6 @@
 ==28712== For counts of detected and suppressed errors, rerun with: -v
 ==28712== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)</code>
 	</pre>
-	<h6 class="side-by-side sbs-title fragment" data-fragment-index="1">Avec fuites</h6>
-	<h6 class="side-by-side sbs-title fragment" data-fragment-index="3">Sans fuite</h6>
+	<h6 class="side-by-side sbs-title">Avec fuites</h6>
+	<h6 class="side-by-side sbs-title">Sans fuite</h6>
 </div>

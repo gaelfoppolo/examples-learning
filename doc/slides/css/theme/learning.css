@@ -322,11 +322,3 @@ body {
 .reveal .generation-example {
   font-family: "LatoWeb";
 }
-
-html.blur .backgrounds {
-   -webkit-filter: blur(4px) saturate(.5) brightness(.4);
-      -moz-filter: blur(4px) saturate(.7) brightness(.4);
-        -o-filter: blur(4px) saturate(.7) brightness(.4);
-       -ms-filter: blur(4px) saturate(.7) brightness(.4);
-           filter: blur(4px) saturate(.7) brightness(.4);
-}
