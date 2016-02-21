@@ -666,6 +666,25 @@ function AEdisplay(id, model, relations, config) {
 		}
 	};
 
+	this.unhighlightText = function(ex, obj) {
+		if(obj == undefined) {
+			var obj = document.querySelector('.table.' + id + ' .line.ae-combi-0-' + ex[0] +
+															'.ae-combi-1-' + ex[1] +
+															'.ae-combi-2-' + ex[2]);
+			var children = obj.querySelectorAll('span');
+			children[1].style.backgroundColor = 'transparent';
+			children[2].style.backgroundColor = 'transparent';
+			children[3].style.backgroundColor = 'transparent';
+		}
+		else {
+			var sol = document.querySelectorAll('.table.' + id + ' .line.ae-combi-' + ex + '-' + obj);
+			for(var i = 0; i < sol.length; ++i) {
+				var children = sol[i].querySelectorAll('span');
+				children[1+ex].style.backgroundColor = "transparent";
+			}
+		}
+	};
+
 	this.setRelation = function(index, value) {
 		var obj = document.querySelector('.table.' + id + ' .line.ae-combi-0-' + index[0] +
 															'.ae-combi-1-' + index[1] +
@@ -695,6 +714,9 @@ function AEdisplay(id, model, relations, config) {
 		if(action.back) {
 			that.highlightText(action.back.example, action.back.object);
 		}
+		if(action.relation) {
+			that.setRelation(action.relation.index, action.relation.value);
+		}
 	};
 
 	function _unaction(action) {
@@ -709,6 +731,9 @@ function AEdisplay(id, model, relations, config) {
 					that.unlightObject(action.svg.showObject[i][0], action.svg.showObject[i][1]);
 				}
 			}
+		}
+		if(action.back) {
+			that.unhighlightText(action.back.example, action.back.object);
 		}
 	};
 
@@ -725,7 +750,7 @@ function AEdisplay(id, model, relations, config) {
 	};
 
 	this.nextStep = function() {
-		if(stackPt >= stack.length);
+		if(stackPt >= stack.length) return;
 		if(stack[stackPt][0]) {
 			_action(stack[stackPt][1]);
 		}
