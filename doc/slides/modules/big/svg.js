@@ -289,11 +289,11 @@ var SVGconfig = {
 		},
 		'example-id': {
 			size: 8,
-			color: 'hsl(0, 0%, 60%)'
+			color: 'white'
 		},
 		'object-id': {
 			size: 10,
-			color: 'hsl(0, 0%, 40%)'
+			color: 'white'
 		}
 	},
 	'border-data': {
