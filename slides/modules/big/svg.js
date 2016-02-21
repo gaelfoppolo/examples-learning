@@ -602,6 +602,9 @@ function AEdisplay(id, model, relations, config) {
 			tmp.classList.add('ae-left');
 			table.classList.add('ae-right');
 		}
+		else if(svg != null) {
+			svg.classList.add('ae-example-alone');
+		}
 
 		if(svg != null) {
 			genSVG(document.querySelector('#' + id), id, config, model, relations);
@@ -680,7 +683,7 @@ function AEdisplay(id, model, relations, config) {
 			}
 			if (action.svg.showObject) {
 				for (var i = 0; i < action.svg.showObject.length; ++i) {
-					that.lightObject(action.svg.showObject[i][0], action.svg.showObject[i][1]);
+					that.lightObject(action.svg.showObject[i][0], action.svg.showObject[i][1], action.svg.color);
 				}
 			}
 		}

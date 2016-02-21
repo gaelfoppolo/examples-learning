@@ -211,6 +211,12 @@ g.axis {
 	margin: 0;
 }
 
+.ae-example-alone {
+	width: 60% !important;
+	height: 100%;
+	margin-left: 20%;
+}
+
 .ae-example * {
 	transition: ease all 0.2s;
 }
