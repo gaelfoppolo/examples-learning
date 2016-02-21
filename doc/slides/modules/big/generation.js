@@ -37,7 +37,11 @@
 
 		myEngine.on('end-object', function(e) {
 			myDisplay.addAction({
-				'text': stack
+				'text': stack,
+				'back': {
+					'example': e.example,
+					'object': e.object
+				}
 			});
 			myDisplay.addUnaction({
 				'svg': {
@@ -66,8 +70,6 @@
 			}
 		});
 	}
-
-		
 
 	aeListener['generation'] = {
 		'disable': function() {

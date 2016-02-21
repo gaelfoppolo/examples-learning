@@ -175,7 +175,7 @@ var genTable = null;
 		var indexHeader = document.createElement('span');
 		indexHeader.innerHTML = "indice";
 		var indexRel= document.createElement('span');
-		indexRel.innerHTML = "Rel";
+		indexRel.innerHTML = "Géné";
 		var combiSize = document.createElement('span');
 		combiSize.innerHTML = "Taille";
 		var combiShape = document.createElement('span');
@@ -655,6 +655,14 @@ function AEdisplay(id, model, relations, config) {
 		children[children.length - 3].innerHTML = text.size;
 	};
 
+	this.highlightText = function(ex, obj) {
+		var sol = document.querySelectorAll('.table.' + id + ' .line.ae-combi-' + ex + '-' + obj);
+		for(var i = 0; i < sol.length; ++i) {
+			var children = sol[i].querySelectorAll('span');
+			children[1+ex].style.backgroundColor = "hsl(0, 0%, 40%)";
+		}
+	};
+
 	this.setRelation = function(index, value) {
 		var obj = document.querySelector('.table.' + id + ' .line.ae-combi-0-' + index[0] +
 															'.ae-combi-1-' + index[1] +
@@ -681,20 +689,9 @@ function AEdisplay(id, model, relations, config) {
 				that.setText(i, action.text[i]);
 			}
 		}
-		/*if (action.table) {
-			if(action.table.comment) {
-				highlight()
-			}
-			if (add) {
-				if (action.table.comment) {
-					highlight(action.table.obj, action.table.columns, 'hsl(0, 0%, 30%)', action.table.comment);
-				} else {
-					highlight(action.table.obj, action.table.columns, 'hsl(0, 0%, 30%)');
-				}
-			} else {
-				highlight(action.table.obj, action.table.columns);
-			}
-		}*/
+		if(action.back) {
+			that.highlightText(action.back.example, action.back.object);
+		}
 	};
 
 	function _unaction(action) {
