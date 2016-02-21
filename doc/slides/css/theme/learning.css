@@ -322,3 +322,7 @@ body {
 .reveal .generation-example {
   font-family: "LatoWeb";
 }
+
+.reveal small {
+  font-size: 0.7em;
+}
