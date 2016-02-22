@@ -319,9 +319,8 @@ body {
   font-size: 0.70em;
 }
 
-.reveal .generation-example,
-.reveal .generalisation-example,
-.reveal .relation-example {
+.reveal .table,
+.reveal .ae-example {
   font-family: "LatoWeb";
 }
 
