@@ -270,7 +270,7 @@ void genGeneralization(Model* mdl, Solution* s) {
 				isInclude = isOutObjectIncludeInAnother(mdl, &vectAt(s->outobjects, j), &vectAt(s->outobjects, i));
 				
 				// if OO(j) included in OO(i) 
-				if (isInclude) {
+				if (isInclude && (&vectAt(s->outobjects, j))->generalizeBy == NULL) {
 					// then OO(i) points to OO(j)
 					(&vectAt(s->outobjects, i))->generalizeBy = &vectAt(s->outobjects, j);
 					printf("%s points now to %s\n", (&vectAt(s->outobjects, i))->name, (&vectAt(s->outobjects, j))->name);
