@@ -74,7 +74,8 @@
 					<section id="formule-combinaison" data-menu-title="Nombre de combinaisons" data-external="modules/etape2/nb-combi.html"></section>
 					<section id="generation" data-menu-title="Génération des combinaisons" data-external="modules/etape2/combinaisons.html"></section>
 					<section id="stockage" data-menu-title="Stockage des combinaisons" data-external="modules/etape2/stockage.html"></section>
-					<section id="formule-indice" data-menu-title="Calcul de l'indice dans le tableau" data-external="modules/etape2/formule-indice.html"></section>					
+					<section id="formule-indice" data-menu-title="Calcul de l'indice dans le tableau" data-external="modules/etape2/formule-indice.html"></section>		
+					<section id="etape2-indice" data-menu-title="Indice - exemple" data-external="modules/big/indice.html"></section>			
 					<section id="etape2-generation" data-menu-title="Génération - exemple" data-external="modules/etape2/generation.html"></section>
 					<section id="relations" data-menu-title="Relations" data-external="modules/etape2/relations.html"></section>
 					<section id="etape2-relations" data-menu-title="Relations - exemple" data-external="modules/big/relation.html"></section>
@@ -164,6 +165,7 @@
 		<script src="modules/etape1/inter-combi.js"></script>
 		<script src="modules/etape1/enum-combi.js"></script>
 		<script src="modules/etape1/tree-combi.js"></script>
+		<script src="modules/big/indice.js"></script>
 		<script src="modules/big/generation.js"></script>
 		<script src="modules/big/relation.js"></script>
 		<script src="modules/big/generalisation.js"></script>
@@ -286,6 +288,9 @@
     					break;
     				case "workflow":
     					enableAeListener('workflow');
+    					break;
+    				case "etape2-indice":
+    					enableAeListener('indice');
     					break;
     				case "etape2-generation":
     					enableAeListener('generation');
