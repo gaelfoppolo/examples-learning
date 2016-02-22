@@ -685,12 +685,18 @@ function AEdisplay(id, model, relations, config) {
 		}
 	};
 
-	this.setRelation = function(index, value) {
+	this.setRelation = function(index, value, color) {
 		var obj = document.querySelector('.table.' + id + ' .line.ae-combi-0-' + index[0] +
 															'.ae-combi-1-' + index[1] +
 															'.ae-combi-2-' + index[2]);
 		var children = obj.querySelectorAll('span');
 		children[children.length - 4].innerHTML = value;
+		if(color) {
+			children[children.length - 4].style.color = color;
+		}
+		else {
+			children[children.length - 4].style.color = 'white';
+		}
 	};
 
 	function _action(action) {
@@ -715,7 +721,7 @@ function AEdisplay(id, model, relations, config) {
 			that.highlightText(action.back.example, action.back.object);
 		}
 		if(action.relation) {
-			that.setRelation(action.relation.index, action.relation.value);
+			that.setRelation(action.relation.index, action.relation.value, action.relation.color);
 		}
 	};
 
