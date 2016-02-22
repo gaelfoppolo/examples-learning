@@ -99,9 +99,7 @@
 					<h3>Étape 4 : contre-exemples</h3>
 					<section id="etape4" data-menu-title="Étape 4"></section>
 					<section id="processus-cexp" data-menu-title="Processus" data-external="modules/etape4/process.html"></section>
-					<section id="visualisation-cexp" data-menu-title="Contre-exemple - exemple">
-						<h5>exemple intéractif pour visualiser les suppressions</h5>
-					</section>
+					<section id="etape4-counterex" data-menu-title="Contre-exemples - exemple" data-external="modules/big/counterex.html"></section>
 					<section id="complexite-4" data-menu-title="Complexité" data-external="modules/etape4/complexite.html"></section>
 				</section>
 
@@ -169,6 +167,7 @@
 		<script src="modules/big/generation.js"></script>
 		<script src="modules/big/relation.js"></script>
 		<script src="modules/big/generalisation.js"></script>
+		<script src="modules/big/counterex.js"></script>
 		<script src="modules/outils/workflow.js"></script>
 		<script>
 
@@ -300,6 +299,9 @@
     					break;
     				case "etape3-generalisation":
     					enableAeListener('generalisation');
+    					break;
+    				case "etape4-counterex":
+    					enableAeListener('counterex');
     					break;
     			}
 			});
