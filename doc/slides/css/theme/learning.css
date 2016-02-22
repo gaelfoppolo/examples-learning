@@ -319,7 +319,9 @@ body {
   font-size: 0.70em;
 }
 
-.reveal .generation-example {
+.reveal .generation-example,
+.reveal .generalisation-example,
+.reveal .relation-example {
   font-family: "LatoWeb";
 }
 
