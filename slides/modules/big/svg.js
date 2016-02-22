@@ -258,6 +258,10 @@ var SVGmodel = [
 		couleur: 'vert'
 	}]
 ];
+
+var SVGcounterExample = [
+
+];
 var SVGrelations = {
 	'00': 'sur',
 	'10': 'sur',
@@ -703,7 +707,7 @@ function AEdisplay(id, model, relations, config) {
 		if (action.svg) {
 			if (action.svg.showExample) {
 				for (var i = 0; i < action.svg.showExample.length; ++i) {
-					that.lightExample(action.svg.showExample[i]);
+					that.lightExample(action.svg.showExample[i], action.svg.color);
 				}
 			}
 			if (action.svg.showObject) {
