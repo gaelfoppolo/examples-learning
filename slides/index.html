@@ -16,7 +16,7 @@
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/learning.css" id="theme">
-		<link rel="stylesheet" href="modules/big/css.css">
+		<link rel="stylesheet" href="modules/examples-animation/css.css">
 
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -75,10 +75,10 @@
 					<section id="generation" data-menu-title="Génération des combinaisons" data-external="modules/etape2/combinaisons.html"></section>
 					<section id="stockage" data-menu-title="Stockage des combinaisons" data-external="modules/etape2/stockage.html"></section>
 					<section id="formule-indice" data-menu-title="Calcul de l'indice dans le tableau" data-external="modules/etape2/formule-indice.html"></section>		
-					<section id="etape2-indice" data-menu-title="Indice - exemple" data-external="modules/big/indice.html"></section>			
+					<section id="etape2-indice" data-menu-title="Indice - exemple" data-external="modules/examples-animation/indice.html"></section>			
 					<section id="etape2-generation" data-menu-title="Génération - exemple" data-external="modules/etape2/generation.html"></section>
 					<section id="relations" data-menu-title="Relations" data-external="modules/etape2/relations.html"></section>
-					<section id="etape2-relations" data-menu-title="Relations - exemple" data-external="modules/big/relation.html"></section>
+					<section id="etape2-relations" data-menu-title="Relations - exemple" data-external="modules/examples-animation/relation.html"></section>
 					<section id="complexite-2" data-menu-title="Complexité" data-external="modules/etape2/complexite.html"></section>
 				</section>
 
@@ -89,7 +89,7 @@
 					<section id="etape3" data-menu-title="Étape 3"></section>
 					<section id="process-gene" data-menu-title="Processus" data-external="modules/etape3/process.html"></section>
 					<section id="inclusion" data-menu-title="Inclusion" data-external="modules/etape3/inclusion.html"></section>
-					<section id="etape3-generalisation" data-menu-title="Généralisation - exemple" data-external="modules/big/generalisation.html"></section>
+					<section id="etape3-generalisation" data-menu-title="Généralisation - exemple" data-external="modules/examples-animation/generalisation.html"></section>
 					<section id="complexite-3" data-menu-title="Complexité" data-external="modules/etape3/complexite.html"></section>
 				</section>
 
@@ -99,7 +99,7 @@
 					<h3>Étape 4 : contre-exemples</h3>
 					<section id="etape4" data-menu-title="Étape 4"></section>
 					<section id="processus-cexp" data-menu-title="Processus" data-external="modules/etape4/process.html"></section>
-					<section id="etape4-counterex" data-menu-title="Contre-exemples - exemple" data-external="modules/big/counterex.html"></section>
+					<section id="etape4-counterex" data-menu-title="Contre-exemples - exemple" data-external="modules/examples-animation/counterex.html"></section>
 					<section id="complexite-4" data-menu-title="Complexité" data-external="modules/etape4/complexite.html"></section>
 				</section>
 
@@ -158,16 +158,16 @@
 		<script src="js/reveal.js"></script>
 
 		<!-- libs perso -->
-		<script src="modules/init.js"></script>
-		<script src="modules/big/svg.js"></script>
+		<script src="modules/examples-animation/init.js"></script>
+		<script src="modules/examples-animation/svg.js"></script>
 		<script src="modules/etape1/inter-combi.js"></script>
 		<script src="modules/etape1/enum-combi.js"></script>
 		<script src="modules/etape1/tree-combi.js"></script>
-		<script src="modules/big/indice.js"></script>
-		<script src="modules/big/generation.js"></script>
-		<script src="modules/big/relation.js"></script>
-		<script src="modules/big/generalisation.js"></script>
-		<script src="modules/big/counterex.js"></script>
+		<script src="modules/examples-animation/indice.js"></script>
+		<script src="modules/examples-animation/generation.js"></script>
+		<script src="modules/examples-animation/relation.js"></script>
+		<script src="modules/examples-animation/generalisation.js"></script>
+		<script src="modules/examples-animation/counterex.js"></script>
 		<script src="modules/outils/workflow.js"></script>
 		<script>
 
@@ -180,6 +180,7 @@
 				history: true,
 				center: true,
 				slideNumber: true,
+				help: true,
 
 				transition: 'slide', // none/fade/slide/convex/concave/zoom
 				
@@ -304,6 +305,18 @@
     					enableAeListener('counterex');
     					break;
     			}
+			});
+
+			Reveal.addEventListener('ready', function(event) {
+				var help = document.createElement("div");
+				help.className += "ae-help";
+				var span = document.createElement("span");
+				span.innerHTML = "Utilisez la touche <strong>a</strong> pour faire avancer l'animation";
+				help.appendChild(span);
+				var examplesElem = document.getElementsByClassName("ae-animated-example");
+				for (var i = 0; i < examplesElem.length; i++) {
+					examplesElem[i].appendChild(help.cloneNode(true));
+				}
 			});
 
 		</script>

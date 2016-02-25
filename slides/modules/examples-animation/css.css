@@ -1,29 +1,41 @@
-.animated-example {
+.ae-animated-example {
 	width: 100%;
 	height: 100%;
 	display: flex;
+	flex-direction: column;
 	overflow: hidden;
 	margin: none;
 	align-items: center;
 }
 
-.animated-example > .ae-cont {
+.ae-animated-example > .ae-cont {
 	width: 100%;
+	height: 90%;
 	margin: auto;
 	text-align: center;
 }
 
-.animated-example > .ae-cont > .ae-wrapper {
+.ae-animated-example > .ae-cont > .ae-wrapper {
 	position: absolute;
 	/*left: 50%;*/
 	width: 100%;
+}
+
+.ae-help {
+	width: 100%;
+	margin-top: 0.05	em;
+	text-align: right;
+}
+
+.ae-help > span {
+	font-size: 0.4em;
 }
 
 /****************************************************
 *************** INTER - COMBI ***********************
 ****************************************************/
 
-.animated-example > .ae-cont > .ae-wrapper > .ae-inter {
+.ae-animated-example > .ae-cont > .ae-wrapper > .ae-inter {
 	/*left: -50%;*/
 	height: 12px;
 	background-color: hsl(0, 0%, 40%);

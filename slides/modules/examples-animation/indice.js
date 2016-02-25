@@ -13,8 +13,8 @@
 		myDisplay.prepareSvg();
 		myDisplay.init();
 
-		document.querySelector('#indice-svg').setAttribute('width', '500');
-		document.querySelector('#indice-svg').setAttribute('viewBox', '0 0 500 310');
+		document.querySelector('#indice-svg').setAttribute('width', '400');
+		document.querySelector('#indice-svg').setAttribute('viewBox', '0 0 400 210');
 
 		function displayClass(cl) {
 			var elems = document.querySelectorAll(cl);

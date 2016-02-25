@@ -13,6 +13,9 @@
 		myDisplay.prepareSvg();
 		myDisplay.init();
 
+		document.querySelector('#relation-svg').setAttribute('width', '400');
+		document.querySelector('#relation-svg').setAttribute('viewBox', '0 0 300 250');
+
 		myDisplay.addAction({
 			'svg': {
 				'showObject': [[0, 0], [1, 0], [2, 0]],
