@@ -1,0 +1,10 @@
+include ressources/geometric-shape.cfg
+
+E1
+	x1:shape(triangle), size(1), color(blue), on(x2)
+	x2:shape(square), size(50), color(blue), on(x3)
+	x3:shape(circle), size(50), color(blue)
+
+E2
+	y1:shape(circle), size(1), color(blue), on(y2)
+	y2:shape(triangle), size(50), color(blue)
