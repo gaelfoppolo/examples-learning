@@ -17,13 +17,12 @@
 
 .ae-animated-example > .ae-cont > .ae-wrapper {
 	position: absolute;
-	/*left: 50%;*/
 	width: 100%;
 }
 
 .ae-help {
 	width: 100%;
-	margin-top: 0.05	em;
+	margin-top: 0.05em;
 	text-align: right;
 }
 
