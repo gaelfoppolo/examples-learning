@@ -1,0 +1,58 @@
+<div>
+	<h4>Valgrind</h4>
+	<pre class="side-by-side">
+	<code>examples-learning ❯❯❯ valgrind --leak-check=full ./learning ressources/geometric-shape.exp
+==28244== Memcheck, a memory error detector
+==28244== Copyright (C) 2002-2015, and GNU GPL, by Julian Seward et al.
+==28244== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==28244== Command: ./learning ressources/geometric-shape.exp
+==28244==
+==28244== HEAP SUMMARY:
+==28244==     in use at exit: 16,111 bytes in 238 blocks
+==28244==   total heap usage: 730 allocs, 492 frees, 34,838 bytes allocated
+==28244== 
+==28244== 32 bytes in 1 blocks are definitely lost in loss record 1 of 12
+==28244==    at 0x4C28C10: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==28244==    by 0x404821: createLeaf (in examples-learning/learning)
+==28244==    by 0x402808: parseAttrTypeTree (in examples-learning/learning)
+==28244==    by 0x402A5C: parseAttrTypeTree (in examples-learning/learning)
+==28244==    by 0x402A5C: parseAttrTypeTree (in examples-learning/learning)
+==28244==    by 0x402A5C: parseAttrTypeTree (in examples-learning/learning)
+==28244==    by 0x402A5C: parseAttrTypeTree (in examples-learning/learning)
+==28244==    by 0x402A5C: parseAttrTypeTree (in examples-learning/learning)
+==28244==    by 0x40233E: parseAttrType (in examples-learning/learning)
+==28244==    by 0x4020C8: parseConfigLine (in examples-learning/learning)
+==28244==    by 0x401F4D: loadConfigFile (in examples-learning/learning)
+==28244==    by 0x4009F6: main (in examples-learning/learning)
+==28244== 
+[...] 
+==28244==
+==28244== LEAK SUMMARY:
+==28244==    definitely lost: 3,016 bytes in 94 blocks
+==28244==    indirectly lost: 13,095 bytes in 144 blocks
+==28244==      possibly lost: 0 bytes in 0 blocks
+==28244==    still reachable: 0 bytes in 0 blocks
+==28244==         suppressed: 0 bytes in 0 blocks
+==28244== 
+==28244== For counts of detected and suppressed errors, rerun with: -v
+==28244== ERROR SUMMARY: 8 errors from 8 contexts (suppressed: 0 from 0)</code>
+	</pre>
+	<pre class="side-by-side">
+	<code>examples-learning ❯❯❯ valgrind ./learning --leak-check=full ressources/geometric-shape-test.exp
+==28712== Memcheck, a memory error detector
+==28712== Copyright (C) 2002-2015, and GNU GPL, by Julian Seward et al.
+==28712== Using Valgrind-3.11.0 and LibVEX; rerun with -h for copyright info
+==28712== Command: ./learning ressources/geometric-shape-test.exp
+==28712== 
+==28712== HEAP SUMMARY:
+==28712==     in use at exit: 0 bytes in 0 blocks
+==28712==   total heap usage: 439 allocs, 439 frees, 21,047 bytes allocated
+==28712== 
+==28712== All heap blocks were freed -- no leaks are possible
+==28712== 
+==28712== For counts of detected and suppressed errors, rerun with: -v
+==28712== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)</code>
+	</pre>
+	<h6 class="side-by-side sbs-title">With leaks</h6>
+	<h6 class="side-by-side sbs-title">Without leak</h6>
+</div>

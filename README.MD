@@ -4,7 +4,7 @@
 
 This project aims to find similarities in a set of formatted data and propose one or more characteristic(s) description(s) that carry the most information.
 
-<!-- A presentation of the project is [available here](http://gaelfoppolo.github.io/examples-learning/slides/).* -->
+A presentation of the project is available in [English](http://gaelfoppolo.github.io/examples-learning/en/) and in [French](http://gaelfoppolo.github.io/examples-learning/fr/).
 
 ## Project
 
