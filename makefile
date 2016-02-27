@@ -15,7 +15,6 @@ CC = clang
 CC_FLAGS = -Wall -O2
 CC_LIBS = -lm
 RM = rm -rf
-DOXYGEN = doxygen doc/doxygen.cfg
 
 # File names
 OUT = learning
@@ -26,7 +25,6 @@ OBJECTS = $(SOURCES:.c=.o)
 # Main target
 $(OUT): $(OBJECTS)
 	$(CC) $(OBJECTS) -o $(OUT) $(CC_LIBS)
-	-$(DOXYGEN)
 
 # To obtain object files
 %.o: %.c

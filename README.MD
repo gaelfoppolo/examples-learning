@@ -21,8 +21,6 @@ The application is based on the concept of model, examples (and counter-examples
 
 This project is part of an enginnering school programming project, here the original [subject](https://github.com/gaelfoppolo/examples-learning/blob/master/subject.pdf) (french).
 
-A [documentation](http://gaelfoppolo.github.io/examples-learning/) is also available, with graph to a better understanding of our process (see [Files](http://gaelfoppolo.github.io/examples-learning/files.html) tabs).
-
 ## How to populate input files
 
 The programs use two different types of file to generate the solutions of a problem. These files are located in the *ressources* directory.
@@ -60,6 +58,14 @@ Example-name
 	# same syntax as of the examples
 ```
 See [examples-commented.exp](https://github.com/gaelfoppolo/examples-learning/blob/master/ressources/examples-commented.exp) for further explanations.
+
+## Documentation
+
+A [documentation](http://gaelfoppolo.github.io/examples-learning/) is also available, with graph to a better understanding of our process (see [Files](http://gaelfoppolo.github.io/examples-learning/files.html) tabs).
+
+To update the documentation, make sure you have installed [Doxygen](http://www.stack.nl/~dimitri/doxygen/) and [Graphviz](http://www.graphviz.org/).
+
+Then browse to the root of the project folder and run: ``doxygen doc/doxygen.cfg``
 
 ## Usage and options
 
